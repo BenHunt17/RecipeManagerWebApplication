@@ -1,11 +1,15 @@
-import { Fragment } from "react";
-import "./App.css";
+import Header from "./Components/Header";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Dashboard from "./Pages/Dashboard";
 
 function App() {
   return (
-    <Fragment>
-      <div className="App">Recipes Manager</div>
-    </Fragment>
+    <Router>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Dashboard />} />
+      </Routes>
+    </Router>
   );
 }
 
