@@ -1,4 +1,4 @@
-import { PageTemplate } from "../Components/Common/StyledComponents";
+import { PageTemplate } from "../Components/Common/StyledComponents/StyledComponents";
 
 export default function Dashboard() {
   return (

@@ -1,7 +1,11 @@
 html {
   --colour-primary: #698c96;
   --colour-secondary: #967369;
+  --colour-secondary-rgb: 150, 115, 105;
+  --colour-text: #494949;
   --colour-shadow: #ababab;
+  --colour-border: #696969;
+  --colour-error: #ef3038;
 }
 
 body {
@@ -15,11 +19,42 @@ body {
 
 h1 {
   color: white;
-  margin-left: 100px;
 }
 
 h2 {
   color: var(--colour-secondary);
+}
+
+p {
+  color: var(--colour-text);
+}
+
+ol {
+  list-style-type: none;
+  display: inline;
+  padding: 0px;
+  margin: 0px;
+}
+
+ol li::before {
+  content: counter(step-counter);
+  background-color: var(--colour-secondary);
+  color: white;
+  border-radius: 50%;
+  padding: 3px 10px;
+  margin-right: 20px;
+}
+
+ol li {
+  counter-increment: step-counter;
+  color: var(--colour-text);
+  border-radius: 10px;
+  margin-top: 25px;
+  padding: 10px 0 10px 0;
+}
+
+.noMargin {
+  margin: 0px;
 }
 
 .link {
@@ -31,7 +66,7 @@ h2 {
 }
 
 .link:hover {
-  background-color: var(--colour-secondary);
+  background-color: rgba(var(--colour-secondary-rgb), 0.75);
 }
 
 code {

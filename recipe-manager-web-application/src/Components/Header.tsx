@@ -11,6 +11,10 @@ const HeaderRoot = styled.div`
   box-shadow: 0px 1px 1px var(--colour-shadow);
 `;
 
+const Title = styled.h1`
+  margin-left: 100px;
+`;
+
 const NavigationBar = styled.div`
   display: flex;
   gap: 100px;
@@ -20,7 +24,7 @@ const NavigationBar = styled.div`
 export default function Header() {
   return (
     <HeaderRoot>
-      <h1>Recipes Manager</h1>
+      <Title>Recipes Manager</Title>
       <NavigationBar>
         <Link to="/" className="link">
           Dashboard
