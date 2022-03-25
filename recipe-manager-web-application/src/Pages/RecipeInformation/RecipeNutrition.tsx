@@ -1,25 +1,13 @@
-import styled from "@emotion/styled";
 import ContentBox from "../../Components/Common/ContentBox";
+import StatisticsTable from "../../Components/Common/StatisticsTable";
 import { RecipeIngredient } from "../../Types/RecipeTypes";
-
-const StatsLayout = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-`;
-
-const ListItem = styled.div(({ highlight }: { highlight?: boolean }) => ({
-  color: "var(--colour-secondary)",
-  backgroundColor: highlight
-    ? "rgba(var(--colour-secondary-rgb), 0.2)"
-    : "none",
-}));
 
 export default function RecipeNutrition({
   recipeIngredients,
 }: {
   recipeIngredients: RecipeIngredient[];
 }) {
-  const kcal = Number(
+  const calories = Number(
     recipeIngredients
       .reduce((total, ingredient) => total + ingredient.calories, 0)
       .toFixed(2)
@@ -55,36 +43,19 @@ export default function RecipeNutrition({
       .toFixed(2)
   );
 
-  //TODO: may need to make this table design into a component in the future. Will need to read up on dealing with sequences
-
   return (
     <ContentBox title="Nutritional Information">
-      <StatsLayout>
-        <ListItem highlight>
-          <b>kcal: </b>
-          {kcal}
-        </ListItem>
-        <ListItem>
-          <b>Fat: </b>
-          {fat}g
-        </ListItem>
-        <ListItem>
-          <b>Salt: </b>
-          {salt}g
-        </ListItem>
-        <ListItem highlight>
-          <b>Protein: </b>
-          {protein}g
-        </ListItem>
-        <ListItem highlight>
-          <b>Carbs: </b>
-          {carbs}g
-        </ListItem>
-        <ListItem>
-          <b># of 5 a day: </b>
-          {fruitVeg}
-        </ListItem>
-      </StatsLayout>
+      <StatisticsTable
+        id="recipe.nutrition-table"
+        data={[
+          { title: "Kcal", data: `${calories}g` },
+          { title: "Fat", data: `${fat}g` },
+          { title: "Salt", data: `${salt}g` },
+          { title: "Protein", data: `${protein}g` },
+          { title: "Carbs", data: `${carbs}g` },
+          { title: "# of 5 a day", data: fruitVeg },
+        ]}
+      />
     </ContentBox>
   );
 }

@@ -1,10 +1,4 @@
-import {
-  ErrorScreen,
-  FlexContainer,
-  ImageFrame,
-  LoadingScreen,
-  PageTemplate,
-} from "../../Components/Common/StyledComponents/StyledComponents";
+import { ImageFrame } from "../../Components/Common/StyledComponents/ContentComponents";
 import styled from "@emotion/styled";
 import ContentBox from "../../Components/Common/ContentBox";
 import { Recipe } from "../../Types/RecipeTypes";
@@ -16,6 +10,13 @@ import { useParams } from "react-router-dom";
 import BreakfastIcon from "../../SVGs/BreakfastIcon";
 import DinnerIcon from "../../SVGs/DinnerIcon";
 import LunchIcon from "../../SVGs/LunchIcon";
+import { FlexContainer } from "../../Components/Common/StyledComponents/ShortcutComponents";
+import {
+  ErrorScreen,
+  LoadingScreen,
+  PageTemplate,
+} from "../../Components/Common/StyledComponents/ScreenLayouts";
+import ImagePlaceholder from "../../Components/Common/ImagePlaceholder";
 
 const ContentLayout = styled.div`
   display: grid;
@@ -96,7 +97,11 @@ export default function RecipeInformation() {
               gap={25}
             >
               <ImageFrame>
-                <img src={data?.imageUrl} width="100%" />
+                {data.imageUrl ? (
+                  <img src={data.imageUrl} width="100%" />
+                ) : (
+                  <ImagePlaceholder />
+                )}
               </ImageFrame>
               <ContentBox title="About">
                 <p className="noMargin">{data?.recipeDescription}</p>

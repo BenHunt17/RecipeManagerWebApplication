@@ -26,16 +26,16 @@ export default function Header() {
     <HeaderRoot>
       <Title>Recipes Manager</Title>
       <NavigationBar>
-        <Link to="/" className="link">
+        <Link to="/" className="headerLink">
           Dashboard
         </Link>
-        <Link to="/recipes" className="link">
+        <Link to="/recipes" className="headerLink">
           Recipes
         </Link>
-        <Link to="/ingredients" className="link">
+        <Link to="/ingredients" className="headerLink">
           Ingredients
         </Link>
-        <Link to="/meal-plans" className="link">
+        <Link to="/meal-plans" className="headerLink">
           Meal Plans
         </Link>
       </NavigationBar>

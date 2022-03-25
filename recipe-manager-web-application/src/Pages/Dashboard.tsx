@@ -1,4 +1,4 @@
-import { PageTemplate } from "../Components/Common/StyledComponents/StyledComponents";
+import { PageTemplate } from "../Components/Common/StyledComponents/ScreenLayouts";
 
 export default function Dashboard() {
   return (

@@ -57,7 +57,7 @@ ol li {
   margin: 0px;
 }
 
-.link {
+.headerLink {
   text-decoration: none;
   font-weight: bold;
   border-radius: 5px;
@@ -65,8 +65,12 @@ ol li {
   color: white;
 }
 
-.link:hover {
-  background-color: rgba(var(--colour-secondary-rgb), 0.75);
+.headerLink:hover {
+  background-color: rgba(var(--colour-secondary-rgb), 0.5);
+}
+
+.nakedLink {
+  text-decoration: none;
 }
 
 code {
