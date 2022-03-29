@@ -1,8 +1,6 @@
 export type RecipeIngredient = {
   id: number;
   ingredientName: string;
-  ingredientDescription: string; //Unneeded data in the recipe ingredients type i.e. image, description etc. Need to remove from backend too
-  imageUrl: string | null;
   calories: number;
   fruitVeg: boolean;
   fat: number | null;
