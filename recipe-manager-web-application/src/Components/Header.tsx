@@ -3,6 +3,7 @@ import "../index.css";
 import styled from "@emotion/styled";
 
 const HeaderRoot = styled.div`
+  width: 100%;
   display: flex;
   height: 150px;
   justify-content: space-between;

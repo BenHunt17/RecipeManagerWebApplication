@@ -22,9 +22,14 @@ const ContentLayout = styled.div`
   display: grid;
   grid-template-columns: 3fr 1fr;
   gap: 25px;
+  max-height: 100%;
+  overflow-y: scroll;
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
-function minutesToTimeString(totalMinutes: number) {
+export function minutesToTimeString(totalMinutes: number) {
   const hours = Math.floor(totalMinutes / 60);
   const minutes = totalMinutes % 60;
 
@@ -53,8 +58,8 @@ export default function RecipeInformation() {
               gap={25}
             >
               <p>
-                Time:
-                <b> {minutesToTimeString(data.prepTime ?? 0)}</b>
+                🕐
+                <b>{minutesToTimeString(data.prepTime ?? 0)}</b>
               </p>
               <p>
                 Serves: <b>{data?.servingSize}</b>

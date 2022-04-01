@@ -11,3 +11,10 @@ export type Ingredient = {
   protein: number | null;
   carbs: number | null;
 };
+
+export type IngredientListItem = {
+  id: number;
+  ingredientName: string;
+  imageUrl: string | null;
+  fruitVeg: boolean;
+};

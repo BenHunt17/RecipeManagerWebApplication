@@ -39,3 +39,11 @@ export enum MeasureType {
   TSP = "TSP",
   TBSP = "TBSP",
 }
+
+export type RecipeListItem = {
+  id: number;
+  recipeName: string;
+  imageUrl: string | null;
+  rating: number;
+  prepTime: number;
+};

@@ -20,6 +20,11 @@ const PageLayout = styled.div`
   display: grid;
   grid-template-columns: 1fr 2fr;
   gap: 25px;
+  max-height: 100%;
+  overflow-y: scroll;
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 export default function IngredientInformation() {
