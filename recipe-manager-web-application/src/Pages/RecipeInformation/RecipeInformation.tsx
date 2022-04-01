@@ -59,7 +59,7 @@ export default function RecipeInformation() {
             >
               <p>
                 🕐
-                <b>{minutesToTimeString(data.prepTime ?? 0)}</b>
+                <b> {minutesToTimeString(data.prepTime ?? 0)}</b>
               </p>
               <p>
                 Serves: <b>{data?.servingSize}</b>
