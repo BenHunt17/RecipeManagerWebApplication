@@ -5,10 +5,10 @@ export const CollectionContainer = styled.div(
     gridTemplateColumns: hasData
       ? "repeat(auto-fill, minmax(500px, 1fr))"
       : "1fr",
+    gridTemplateRows: hasData ? "repeat(auto-fill, 206px)" : "1fr",
   }),
   `
   display: grid;
-  grid-template-rows: 1fr;
   gap: 25px;
   border: solid 3px var(--colour-border);
   border-radius: 10px;
