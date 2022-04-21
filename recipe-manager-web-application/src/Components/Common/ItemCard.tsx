@@ -39,7 +39,6 @@ const MainContent = styled.div`
   align-items: center;
   width: 100%;
   height: 140px;
-  color: var(--colour-text);
   padding-left: 110px; //Pushes content to the right so that it isn't hidden behind image
 `;
 
@@ -65,11 +64,13 @@ const textEllipses = css`
 `;
 
 export default function ItemCard({
+  id,
   title,
   footerText,
   imageUrl,
   linkTo,
 }: {
+  id: string;
   title: string;
   footerText?: string[]; //Only first 3 strings will actually be regarded
   imageUrl: string | null;
@@ -90,9 +91,9 @@ export default function ItemCard({
               <h3 css={textEllipses}>{title}</h3>
             </MainContent>
             <FooterContainer>
-              {footerText?.slice(0, 3)?.map((text) => (
+              {footerText?.slice(0, 3)?.map((text, index) => (
                 //Only maps the first 3 strings overwise overflow will happen
-                <div>{text}</div>
+                <div key={`${id}.footer-text.${index}`}>{text}</div>
               ))}
             </FooterContainer>
           </CardContainer>

@@ -21,3 +21,28 @@ export const ImageFrame = styled.div`
   background-color: var(--colour-primary);
   border-radius: 10px;
 `;
+
+export const LoadingSpinner = styled.div`
+  @keyframes spinner {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  width: 10px;
+  height: 10px;
+  background-color: transparent;
+  border: 3px solid rgba(var(--colour-primary-rgb), 0.75);
+  border-radius: 50%;
+  border-top: 3px solid var(--colour-primary);
+  animation: spinner 1.5s linear infinite;
+`;
+
+export const ErrorMessage = styled.p`
+  color: var(--colour-error);
+  font-size: 11px;
+  margin: 0px;
+`;

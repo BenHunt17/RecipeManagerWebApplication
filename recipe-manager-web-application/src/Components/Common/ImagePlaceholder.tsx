@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 const PlaceholderContainer = styled.div(({ height }: { height?: string }) => ({
-  display: " flex",
+  display: "flex",
   justifyContent: "center",
   alignItems: "center",
   color: "var(--colour-text)",

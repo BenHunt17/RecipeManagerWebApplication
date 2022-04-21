@@ -11,7 +11,7 @@ import { CollectionContainer, CollectionHeader } from "./CollectionPageStyled";
 
 export default function RecipeCollectionPage() {
   const { data, loading } = useFetch<RecipeListItem[]>({
-    endpointPath: `https://localhost:5001/api/recipes`,
+    endpointPath: "https://localhost:5001/api/recipes",
   });
 
   return (
@@ -25,6 +25,7 @@ export default function RecipeCollectionPage() {
             data.map((recipe) => (
               <ItemCard
                 key={`recipe-card.${recipe.recipeName}`}
+                id={`recipe-card.${recipe.recipeName}`}
                 title={recipe.recipeName}
                 footerText={[
                   `Rating: ${"★".repeat(recipe.rating)}`,

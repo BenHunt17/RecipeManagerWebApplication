@@ -8,6 +8,7 @@ export const FlexContainer = styled.div(
     justifyContent,
     alignItems,
     gap,
+    margin,
   }: {
     direction: "row" | "column";
     justifyContent:
@@ -27,11 +28,13 @@ export const FlexContainer = styled.div(
       | "initial"
       | "inherit";
     gap?: number;
+    margin?: string;
   }) => ({
     display: "flex",
     flexDirection: direction,
     justifyContent: justifyContent,
     alignItems: alignItems,
     gap: `${gap}px`,
+    margin: margin,
   })
 );

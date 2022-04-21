@@ -7,8 +7,8 @@ export default function useFetch<T>({
   onError,
 }: {
   endpointPath: string;
-  onComplete?: () => {};
-  onError?: () => {};
+  onComplete?: () => void;
+  onError?: () => void;
 }) {
   const [data, setData] = useState<T>();
   const [loading, setLoading] = useState(true);

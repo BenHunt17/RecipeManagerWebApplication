@@ -14,7 +14,6 @@ function MeasureUnitString(measureType: MeasureType) {
       return "tsp";
     case MeasureType.TBSP:
       return "tbsp";
-    case MeasureType.NONE:
     default:
       return "";
   }
