@@ -17,7 +17,7 @@ export default function useMutate<T>(
   const [loading, setLoading] = useState(false);
 
   const callback = useCallback(
-    (payload: FormData) => {
+    (payload?: FormData) => {
       setLoading(true);
       authProvider
         .acquireTokenSilent(loginRequest)

@@ -1,30 +1,48 @@
+import { useState } from "react";
 import ItemCard from "../../Components/Common/ItemCard";
 import {
   ErrorScreen,
   LoadingScreen,
   PageTemplate,
 } from "../../Components/Common/StyledComponents/ScreenLayouts";
-import Modal from "../../Components/Modal";
+import DeleteIngredientForm from "../../Forms/DeleteIngredientForm";
 import CreateIngredientForm from "../../Forms/CreateIngredientForm";
 import useFetch from "../../Hooks/useFetch";
 import useModal from "../../Hooks/useModal";
-import { IngredientListItem } from "../../Types/IngredientTypes";
+import { Ingredient, IngredientListItem } from "../../Types/IngredientTypes";
 import { CollectionContainer, CollectionHeader } from "./CollectionPageStyled";
+import { AddButton } from "../../Components/Common/StyledComponents/ButtonComponents";
 
 export default function IngredientCollectionPage() {
-  const { data, loading } = useFetch<IngredientListItem[]>({
+  const { data, loading, modifyData } = useFetch<IngredientListItem[]>({
     endpointPath: "https://localhost:5001/api/ingredients",
   });
-  const [modal, OpenModal] = useModal(
+  const [createIngredientModal, showCreateIngredientModal] = useModal(
     "Create Ingredient",
-    <CreateIngredientForm />
+    () => <CreateIngredientForm />
   );
+
+  const [
+    deleteIngredientModal,
+    showDeleteIngredientModal,
+    closeDeleteIngredientModal,
+  ] = useModal("Delete Ingredient", (props: { id: number }) => (
+    <DeleteIngredientForm
+      id={props.id}
+      removeFromFetchedIngredients={(id: number) =>
+        modifyData(data?.filter((ingredient) => ingredient.id !== id))
+      }
+      close={() => closeDeleteIngredientModal()}
+    />
+  ));
 
   return (
     <PageTemplate>
       <CollectionHeader>
         <h2>Ingredients</h2>
-        <button onClick={OpenModal}>Create Ingredient</button>
+        <AddButton onClick={showCreateIngredientModal}>
+          Create Ingredient
+        </AddButton>
       </CollectionHeader>
       <CollectionContainer hasData={!!data}>
         {!loading ? (
@@ -42,6 +60,9 @@ export default function IngredientCollectionPage() {
                   footerText={footerText}
                   imageUrl={ingredient.imageUrl}
                   linkTo={`/ingredient/${ingredient.id}`}
+                  onDeleteButtonClick={() =>
+                    showDeleteIngredientModal({ id: ingredient.id })
+                  }
                 />
               );
             })
@@ -52,7 +73,8 @@ export default function IngredientCollectionPage() {
           <LoadingScreen>Loading Ingredients...</LoadingScreen>
         )}
       </CollectionContainer>
-      {modal}
+      {createIngredientModal}
+      {deleteIngredientModal}
     </PageTemplate>
   );
 }

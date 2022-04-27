@@ -49,5 +49,6 @@ export default function useFetch<T>({
       });
   }, [endpointPath]);
 
-  return { data, loading };
+  // Returns the fetched data itself, a loading state and a callback to directly modify the fetch data (useful for when a mutation result needs to be reflected to the user without calling the query again)
+  return { data, loading, modifyData: setData };
 }

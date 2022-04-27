@@ -3,10 +3,13 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { Link } from "react-router-dom";
+import BinIcon from "../../SVGs/BinIcon";
 import ImagePlaceholder from "./ImagePlaceholder";
+import { IconButton } from "./StyledComponents/ButtonComponents";
 import { FlexContainer } from "./StyledComponents/ShortcutComponents";
 
 const CardContainer = styled.div`
+  position: relative;
   width: 100%;
   height: 206px;
   background-color: rgba(var(--colour-secondary-rgb), 0.25);
@@ -17,6 +20,7 @@ const CardContainer = styled.div`
 `;
 
 const ImageContainer = styled.div`
+  position: relative;
   top: 0;
   right: 0;
   display: flex;
@@ -33,11 +37,16 @@ const ImageContainer = styled.div`
   ); //Pushes image to left of card and additional 110px so that half of it is hanging off the card.
 `;
 
+const Corner = styled.div`
+  position: absolute;
+  right: 0;
+  padding: 10px;
+`;
+
 const MainContent = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
   height: 140px;
   padding-left: 110px; //Pushes content to the right so that it isn't hidden behind image
 `;
@@ -69,12 +78,14 @@ export default function ItemCard({
   footerText,
   imageUrl,
   linkTo,
+  onDeleteButtonClick,
 }: {
   id: string;
   title: string;
   footerText?: string[]; //Only first 3 strings will actually be regarded
   imageUrl: string | null;
   linkTo: string;
+  onDeleteButtonClick?: () => void;
 }) {
   return (
     <Link to={linkTo} className="nakedLink">
@@ -87,6 +98,18 @@ export default function ItemCard({
       >
         <FlexContainer direction="row" justifyContent="flex-start">
           <CardContainer>
+            {onDeleteButtonClick && (
+              <Corner>
+                <IconButton
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onDeleteButtonClick();
+                  }}
+                >
+                  <BinIcon width={17} height={26} />
+                </IconButton>
+              </Corner>
+            )}
             <MainContent>
               <h3 css={textEllipses}>{title}</h3>
             </MainContent>
