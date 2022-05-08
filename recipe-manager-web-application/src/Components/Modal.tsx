@@ -13,13 +13,14 @@ const Overlay = styled.div`
 
 const ModalContainer = styled.div`
   max-width: 50%;
-  max-height: 150%;
+  max-height: 90%;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, calc(-50% + 75px));
   border-radius: 10px;
   background-color: white;
+  overflow-y: scroll;
 `;
 
 const ModalContent = styled.div`

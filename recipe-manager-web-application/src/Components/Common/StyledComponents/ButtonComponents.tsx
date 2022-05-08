@@ -52,3 +52,18 @@ export const IconButton = styled.button`
     filter: brightness(70%);
   }
 `;
+
+export const SelectionButton = styled.button`
+  width: 100%;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  &:hover {
+    background-color: white;
+    filter: brightness(95%);
+  }
+  &:active {
+    background-color: white;
+    filter: brightness(90%);
+  }
+`;

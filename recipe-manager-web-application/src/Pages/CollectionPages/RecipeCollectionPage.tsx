@@ -1,10 +1,13 @@
 import ItemCard from "../../Components/Common/ItemCard";
+import { AddButton } from "../../Components/Common/StyledComponents/ButtonComponents";
 import {
   ErrorScreen,
   LoadingScreen,
   PageTemplate,
 } from "../../Components/Common/StyledComponents/ScreenLayouts";
+import CreateRecipeForm from "../../Forms/CreateRecipeForm/CreateRecipeForm";
 import useFetch from "../../Hooks/useFetch";
+import useModal from "../../Hooks/useModal";
 import { RecipeListItem } from "../../Types/RecipeTypes";
 import { minutesToTimeString } from "../RecipeInformation/RecipeInformation";
 import { CollectionContainer, CollectionHeader } from "./CollectionPageStyled";
@@ -13,11 +16,16 @@ export default function RecipeCollectionPage() {
   const { data, loading } = useFetch<RecipeListItem[]>({
     endpointPath: "https://localhost:5001/api/recipes",
   });
+  const [createRecipeModal, showCreateRecipeModal] = useModal(
+    "Create Recipe",
+    () => <CreateRecipeForm />
+  );
 
   return (
     <PageTemplate>
       <CollectionHeader>
         <h2>Recipes</h2>
+        <AddButton onClick={showCreateRecipeModal}>Create Recipe</AddButton>
       </CollectionHeader>
       <CollectionContainer hasData={!!data}>
         {!loading ? (
@@ -42,6 +50,7 @@ export default function RecipeCollectionPage() {
           <LoadingScreen>Loading Recipes...</LoadingScreen>
         )}
       </CollectionContainer>
+      {createRecipeModal}
     </PageTemplate>
   );
 }

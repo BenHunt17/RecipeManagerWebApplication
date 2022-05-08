@@ -1,20 +1,26 @@
 //Pretty basic but helps reduce redundent code in the forms
 
+import styled from "@emotion/styled";
+
+const Container = styled.div`
+  width: 100%;
+`;
+
 export default function InputContainer({
   title,
   input,
   error,
 }: {
-  title: string;
+  title?: string;
   input: JSX.Element;
   error?: JSX.Element;
 }) {
   return (
-    <div>
+    <Container>
       {title}
-      <br />
+      {title && <br />}
       {input}
       {error}
-    </div>
+    </Container>
   );
 }

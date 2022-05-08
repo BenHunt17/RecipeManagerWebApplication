@@ -109,6 +109,7 @@ export default function RecipeInformation() {
                 )}
               </ImageFrame>
               <ContentBox title="About">
+                {/* TODO: make noMargin class into a generic "text" styled component  */}
                 <p className="noMargin">{data?.recipeDescription}</p>
               </ContentBox>
               <RecipeNutrition recipeIngredients={data.ingredients} />

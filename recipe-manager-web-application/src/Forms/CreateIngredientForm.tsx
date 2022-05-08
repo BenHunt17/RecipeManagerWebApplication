@@ -3,7 +3,6 @@ import { Fragment, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { SubmitButton } from "../Components/Common/StyledComponents/ButtonComponents";
 import { FlexContainer } from "../Components/Common/StyledComponents/ShortcutComponents";
-import Select from "../Components/FormComponents/Select";
 import useMutate, { HttpMethod } from "../Hooks/useMutate";
 import { Ingredient, QuantityType } from "../Types/IngredientTypes";
 import { useNavigate } from "react-router-dom";
@@ -16,8 +15,9 @@ import ImageUpload from "../Components/FormComponents/ImageUpload";
 import TextInput from "../Components/FormComponents/TextInput";
 import TextArea from "../Components/FormComponents/TextArea";
 import InputContainer from "../Components/FormComponents/InputContainer";
+import Select from "../Components/FormComponents/Select";
 
-const MainLayout = styled.div`
+export const MainLayout = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 25px;
@@ -130,7 +130,7 @@ export default function CreateIngredientForm() {
                   name="ingredientName"
                   rules={{
                     required: "Required Field",
-                    maxLength: { value: 20, message: "Maximum length of 20" },
+                    maxLength: { value: 80, message: "Maximum length of 80" },
                   }}
                 />
               }
@@ -143,7 +143,13 @@ export default function CreateIngredientForm() {
             <InputContainer
               title="Ingredient Description"
               input={
-                <TextArea control={control} name="ingredientDescription" />
+                <TextArea
+                  control={control}
+                  name="ingredientDescription"
+                  rules={{
+                    maxLength: { value: 512, message: "Maximum length of 512" },
+                  }}
+                />
               }
             />
             <InputContainer
