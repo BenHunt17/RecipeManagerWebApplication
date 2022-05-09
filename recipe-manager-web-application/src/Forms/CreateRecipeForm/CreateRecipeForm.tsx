@@ -48,7 +48,7 @@ const defaultValues = {
   recipeName: "",
   recipeDescription: "",
   recipeIngredients: [
-    { recipeIngredientId: undefined, quantity: 0, measureTypeValue: "NONE" },
+    { recipeIngredientId: undefined, quantity: 0,  measureTypeValue: "NONE" },
   ],
   instructions: [{ instructionNumber: 1, instructionText: "" }],
   rating: 0,
