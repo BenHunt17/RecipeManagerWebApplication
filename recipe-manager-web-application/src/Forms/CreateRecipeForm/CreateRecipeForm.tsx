@@ -22,7 +22,6 @@ import RecipeIngredientForm, {
 import { InstructionFormData } from "./InstructionsForm";
 import InstructionsForm from "./InstructionsForm";
 import { SubmitButton } from "../../Components/Common/StyledComponents/ButtonComponents";
-import { type } from "os";
 
 const BottomLayout = styled.div`
   display: grid;

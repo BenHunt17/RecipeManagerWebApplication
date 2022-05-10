@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import {
-  ControllerRenderProps,
   FieldValues,
   useController,
   UseControllerProps,
@@ -53,10 +52,10 @@ export default function Toggle<T extends FieldValues>(
   props: UseControllerProps<T>
 ) {
   const { field } = useController(props);
-
+  
   return (
     <ToggleContainer>
-      <CheckboxInput type="checkbox" {...field} />
+      <CheckboxInput type="checkbox" checked={field.value} {...field} /> {/* Have to explicitely passthe value in as checked since checkbox originally reset when rerendered */}
       <Handle />
     </ToggleContainer>
   );
