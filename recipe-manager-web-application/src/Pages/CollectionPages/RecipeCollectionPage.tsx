@@ -6,6 +6,7 @@ import {
   PageTemplate,
 } from "../../Components/Common/StyledComponents/ScreenLayouts";
 import CreateRecipeForm from "../../Forms/CreateRecipeForm/CreateRecipeForm";
+import DeleteRecipeForm from "../../Forms/DeleteRecipeForm";
 import useFetch from "../../Hooks/useFetch";
 import useModal from "../../Hooks/useModal";
 import { RecipeListItem } from "../../Types/RecipeTypes";
@@ -13,13 +14,24 @@ import { minutesToTimeString } from "../RecipeInformation/RecipeInformation";
 import { CollectionContainer, CollectionHeader } from "./CollectionPageStyled";
 
 export default function RecipeCollectionPage() {
-  const { data, loading } = useFetch<RecipeListItem[]>({
+  const { data, loading, modifyData } = useFetch<RecipeListItem[]>({
     endpointPath: "https://localhost:5001/api/recipes",
   });
   const [createRecipeModal, showCreateRecipeModal] = useModal(
     "Create Recipe",
     () => <CreateRecipeForm />
   );
+
+  const [deleteReipeModal, showDeleteRecipeModal, closeDeleteRecipeModal] =
+    useModal("Delete Recipe", (props: { id: number }) => (
+      <DeleteRecipeForm
+        id={props.id}
+        removeFromFetchedRecipes={(id: number) =>
+          modifyData(data?.filter((recipe) => recipe.id !== id))
+        }
+        close={() => closeDeleteRecipeModal()}
+      />
+    ));
 
   return (
     <PageTemplate>
@@ -41,6 +53,9 @@ export default function RecipeCollectionPage() {
                 ]}
                 imageUrl={recipe.imageUrl}
                 linkTo={`/recipe/${recipe.id}`}
+                onDeleteButtonClick={() =>
+                  showDeleteRecipeModal({ id: recipe.id })
+                }
               />
             ))
           ) : (
@@ -51,6 +66,7 @@ export default function RecipeCollectionPage() {
         )}
       </CollectionContainer>
       {createRecipeModal}
+      {deleteReipeModal}
     </PageTemplate>
   );
 }
