@@ -30,7 +30,7 @@ export default function IngredientsList({
         {recipeIngredients.map((ingredient) => (
           <Link
             key={`ingredients-list.${ingredient.ingredientName}`}
-            to={`/ingredient/${ingredient.id}`}
+            to={`/ingredient/${ingredient.ingredientId}`}
             className="nakedLink"
           >
             <Label>{`${ingredient.ingredientName} | ${Number(

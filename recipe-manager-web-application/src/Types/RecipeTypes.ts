@@ -1,5 +1,6 @@
 export type RecipeIngredient = {
   id: number;
+  ingredientId: number,
   ingredientName: string;
   calories: number;
   fruitVeg: boolean;
