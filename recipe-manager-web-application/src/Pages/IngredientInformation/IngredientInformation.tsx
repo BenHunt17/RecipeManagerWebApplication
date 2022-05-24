@@ -31,7 +31,7 @@ export default function IngredientInformation() {
   const { id } = useParams();
 
   const { data, loading } = useFetch<Ingredient>({
-    endpointPath: `https://localhost:5001/api/ingredient?id=${id}`,
+    endpointPath: `https://localhost:5001/api/ingredient/${id}`,
   });
 
   return (

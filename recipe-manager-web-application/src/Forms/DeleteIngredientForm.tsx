@@ -15,7 +15,7 @@ export default function DeleteIngredientForm({
   close: () => void;
 }) {
   const { callback: deleteIngredient, loading } = useMutate(
-    `https://localhost:5001/api/ingredient?id=${id}`,
+    `https://localhost:5001/api/ingredient/${id}`,
     HttpMethod.DELETE,
     (result: Ingredient) => {
       removeFromFetchedIngredients(result.id);

@@ -42,7 +42,7 @@ export default function RecipeInformation() {
   const { id } = useParams();
 
   const { data, loading } = useFetch<Recipe>({
-    endpointPath: `https://localhost:5001/api/recipe?id=${id}`,
+    endpointPath: `https://localhost:5001/api/recipe/${id}`,
   });
 
   return (
