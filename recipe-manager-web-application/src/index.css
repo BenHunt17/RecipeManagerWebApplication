@@ -6,6 +6,7 @@ html {
   --colour-secondary-rgb: 150, 115, 105;
   --colour-text: #494949;
   --colour-shadow: #ababab;
+  --colour-shadow-rgb: 171, 171, 171;
   --colour-border: #696969;
   --colour-error: #ef3038;
 }

@@ -15,13 +15,13 @@ import TextArea from "../../Components/FormComponents/TextArea";
 import InputContainer from "../../Components/FormComponents/InputContainer";
 import Slider from "../../Components/Common/Slider";
 import { Recipe } from "../../Types/RecipeTypes";
-import { MainLayout } from "../CreateIngredientForm";
 import RecipeIngredientForm, {
   RecipeIngredientFormData,
 } from "./RecipeIngredientForm";
 import { InstructionFormData } from "./InstructionsForm";
 import InstructionsForm from "./InstructionsForm";
 import { SubmitButton } from "../../Components/Common/StyledComponents/ButtonComponents";
+import { MainFormLayout } from "../../Components/Common/StyledComponents/Layouts";
 
 const BottomLayout = styled.div`
   display: grid;
@@ -47,7 +47,7 @@ const defaultValues = {
   recipeName: "",
   recipeDescription: "",
   recipeIngredients: [
-    { recipeIngredientId: undefined, quantity: 0,  measureTypeValue: "NONE" },
+    { recipeIngredientId: undefined, quantity: 0, measureTypeValue: "NONE" },
   ],
   instructions: [{ instructionNumber: 1, instructionText: "" }],
   rating: 0,
@@ -167,7 +167,7 @@ export default function CreateIngredientForm() {
         <Slider
           slides={[
             <Fragment>
-              <MainLayout>
+              <MainFormLayout>
                 <FlexContainer
                   direction="column"
                   justifyContent="space-between"
@@ -215,7 +215,7 @@ export default function CreateIngredientForm() {
                   image={ingredientImage}
                   setImage={setIngredientImage}
                 />
-              </MainLayout>
+              </MainFormLayout>
               <BottomLayout>
                 <InputContainer
                   title="Rating*"

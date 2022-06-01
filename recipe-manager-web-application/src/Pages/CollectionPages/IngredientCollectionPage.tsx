@@ -4,14 +4,14 @@ import {
   ErrorScreen,
   LoadingScreen,
   PageTemplate,
-} from "../../Components/Common/StyledComponents/ScreenLayouts";
-import DeleteIngredientForm from "../../Forms/DeleteIngredientForm";
-import CreateIngredientForm from "../../Forms/CreateIngredientForm";
+} from "../../Components/Common/StyledComponents/Layouts";
 import useFetch from "../../Hooks/useFetch";
 import useModal from "../../Hooks/useModal";
 import { Ingredient, IngredientListItem } from "../../Types/IngredientTypes";
 import { CollectionContainer, CollectionHeader } from "./CollectionPageStyled";
 import { AddButton } from "../../Components/Common/StyledComponents/ButtonComponents";
+import CreateIngredientForm from "../../Forms/IngredientForms/CreateIngredientForm";
+import DeleteIngredientForm from "../../Forms/IngredientForms/DeleteIngredientForm";
 
 export default function IngredientCollectionPage() {
   const { data, loading, modifyData } = useFetch<IngredientListItem[]>({

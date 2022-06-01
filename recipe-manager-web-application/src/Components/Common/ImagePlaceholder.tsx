@@ -1,15 +1,15 @@
 import styled from "@emotion/styled";
 
-const PlaceholderContainer = styled.div(({ height }: { height?: string }) => ({
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  color: "var(--colour-text)",
-  height: height ?? "25vw",
-  backgroundColor: "white",
-}));
-
-//TODO: Make this placeholder prettier. Also add upload functionailty in future for updating
+const PlaceholderContainer = styled.div(
+  ({ height }: { height?: string }) => `
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--colour-text);
+  height: ${height ?? "25vw"};
+  background-color: white;
+`
+);
 
 export default function ImagePlaceholder({ height }: { height?: string }) {
   return (

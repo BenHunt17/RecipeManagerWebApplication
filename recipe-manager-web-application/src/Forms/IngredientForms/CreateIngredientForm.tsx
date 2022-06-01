@@ -1,42 +1,26 @@
 import styled from "@emotion/styled";
 import { Fragment, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { SubmitButton } from "../Components/Common/StyledComponents/ButtonComponents";
-import { FlexContainer } from "../Components/Common/StyledComponents/ShortcutComponents";
-import useMutate, { HttpMethod } from "../Hooks/useMutate";
-import { Ingredient, QuantityType } from "../Types/IngredientTypes";
+import { SubmitButton } from "../../Components/Common/StyledComponents/ButtonComponents";
+import { FlexContainer } from "../../Components/Common/StyledComponents/ShortcutComponents";
+import useMutate, { HttpMethod } from "../../Hooks/useMutate";
+import { Ingredient, QuantityType } from "../../Types/IngredientTypes";
 import { useNavigate } from "react-router-dom";
-import Toggle from "../Components/FormComponents/Toggle";
+import Toggle from "../../Components/FormComponents/Toggle";
 import {
   ErrorMessage,
   LoadingSpinner,
-} from "../Components/Common/StyledComponents/ContentComponents";
-import ImageUpload from "../Components/FormComponents/ImageUpload";
-import TextInput from "../Components/FormComponents/TextInput";
-import TextArea from "../Components/FormComponents/TextArea";
-import InputContainer from "../Components/FormComponents/InputContainer";
-import Select from "../Components/FormComponents/Select";
-
-export const MainLayout = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 25px;
-  margin-bottom: 25px;
-`;
-
-type Data = {
-  ingredientName: string;
-  ingredientDescription: string;
-  density: number;
-  fruitVeg: boolean;
-  quantityType: QuantityType;
-  quantity: number;
-  calories: number;
-  fat: number;
-  salt: number;
-  protein: number;
-  carbs: number;
-};
+} from "../../Components/Common/StyledComponents/ContentComponents";
+import ImageUpload from "../../Components/FormComponents/ImageUpload";
+import TextInput from "../../Components/FormComponents/TextInput";
+import TextArea from "../../Components/FormComponents/TextArea";
+import InputContainer from "../../Components/FormComponents/InputContainer";
+import Select from "../../Components/FormComponents/Select";
+import {
+  IngredientInputData,
+  quantityUnitString,
+} from "./ingredientFormsUtils";
+import { MainFormLayout } from "../../Components/Common/StyledComponents/Layouts";
 
 const defaultValues = {
   ingredientName: "",
@@ -52,21 +36,11 @@ const defaultValues = {
   carbs: 0,
 };
 
-function QuantityUnitString(quantityType: QuantityType) {
-  switch (quantityType) {
-    case QuantityType.WEIGHT:
-      return "Kg";
-    case QuantityType.VOLUME:
-      return "Ml";
-    default:
-      return undefined;
-  }
-}
-
 export default function CreateIngredientForm() {
-  const { control, handleSubmit, formState, watch } = useForm<Data>({
-    defaultValues,
-  });
+  const { control, handleSubmit, formState, watch } =
+    useForm<IngredientInputData>({
+      defaultValues,
+    });
   const [ingredientImage, setIngredientImage] = useState<File | null>(null);
   const [quantityUnit, setQuantityUnit] = useState<string | undefined>(
     undefined
@@ -81,7 +55,7 @@ export default function CreateIngredientForm() {
     undefined
   );
 
-  const onSubmit = (formValues: Data) => {
+  const onSubmit = (formValues: IngredientInputData) => {
     const formData = new FormData();
 
     if (ingredientImage) {
@@ -106,7 +80,7 @@ export default function CreateIngredientForm() {
   useEffect(() => {
     const subscription = watch((value, { name }) => {
       if (name === "quantityType" && value.quantityType) {
-        setQuantityUnit(QuantityUnitString(value.quantityType));
+        setQuantityUnit(quantityUnitString(value.quantityType));
       }
     });
     return () => subscription.unsubscribe();
@@ -115,7 +89,7 @@ export default function CreateIngredientForm() {
   return (
     <Fragment>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <MainLayout>
+        <MainFormLayout>
           <FlexContainer
             direction="column"
             justifyContent="space-between"
@@ -214,7 +188,7 @@ export default function CreateIngredientForm() {
             title="Carbs"
             input={<TextInput control={control} name="carbs" />}
           />
-        </MainLayout>
+        </MainFormLayout>
 
         {loading ? (
           <LoadingSpinner />

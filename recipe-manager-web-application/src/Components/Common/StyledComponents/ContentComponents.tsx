@@ -15,13 +15,6 @@ export const Label = styled.div`
   }
 `;
 
-export const ImageFrame = styled.div`
-  padding: 10px;
-  padding-bottom: 20px;
-  background-color: var(--colour-primary);
-  border-radius: 10px;
-`;
-
 export const LoadingSpinner = styled.div`
   @keyframes spinner {
     0% {

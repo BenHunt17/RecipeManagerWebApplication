@@ -4,9 +4,9 @@ import {
   ErrorScreen,
   LoadingScreen,
   PageTemplate,
-} from "../../Components/Common/StyledComponents/ScreenLayouts";
+} from "../../Components/Common/StyledComponents/Layouts";
 import CreateRecipeForm from "../../Forms/CreateRecipeForm/CreateRecipeForm";
-import DeleteRecipeForm from "../../Forms/DeleteRecipeForm";
+import DeleteRecipeForm from "../../Forms/CreateRecipeForm/DeleteRecipeForm";
 import useFetch from "../../Hooks/useFetch";
 import useModal from "../../Hooks/useModal";
 import { RecipeListItem } from "../../Types/RecipeTypes";

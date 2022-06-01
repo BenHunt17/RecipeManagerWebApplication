@@ -17,7 +17,7 @@ import useFetch from "../../Hooks/useFetch";
 import {
   ErrorScreen,
   LoadingScreen,
-} from "../../Components/Common/StyledComponents/ScreenLayouts";
+} from "../../Components/Common/StyledComponents/Layouts";
 import InputContainer from "../../Components/FormComponents/InputContainer";
 import { ErrorMessage } from "../../Components/Common/StyledComponents/ContentComponents";
 
@@ -82,7 +82,9 @@ export default function RecipeIngredientForm({
                   searchFunction={(searchText: string) =>
                     data
                       .filter((ingredient) =>
-                        ingredient.ingredientName.includes(searchText)
+                        ingredient.ingredientName
+                          .toLowerCase()
+                          .includes(searchText.toLowerCase())
                       )
                       .map((ingredient) => ingredient.id)
                   }

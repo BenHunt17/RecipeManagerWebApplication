@@ -1,4 +1,3 @@
-import { ImageFrame } from "../../Components/Common/StyledComponents/ContentComponents";
 import styled from "@emotion/styled";
 import ContentBox from "../../Components/Common/ContentBox";
 import { Recipe } from "../../Types/RecipeTypes";
@@ -15,8 +14,8 @@ import {
   ErrorScreen,
   LoadingScreen,
   PageTemplate,
-} from "../../Components/Common/StyledComponents/ScreenLayouts";
-import ImagePlaceholder from "../../Components/Common/ImagePlaceholder";
+} from "../../Components/Common/StyledComponents/Layouts";
+import ImageDisplay from "../../Components/Common/ImageDisplay";
 
 const ContentLayout = styled.div`
   display: grid;
@@ -101,13 +100,7 @@ export default function RecipeInformation() {
               justifyContent="flex-start"
               gap={25}
             >
-              <ImageFrame>
-                {data.imageUrl ? (
-                  <img src={data.imageUrl} width="100%" />
-                ) : (
-                  <ImagePlaceholder />
-                )}
-              </ImageFrame>
+              <ImageDisplay imageUrl={data.imageUrl} />
               <ContentBox title="About">
                 {/* TODO: make noMargin class into a generic "text" styled component  */}
                 <p className="noMargin">{data?.recipeDescription}</p>

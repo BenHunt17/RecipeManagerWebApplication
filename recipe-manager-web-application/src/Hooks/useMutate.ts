@@ -12,21 +12,27 @@ export default function useMutate<T>(
   endpointPath: string,
   httpMethod: HttpMethod,
   onComplete?: (result: T) => void,
-  onError?: () => void
+  onError?: () => void,
+  jsonData?: boolean
 ) {
   const [loading, setLoading] = useState(false);
 
   const callback = useCallback(
-    (payload?: FormData) => {
+    (payload?: FormData | string) => {
       setLoading(true);
       authProvider
         .acquireTokenSilent(loginRequest)
         .then((response) => {
           fetch(endpointPath, {
             method: httpMethod,
-            headers: new Headers({
-              Authorization: `Bearer ${response.accessToken}`,
-            }),
+            headers: !jsonData
+              ? new Headers({
+                  Authorization: `Bearer ${response.accessToken}`,  
+                })
+              : new Headers({
+                  Authorization: `Bearer ${response.accessToken}`,
+                  "Content-Type": "application/json;charset=utf-8",
+                }),
             body: payload,
           })
             .then((result) => {
@@ -40,6 +46,7 @@ export default function useMutate<T>(
               onComplete?.(data);
             })
             .catch((error) => {
+              console.log(error)
               setLoading(false);
               onError?.();
             });

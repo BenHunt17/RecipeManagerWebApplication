@@ -27,3 +27,10 @@ export const ErrorScreen = styled.div`
   font-size: 28px;
   overflow: hidden;
 `;
+
+export const MainFormLayout = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+  margin-bottom: 25px;
+`;
