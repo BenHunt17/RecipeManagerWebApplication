@@ -16,6 +16,10 @@ import {
   PageTemplate,
 } from "../../Components/Common/StyledComponents/Layouts";
 import ImageDisplay from "../../Components/Common/ImageDisplay";
+import useModal from "../../Hooks/useModal";
+import UpdateRecipeForm from "../../Forms/RecipeForms/UpdateRecipeForm";
+import { AddButton } from "../../Components/Common/StyledComponents/ButtonComponents";
+import UpdateRecipeImageForm from "../../Forms/RecipeForms/UpdateRecipeImageForm";
 
 const ContentLayout = styled.div`
   display: grid;
@@ -40,16 +44,49 @@ export function minutesToTimeString(totalMinutes: number) {
 export default function RecipeInformation() {
   const { id } = useParams();
 
-  const { data, loading } = useFetch<Recipe>({
+  const { data, loading, modifyData } = useFetch<Recipe>({
     endpointPath: `https://localhost:5001/api/recipe/${id}`,
   });
+
+  const [updateRecipeModal, showUpdateRecipeModal, closeUpdateRecipeModal] =
+    useModal("Update Recipe", (props: { existingRecipe: Recipe }) => (
+      <UpdateRecipeForm
+        id={id ?? ""}
+        existingRecipe={props.existingRecipe}
+        updateInFetchedRecipe={(recipe) => modifyData(recipe)}
+        close={() => closeUpdateRecipeModal()}
+      />
+    ));
+
+  const [uploadImageModal, showUploadImageModal, closeUploadImageModal] =
+    useModal("Change Image", () => (
+      <UpdateRecipeImageForm
+        id={id ?? ""}
+        imageUrl={data?.imageUrl ?? null}
+        updateInFetchedRecipe={(recipe: Recipe) => modifyData(recipe)}
+        close={() => closeUploadImageModal()}
+      />
+    ));
 
   return (
     <PageTemplate>
       {!loading ? (
         data ? (
           <ContentLayout>
-            <h2>{data.recipeName}</h2>
+            <FlexContainer
+              direction="row"
+              justifyContent="space-between"
+              alignItems="center"
+              gap={25}
+            >
+              <h2>{data.recipeName}</h2>
+              {/* TODO-Make dedicated update button */}
+              <AddButton
+                onClick={() => showUpdateRecipeModal({ existingRecipe: data })}
+              >
+                Update Recipe
+              </AddButton>
+            </FlexContainer>
             <FlexContainer
               direction="row"
               justifyContent="space-between"
@@ -86,21 +123,31 @@ export default function RecipeInformation() {
               </FlexContainer>
               <h2>{"⭐".repeat(data.rating ?? 0)}</h2>
             </FlexContainer>
-
             <FlexContainer
               direction="column"
               justifyContent="flex-start"
               gap={25}
             >
-              <RecipeIngredientsList recipeIngredients={data.ingredients} />
-              <RecipeInstructions recipeInstructions={data.instructions} />
+              <RecipeIngredientsList
+                id={id ?? ""}
+                updateInFetchedRecipe={modifyData}
+                recipeIngredients={data.ingredients}
+              />
+              <RecipeInstructions
+                id={id ?? ""}
+                updateInFetchedRecipe={modifyData}
+                recipeInstructions={data.instructions}
+              />
             </FlexContainer>
             <FlexContainer
               direction="column"
               justifyContent="flex-start"
               gap={25}
             >
-              <ImageDisplay imageUrl={data.imageUrl} />
+              <ImageDisplay
+                imageUrl={data.imageUrl}
+                onClick={() => showUploadImageModal({})}
+              />
               <ContentBox title="About">
                 {/* TODO: make noMargin class into a generic "text" styled component  */}
                 <p className="noMargin">{data?.recipeDescription}</p>
@@ -114,6 +161,8 @@ export default function RecipeInformation() {
       ) : (
         <LoadingScreen>Loading Recipe Data...</LoadingScreen>
       )}
+      {updateRecipeModal}
+      {uploadImageModal}
     </PageTemplate>
   );
 }

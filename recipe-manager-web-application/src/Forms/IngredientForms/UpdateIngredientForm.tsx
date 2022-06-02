@@ -36,15 +36,15 @@ function extractDefaultValues(existingIngredient: Ingredient) {
   };
 }
 
-export default function CreateIngredientForm({
+export default function UpdateIngredientForm({
   id,
   existingIngredient,
-  updateInFetchedIngredients,
+  updateInFetchedIngredient,
   close,
 }: {
   id: number;
   existingIngredient: Ingredient;
-  updateInFetchedIngredients: (updatedIngredient: Ingredient) => void;
+  updateInFetchedIngredient: (updatedIngredient: Ingredient) => void;
   close: () => void;
 }) {
   const { control, handleSubmit, formState, watch } =
@@ -58,7 +58,7 @@ export default function CreateIngredientForm({
     `https://localhost:5001/api/ingredient/${id}`,
     HttpMethod.PUT,
     (ingredient) => {
-      updateInFetchedIngredients(ingredient);
+      updateInFetchedIngredient(ingredient);
       close();
     },
     undefined,

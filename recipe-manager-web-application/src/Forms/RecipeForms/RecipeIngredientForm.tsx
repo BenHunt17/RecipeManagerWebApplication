@@ -22,7 +22,7 @@ import InputContainer from "../../Components/FormComponents/InputContainer";
 import { ErrorMessage } from "../../Components/Common/StyledComponents/ContentComponents";
 
 export type RecipeIngredientFormData = {
-  recipeIngredientId: number;
+  ingredientId: number;
   quantity: number;
   measureTypeValue: string;
 };
@@ -48,6 +48,7 @@ export default function RecipeIngredientForm({
   >;
   remove: UseFieldArrayRemove;
 }) {
+  //TODO - Make top element deletable if there are more elments below
   const { data, loading } = useFetch<IngredientListItem[]>({
     endpointPath: "https://localhost:5001/api/ingredients",
   });
@@ -74,7 +75,7 @@ export default function RecipeIngredientForm({
               input={
                 <SearchSelect
                   control={control}
-                  name={`recipeIngredients.${index}.recipeIngredientId`}
+                  name={`recipeIngredients.${index}.ingredientId`}
                   rules={{
                     required: "Required Field",
                   }}
@@ -97,8 +98,8 @@ export default function RecipeIngredientForm({
               error={
                 <ErrorMessage>
                   {
-                    formState.errors.recipeIngredients?.[index]
-                      .recipeIngredientId?.message
+                    formState.errors.recipeIngredients?.[index].ingredientId
+                      ?.message
                   }
                 </ErrorMessage>
               }

@@ -46,7 +46,7 @@ export default function IngredientInformation() {
       <UpdateIngredientForm
         id={parseInt(id ?? "")}
         existingIngredient={props.existingIngredient}
-        updateInFetchedIngredients={(updatedIngredient: Ingredient) =>
+        updateInFetchedIngredient={(updatedIngredient: Ingredient) =>
           modifyData(updatedIngredient)
         }
         close={() => closeUpdateIngredientModal()}
@@ -59,7 +59,9 @@ export default function IngredientInformation() {
       <UpdateIngredientImageForm
         id={id ?? ""}
         imageUrl={data?.imageUrl ?? null}
-        updateIngredient={(ingredient: Ingredient) => modifyData(ingredient)}
+        updateInFetchedIngredient={(ingredient: Ingredient) =>
+          modifyData(ingredient)
+        }
         close={() => closeUploadImageModal()}
       />
     ));
@@ -82,6 +84,7 @@ export default function IngredientInformation() {
               >
                 {data.ingredientName}
               </h2>
+              {/* TODO-Make this into dedicatated updtae button design  */}
               <AddButton
                 onClick={() =>
                   showUpdateIngredientModal({ existingIngredient: data })

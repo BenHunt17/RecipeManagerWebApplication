@@ -7,6 +7,8 @@ export const Container = styled.div`
 `;
 
 const Header = styled.div`
+  display: flex;
+  justify-content: space-between;
   height: 30px;
   background-color: var(--colour-primary);
   color: white;
@@ -19,15 +21,18 @@ const Content = styled.div`
 
 export default function ContentBox({
   title,
+  rightSlot,
   children,
 }: {
   title: string;
+  rightSlot?: JSX.Element;
   children: React.ReactNode;
 }) {
   return (
     <Container>
       <Header>
         <b>{title}</b>
+        {rightSlot}
       </Header>
       <Content>{children}</Content>
     </Container>

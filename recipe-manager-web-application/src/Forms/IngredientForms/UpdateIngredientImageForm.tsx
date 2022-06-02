@@ -6,12 +6,12 @@ import UpdateImageForm from "../UpdateImageForm";
 export default function UpdateIngredientImageForm({
   id,
   imageUrl,
-  updateIngredient,
+  updateInFetchedIngredient,
   close,
 }: {
   id: string;
   imageUrl: string | null;
-  updateIngredient: (ingredient: Ingredient) => void;
+  updateInFetchedIngredient: (ingredient: Ingredient) => void;
   close: () => void;
 }) {
   const [ingredientImage, setIngredientImage] = useState<File | null>(null);
@@ -21,7 +21,7 @@ export default function UpdateIngredientImageForm({
       `https://localhost:5001/api/ingredient/${id}/image`,
       HttpMethod.PUT,
       (ingredient) => {
-        updateIngredient(ingredient);
+        updateInFetchedIngredient(ingredient);
         close();
       },
       undefined
@@ -32,7 +32,7 @@ export default function UpdateIngredientImageForm({
       `https://localhost:5001/api/ingredient/${id}/image`,
       HttpMethod.DELETE,
       (ingredient) => {
-        updateIngredient(ingredient);
+        updateInFetchedIngredient(ingredient);
         close();
       },
       undefined
