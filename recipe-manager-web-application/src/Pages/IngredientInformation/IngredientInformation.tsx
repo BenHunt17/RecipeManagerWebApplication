@@ -5,7 +5,10 @@ import styled from "@emotion/styled";
 import { useParams } from "react-router-dom";
 import ContentBox from "../../Components/Common/ContentBox";
 import StatisticsTable from "../../Components/Common/StatisticsTable";
-import { AddButton } from "../../Components/Common/StyledComponents/ButtonComponents";
+import {
+  AddButton,
+  IconButton,
+} from "../../Components/Common/StyledComponents/ButtonComponents";
 import {
   ErrorScreen,
   LoadingScreen,
@@ -18,6 +21,7 @@ import useFetch from "../../Hooks/useFetch";
 import useModal from "../../Hooks/useModal";
 import { Ingredient } from "../../Types/IngredientTypes";
 import ImageDisplay from "../../Components/Common/ImageDisplay";
+import EditIcon from "../../SVGs/EditIcon";
 
 const PageLayout = styled.div`
   display: grid;
@@ -84,14 +88,15 @@ export default function IngredientInformation() {
               >
                 {data.ingredientName}
               </h2>
-              {/* TODO-Make this into dedicatated updtae button design  */}
-              <AddButton
+              <IconButton
                 onClick={() =>
-                  showUpdateIngredientModal({ existingIngredient: data })
+                  showUpdateIngredientModal({
+                    existingIngredient: data,
+                  })
                 }
               >
-                Update Ingredient
-              </AddButton>
+                <EditIcon width={24} height={30} />
+              </IconButton>
             </FlexContainer>
             <div />
             <FlexContainer

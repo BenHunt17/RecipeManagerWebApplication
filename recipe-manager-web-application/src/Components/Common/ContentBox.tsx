@@ -9,6 +9,7 @@ export const Container = styled.div`
 const Header = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   height: 30px;
   background-color: var(--colour-primary);
   color: white;

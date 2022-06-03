@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import ContentBox from "../../Components/Common/ContentBox";
+import { IconButton } from "../../Components/Common/StyledComponents/ButtonComponents";
 import { Label } from "../../Components/Common/StyledComponents/ContentComponents";
 import { FlexContainer } from "../../Components/Common/StyledComponents/ShortcutComponents";
 import UpdateRecipeIngredientsForm from "../../Forms/RecipeForms/UpdateRecipeIngredientsForm";
 import useModal from "../../Hooks/useModal";
+import EditIcon from "../../SVGs/EditIcon";
 import { MeasureType, Recipe, RecipeIngredient } from "../../Types/RecipeTypes";
 
 function MeasureUnitString(measureType: MeasureType) {
@@ -30,6 +32,7 @@ export default function IngredientsList({
   updateInFetchedRecipe: (recipe: Recipe) => void;
   recipeIngredients: RecipeIngredient[];
 }) {
+  //TODO - bug where this dialog and overly don't go over the recipe image when modal open
   const [
     updateRecipeIngredientsModal,
     showUpdateRecipeIngredientsModal,
@@ -47,9 +50,9 @@ export default function IngredientsList({
     <ContentBox
       title="Ingredients"
       rightSlot={
-        <button onClick={showUpdateRecipeIngredientsModal}>
-          Update ingredients
-        </button>
+        <IconButton onClick={showUpdateRecipeIngredientsModal}>
+          <EditIcon width={24} height={30} fill="white" />
+        </IconButton>
       }
     >
       <FlexContainer direction="row" justifyContent="flex-start" gap={25}>

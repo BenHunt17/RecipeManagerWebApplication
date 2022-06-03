@@ -1,6 +1,8 @@
 import ContentBox from "../../Components/Common/ContentBox";
+import { IconButton } from "../../Components/Common/StyledComponents/ButtonComponents";
 import UpdateInstructionsForm from "../../Forms/RecipeForms/UpdateInstructionsForm";
 import useModal from "../../Hooks/useModal";
+import EditIcon from "../../SVGs/EditIcon";
 import { Recipe, RecipeInstruction } from "../../Types/RecipeTypes";
 
 export default function RecipeInstructions({
@@ -33,9 +35,9 @@ export default function RecipeInstructions({
     <ContentBox
       title="Instructions"
       rightSlot={
-        <button onClick={showUpdateinstructionsModal}>
-          Update instructions
-        </button>
+        <IconButton onClick={showUpdateinstructionsModal}>
+          <EditIcon width={24} height={30} fill="white" />
+        </IconButton>
       }
     >
       <ol>

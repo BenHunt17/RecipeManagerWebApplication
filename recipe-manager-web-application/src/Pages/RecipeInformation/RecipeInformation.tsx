@@ -18,8 +18,9 @@ import {
 import ImageDisplay from "../../Components/Common/ImageDisplay";
 import useModal from "../../Hooks/useModal";
 import UpdateRecipeForm from "../../Forms/RecipeForms/UpdateRecipeForm";
-import { AddButton } from "../../Components/Common/StyledComponents/ButtonComponents";
+import { IconButton } from "../../Components/Common/StyledComponents/ButtonComponents";
 import UpdateRecipeImageForm from "../../Forms/RecipeForms/UpdateRecipeImageForm";
+import EditIcon from "../../SVGs/EditIcon";
 
 const ContentLayout = styled.div`
   display: grid;
@@ -80,12 +81,11 @@ export default function RecipeInformation() {
               gap={25}
             >
               <h2>{data.recipeName}</h2>
-              {/* TODO-Make dedicated update button */}
-              <AddButton
+              <IconButton
                 onClick={() => showUpdateRecipeModal({ existingRecipe: data })}
               >
-                Update Recipe
-              </AddButton>
+                <EditIcon width={24} height={30} />
+              </IconButton>
             </FlexContainer>
             <FlexContainer
               direction="row"
