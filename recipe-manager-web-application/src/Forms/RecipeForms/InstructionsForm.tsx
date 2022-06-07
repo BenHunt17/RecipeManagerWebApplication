@@ -1,3 +1,6 @@
+/** @jsxImportSource @emotion/react */
+
+import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import {
   ArrayPath,
@@ -49,34 +52,45 @@ export default function InstructionsForm({
     <DynamicList
       title="instructions"
       items={fields.map((field, index) => (
-        <div style={{ width: "100%" }}>
+        <div
+          css={css`
+            width: 100%;
+          `}
+        >
           <FlexContainer
             key={field.id}
             direction="row"
-            justifyContent="flex-start"
+            justifyContent="space-between"
             alignItems="flex-start"
             gap={10}
           >
             <InstructionNumber>{index + 1}.</InstructionNumber>
-            <InputContainer
-              input={
-                <TextArea
-                  control={control}
-                  name={`instructions.${index}.instructionText`}
-                  rules={{
-                    required: "Required Field",
-                  }}
-                />
-              }
-              error={
-                <ErrorMessage>
-                  {
-                    formState.errors.instructions?.[index].instructionText
-                      ?.message
-                  }
-                </ErrorMessage>
-              }
-            />
+            <div
+              css={css`
+                min-width: 350px;
+                width: 100%;
+              `}
+            >
+              <InputContainer
+                input={
+                  <TextArea
+                    control={control}
+                    name={`instructions.${index}.instructionText`}
+                    rules={{
+                      required: "Required Field",
+                    }}
+                  />
+                }
+                error={
+                  <ErrorMessage>
+                    {
+                      formState.errors.instructions?.[index].instructionText
+                        ?.message
+                    }
+                  </ErrorMessage>
+                }
+              />
+            </div>
           </FlexContainer>
         </div>
       ))}

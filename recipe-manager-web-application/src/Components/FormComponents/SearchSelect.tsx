@@ -9,10 +9,13 @@ import Overlay from "../Common/Overlay";
 import { SelectionButton } from "../Common/StyledComponents/ButtonComponents";
 import { FlexContainer } from "../Common/StyledComponents/ShortcutComponents";
 
-const SearchAndResetButton = styled.button`
-  width: 40px;
+const SearchSelectButton = styled.button`
+  height: 30px;
+  width: 75px;
   color: white;
   background-color: var(--colour-primary);
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
   border: none;
   cursor: pointer;
 `;
@@ -38,7 +41,8 @@ export default function SearchSelect<T extends FieldValues, U>(
           placeholder={props.promptMessage}
         />
         {field.value ? (
-          <SearchAndResetButton
+          <SearchSelectButton
+            type="button"
             onClick={() => {
               field.onChange("");
               if (searchInputRef.current) {
@@ -46,10 +50,10 @@ export default function SearchSelect<T extends FieldValues, U>(
               }
             }}
           >
-            x
-          </SearchAndResetButton>
+            Clear
+          </SearchSelectButton>
         ) : (
-          <SearchAndResetButton
+          <SearchSelectButton
             type="button"
             onClick={() => {
               setSearchResults(
@@ -57,8 +61,8 @@ export default function SearchSelect<T extends FieldValues, U>(
               );
             }}
           >
-            -O
-          </SearchAndResetButton>
+            Search
+          </SearchSelectButton>
         )}
       </FlexContainer>
       {!!searchResults.length && (

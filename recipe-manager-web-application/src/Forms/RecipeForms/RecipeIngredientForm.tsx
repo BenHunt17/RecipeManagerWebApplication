@@ -48,7 +48,6 @@ export default function RecipeIngredientForm({
   >;
   remove: UseFieldArrayRemove;
 }) {
-  //TODO - Make top element deletable if there are more elments below
   const { data, loading } = useFetch<IngredientListItem[]>({
     endpointPath: "https://localhost:5001/api/ingredients",
   });

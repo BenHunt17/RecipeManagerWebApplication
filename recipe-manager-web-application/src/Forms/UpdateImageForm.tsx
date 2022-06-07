@@ -28,6 +28,13 @@ const ImageUploadContainer = styled.label`
   font-weight: bold;
   background-color: var(--colour-primary);
   border-radius: 10px;
+  cursor: pointer;
+  &:hover {
+    filter: brightness(95%);
+  }
+  &:active {
+    filter: brightness(90%);
+  }
 `;
 
 export default function UpdateImageForm({

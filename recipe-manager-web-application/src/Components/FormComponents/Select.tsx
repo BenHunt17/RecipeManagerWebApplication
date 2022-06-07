@@ -7,7 +7,6 @@ import {
 
 const SelectInput = styled.select`
   width: 100%;
-  height: 25px;
   padding: 1px 2px;
   border-width: 2px;
   margin: 0em;

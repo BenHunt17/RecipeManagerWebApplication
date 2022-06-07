@@ -58,7 +58,7 @@ export default function DynamicList({
             gap={25}
           >
             {item}
-            {index > (defaultItemsCount ?? 0) - 1 && (
+            {items.length > (defaultItemsCount ?? 0) && (
               <IconButton type="button" onClick={() => removeItem(index)}>
                 <BinIcon width={17} height={26} />
               </IconButton>
