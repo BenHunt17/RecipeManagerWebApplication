@@ -88,6 +88,7 @@ export default function IngredientInformation() {
               >
                 {data.ingredientName}
               </h2>
+              {data.fruitVeg && <p>🍏 5 a Day</p>}
               <IconButton
                 onClick={() =>
                   showUpdateIngredientModal({
@@ -114,6 +115,7 @@ export default function IngredientInformation() {
                 <p className="noMargin">{data?.ingredientDescription}</p>
               </ContentBox>
               <ContentBox title="Nutritional Information">
+                {/* TODO- Add help text button whcih states that values of for *base amount* based on quantity type */}
                 <StatisticsTable
                   id="nutrition-stats-table"
                   data={[
@@ -125,7 +127,7 @@ export default function IngredientInformation() {
                       data: `${data.protein}g` ?? "Unknown",
                     },
                     { title: "Carbs", data: `${data.carbs}g` ?? "Unknown" },
-                    { title: "5 a day", data: data.fruitVeg ? "YES" : "NO" }, //TODO: make this into an icon or something prettier. Also position it somewhere more easily seen
+                    { title: "Density", data: `${data.density}kg m^3` },
                   ]}
                 />
               </ContentBox>
