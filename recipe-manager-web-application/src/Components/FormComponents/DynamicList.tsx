@@ -10,7 +10,7 @@ const ItemsList = styled.div`
   gap: 25px;
   border-top: solid 1px var(--colour-border);
   padding: 10px;
-  overflow-y: scroll;
+  overflow-y: auto;
 `;
 
 const AddNewButton = styled.button`
