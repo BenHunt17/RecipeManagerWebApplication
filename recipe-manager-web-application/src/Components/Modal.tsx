@@ -20,7 +20,7 @@ const ModalContainer = styled.div`
   transform: translate(-50%, calc(-50% + 75px));
   border-radius: 10px;
   background-color: white;
-  overflow-y: scroll;
+  overflow-y: auto;
 `;
 
 const ModalContent = styled.div`

@@ -34,6 +34,10 @@ export const LoadingSpinner = styled.div`
   animation: spinner 1.5s linear infinite;
 `;
 
+export const TightParagraph = styled.p`
+  margin: 0;
+`;
+
 export const ErrorMessage = styled.p`
   color: var(--colour-error);
   font-size: 11px;

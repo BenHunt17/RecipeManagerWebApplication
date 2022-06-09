@@ -22,6 +22,7 @@ import useModal from "../../Hooks/useModal";
 import { Ingredient } from "../../Types/IngredientTypes";
 import ImageDisplay from "../../Components/Common/ImageDisplay";
 import EditIcon from "../../SVGs/EditIcon";
+import { TightParagraph } from "../../Components/Common/StyledComponents/ContentComponents";
 
 const PageLayout = styled.div`
   display: grid;
@@ -112,7 +113,7 @@ export default function IngredientInformation() {
                 }}
               />
               <ContentBox title="About">
-                <p className="noMargin">{data?.ingredientDescription}</p>
+                <TightParagraph>{data?.ingredientDescription}</TightParagraph>
               </ContentBox>
               <ContentBox title="Nutritional Information">
                 {/* TODO- Add help text button whcih states that values of for *base amount* based on quantity type */}

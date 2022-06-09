@@ -1,11 +1,10 @@
 import styled from "@emotion/styled";
-import { FieldValues } from "react-hook-form";
 import BinIcon from "../../SVGs/BinIcon";
 import { IconButton } from "../Common/StyledComponents/ButtonComponents";
 import { FlexContainer } from "../Common/StyledComponents/ShortcutComponents";
 
 const ItemsList = styled.div`
-  height: 500px;
+  max-height: 350px;
   display: flex;
   flex-direction: column;
   gap: 25px;

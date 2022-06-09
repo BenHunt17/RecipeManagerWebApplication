@@ -21,6 +21,7 @@ import UpdateRecipeForm from "../../Forms/RecipeForms/UpdateRecipeForm";
 import { IconButton } from "../../Components/Common/StyledComponents/ButtonComponents";
 import UpdateRecipeImageForm from "../../Forms/RecipeForms/UpdateRecipeImageForm";
 import EditIcon from "../../SVGs/EditIcon";
+import { TightParagraph } from "../../Components/Common/StyledComponents/ContentComponents";
 
 const ContentLayout = styled.div`
   display: grid;
@@ -149,8 +150,7 @@ export default function RecipeInformation() {
                 onClick={() => showUploadImageModal({})}
               />
               <ContentBox title="About">
-                {/* TODO: make noMargin class into a generic "text" styled component  */}
-                <p className="noMargin">{data?.recipeDescription}</p>
+                <TightParagraph>{data?.recipeDescription}</TightParagraph>
               </ContentBox>
               <RecipeNutrition recipeIngredients={data.ingredients} />
             </FlexContainer>

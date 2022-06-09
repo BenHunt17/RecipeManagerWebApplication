@@ -3,7 +3,9 @@ import { useState } from "react";
 import { FlexContainer } from "./StyledComponents/ShortcutComponents";
 
 const SliderContainer = styled.div`
+  position: relative;
   width: 500px;
+  overflow-x: hidden;
 `;
 
 const SlideIndexLight = styled.div(
@@ -32,8 +34,23 @@ const Arrow = styled.span`
   color: var(--colour-primary);
 `;
 
+const Frame = styled.div(
+  ({ translationX }: { translationX: number }) => `
+  position: absolute;
+  width: 500px;
+  transform: translateX(${translationX}%);
+  transition: transform 0.4s;
+`
+);
+
+function getFrameTranslation(index: number, currentSlide: number) {
+  //If slide is at the index then it shouldn't be translated. If it is more then translate off screen to right, else to left
+  if (index === currentSlide) return 0;
+  if (index > currentSlide) return 150;
+  return -150;
+}
+
 export default function Slider({ slides }: { slides: JSX.Element[] }) {
-  //TODO: Maybe add animations to slider??
   const [currentSlide, setCurrentSlide] = useState(0);
   const slidesCount = slides.length;
 
@@ -51,12 +68,16 @@ export default function Slider({ slides }: { slides: JSX.Element[] }) {
 
   return (
     <SliderContainer>
-      {slides[currentSlide]}
+      {slides.map((slide, index) => (
+        <Frame translationX={getFrameTranslation(index, currentSlide)}>
+          {slide}
+        </Frame>
+      ))}
       <FlexContainer
         direction="row"
         justifyContent="center"
         gap={10}
-        margin="25px 0 25px 0"
+        margin="100% 0 25px 0"
       >
         {new Array(slidesCount).fill(0).map((_, slideIndex) => (
           <SlideIndexLight
