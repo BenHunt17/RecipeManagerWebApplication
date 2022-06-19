@@ -1,3 +1,6 @@
+/** @jsxImportSource @emotion/react */
+
+import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { Fragment, useRef, useState } from "react";
 import {
@@ -8,6 +11,9 @@ import {
 import Overlay from "../Common/Overlay";
 import { SelectionButton } from "../Common/StyledComponents/ButtonComponents";
 import { FlexContainer } from "../Common/StyledComponents/ShortcutComponents";
+import Layer from "../Layer";
+
+const INPUT_HORIZONTAL_PADDING = 4;
 
 const SearchSelectButton = styled.button`
   height: 30px;
@@ -30,6 +36,9 @@ export default function SearchSelect<T extends FieldValues, U>(
   const { field } = useController(props);
   const [searchResults, setSearchResults] = useState<U[]>([]);
   const searchInputRef = useRef<HTMLInputElement>(null);
+
+  const searchInputWidth =
+    searchInputRef.current?.getBoundingClientRect().width ?? 0;
 
   return (
     <Fragment>
@@ -66,33 +75,39 @@ export default function SearchSelect<T extends FieldValues, U>(
         )}
       </FlexContainer>
       {!!searchResults.length && (
-        <Overlay
-          anchorRef={searchInputRef}
-          onOutsideClick={() => setSearchResults([])}
-        >
-          <div>
-            {searchResults.map((searchResult, index) => {
-              const searchResultLabel = props.resultLabel(searchResult);
+        <Layer>
+          <Overlay
+            anchorRef={searchInputRef}
+            onOutsideClick={() => setSearchResults([])}
+          >
+            <div
+              css={css`
+                width: ${searchInputWidth - INPUT_HORIZONTAL_PADDING}px;
+              `}
+            >
+              {searchResults.map((searchResult, index) => {
+                const searchResultLabel = props.resultLabel(searchResult);
 
-              return (
-                <div key={`search-select.search-results.${index}`}>
-                  <SelectionButton
-                    type="button"
-                    onClick={() => {
-                      field.onChange(searchResult);
-                      if (searchInputRef.current) {
-                        searchInputRef.current.value = searchResultLabel;
-                      }
-                      setSearchResults([]);
-                    }}
-                  >
-                    {searchResultLabel}
-                  </SelectionButton>
-                </div>
-              );
-            })}
-          </div>
-        </Overlay>
+                return (
+                  <div key={`search-select.search-results.${index}`}>
+                    <SelectionButton
+                      type="button"
+                      onClick={() => {
+                        field.onChange(searchResult);
+                        if (searchInputRef.current) {
+                          searchInputRef.current.value = searchResultLabel;
+                        }
+                        setSearchResults([]);
+                      }}
+                    >
+                      {searchResultLabel}
+                    </SelectionButton>
+                  </div>
+                );
+              })}
+            </div>
+          </Overlay>
+        </Layer>
       )}
     </Fragment>
   );
