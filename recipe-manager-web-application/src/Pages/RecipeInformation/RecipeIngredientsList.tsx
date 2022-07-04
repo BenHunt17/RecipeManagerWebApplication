@@ -32,7 +32,6 @@ export default function IngredientsList({
   updateInFetchedRecipe: (recipe: Recipe) => void;
   recipeIngredients: RecipeIngredient[];
 }) {
-  //TODO - bug where this dialog and overly don't go over the recipe image when modal open
   const [
     updateRecipeIngredientsModal,
     showUpdateRecipeIngredientsModal,
