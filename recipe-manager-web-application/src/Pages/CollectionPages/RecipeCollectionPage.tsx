@@ -9,7 +9,7 @@ import CreateRecipeForm from "../../Forms/RecipeForms/CreateRecipeForm";
 import DeleteRecipeForm from "../../Forms/RecipeForms/DeleteRecipeForm";
 import useFetch from "../../Hooks/useFetch";
 import useModal from "../../Hooks/useModal";
-import { RecipeListItem } from "../../Types/RecipeTypes";
+import { Recipe, RecipeListItem } from "../../Types/RecipeTypes";
 import { minutesToTimeString } from "../RecipeInformation/RecipeInformation";
 import { CollectionContainer, CollectionHeader } from "./CollectionPageStyled";
 
@@ -19,7 +19,13 @@ export default function RecipeCollectionPage() {
   });
   const [createRecipeModal, showCreateRecipeModal] = useModal(
     "Create Recipe",
-    () => <CreateRecipeForm />
+    () => (
+      <CreateRecipeForm
+        addToFetchedRecipes={(recipe: Recipe) =>
+          modifyData([...(data ?? []), recipe])
+        }
+      />
+    )
   );
 
   const [deleteReipeModal, showDeleteRecipeModal, closeDeleteRecipeModal] =

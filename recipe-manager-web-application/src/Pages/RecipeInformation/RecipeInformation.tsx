@@ -17,11 +17,11 @@ import {
 } from "../../Components/Common/StyledComponents/Layouts";
 import ImageDisplay from "../../Components/Common/ImageDisplay";
 import useModal from "../../Hooks/useModal";
-import UpdateRecipeForm from "../../Forms/RecipeForms/UpdateRecipeForm";
 import { IconButton } from "../../Components/Common/StyledComponents/ButtonComponents";
 import UpdateRecipeImageForm from "../../Forms/RecipeForms/UpdateRecipeImageForm";
 import EditIcon from "../../SVGs/EditIcon";
 import { TightParagraph } from "../../Components/Common/StyledComponents/ContentComponents";
+import UpdateRecipeForm from "../../Forms/RecipeForms/UpdateRecipeForm";
 
 const ContentLayout = styled.div`
   display: grid;
@@ -55,7 +55,7 @@ export default function RecipeInformation() {
       <UpdateRecipeForm
         id={id ?? ""}
         existingRecipe={props.existingRecipe}
-        updateInFetchedRecipe={(recipe) => modifyData(recipe)}
+        updateInFetchedRecipe={(recipe: Recipe) => modifyData(recipe)}
         close={() => closeUpdateRecipeModal()}
       />
     ));

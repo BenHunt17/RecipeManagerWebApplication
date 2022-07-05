@@ -43,8 +43,6 @@ export default function IngredientInformation() {
   const { data, loading, modifyData } = useFetch<Ingredient>({
     endpointPath: `https://localhost:5001/api/ingredient/${id}`,
   });
-  const [showHelpText, setShowHelpText] = useState(false);
-  const helpButtonRef = useRef<HTMLDivElement>(null);
 
   const [
     updateIngredientModal,

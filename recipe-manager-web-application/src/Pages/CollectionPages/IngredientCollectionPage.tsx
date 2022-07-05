@@ -19,7 +19,13 @@ export default function IngredientCollectionPage() {
   });
   const [createIngredientModal, showCreateIngredientModal] = useModal(
     "Create Ingredient",
-    () => <CreateIngredientForm />
+    () => (
+      <CreateIngredientForm
+        addToFetchedIngredients={(ingredient: Ingredient) =>
+          modifyData([...(data ?? []), ingredient])
+        }
+      />
+    )
   );
 
   const [

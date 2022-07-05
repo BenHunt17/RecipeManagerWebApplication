@@ -1,11 +1,9 @@
-import styled from "@emotion/styled";
 import { Fragment, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { SubmitButton } from "../../Components/Common/StyledComponents/ButtonComponents";
 import { FlexContainer } from "../../Components/Common/StyledComponents/ShortcutComponents";
 import useMutate, { HttpMethod } from "../../Hooks/useMutate";
 import { Ingredient, QuantityType } from "../../Types/IngredientTypes";
-import { useNavigate } from "react-router-dom";
 import Toggle from "../../Components/FormComponents/Toggle";
 import {
   ErrorMessage,
@@ -36,7 +34,11 @@ const defaultValues = {
   carbs: 0,
 };
 
-export default function CreateIngredientForm() {
+export default function CreateIngredientForm({
+  addToFetchedIngredients,
+}: {
+  addToFetchedIngredients: (addedIngredient: Ingredient) => void;
+}) {
   const { control, handleSubmit, formState, watch } =
     useForm<IngredientInputData>({
       defaultValues,
@@ -45,12 +47,11 @@ export default function CreateIngredientForm() {
   const [quantityUnit, setQuantityUnit] = useState<string | undefined>(
     undefined
   );
-  const navigate = useNavigate();
   const { callback: createIngredient, loading } = useMutate<Ingredient>(
     "https://localhost:5001/api/ingredient",
     HttpMethod.POST,
     (result: Ingredient) => {
-      navigate(`/ingredient/${result.id}`);
+      addToFetchedIngredients(result);
     },
     undefined
   );

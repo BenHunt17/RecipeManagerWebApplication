@@ -3,7 +3,6 @@ import { Fragment, useEffect, useState } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
 import { FlexContainer } from "../../Components/Common/StyledComponents/ShortcutComponents";
 import useMutate, { HttpMethod } from "../../Hooks/useMutate";
-import { useNavigate } from "react-router-dom";
 import Toggle from "../../Components/FormComponents/Toggle";
 import {
   ErrorMessage,
@@ -58,7 +57,11 @@ const defaultValues = {
   dinner: false,
 };
 
-export default function CreateIngredientForm() {
+export default function CreateRecipeForm({
+  addToFetchedRecipes,
+}: {
+  addToFetchedRecipes: (addedRecipe: Recipe) => void;
+}) {
   const { control, handleSubmit, formState, clearErrors, watch, setValue } =
     useForm<RecipeFormData>({
       defaultValues,
@@ -84,12 +87,11 @@ export default function CreateIngredientForm() {
 
   const [ingredientImage, setIngredientImage] = useState<File | null>(null);
 
-  const navigate = useNavigate();
   const { callback: createIngredient, loading } = useMutate<Recipe>(
     "https://localhost:5001/api/recipe",
     HttpMethod.POST,
     (result: Recipe) => {
-      navigate(`/recipe/${result.id}`);
+      addToFetchedRecipes(result);
     },
     undefined
   );
