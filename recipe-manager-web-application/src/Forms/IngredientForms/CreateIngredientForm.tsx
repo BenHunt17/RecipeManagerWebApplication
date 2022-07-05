@@ -36,8 +36,10 @@ const defaultValues = {
 
 export default function CreateIngredientForm({
   addToFetchedIngredients,
+  close,
 }: {
   addToFetchedIngredients: (addedIngredient: Ingredient) => void;
+  close: () => void;
 }) {
   const { control, handleSubmit, formState, watch } =
     useForm<IngredientInputData>({
@@ -52,6 +54,7 @@ export default function CreateIngredientForm({
     HttpMethod.POST,
     (result: Ingredient) => {
       addToFetchedIngredients(result);
+      close();
     },
     undefined
   );

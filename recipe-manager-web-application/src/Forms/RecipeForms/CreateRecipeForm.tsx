@@ -59,8 +59,10 @@ const defaultValues = {
 
 export default function CreateRecipeForm({
   addToFetchedRecipes,
+  close,
 }: {
   addToFetchedRecipes: (addedRecipe: Recipe) => void;
+  close: () => void;
 }) {
   const { control, handleSubmit, formState, clearErrors, watch, setValue } =
     useForm<RecipeFormData>({
@@ -92,6 +94,7 @@ export default function CreateRecipeForm({
     HttpMethod.POST,
     (result: Recipe) => {
       addToFetchedRecipes(result);
+      close();
     },
     undefined
   );

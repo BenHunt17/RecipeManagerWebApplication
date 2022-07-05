@@ -17,16 +17,15 @@ export default function RecipeCollectionPage() {
   const { data, loading, modifyData } = useFetch<RecipeListItem[]>({
     endpointPath: "https://localhost:5001/api/recipes",
   });
-  const [createRecipeModal, showCreateRecipeModal] = useModal(
-    "Create Recipe",
-    () => (
+  const [createRecipeModal, showCreateRecipeModal, closeCreateRecipeModal] =
+    useModal("Create Recipe", () => (
       <CreateRecipeForm
         addToFetchedRecipes={(recipe: Recipe) =>
           modifyData([...(data ?? []), recipe])
         }
+        close={closeCreateRecipeModal}
       />
-    )
-  );
+    ));
 
   const [deleteReipeModal, showDeleteRecipeModal, closeDeleteRecipeModal] =
     useModal("Delete Recipe", (props: { id: number }) => (

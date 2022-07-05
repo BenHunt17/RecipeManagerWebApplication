@@ -17,16 +17,18 @@ export default function IngredientCollectionPage() {
   const { data, loading, modifyData } = useFetch<IngredientListItem[]>({
     endpointPath: "https://localhost:5001/api/ingredients",
   });
-  const [createIngredientModal, showCreateIngredientModal] = useModal(
-    "Create Ingredient",
-    () => (
-      <CreateIngredientForm
-        addToFetchedIngredients={(ingredient: Ingredient) =>
-          modifyData([...(data ?? []), ingredient])
-        }
-      />
-    )
-  );
+  const [
+    createIngredientModal,
+    showCreateIngredientModal,
+    closeCreateIngredientModal,
+  ] = useModal("Create Ingredient", () => (
+    <CreateIngredientForm
+      addToFetchedIngredients={(ingredient: Ingredient) =>
+        modifyData([...(data ?? []), ingredient])
+      }
+      close={closeCreateIngredientModal}
+    />
+  ));
 
   const [
     deleteIngredientModal,
