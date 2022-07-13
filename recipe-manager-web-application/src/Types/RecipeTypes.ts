@@ -1,3 +1,5 @@
+import { MeasureType } from "./IngredientTypes";
+
 export type RecipeIngredient = {
   id: number;
   ingredientId: number;
@@ -32,14 +34,6 @@ export type Recipe = {
   lunch: boolean;
   dinner: boolean;
 };
-
-export enum MeasureType {
-  NONE = "NONE",
-  KG = "KG",
-  ML = "ML",
-  TSP = "TSP",
-  TBSP = "TBSP",
-}
 
 export type RecipeListItem = {
   id: number;

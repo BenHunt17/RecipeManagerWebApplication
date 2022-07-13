@@ -26,7 +26,7 @@ export default function IngredientCollectionPage() {
       addToFetchedIngredients={(ingredient: Ingredient) =>
         modifyData([...(data ?? []), ingredient])
       }
-      close={closeCreateIngredientModal}
+      close={() => closeCreateIngredientModal()}
     />
   ));
 

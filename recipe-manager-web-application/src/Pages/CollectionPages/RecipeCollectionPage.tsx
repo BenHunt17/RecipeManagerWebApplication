@@ -23,7 +23,7 @@ export default function RecipeCollectionPage() {
         addToFetchedRecipes={(recipe: Recipe) =>
           modifyData([...(data ?? []), recipe])
         }
-        close={closeCreateRecipeModal}
+        close={() => closeCreateRecipeModal()}
       />
     ));
 

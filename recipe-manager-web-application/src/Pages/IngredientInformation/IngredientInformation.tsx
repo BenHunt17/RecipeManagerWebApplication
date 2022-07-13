@@ -5,10 +5,7 @@ import styled from "@emotion/styled";
 import { useParams } from "react-router-dom";
 import ContentBox from "../../Components/Common/ContentBox";
 import StatisticsTable from "../../Components/Common/StatisticsTable";
-import {
-  AddButton,
-  IconButton,
-} from "../../Components/Common/StyledComponents/ButtonComponents";
+import { IconButton } from "../../Components/Common/StyledComponents/ButtonComponents";
 import {
   ErrorScreen,
   LoadingScreen,
@@ -23,9 +20,7 @@ import { Ingredient } from "../../Types/IngredientTypes";
 import ImageDisplay from "../../Components/Common/ImageDisplay";
 import EditIcon from "../../SVGs/EditIcon";
 import { TightParagraph } from "../../Components/Common/StyledComponents/ContentComponents";
-import { Fragment, useRef, useState } from "react";
-import Overlay from "../../Components/Common/Overlay";
-import Layer from "../../Components/Layer";
+import IngredientNutrition from "./IngredientNutrition";
 
 const PageLayout = styled.div`
   display: grid;
@@ -118,22 +113,7 @@ export default function IngredientInformation() {
               <ContentBox title="About">
                 <TightParagraph>{data?.ingredientDescription}</TightParagraph>
               </ContentBox>
-              <ContentBox title="Nutritional Information (Per 100g)">
-                <StatisticsTable
-                  id="nutrition-stats-table"
-                  data={[
-                    { title: "kcal", data: data.calories },
-                    { title: "Fat", data: `${data.fat}g` ?? "Unknown" },
-                    { title: "Salt", data: `${data.salt}g` ?? "Unknown" },
-                    {
-                      title: "Protein",
-                      data: `${data.protein}g` ?? "Unknown",
-                    },
-                    { title: "Carbs", data: `${data.carbs}g` ?? "Unknown" },
-                    { title: "Density", data: `${data.density}kg m^3` },
-                  ]}
-                />
-              </ContentBox>
+              <IngredientNutrition ingredient={data} />
             </FlexContainer>
           </PageLayout>
         ) : (

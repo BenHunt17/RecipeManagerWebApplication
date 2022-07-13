@@ -6,20 +6,23 @@ import { FlexContainer } from "../../Components/Common/StyledComponents/Shortcut
 import UpdateRecipeIngredientsForm from "../../Forms/RecipeForms/UpdateRecipeIngredientsForm";
 import useModal from "../../Hooks/useModal";
 import EditIcon from "../../SVGs/EditIcon";
-import { MeasureType, Recipe, RecipeIngredient } from "../../Types/RecipeTypes";
+import { MeasureType } from "../../Types/IngredientTypes";
+import { Recipe, RecipeIngredient } from "../../Types/RecipeTypes";
 
 function MeasureUnitString(measureType: MeasureType) {
   switch (measureType) {
     case MeasureType.KG:
-      return "Kg";
+      return "kg";
     case MeasureType.ML:
-      return "Ml";
+      return "ml";
+    case MeasureType.DISCRETE:
+      return "units";
     case MeasureType.TSP:
       return "tsp";
     case MeasureType.TBSP:
       return "tbsp";
     default:
-      return "";
+      return "unknown units";
   }
 }
 

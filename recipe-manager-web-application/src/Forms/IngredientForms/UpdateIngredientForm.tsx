@@ -1,9 +1,12 @@
-import styled from "@emotion/styled";
 import { Fragment, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { SubmitButton } from "../../Components/Common/StyledComponents/ButtonComponents";
 import useMutate, { HttpMethod } from "../../Hooks/useMutate";
-import { Ingredient, QuantityType } from "../../Types/IngredientTypes";
+import {
+  Ingredient,
+  IngredientInput,
+  MeasureType,
+} from "../../Types/IngredientTypes";
 import Toggle from "../../Components/FormComponents/Toggle";
 import {
   ErrorMessage,
@@ -13,10 +16,6 @@ import TextInput from "../../Components/FormComponents/TextInput";
 import TextArea from "../../Components/FormComponents/TextArea";
 import InputContainer from "../../Components/FormComponents/InputContainer";
 import Select from "../../Components/FormComponents/Select";
-import {
-  IngredientInputData,
-  quantityUnitString,
-} from "./ingredientFormsUtils";
 import { FlexContainer } from "../../Components/Common/StyledComponents/ShortcutComponents";
 import { MainFormLayout } from "../../Components/Common/StyledComponents/Layouts";
 
@@ -24,8 +23,7 @@ function extractDefaultValues(existingIngredient: Ingredient) {
   return {
     ingredientName: existingIngredient.ingredientName,
     ingredientDescription: existingIngredient.ingredientDescription,
-    density: existingIngredient.density ?? 0,
-    quantityType: QuantityType.NONE,
+    measureType: MeasureType.NONE,
     fruitVeg: existingIngredient.fruitVeg,
     quantity: 100,
     calories: existingIngredient.calories,
@@ -47,10 +45,9 @@ export default function UpdateIngredientForm({
   updateInFetchedIngredient: (updatedIngredient: Ingredient) => void;
   close: () => void;
 }) {
-  const { control, handleSubmit, formState, watch } =
-    useForm<IngredientInputData>({
-      defaultValues: extractDefaultValues(existingIngredient),
-    });
+  const { control, handleSubmit, formState, watch } = useForm<IngredientInput>({
+    defaultValues: extractDefaultValues(existingIngredient),
+  });
   const [quantityUnit, setQuantityUnit] = useState<string | undefined>(
     undefined
   );
@@ -65,14 +62,14 @@ export default function UpdateIngredientForm({
     true
   );
 
-  const onSubmit = (formValues: IngredientInputData) => {
+  const onSubmit = (formValues: IngredientInput) => {
     updateIngredient(JSON.stringify(formValues));
   };
 
   useEffect(() => {
     const subscription = watch((value, { name }) => {
-      if (name === "quantityType" && value.quantityType) {
-        setQuantityUnit(quantityUnitString(value.quantityType));
+      if (name === "measureType" && value.measureType) {
+        setQuantityUnit(value.measureType);
       }
     });
     return () => subscription.unsubscribe();
@@ -136,17 +133,12 @@ export default function UpdateIngredientForm({
         </FlexContainer>
         <MainFormLayout>
           <InputContainer
-            title="Quantity Type*"
+            title="Measure Type*"
             input={
               <Select
                 control={control}
-                name="quantityType"
-                options={[
-                  QuantityType.NONE,
-                  QuantityType.WEIGHT,
-                  QuantityType.DISCRETE,
-                  QuantityType.VOLUME,
-                ]}
+                name="measureType"
+                options={Object.values(MeasureType)}
               />
             }
           />
@@ -166,10 +158,6 @@ export default function UpdateIngredientForm({
             error={
               <ErrorMessage>{formState.errors.quantity?.message}</ErrorMessage>
             }
-          />
-          <InputContainer
-            title="Density"
-            input={<TextInput control={control} name="density" />}
           />
           <InputContainer
             title="Calories"

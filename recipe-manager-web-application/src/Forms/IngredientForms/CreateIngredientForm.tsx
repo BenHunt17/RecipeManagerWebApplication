@@ -3,7 +3,11 @@ import { useForm } from "react-hook-form";
 import { SubmitButton } from "../../Components/Common/StyledComponents/ButtonComponents";
 import { FlexContainer } from "../../Components/Common/StyledComponents/ShortcutComponents";
 import useMutate, { HttpMethod } from "../../Hooks/useMutate";
-import { Ingredient, QuantityType } from "../../Types/IngredientTypes";
+import {
+  Ingredient,
+  IngredientInput,
+  MeasureType,
+} from "../../Types/IngredientTypes";
 import Toggle from "../../Components/FormComponents/Toggle";
 import {
   ErrorMessage,
@@ -14,24 +18,20 @@ import TextInput from "../../Components/FormComponents/TextInput";
 import TextArea from "../../Components/FormComponents/TextArea";
 import InputContainer from "../../Components/FormComponents/InputContainer";
 import Select from "../../Components/FormComponents/Select";
-import {
-  IngredientInputData,
-  quantityUnitString,
-} from "./ingredientFormsUtils";
 import { MainFormLayout } from "../../Components/Common/StyledComponents/Layouts";
 
 const defaultValues = {
   ingredientName: "",
   ingredientDescription: "",
   density: 0,
-  quantityType: QuantityType.NONE,
+  measureType: MeasureType.NONE,
   fruitVeg: false,
   quantity: 100,
   calories: 0,
-  fat: 0,
-  salt: 0,
-  protein: 0,
-  carbs: 0,
+  fat: undefined,
+  salt: undefined,
+  protein: undefined,
+  carbs: undefined,
 };
 
 export default function CreateIngredientForm({
@@ -41,10 +41,9 @@ export default function CreateIngredientForm({
   addToFetchedIngredients: (addedIngredient: Ingredient) => void;
   close: () => void;
 }) {
-  const { control, handleSubmit, formState, watch } =
-    useForm<IngredientInputData>({
-      defaultValues,
-    });
+  const { control, handleSubmit, formState, watch } = useForm<IngredientInput>({
+    defaultValues,
+  });
   const [ingredientImage, setIngredientImage] = useState<File | null>(null);
   const [quantityUnit, setQuantityUnit] = useState<string | undefined>(
     undefined
@@ -59,32 +58,39 @@ export default function CreateIngredientForm({
     undefined
   );
 
-  const onSubmit = (formValues: IngredientInputData) => {
+  const onSubmit = (formValues: IngredientInput) => {
     const formData = new FormData();
 
     if (ingredientImage) {
       formData.append("imageFile", ingredientImage);
     }
+    if (formValues.fat) {
+      formData.append("fat", formValues.fat.toString());
+    }
+    if (formValues.salt) {
+      formData.append("salt", formValues.salt.toString());
+    }
+    if (formValues.protein) {
+      formData.append("protein", formValues.protein.toString());
+    }
+    if (formValues.carbs) {
+      formData.append("carbs", formValues.carbs.toString());
+    }
 
     formData.append("ingredientName", formValues.ingredientName);
     formData.append("ingredientDescription", formValues.ingredientDescription);
-    formData.append("density", formValues.density.toString());
     formData.append("calories", formValues.calories.toString());
     formData.append("fruitVeg", formValues.fruitVeg.toString());
-    formData.append("quantityType", formValues.quantityType);
+    formData.append("measureType", formValues.measureType);
     formData.append("quantity", formValues.quantity.toString());
-    formData.append("fat", formValues.fat.toString());
-    formData.append("salt", formValues.salt.toString());
-    formData.append("protein", formValues.protein.toString());
-    formData.append("carbs", formValues.carbs.toString());
 
     createIngredient(formData);
   };
 
   useEffect(() => {
     const subscription = watch((value, { name }) => {
-      if (name === "quantityType" && value.quantityType) {
-        setQuantityUnit(quantityUnitString(value.quantityType));
+      if (name === "measureType" && value.measureType) {
+        setQuantityUnit(value.measureType);
       }
     });
     return () => subscription.unsubscribe();
@@ -137,23 +143,19 @@ export default function CreateIngredientForm({
           </FlexContainer>
           <ImageUpload image={ingredientImage} setImage={setIngredientImage} />
           <InputContainer
-            title="Quantity Type*"
+            title="Measure Type*"
             input={
               <Select
                 control={control}
-                name="quantityType"
-                options={[
-                  QuantityType.NONE,
-                  QuantityType.WEIGHT,
-                  QuantityType.DISCRETE,
-                  QuantityType.VOLUME,
-                ]}
+                name="measureType"
+                options={Object.values(MeasureType)}
               />
             }
           />
           <InputContainer
             title={`${
-              quantityUnit ? `Quantity (${quantityUnit})` : "Quantity"
+              //TODO - Fix bug where changing measure type resets the quantity
+              quantityUnit ? `Quantity (${quantityUnit})*` : "Quantity*"
             }`}
             input={
               <TextInput
@@ -169,12 +171,16 @@ export default function CreateIngredientForm({
             }
           />
           <InputContainer
-            title="Density"
-            input={<TextInput control={control} name="density" />}
-          />
-          <InputContainer
-            title="Calories"
-            input={<TextInput control={control} name="calories" />}
+            title="Calories*"
+            input={
+              <TextInput
+                control={control}
+                name="calories"
+                rules={{
+                  required: "Required Field",
+                }}
+              />
+            }
           />
           <InputContainer
             title="Salt"
