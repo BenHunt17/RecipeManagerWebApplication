@@ -13,14 +13,11 @@ import TextInput from "../../Components/FormComponents/TextInput";
 import TextArea from "../../Components/FormComponents/TextArea";
 import InputContainer from "../../Components/FormComponents/InputContainer";
 import Slider from "../../Components/Common/Slider";
-import { Recipe } from "../../Types/RecipeTypes";
-import RecipeIngredientForm, {
-  RecipeIngredientFormData,
-} from "./RecipeIngredientForm";
-import { InstructionFormData } from "./InstructionsForm";
+import { Recipe, RecipeInput } from "../../Types/RecipeTypes";
 import InstructionsForm from "./InstructionsForm";
 import { SubmitButton } from "../../Components/Common/StyledComponents/ButtonComponents";
 import { MainFormLayout } from "../../Components/Common/StyledComponents/Layouts";
+import RecipeIngredientsForm from "./RecipeIngredientsForm";
 
 const BottomLayout = styled.div`
   display: grid;
@@ -29,25 +26,10 @@ const BottomLayout = styled.div`
   margin-bottom: 25px;
 `;
 
-export type RecipeFormData = {
-  recipeName: string;
-  recipeDescription: string;
-  recipeIngredients: RecipeIngredientFormData[];
-  instructions: InstructionFormData[];
-  rating: number;
-  prepTime: number;
-  servingSize: number;
-  breakfast: boolean;
-  lunch: boolean;
-  dinner: boolean;
-};
-
 const defaultValues = {
   recipeName: "",
   recipeDescription: "",
-  recipeIngredients: [
-    { recipeIngredientId: undefined, quantity: 0, measureTypeValue: "NONE" },
-  ],
+  recipeIngredients: [{ ingredientId: undefined, quantity: 0 }],
   instructions: [{ instructionNumber: 1, instructionText: "" }],
   rating: 0,
   prepTime: 0,
@@ -65,7 +47,7 @@ export default function CreateRecipeForm({
   close: () => void;
 }) {
   const { control, handleSubmit, formState, clearErrors, watch, setValue } =
-    useForm<RecipeFormData>({
+    useForm<RecipeInput>({
       defaultValues,
     });
 
@@ -99,7 +81,7 @@ export default function CreateRecipeForm({
     undefined
   );
 
-  const onSubmit = (formValues: RecipeFormData) => {
+  const onSubmit = (formValues: RecipeInput) => {
     const formData = new FormData();
 
     if (ingredientImage) {
@@ -358,10 +340,11 @@ export default function CreateRecipeForm({
               append={instructionsAppend}
               remove={instructionsRemove}
             />,
-            <RecipeIngredientForm
+            <RecipeIngredientsForm
               control={control}
               fields={recipeIngredientFields}
               formState={formState}
+              watch={watch}
               append={recipeIngredientsAppend}
               remove={recipeIngredientsRemove}
             />,

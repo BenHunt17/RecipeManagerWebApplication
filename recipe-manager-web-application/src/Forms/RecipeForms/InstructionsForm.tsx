@@ -15,18 +15,13 @@ import { FlexContainer } from "../../Components/Common/StyledComponents/Shortcut
 import DynamicList from "../../Components/FormComponents/DynamicList";
 import InputContainer from "../../Components/FormComponents/InputContainer";
 import TextArea from "../../Components/FormComponents/TextArea";
-import { RecipeFormData } from "./CreateRecipeForm";
+import { RecipeInput, RecipeInstructionInput } from "../../Types/RecipeTypes";
 
 const InstructionNumber = styled.h4`
   width: 31px;
   color: var(--colour-text);
   margin: 0;
 `;
-
-export type InstructionFormData = {
-  instructionText: string;
-  instructionNumber: number;
-};
 
 export default function InstructionsForm({
   control,
@@ -35,16 +30,16 @@ export default function InstructionsForm({
   append,
   remove,
 }: {
-  control: Control<RecipeFormData>;
+  control: Control<RecipeInput>;
   fields: FieldArrayWithId<
-    InstructionFormData[],
-    ArrayPath<InstructionFormData[]>,
+    RecipeInstructionInput[],
+    ArrayPath<RecipeInstructionInput[]>,
     "id"
   >[];
-  formState: FormState<RecipeFormData>;
+  formState: FormState<RecipeInput>;
   append: UseFieldArrayAppend<
-    InstructionFormData[],
-    ArrayPath<InstructionFormData[]>
+    RecipeInstructionInput[],
+    ArrayPath<RecipeInstructionInput[]>
   >;
   remove: UseFieldArrayRemove;
 }) {

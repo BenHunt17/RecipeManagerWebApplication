@@ -6,25 +6,8 @@ import { FlexContainer } from "../../Components/Common/StyledComponents/Shortcut
 import UpdateRecipeIngredientsForm from "../../Forms/RecipeForms/UpdateRecipeIngredientsForm";
 import useModal from "../../Hooks/useModal";
 import EditIcon from "../../SVGs/EditIcon";
-import { MeasureType } from "../../Types/IngredientTypes";
 import { Recipe, RecipeIngredient } from "../../Types/RecipeTypes";
-
-function MeasureUnitString(measureType: MeasureType) {
-  switch (measureType) {
-    case MeasureType.KG:
-      return "kg";
-    case MeasureType.ML:
-      return "ml";
-    case MeasureType.DISCRETE:
-      return "units";
-    case MeasureType.TSP:
-      return "tsp";
-    case MeasureType.TBSP:
-      return "tbsp";
-    default:
-      return "unknown units";
-  }
-}
+import { MeasureTypeUnitString } from "../../Utilities/Ingredients";
 
 export default function IngredientsList({
   id,
@@ -66,7 +49,7 @@ export default function IngredientsList({
           >
             <Label>{`${ingredient.ingredientName} | ${Number(
               ingredient.quantity.toFixed(2)
-            )} ${MeasureUnitString(ingredient.measureType)}`}</Label>
+            )} ${MeasureTypeUnitString(ingredient.measureType)}`}</Label>
           </Link>
         ))}
       </FlexContainer>

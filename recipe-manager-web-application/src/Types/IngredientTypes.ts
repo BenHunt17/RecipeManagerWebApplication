@@ -31,6 +31,7 @@ export type IngredientListItem = {
   ingredientName: string;
   imageUrl: string | null;
   fruitVeg: boolean;
+  measureType: MeasureType;
 };
 
 export enum MeasureType {

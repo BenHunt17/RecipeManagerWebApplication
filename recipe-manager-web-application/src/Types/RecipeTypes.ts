@@ -42,3 +42,26 @@ export type RecipeListItem = {
   rating: number;
   prepTime: number;
 };
+
+export type RecipeIngredientInput = {
+  ingredientId: number;
+  quantity: number;
+};
+
+export type RecipeInstructionInput = {
+  instructionText: string;
+  instructionNumber: number;
+};
+
+export type RecipeInput = {
+  recipeName: string;
+  recipeDescription: string;
+  recipeIngredients: RecipeIngredientInput[];
+  instructions: RecipeInstructionInput[];
+  rating: number;
+  prepTime: number;
+  servingSize: number;
+  breakfast: boolean;
+  lunch: boolean;
+  dinner: boolean;
+};

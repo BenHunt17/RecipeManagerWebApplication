@@ -69,7 +69,10 @@ export default function Slider({ slides }: { slides: JSX.Element[] }) {
   return (
     <SliderContainer>
       {slides.map((slide, index) => (
-        <Frame translationX={getFrameTranslation(index, currentSlide)}>
+        <Frame
+          key={slide.key ?? `slider.slide-${index}`}
+          translationX={getFrameTranslation(index, currentSlide)}
+        >
           {slide}
         </Frame>
       ))}

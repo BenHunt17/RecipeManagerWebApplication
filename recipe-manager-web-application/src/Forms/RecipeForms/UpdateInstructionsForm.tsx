@@ -4,8 +4,11 @@ import { SubmitButton } from "../../Components/Common/StyledComponents/ButtonCom
 import { LoadingSpinner } from "../../Components/Common/StyledComponents/ContentComponents";
 import { FlexContainer } from "../../Components/Common/StyledComponents/ShortcutComponents";
 import useMutate, { HttpMethod } from "../../Hooks/useMutate";
-import { Recipe, RecipeInstruction } from "../../Types/RecipeTypes";
-import { RecipeFormData } from "./CreateRecipeForm";
+import {
+  Recipe,
+  RecipeInput,
+  RecipeInstruction,
+} from "../../Types/RecipeTypes";
 import InstructionsForm from "./InstructionsForm";
 
 function extractDefaultValues(existingInstructions: RecipeInstruction[]) {
@@ -40,7 +43,7 @@ export default function UpdateRecipeIngredientsForm({
   close: () => void;
 }) {
   const { control, handleSubmit, formState, watch, setValue } =
-    useForm<RecipeFormData>({
+    useForm<RecipeInput>({
       defaultValues: extractDefaultValues(existingInstructions), //Need to have form for entir recipe ingredients since the controller is needed in the recipe ingredients form :/
     });
 
@@ -64,7 +67,7 @@ export default function UpdateRecipeIngredientsForm({
     true
   );
 
-  const onSubmit = (formValues: RecipeFormData) => {
+  const onSubmit = (formValues: RecipeInput) => {
     updateInstrcutions(JSON.stringify(formValues.instructions));
   };
 

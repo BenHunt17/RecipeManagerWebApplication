@@ -3,9 +3,8 @@ import { SubmitButton } from "../../Components/Common/StyledComponents/ButtonCom
 import { LoadingSpinner } from "../../Components/Common/StyledComponents/ContentComponents";
 import { FlexContainer } from "../../Components/Common/StyledComponents/ShortcutComponents";
 import useMutate, { HttpMethod } from "../../Hooks/useMutate";
-import { Recipe, RecipeIngredient } from "../../Types/RecipeTypes";
-import { RecipeFormData } from "./CreateRecipeForm";
-import RecipeIngredientForm from "./RecipeIngredientForm";
+import { Recipe, RecipeIngredient, RecipeInput } from "../../Types/RecipeTypes";
+import RecipeIngredientsForm from "./RecipeIngredientsForm";
 
 function extractDefaultValues(existingRecipeIngredients: RecipeIngredient[]) {
   return {
@@ -39,7 +38,7 @@ export default function UpdateRecipeIngredientsForm({
   updateInFetchedRecipe: (recipe: Recipe) => void;
   close: () => void;
 }) {
-  const { control, handleSubmit, formState } = useForm<RecipeFormData>({
+  const { control, handleSubmit, formState, watch } = useForm<RecipeInput>({
     defaultValues: extractDefaultValues(existingRecipeIngredients), //Need to have form for entir recipe ingredients since the controller is needed in the recipe ingredients form :/
   });
 
@@ -63,17 +62,18 @@ export default function UpdateRecipeIngredientsForm({
     true
   );
 
-  const onSubmit = (formValues: RecipeFormData) => {
+  const onSubmit = (formValues: RecipeInput) => {
     updateRecipeIngredients(JSON.stringify(formValues.recipeIngredients)); //Only stringifies the recipe ingredients
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <FlexContainer direction="column" justifyContent="flex-start" gap={25}>
-        <RecipeIngredientForm
+        <RecipeIngredientsForm
           control={control}
           fields={recipeIngredientFields}
           formState={formState}
+          watch={watch}
           append={recipeIngredientsAppend}
           remove={recipeIngredientsRemove}
         />
