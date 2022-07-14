@@ -142,34 +142,44 @@ export default function CreateIngredientForm({
             />
           </FlexContainer>
           <ImageUpload image={ingredientImage} setImage={setIngredientImage} />
-          <InputContainer
-            title="Measure Type*"
-            input={
-              <Select
-                control={control}
-                name="measureType"
-                options={Object.values(MeasureType)}
-              />
-            }
-          />
-          <InputContainer
-            title={`${
-              //TODO - Fix bug where changing measure type resets the quantity
-              quantityUnit ? `Quantity (${quantityUnit})*` : "Quantity*"
-            }`}
-            input={
-              <TextInput
-                control={control}
-                name="quantity"
-                rules={{
-                  required: "Required Field",
-                }}
-              />
-            }
-            error={
-              <ErrorMessage>{formState.errors.quantity?.message}</ErrorMessage>
-            }
-          />
+          <FlexContainer
+            direction="row"
+            width={250}
+            justifyContent="space-between"
+            gap={10}
+          >
+            <InputContainer
+              title={`${
+                //TODO - Fix bug where changing measure type resets the quantity
+                quantityUnit ? `Quantity (${quantityUnit})*` : "Quantity*"
+              }`}
+              input={
+                <TextInput
+                  control={control}
+                  name="quantity"
+                  rules={{
+                    required: "Required Field",
+                  }}
+                />
+              }
+              error={
+                <ErrorMessage>
+                  {formState.errors.quantity?.message}
+                </ErrorMessage>
+              }
+              width={100}
+            />
+            <InputContainer
+              title="Measure Type*"
+              input={
+                <Select
+                  control={control}
+                  name="measureType"
+                  options={Object.values(MeasureType)}
+                />
+              }
+            />
+          </FlexContainer>
           <InputContainer
             title="Calories*"
             input={

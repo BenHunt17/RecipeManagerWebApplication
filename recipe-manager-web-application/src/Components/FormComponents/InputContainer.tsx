@@ -2,21 +2,25 @@
 
 import styled from "@emotion/styled";
 
-const Container = styled.div`
-  width: 100%;
-`;
+const Container = styled.div(
+  ({ width }: { width?: number }) => `
+  width: ${width ? `${width}px` : "100%"};
+`
+);
 
 export default function InputContainer({
   title,
   input,
   error,
+  width,
 }: {
   title?: string;
   input: JSX.Element;
   error?: JSX.Element;
+  width?: number;
 }) {
   return (
-    <Container>
+    <Container width={width}>
       {title}
       {title && <br />}
       {input}
