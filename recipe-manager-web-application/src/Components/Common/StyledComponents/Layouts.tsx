@@ -11,7 +11,7 @@ export const LoadingScreen = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  color: var(--colour-border);
+  color: var(--colour-dark-grey);
   font-weight: bold;
   font-size: 28px;
   overflow: hidden;

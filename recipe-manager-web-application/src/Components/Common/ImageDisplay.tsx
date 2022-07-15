@@ -16,10 +16,10 @@ const ImageFrameEditOverlay = styled.div`
   align-items: center;
   width: calc(100% - 20px);
   height: calc(100% - 30px);
-  background-color: rgba(var(--colour-shadow-rgb), 0);
+  background-color: rgba(var(--colour-light-grey-rgb), 0);
   opacity: 0;
   &:hover {
-    background-color: rgba(var(--colour-shadow-rgb), 0.75);
+    background-color: rgba(var(--colour-light-grey-rgb), 0.75);
     opacity: 1;
     transition: 0.4s;
   }

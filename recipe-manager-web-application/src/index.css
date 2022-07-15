@@ -1,13 +1,12 @@
 html {
-  /* TODO - Rename these colour because their uses aren't reflecting their names. Eg. shadow is being used for lots of borders */
   --colour-primary: #698c96;
   --colour-primary-rgb: 105, 140, 150;
   --colour-secondary: #967369;
   --colour-secondary-rgb: 150, 115, 105;
   --colour-text: #494949;
-  --colour-shadow: #ababab;
-  --colour-shadow-rgb: 171, 171, 171;
-  --colour-border: #696969;
+  --colour-light-grey: #ababab;
+  --colour-light-grey-rgb: 171, 171, 171;
+  --colour-dark-grey: #696969;
   --colour-error: #ef3038;
 }
 
@@ -81,7 +80,7 @@ ol li {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: var(--colour-border);
+  background-color: var(--colour-dark-grey);
   border-radius: 2px;
 }
 

@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 export const Container = styled.div`
-  border: 1px solid var(--colour-border);
+  border: 1px solid var(--colour-dark-grey);
   border-radius: 10px;
   overflow: hidden;
 `;

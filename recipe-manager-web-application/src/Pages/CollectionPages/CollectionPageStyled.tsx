@@ -10,7 +10,7 @@ export const CollectionContainer = styled.div(
   `
   display: grid;
   gap: 25px;
-  border: solid 3px var(--colour-border);
+  border: solid 3px var(--colour-dark-grey);
   border-radius: 10px;
   padding: 20px;
   height: calc(100% - 170px); //Full height minus collection header and padding

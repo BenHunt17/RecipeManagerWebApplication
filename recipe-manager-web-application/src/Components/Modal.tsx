@@ -8,7 +8,7 @@ const Overlay = styled.div`
   position: fixed;
   top: 150px;
   left: 0px;
-  background-color: var(--colour-shadow);
+  background-color: var(--colour-light-grey);
   opacity: 0.8;
 `;
 

@@ -9,7 +9,7 @@ const HeaderRoot = styled.div`
   justify-content: space-between;
   background-color: var(--colour-primary);
   align-items: center;
-  box-shadow: 0px 1px 1px var(--colour-shadow);
+  box-shadow: 0px 1px 1px var(--colour-light-grey);
 `;
 
 const Title = styled.h1`

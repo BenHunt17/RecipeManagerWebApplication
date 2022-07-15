@@ -11,7 +11,7 @@ const ImageUploadContainer = styled.div`
   width: 250px;
   height: 250px;
   background-color: rgba(var(--colour-secondary-rgb), 0.25);
-  border: 1px solid var(--colour-shadow);
+  border: 1px solid var(--colour-light-grey);
   border-radius: 10px;
   overflow: hidden;
   &:hover {
@@ -38,7 +38,7 @@ const RemoveButton = styled.button`
   height: 25px;
   bottom: 10px;
   transform: translate (50%);
-  border: 1px solid var(--colour-shadow);
+  border: 1px solid var(--colour-light-grey);
   border-radius: 30px;
   cursor: pointer;
   opacity: 0;

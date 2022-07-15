@@ -9,7 +9,7 @@ const OverlayContainer = styled.div(
     position: absolute;
     max-height: ${maxHeight}px;
     background-color: white;
-    border: solid 1px var(--colour-border);
+    border: solid 1px var(--colour-dark-grey);
     border-radius: 5px;
     overflow-y: scroll;
   `

@@ -32,7 +32,7 @@ const Handle = styled.span`
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: var(--colour-shadow);
+  background-color: var(--colour-light-grey);
   border-radius: 3px;
 
   &:before {
@@ -52,10 +52,11 @@ export default function Toggle<T extends FieldValues>(
   props: UseControllerProps<T>
 ) {
   const { field } = useController(props);
-  
+
   return (
     <ToggleContainer>
-      <CheckboxInput type="checkbox" checked={field.value} {...field} /> {/* Have to explicitely passthe value in as checked since checkbox originally reset when rerendered */}
+      <CheckboxInput type="checkbox" checked={field.value} {...field} />{" "}
+      {/* Have to explicitely passthe value in as checked since checkbox originally reset when rerendered */}
       <Handle />
     </ToggleContainer>
   );

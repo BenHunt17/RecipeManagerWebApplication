@@ -8,7 +8,7 @@ const ItemsList = styled.div`
   display: flex;
   flex-direction: column;
   gap: 25px;
-  border-top: solid 1px var(--colour-border);
+  border-top: solid 1px var(--colour-dark-grey);
   padding: 10px;
   overflow-y: auto;
 `;
@@ -17,9 +17,9 @@ const AddNewButton = styled.button`
   width: 100px;
   height: 26px;
   color: var(--colour-text);
-  border: 1px solid var(--colour-shadow);
+  border: 1px solid var(--colour-light-grey);
   border-radius: 10px;
-  box-shadow: 0px 2px 1px var(--colour-shadow);
+  box-shadow: 0px 2px 1px var(--colour-light-grey);
   cursor: pointer;
   &:hover {
     filter: brightness(95%);

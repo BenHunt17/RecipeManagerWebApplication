@@ -13,7 +13,7 @@ const CardContainer = styled.div`
   width: 100%;
   height: 206px;
   background-color: rgba(var(--colour-secondary-rgb), 0.25);
-  box-shadow: 2px 2px 2px var(--colour-shadow);
+  box-shadow: 2px 2px 2px var(--colour-light-grey);
   border-radius: 10px;
   overflow: hidden;
   margin-left: 110px; //Pushs card to righ to make room for overlapping image
