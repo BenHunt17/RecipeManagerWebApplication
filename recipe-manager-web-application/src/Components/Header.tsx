@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import "../index.css";
 import styled from "@emotion/styled";
+import { useAuth } from "./AuthProvider";
 
 const HeaderRoot = styled.div`
   width: 100%;
@@ -18,28 +19,43 @@ const Title = styled.h1`
 
 const NavigationBar = styled.div`
   display: flex;
+  align-items: center;
   gap: 100px;
-  margin-right: 150px;
+  margin-right: 100px;
+`;
+
+const LogoutButton = styled.button`
+  background-color: transparent;
+  color: white;
+  text-decoration: underline;
+  border: transparent;
+  cursor: pointer;
 `;
 
 export default function Header() {
+  const auth = useAuth();
+
   return (
     <HeaderRoot>
       <Title>Recipes Manager</Title>
-      <NavigationBar>
-        <Link to="/" className="headerLink">
-          Dashboard
-        </Link>
-        <Link to="/recipes" className="headerLink">
-          Recipes
-        </Link>
-        <Link to="/ingredients" className="headerLink">
-          Ingredients
-        </Link>
-        <Link to="/meal-plans" className="headerLink">
-          Meal Plans
-        </Link>
-      </NavigationBar>
+      {!!auth?.bearerToken && (
+        <NavigationBar>
+          <Link to="/" className="headerLink">
+            Dashboard
+          </Link>
+          <Link to="/recipes" className="headerLink">
+            Recipes
+          </Link>
+          <Link to="/ingredients" className="headerLink">
+            Ingredients
+          </Link>
+          <Link to="/meal-plans" className="headerLink">
+            Meal Plans
+          </Link>
+          {/* Button styling is temporary since likely to have an account menu in future */}
+          <LogoutButton onClick={() => auth.logout()}>Logout</LogoutButton>{" "}
+        </NavigationBar>
+      )}
     </HeaderRoot>
   );
 }

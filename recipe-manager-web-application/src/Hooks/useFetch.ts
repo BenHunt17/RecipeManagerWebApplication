@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { authProvider, loginRequest } from "../authConfig";
+import { useAuth } from "../Components/AuthProvider";
 
 export default function useFetch<T>({
   endpointPath,
@@ -13,39 +13,29 @@ export default function useFetch<T>({
   const [data, setData] = useState<T>();
   const [loading, setLoading] = useState(true);
 
+  const auth = useAuth();
+
   useEffect(() => {
-    authProvider
-      .acquireTokenSilent(loginRequest)
-      .then((response) => {
-        fetch(endpointPath, {
-          headers: new Headers({
-            method: "GET",
-            Authorization: `Bearer ${response.accessToken}`,
-          }),
-        })
-          .then((result) => {
-            if (!result.ok) {
-              throw Error("Could not fetch the data");
-            }
-            return result.json();
-          })
-          .then((data) => {
-            setData(data);
-            setLoading(false);
-            onComplete?.();
-          })
-          .catch((error) => {
-            setLoading(false);
-            onError?.();
-          });
-      })
-      .catch((error: Error) => {
-        if (error.name === "InteractionRequiredAuthError") {
-          return authProvider.acquireTokenPopup(loginRequest);
+    fetch(endpointPath, {
+      headers: new Headers({
+        method: "GET",
+        Authorization: `Bearer ${auth?.bearerToken}`,
+      }),
+    })
+      .then((result) => {
+        if (!result.ok) {
+          throw Error("Could not fetch the data");
         }
+        return result.json();
       })
-      .catch((error) => {
-        throw Error(error);
+      .then((data) => {
+        setData(data);
+        setLoading(false);
+        onComplete?.();
+      })
+      .catch(() => {
+        setLoading(false);
+        onError?.();
       });
   }, [endpointPath]);
 

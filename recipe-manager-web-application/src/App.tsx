@@ -5,17 +5,22 @@ import RecipeInformation from "./Pages/RecipeInformation/RecipeInformation";
 import IngredientInformation from "./Pages/IngredientInformation/IngredientInformation";
 import IngredientCollectionPage from "./Pages/CollectionPages/IngredientCollectionPage";
 import RecipeCollectionPage from "./Pages/CollectionPages/RecipeCollectionPage";
+import Login from "./Pages/Login/Login";
+import ProtectedRoutes from "./ProtectedRoutes";
 
 function App() {
   return (
     <Router>
       <Header />
       <Routes>
-        <Route path="/" element={<Dashboard />} />
-        <Route path="/ingredients" element={<IngredientCollectionPage />} />
-        <Route path="/recipes" element={<RecipeCollectionPage />} />
-        <Route path="/recipe/:id" element={<RecipeInformation />} />
-        <Route path="/ingredient/:id" element={<IngredientInformation />} />
+        <Route path="/login" element={<Login />} />
+        <Route element={<ProtectedRoutes />}>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/ingredients" element={<IngredientCollectionPage />} />
+          <Route path="/recipes" element={<RecipeCollectionPage />} />
+          <Route path="/recipe/:id" element={<RecipeInformation />} />
+          <Route path="/ingredient/:id" element={<IngredientInformation />} />
+        </Route>
       </Routes>
     </Router>
   );

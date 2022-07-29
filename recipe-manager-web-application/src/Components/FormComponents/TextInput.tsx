@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { HTMLProps } from "react";
 import {
   FieldValues,
   useController,
@@ -11,9 +12,9 @@ const Input = styled.input`
 `;
 
 export default function TextInput<T extends FieldValues>(
-  props: UseControllerProps<T>
+  props: UseControllerProps<T> & { type?: React.HTMLInputTypeAttribute }
 ) {
   const { field } = useController(props);
 
-  return <Input {...field} />;
+  return <Input type={props.type} {...field} />;
 }

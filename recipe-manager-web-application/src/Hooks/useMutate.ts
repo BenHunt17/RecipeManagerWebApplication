@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import { authProvider, loginRequest } from "../authConfig";
+import { useAuth } from "../Components/AuthProvider";
 
 export enum HttpMethod {
   GET = "GET",
@@ -17,47 +17,38 @@ export default function useMutate<T>(
 ) {
   const [loading, setLoading] = useState(false);
 
+  const auth = useAuth();
+
   const callback = useCallback(
     (payload?: FormData | string) => {
       setLoading(true);
-      authProvider
-        .acquireTokenSilent(loginRequest)
-        .then((response) => {
-          fetch(endpointPath, {
-            method: httpMethod,
-            headers: !jsonData
-              ? new Headers({
-                  Authorization: `Bearer ${response.accessToken}`,  
-                })
-              : new Headers({
-                  Authorization: `Bearer ${response.accessToken}`,
-                  "Content-Type": "application/json;charset=utf-8",
-                }),
-            body: payload,
-          })
-            .then((result) => {
-              if (!result.ok) {
-                throw Error("Could not fetch the data");
-              }
-              return result.json();
+
+      fetch(endpointPath, {
+        method: httpMethod,
+        headers: !jsonData
+          ? new Headers({
+              Authorization: `Bearer ${auth?.bearerToken}`,
             })
-            .then((data) => {
-              setLoading(false);
-              onComplete?.(data);
-            })
-            .catch((error) => {
-              console.log(error)
-              setLoading(false);
-              onError?.();
-            });
-        })
-        .catch((error: Error) => {
-          if (error.name === "InteractionRequiredAuthError") {
-            return authProvider.acquireTokenPopup(loginRequest);
+          : new Headers({
+              Authorization: `Bearer ${auth?.bearerToken}`,
+              "Content-Type": "application/json;charset=utf-8",
+            }),
+        body: payload,
+      })
+        .then((result) => {
+          if (!result.ok) {
+            throw Error("Could not fetch the data");
           }
+          return result.json();
+        })
+        .then((data) => {
+          setLoading(false);
+          onComplete?.(data);
         })
         .catch((error) => {
-          throw Error(error);
+          console.log(error);
+          setLoading(false);
+          onError?.();
         });
     },
     [endpointPath, httpMethod]

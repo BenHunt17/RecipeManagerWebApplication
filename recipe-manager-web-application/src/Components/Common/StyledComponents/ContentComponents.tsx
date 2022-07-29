@@ -38,8 +38,10 @@ export const TightParagraph = styled.p`
   margin: 0;
 `;
 
-export const ErrorMessage = styled.p`
+export const ErrorMessage = styled.p(
+  ({ large }: { large?: boolean }) => `
   color: var(--colour-error);
-  font-size: 11px;
+  font-size: ${large ? "24" : "11"}px;
   margin: 0px;
-`;
+`
+);
