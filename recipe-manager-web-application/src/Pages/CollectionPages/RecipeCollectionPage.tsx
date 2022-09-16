@@ -28,11 +28,13 @@ export default function RecipeCollectionPage() {
     ));
 
   const [deleteReipeModal, showDeleteRecipeModal, closeDeleteRecipeModal] =
-    useModal("Delete Recipe", (props: { id: number }) => (
+    useModal("Delete Recipe", (props: { recipeName: string }) => (
       <DeleteRecipeForm
-        id={props.id}
-        removeFromFetchedRecipes={(id: number) =>
-          modifyData(data?.filter((recipe) => recipe.id !== id))
+        recipeName={props.recipeName}
+        removeFromFetchedRecipes={() =>
+          modifyData(
+            data?.filter((recipe) => recipe.recipeName !== props.recipeName)
+          )
         }
         close={() => closeDeleteRecipeModal()}
       />
@@ -57,9 +59,9 @@ export default function RecipeCollectionPage() {
                   `🕐 ${minutesToTimeString(recipe.prepTime)}`,
                 ]}
                 imageUrl={recipe.imageUrl}
-                linkTo={`/recipe/${recipe.id}`}
+                linkTo={`/recipe/${recipe.recipeName}`}
                 onDeleteButtonClick={() =>
-                  showDeleteRecipeModal({ id: recipe.id })
+                  showDeleteRecipeModal({ recipeName: recipe.recipeName })
                 }
               />
             ))

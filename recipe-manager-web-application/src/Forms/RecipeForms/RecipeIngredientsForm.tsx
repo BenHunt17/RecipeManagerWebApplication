@@ -20,7 +20,7 @@ import {
 import InputContainer from "../../Components/FormComponents/InputContainer";
 import { ErrorMessage } from "../../Components/Common/StyledComponents/ContentComponents";
 import { RecipeIngredientInput, RecipeInput } from "../../Types/RecipeTypes";
-import { MeasureTypeUnitString } from "../../Utilities/Ingredients";
+import { MeasureUnitUnitString } from "../../Utilities/Ingredients";
 import styled from "@emotion/styled";
 
 const UnitContainer = styled.div`
@@ -71,10 +71,11 @@ export default function RecipeIngredientsForm({
       <DynamicList
         title="Ingredients"
         items={fields.map((field, index) => {
-          const ingredientMeasureType = data.find(
+          const ingredientMeasureUnit = data.find(
             (ingredient) =>
-              ingredient.id === currentRecipeIngredients[index].ingredientId
-          )?.measureType;
+              ingredient.ingredientName ===
+              currentRecipeIngredients[index].ingredientName
+          )?.measureUnit;
 
           return (
             <FlexContainer
@@ -87,7 +88,7 @@ export default function RecipeIngredientsForm({
                 input={
                   <SearchSelect
                     control={control}
-                    name={`recipeIngredients.${index}.ingredientId`}
+                    name={`recipeIngredients.${index}.ingredientName`}
                     rules={{
                       required: "Required Field",
                     }}
@@ -99,18 +100,15 @@ export default function RecipeIngredientsForm({
                             .toLowerCase()
                             .includes(searchText.toLowerCase())
                         )
-                        .map((ingredient) => ingredient.id)
+                        .map((ingredient) => ingredient.ingredientName)
                     }
-                    resultLabel={(result: number | undefined) =>
-                      data.find((ingredient) => ingredient.id === result)
-                        ?.ingredientName ?? (result ?? "").toString()
-                    }
+                    resultLabel={(result: string | undefined) => result ?? ""}
                   />
                 }
                 error={
                   <ErrorMessage>
                     {
-                      formState.errors.recipeIngredients?.[index].ingredientId
+                      formState.errors.recipeIngredients?.[index].ingredientName
                         ?.message
                     }
                   </ErrorMessage>
@@ -137,8 +135,8 @@ export default function RecipeIngredientsForm({
               />
               {/* TODO - Make this entire form look prettier */}
               <UnitContainer>
-                {ingredientMeasureType &&
-                  MeasureTypeUnitString(ingredientMeasureType)}
+                {ingredientMeasureUnit &&
+                  MeasureUnitUnitString(ingredientMeasureUnit)}
               </UnitContainer>
             </FlexContainer>
           );

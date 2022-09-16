@@ -4,36 +4,39 @@ import { Recipe } from "../../Types/RecipeTypes";
 import UpdateImageForm from "../UpdateImageForm";
 
 export default function UpdateRecipeImageForm({
-  id,
+  recipeName,
   imageUrl,
   updateInFetchedRecipe,
   close,
 }: {
-  id: string;
+  recipeName: string;
   imageUrl: string | null;
-  updateInFetchedRecipe: (recipe: Recipe) => void;
+  updateInFetchedRecipe: (imageUrl: string | null) => void;
   close: () => void;
 }) {
   const [recipeImage, setRecipeImage] = useState<File | null>(null);
 
-  const { callback: uploadImage, loading: uploadLoading } = useMutate<Recipe>(
-    `https://localhost:5001/api/recipe/${id}/image`,
+  const { callback: uploadImage, loading: uploadLoading } = useMutate(
+    `https://localhost:5001/api/recipe/${recipeName}/image`,
     HttpMethod.PUT,
-    (recipe) => {
-      updateInFetchedRecipe(recipe);
+    (imageUrl: string) => {
+      updateInFetchedRecipe(imageUrl);
       close();
     },
-    undefined
+    undefined,
+    false,
+    true
   );
 
-  const { callback: removeImage, loading: removeLoading } = useMutate<Recipe>(
-    `https://localhost:5001/api/recipe/${id}/image`,
+  const { callback: removeImage, loading: removeLoading } = useMutate(
+    `https://localhost:5001/api/recipe/${recipeName}/image`,
     HttpMethod.DELETE,
-    (recipe) => {
-      updateInFetchedRecipe(recipe);
+    () => {
+      updateInFetchedRecipe(null);
       close();
     },
-    undefined
+    undefined,
+    false
   );
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {

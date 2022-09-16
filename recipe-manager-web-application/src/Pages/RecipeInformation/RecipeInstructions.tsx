@@ -6,13 +6,11 @@ import EditIcon from "../../SVGs/EditIcon";
 import { Recipe, RecipeInstruction } from "../../Types/RecipeTypes";
 
 export default function RecipeInstructions({
-  id,
+  recipe,
   updateInFetchedRecipe,
-  recipeInstructions,
 }: {
-  id: string;
+  recipe: Recipe;
   updateInFetchedRecipe: (recipe: Recipe) => void;
-  recipeInstructions: RecipeInstruction[];
 }) {
   const [
     updateinstructionsModal,
@@ -20,16 +18,18 @@ export default function RecipeInstructions({
     closeUpdateinstructionsModal,
   ] = useModal("Update Recipe Ingredients", () => (
     <UpdateInstructionsForm
-      id={id}
-      existingInstructions={recipeInstructions}
-      updateInFetchedRecipe={(recipe: Recipe) => updateInFetchedRecipe(recipe)}
+      recipeName={recipe.recipeName}
+      existingInstructions={recipe.instructions}
+      updateInFetchedRecipe={(recipeInstructions: RecipeInstruction[]) =>
+        updateInFetchedRecipe({ ...recipe, instructions: recipeInstructions })
+      }
       close={() => closeUpdateinstructionsModal()}
     />
   ));
 
-  const sortedInstructions = recipeInstructions.sort((first, second) =>
-    first.instructionNumber > second.instructionNumber ? 1 : -1
-  ); //Sorts the inmstructions by instruction number since it is assumed that they aren't returned in order from api
+  const sortedInstructions = recipe.instructions.sort(
+    (first, second) => first.instructionNumber - second.instructionNumber
+  ); //Sorts the instructions by instruction number since it is assumed that they aren't returned in order from api
 
   return (
     <ContentBox

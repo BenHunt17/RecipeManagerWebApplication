@@ -1,4 +1,3 @@
-import { useState } from "react";
 import ItemCard from "../../Components/Common/ItemCard";
 import {
   ErrorScreen,
@@ -23,9 +22,11 @@ export default function IngredientCollectionPage() {
     closeCreateIngredientModal,
   ] = useModal("Create Ingredient", () => (
     <CreateIngredientForm
-      addToFetchedIngredients={(ingredient: Ingredient) =>
-        modifyData([...(data ?? []), ingredient])
-      }
+      addToFetchedIngredients={(ingredient: Ingredient) => {
+        if (data) {
+          modifyData([...data, ingredient]);
+        }
+      }}
       close={() => closeCreateIngredientModal()}
     />
   ));
@@ -34,11 +35,15 @@ export default function IngredientCollectionPage() {
     deleteIngredientModal,
     showDeleteIngredientModal,
     closeDeleteIngredientModal,
-  ] = useModal("Delete Ingredient", (props: { id: number }) => (
+  ] = useModal("Delete Ingredient", (props: { ingredientName: string }) => (
     <DeleteIngredientForm
-      id={props.id}
-      removeFromFetchedIngredients={(id: number) =>
-        modifyData(data?.filter((ingredient) => ingredient.id !== id))
+      ingredientName={props.ingredientName}
+      removeFromFetchedIngredients={() =>
+        modifyData(
+          data?.filter(
+            (ingredient) => ingredient.ingredientName !== props.ingredientName
+          )
+        )
       }
       close={() => closeDeleteIngredientModal()}
     />
@@ -67,9 +72,11 @@ export default function IngredientCollectionPage() {
                   title={ingredient.ingredientName}
                   footerText={footerText}
                   imageUrl={ingredient.imageUrl}
-                  linkTo={`/ingredient/${ingredient.id}`}
+                  linkTo={`/ingredient/${ingredient.ingredientName}`}
                   onDeleteButtonClick={() =>
-                    showDeleteIngredientModal({ id: ingredient.id })
+                    showDeleteIngredientModal({
+                      ingredientName: ingredient.ingredientName,
+                    })
                   }
                 />
               );

@@ -44,16 +44,16 @@ export function minutesToTimeString(totalMinutes: number) {
 }
 
 export default function RecipeInformation() {
-  const { id } = useParams();
+  const { recipeName } = useParams();
 
   const { data, loading, modifyData } = useFetch<Recipe>({
-    endpointPath: `https://localhost:5001/api/recipe/${id}`,
+    endpointPath: `https://localhost:5001/api/recipe/${recipeName}`,
   });
 
   const [updateRecipeModal, showUpdateRecipeModal, closeUpdateRecipeModal] =
     useModal("Update Recipe", (props: { existingRecipe: Recipe }) => (
       <UpdateRecipeForm
-        id={id ?? ""}
+        recipeName={recipeName ?? ""}
         existingRecipe={props.existingRecipe}
         updateInFetchedRecipe={(recipe: Recipe) => modifyData(recipe)}
         close={() => closeUpdateRecipeModal()}
@@ -63,9 +63,13 @@ export default function RecipeInformation() {
   const [uploadImageModal, showUploadImageModal, closeUploadImageModal] =
     useModal("Change Image", () => (
       <UpdateRecipeImageForm
-        id={id ?? ""}
+        recipeName={recipeName ?? ""}
         imageUrl={data?.imageUrl ?? null}
-        updateInFetchedRecipe={(recipe: Recipe) => modifyData(recipe)}
+        updateInFetchedRecipe={(imageUrl: string | null) => {
+          if (data) {
+            modifyData({ ...data, imageUrl: imageUrl });
+          }
+        }}
         close={() => closeUploadImageModal()}
       />
     ));
@@ -130,14 +134,12 @@ export default function RecipeInformation() {
               gap={25}
             >
               <RecipeIngredientsList
-                id={id ?? ""}
+                recipe={data}
                 updateInFetchedRecipe={modifyData}
-                recipeIngredients={data.ingredients}
               />
               <RecipeInstructions
-                id={id ?? ""}
+                recipe={data}
                 updateInFetchedRecipe={modifyData}
-                recipeInstructions={data.instructions}
               />
             </FlexContainer>
             <FlexContainer

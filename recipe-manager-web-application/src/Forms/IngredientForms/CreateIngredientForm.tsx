@@ -6,7 +6,7 @@ import useMutate, { HttpMethod } from "../../Hooks/useMutate";
 import {
   Ingredient,
   IngredientInput,
-  MeasureType,
+  MeasureUnit,
 } from "../../Types/IngredientTypes";
 import Toggle from "../../Components/FormComponents/Toggle";
 import {
@@ -24,7 +24,7 @@ const defaultValues = {
   ingredientName: "",
   ingredientDescription: "",
   density: 0,
-  measureType: MeasureType.NONE,
+  MeasureUnit: MeasureUnit.NONE,
   fruitVeg: false,
   quantity: 100,
   calories: 0,
@@ -81,7 +81,7 @@ export default function CreateIngredientForm({
     formData.append("ingredientDescription", formValues.ingredientDescription);
     formData.append("calories", formValues.calories.toString());
     formData.append("fruitVeg", formValues.fruitVeg.toString());
-    formData.append("measureType", formValues.measureType);
+    formData.append("measureUnit", formValues.measureUnit);
     formData.append("quantity", formValues.quantity.toString());
 
     createIngredient(formData);
@@ -89,8 +89,8 @@ export default function CreateIngredientForm({
 
   useEffect(() => {
     const subscription = watch((value, { name }) => {
-      if (name === "measureType" && value.measureType) {
-        setQuantityUnit(value.measureType);
+      if (name === "measureUnit" && value.measureUnit) {
+        setQuantityUnit(value.measureUnit);
       }
     });
     return () => subscription.unsubscribe();
@@ -174,8 +174,8 @@ export default function CreateIngredientForm({
               input={
                 <Select
                   control={control}
-                  name="measureType"
-                  options={Object.values(MeasureType)}
+                  name="measureUnit"
+                  options={Object.values(MeasureUnit)}
                 />
               }
             />

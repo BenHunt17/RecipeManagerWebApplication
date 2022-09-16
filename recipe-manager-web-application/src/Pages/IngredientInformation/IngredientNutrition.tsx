@@ -1,18 +1,18 @@
 import ContentBox from "../../Components/Common/ContentBox";
 import StatisticsTable from "../../Components/Common/StatisticsTable";
-import { Ingredient, MeasureType } from "../../Types/IngredientTypes";
+import { Ingredient, MeasureUnit } from "../../Types/IngredientTypes";
 
-function getMeasureTypeBaseValueString(measureType: MeasureType) {
-  switch (measureType) {
-    case MeasureType.KG:
+function getMeasureUnitBaseValueString(measureUnit: MeasureUnit) {
+  switch (measureUnit) {
+    case MeasureUnit.KG:
       return "100kg";
-    case MeasureType.ML:
+    case MeasureUnit.ML:
       return "100ml";
-    case MeasureType.DISCRETE:
+    case MeasureUnit.DISCRETE:
       return "unit";
-    case MeasureType.TSP:
+    case MeasureUnit.TSP:
       return "tsp";
-    case MeasureType.TBSP:
+    case MeasureUnit.TBSP:
       return "tbsp";
     default:
       return "unknown unit";
@@ -26,8 +26,8 @@ export default function IngredientNutrition({
 }) {
   return (
     <ContentBox
-      title={`Nutritional Information (Per ${getMeasureTypeBaseValueString(
-        ingredient.measureType
+      title={`Nutritional Information (Per ${getMeasureUnitBaseValueString(
+        ingredient.measureUnit
       )})`}
     >
       <StatisticsTable

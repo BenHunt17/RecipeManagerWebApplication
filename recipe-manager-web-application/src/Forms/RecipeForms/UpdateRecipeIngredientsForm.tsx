@@ -12,9 +12,8 @@ function extractDefaultValues(existingRecipeIngredients: RecipeIngredient[]) {
     recipeDescription: "",
     recipeIngredients: existingRecipeIngredients.map((recipeIngredient) => {
       return {
-        ingredientId: recipeIngredient.ingredientId,
+        ingredientName: recipeIngredient.ingredientName,
         quantity: recipeIngredient.quantity,
-        measureTypeValue: recipeIngredient.measureType,
       };
     }),
     instructions: [],
@@ -28,14 +27,14 @@ function extractDefaultValues(existingRecipeIngredients: RecipeIngredient[]) {
 }
 
 export default function UpdateRecipeIngredientsForm({
-  id,
+  recipeName,
   existingRecipeIngredients,
   updateInFetchedRecipe,
   close,
 }: {
-  id: string;
+  recipeName: string;
   existingRecipeIngredients: RecipeIngredient[];
-  updateInFetchedRecipe: (recipe: Recipe) => void;
+  updateInFetchedRecipe: (recipeIngredients: RecipeIngredient[]) => void;
   close: () => void;
 }) {
   const { control, handleSubmit, formState, watch } = useForm<RecipeInput>({
@@ -51,11 +50,11 @@ export default function UpdateRecipeIngredientsForm({
     name: "recipeIngredients",
   });
 
-  const { callback: updateRecipeIngredients, loading } = useMutate<Recipe>(
-    `https://localhost:5001/api/recipe/${id}/recipeingredients`,
+  const { callback: updateRecipeIngredients, loading } = useMutate(
+    `https://localhost:5001/api/recipe/${recipeName}/recipeingredients`,
     HttpMethod.PUT,
-    (recipe: Recipe) => {
-      updateInFetchedRecipe(recipe);
+    (recipeIngredients: RecipeIngredient[]) => {
+      updateInFetchedRecipe(recipeIngredients);
       close();
     },
     undefined,

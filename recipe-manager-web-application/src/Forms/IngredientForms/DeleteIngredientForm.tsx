@@ -6,19 +6,19 @@ import useMutate, { HttpMethod } from "../../Hooks/useMutate";
 import { Ingredient } from "../../Types/IngredientTypes";
 
 export default function DeleteIngredientForm({
-  id,
+  ingredientName,
   removeFromFetchedIngredients,
   close,
 }: {
-  id: number;
-  removeFromFetchedIngredients: (id: number) => void;
+  ingredientName: string;
+  removeFromFetchedIngredients: () => void;
   close: () => void;
 }) {
   const { callback: deleteIngredient, loading } = useMutate(
-    `https://localhost:5001/api/ingredient/${id}`,
+    `https://localhost:5001/api/ingredient/${ingredientName}`,
     HttpMethod.DELETE,
-    (result: Ingredient) => {
-      removeFromFetchedIngredients(result.id);
+    () => {
+      removeFromFetchedIngredients();
       close();
     },
     undefined

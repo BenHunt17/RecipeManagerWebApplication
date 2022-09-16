@@ -1,42 +1,42 @@
 import { useState } from "react";
 import useMutate, { HttpMethod } from "../../Hooks/useMutate";
-import { Ingredient } from "../../Types/IngredientTypes";
 import UpdateImageForm from "../UpdateImageForm";
 
 export default function UpdateIngredientImageForm({
-  id,
+  ingredientName,
   imageUrl,
   updateInFetchedIngredient,
   close,
 }: {
-  id: string;
+  ingredientName: string;
   imageUrl: string | null;
-  updateInFetchedIngredient: (ingredient: Ingredient) => void;
+  updateInFetchedIngredient: (imageUrl: string | null) => void;
   close: () => void;
 }) {
   const [ingredientImage, setIngredientImage] = useState<File | null>(null);
 
-  const { callback: uploadImage, loading: uploadLoading } =
-    useMutate<Ingredient>(
-      `https://localhost:5001/api/ingredient/${id}/image`,
-      HttpMethod.PUT,
-      (ingredient) => {
-        updateInFetchedIngredient(ingredient);
-        close();
-      },
-      undefined
-    );
+  const { callback: uploadImage, loading: uploadLoading } = useMutate(
+    `https://localhost:5001/api/ingredient/${ingredientName}/image`,
+    HttpMethod.PUT,
+    (imageUrl: string) => {
+      updateInFetchedIngredient(imageUrl);
+      close();
+    },
+    undefined,
+    false,
+    true
+  );
 
-  const { callback: removeImage, loading: removeLoading } =
-    useMutate<Ingredient>(
-      `https://localhost:5001/api/ingredient/${id}/image`,
-      HttpMethod.DELETE,
-      (ingredient) => {
-        updateInFetchedIngredient(ingredient);
-        close();
-      },
-      undefined
-    );
+  const { callback: removeImage, loading: removeLoading } = useMutate(
+    `https://localhost:5001/api/ingredient/${ingredientName}/image`,
+    HttpMethod.DELETE,
+    () => {
+      updateInFetchedIngredient(null);
+      close();
+    },
+    undefined,
+    false
+  );
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     const formData = new FormData();

@@ -46,12 +46,12 @@ function extractDefaultValues(existingRecipe: Recipe) {
 }
 
 export default function UpdateRecipeForm({
-  id,
+  recipeName,
   existingRecipe,
   updateInFetchedRecipe,
   close,
 }: {
-  id: string;
+  recipeName: string;
   existingRecipe: Recipe;
   updateInFetchedRecipe: (updatedRecipe: Recipe) => void;
   close: () => void;
@@ -62,7 +62,7 @@ export default function UpdateRecipeForm({
     });
 
   const { callback: updateRecipe, loading } = useMutate<Recipe>(
-    `https://localhost:5001/api/recipe/${id}`,
+    `https://localhost:5001/api/recipe/${recipeName}`,
     HttpMethod.PUT,
     (recipe) => {
       updateInFetchedRecipe(recipe);

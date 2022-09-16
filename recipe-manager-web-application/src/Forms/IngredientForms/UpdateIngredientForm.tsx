@@ -5,7 +5,7 @@ import useMutate, { HttpMethod } from "../../Hooks/useMutate";
 import {
   Ingredient,
   IngredientInput,
-  MeasureType,
+  MeasureUnit,
 } from "../../Types/IngredientTypes";
 import Toggle from "../../Components/FormComponents/Toggle";
 import {
@@ -23,7 +23,7 @@ function extractDefaultValues(existingIngredient: Ingredient) {
   return {
     ingredientName: existingIngredient.ingredientName,
     ingredientDescription: existingIngredient.ingredientDescription,
-    measureType: MeasureType.NONE,
+    MeasureUnit: MeasureUnit.NONE,
     fruitVeg: existingIngredient.fruitVeg,
     quantity: 100,
     calories: existingIngredient.calories,
@@ -35,12 +35,12 @@ function extractDefaultValues(existingIngredient: Ingredient) {
 }
 
 export default function UpdateIngredientForm({
-  id,
+  ingredientName,
   existingIngredient,
   updateInFetchedIngredient,
   close,
 }: {
-  id: number;
+  ingredientName: string;
   existingIngredient: Ingredient;
   updateInFetchedIngredient: (updatedIngredient: Ingredient) => void;
   close: () => void;
@@ -52,7 +52,7 @@ export default function UpdateIngredientForm({
     undefined
   );
   const { callback: updateIngredient, loading } = useMutate<Ingredient>(
-    `https://localhost:5001/api/ingredient/${id}`,
+    `https://localhost:5001/api/ingredient/${ingredientName}`,
     HttpMethod.PUT,
     (ingredient) => {
       updateInFetchedIngredient(ingredient);
@@ -68,8 +68,8 @@ export default function UpdateIngredientForm({
 
   useEffect(() => {
     const subscription = watch((value, { name }) => {
-      if (name === "measureType" && value.measureType) {
-        setQuantityUnit(value.measureType);
+      if (name === "measureUnit" && value.measureUnit) {
+        setQuantityUnit(value.measureUnit);
       }
     });
     return () => subscription.unsubscribe();
@@ -133,12 +133,12 @@ export default function UpdateIngredientForm({
         </FlexContainer>
         <MainFormLayout>
           <InputContainer
-            title="Measure Type*"
+            title="Measure Unit*"
             input={
               <Select
                 control={control}
-                name="measureType"
-                options={Object.values(MeasureType)}
+                name="measureUnit"
+                options={Object.values(MeasureUnit)}
               />
             }
           />

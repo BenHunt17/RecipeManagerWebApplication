@@ -9,11 +9,13 @@ export enum HttpMethod {
 }
 
 export default function useMutate<T>(
+  //TODO - Make arguments an object
   endpointPath: string,
   httpMethod: HttpMethod,
   onComplete?: (result: T) => void,
   onError?: () => void,
-  jsonData?: boolean
+  jsonData?: boolean,
+  textResult?: boolean
 ) {
   const [loading, setLoading] = useState(false);
 
@@ -39,7 +41,11 @@ export default function useMutate<T>(
           if (!result.ok) {
             throw Error("Could not fetch the data");
           }
-          return result.json();
+          if (result.status === 204) {
+            //No content
+            return null;
+          }
+          return !textResult ? result.json() : result.text();
         })
         .then((data) => {
           setLoading(false);

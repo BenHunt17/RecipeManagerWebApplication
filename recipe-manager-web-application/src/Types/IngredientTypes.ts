@@ -1,9 +1,8 @@
 export type Ingredient = {
-  id: number;
   ingredientName: string;
   ingredientDescription: string;
   imageUrl: string | null;
-  measureType: MeasureType;
+  measureUnit: MeasureUnit;
   calories: number;
   fruitVeg: boolean;
   fat: number | null;
@@ -17,7 +16,7 @@ export type IngredientInput = {
   ingredientDescription: string;
   imageFile: File | null;
   quantity: number;
-  measureType: MeasureType;
+  measureUnit: MeasureUnit;
   calories: number;
   fruitVeg: boolean;
   fat: number | null;
@@ -27,14 +26,13 @@ export type IngredientInput = {
 };
 
 export type IngredientListItem = {
-  id: number;
   ingredientName: string;
   imageUrl: string | null;
   fruitVeg: boolean;
-  measureType: MeasureType;
+  measureUnit: MeasureUnit;
 };
 
-export enum MeasureType {
+export enum MeasureUnit {
   NONE = "NONE",
   KG = "KG",
   ML = "ML",

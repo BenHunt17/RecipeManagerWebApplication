@@ -1,16 +1,16 @@
-import { MeasureType } from "../Types/IngredientTypes";
+import { MeasureUnit } from "../Types/IngredientTypes";
 
-export function MeasureTypeUnitString(measureType: MeasureType) {
-  switch (measureType) {
-    case MeasureType.KG:
+export function MeasureUnitUnitString(measureUnit: MeasureUnit) {
+  switch (measureUnit) {
+    case MeasureUnit.KG:
       return "kg";
-    case MeasureType.ML:
+    case MeasureUnit.ML:
       return "ml";
-    case MeasureType.DISCRETE:
+    case MeasureUnit.DISCRETE:
       return "units";
-    case MeasureType.TSP:
+    case MeasureUnit.TSP:
       return "tsp";
-    case MeasureType.TBSP:
+    case MeasureUnit.TBSP:
       return "tbsp";
     default:
       return "unknown units";

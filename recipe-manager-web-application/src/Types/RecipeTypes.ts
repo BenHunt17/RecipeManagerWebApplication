@@ -1,8 +1,6 @@
-import { MeasureType } from "./IngredientTypes";
+import { MeasureUnit } from "./IngredientTypes";
 
 export type RecipeIngredient = {
-  id: number;
-  ingredientId: number;
   ingredientName: string;
   calories: number;
   fruitVeg: boolean;
@@ -11,17 +9,15 @@ export type RecipeIngredient = {
   protein: number | null;
   carbs: number | null;
   quantity: number;
-  measureType: MeasureType;
+  measureUnit: MeasureUnit;
 };
 
 export type RecipeInstruction = {
-  id: number;
   instructionText: string;
   instructionNumber: number;
 };
 
 export type Recipe = {
-  id: number;
   recipeName: string;
   recipeDescription: string;
   imageUrl: string | null;
@@ -36,7 +32,6 @@ export type Recipe = {
 };
 
 export type RecipeListItem = {
-  id: number;
   recipeName: string;
   imageUrl: string | null;
   rating: number;
@@ -44,7 +39,7 @@ export type RecipeListItem = {
 };
 
 export type RecipeIngredientInput = {
-  ingredientId: number;
+  ingredientName: string;
   quantity: number;
 };
 

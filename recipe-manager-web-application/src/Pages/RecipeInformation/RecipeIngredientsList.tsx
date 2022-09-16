@@ -7,16 +7,14 @@ import UpdateRecipeIngredientsForm from "../../Forms/RecipeForms/UpdateRecipeIng
 import useModal from "../../Hooks/useModal";
 import EditIcon from "../../SVGs/EditIcon";
 import { Recipe, RecipeIngredient } from "../../Types/RecipeTypes";
-import { MeasureTypeUnitString } from "../../Utilities/Ingredients";
+import { MeasureUnitUnitString } from "../../Utilities/Ingredients";
 
 export default function IngredientsList({
-  id,
+  recipe,
   updateInFetchedRecipe,
-  recipeIngredients,
 }: {
-  id: string;
+  recipe: Recipe;
   updateInFetchedRecipe: (recipe: Recipe) => void;
-  recipeIngredients: RecipeIngredient[];
 }) {
   const [
     updateRecipeIngredientsModal,
@@ -24,9 +22,11 @@ export default function IngredientsList({
     closeUpdateRecipeIngredientsModal,
   ] = useModal("Update Recipe Ingredients", () => (
     <UpdateRecipeIngredientsForm
-      id={id}
-      existingRecipeIngredients={recipeIngredients}
-      updateInFetchedRecipe={(recipe: Recipe) => updateInFetchedRecipe(recipe)}
+      recipeName={recipe.recipeName}
+      existingRecipeIngredients={recipe.ingredients}
+      updateInFetchedRecipe={(recipeIngredients: RecipeIngredient[]) =>
+        updateInFetchedRecipe({ ...recipe, ingredients: recipeIngredients })
+      }
       close={() => closeUpdateRecipeIngredientsModal()}
     />
   ));
@@ -41,15 +41,15 @@ export default function IngredientsList({
       }
     >
       <FlexContainer direction="row" justifyContent="flex-start" gap={25}>
-        {recipeIngredients.map((ingredient) => (
+        {recipe.ingredients.map((ingredient) => (
           <Link
             key={`ingredients-list.${ingredient.ingredientName}`}
-            to={`/ingredient/${ingredient.ingredientId}`}
+            to={`/ingredient/${ingredient.ingredientName}`}
             className="nakedLink"
           >
             <Label>{`${ingredient.ingredientName} | ${Number(
               ingredient.quantity.toFixed(2)
-            )} ${MeasureTypeUnitString(ingredient.measureType)}`}</Label>
+            )} ${MeasureUnitUnitString(ingredient.measureUnit)}`}</Label>
           </Link>
         ))}
       </FlexContainer>

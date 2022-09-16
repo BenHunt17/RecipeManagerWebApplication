@@ -50,7 +50,14 @@ export default function AuthProvider({
         }
         return result.text();
       })
-      .then((data) => setBearerToken(data))
+      .then((data) => {
+        try {
+          setBearerToken(data);
+        } catch {
+          setAuthenicationDenied(true);
+          throw Error("Invalid response json");
+        }
+      })
       .catch((error) => {
         console.log(error);
         setBearerToken("");
@@ -73,7 +80,14 @@ export default function AuthProvider({
         }
         return result.text();
       })
-      .then((data) => setBearerToken(data))
+      .then((data) => {
+        try {
+          setBearerToken(data);
+        } catch {
+          setAuthenicationDenied(true);
+          throw Error("Invalid response json");
+        }
+      })
       .catch((error) => {
         console.log(error);
         setAuthenicationDenied(true);

@@ -18,8 +18,11 @@ function App() {
           <Route path="/" element={<Dashboard />} />
           <Route path="/ingredients" element={<IngredientCollectionPage />} />
           <Route path="/recipes" element={<RecipeCollectionPage />} />
-          <Route path="/recipe/:id" element={<RecipeInformation />} />
-          <Route path="/ingredient/:id" element={<IngredientInformation />} />
+          <Route path="/recipe/:recipeName" element={<RecipeInformation />} />
+          <Route
+            path="/ingredient/:ingredientName"
+            element={<IngredientInformation />}
+          />
         </Route>
       </Routes>
     </Router>

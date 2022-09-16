@@ -34,9 +34,9 @@ const PageLayout = styled.div`
 `;
 
 export default function IngredientInformation() {
-  const { id } = useParams();
+  const { ingredientName } = useParams();
   const { data, loading, modifyData } = useFetch<Ingredient>({
-    endpointPath: `https://localhost:5001/api/ingredient/${id}`,
+    endpointPath: `https://localhost:5001/api/ingredient/${ingredientName}`,
   });
 
   const [
@@ -47,7 +47,7 @@ export default function IngredientInformation() {
     "Update Ingredient",
     (props: { existingIngredient: Ingredient }) => (
       <UpdateIngredientForm
-        id={parseInt(id ?? "")}
+        ingredientName={ingredientName ?? ""}
         existingIngredient={props.existingIngredient}
         updateInFetchedIngredient={(updatedIngredient: Ingredient) =>
           modifyData(updatedIngredient)
@@ -60,11 +60,13 @@ export default function IngredientInformation() {
   const [uploadImageModal, showUploadImageModal, closeUploadImageModal] =
     useModal("Change Image", () => (
       <UpdateIngredientImageForm
-        id={id ?? ""}
+        ingredientName={ingredientName ?? ""}
         imageUrl={data?.imageUrl ?? null}
-        updateInFetchedIngredient={(ingredient: Ingredient) =>
-          modifyData(ingredient)
-        }
+        updateInFetchedIngredient={(imageUrl: string | null) => {
+          if (data) {
+            modifyData({ ...data, imageUrl: imageUrl });
+          }
+        }}
         close={() => closeUploadImageModal()}
       />
     ));

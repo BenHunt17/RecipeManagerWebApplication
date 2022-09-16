@@ -32,14 +32,14 @@ function extractDefaultValues(existingInstructions: RecipeInstruction[]) {
 }
 
 export default function UpdateRecipeIngredientsForm({
-  id,
+  recipeName,
   existingInstructions,
   updateInFetchedRecipe,
   close,
 }: {
-  id: string;
+  recipeName: string;
   existingInstructions: RecipeInstruction[];
-  updateInFetchedRecipe: (recipe: Recipe) => void;
+  updateInFetchedRecipe: (recipeInstructions: RecipeInstruction[]) => void;
   close: () => void;
 }) {
   const { control, handleSubmit, formState, watch, setValue } =
@@ -56,11 +56,11 @@ export default function UpdateRecipeIngredientsForm({
     name: "instructions",
   });
 
-  const { callback: updateInstrcutions, loading } = useMutate<Recipe>(
-    `https://localhost:5001/api/recipe/${id}/recipeinstructions`,
+  const { callback: updateInstructions, loading } = useMutate(
+    `https://localhost:5001/api/recipe/${recipeName}/recipeinstructions`,
     HttpMethod.PUT,
-    (recipe: Recipe) => {
-      updateInFetchedRecipe(recipe);
+    (recipeInstructions: RecipeInstruction[]) => {
+      updateInFetchedRecipe(recipeInstructions);
       close();
     },
     undefined,
@@ -68,7 +68,7 @@ export default function UpdateRecipeIngredientsForm({
   );
 
   const onSubmit = (formValues: RecipeInput) => {
-    updateInstrcutions(JSON.stringify(formValues.instructions));
+    updateInstructions(JSON.stringify(formValues.instructions));
   };
 
   useEffect(() => {
