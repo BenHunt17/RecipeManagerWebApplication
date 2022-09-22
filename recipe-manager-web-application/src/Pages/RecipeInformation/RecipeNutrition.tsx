@@ -7,6 +7,7 @@ export default function RecipeNutrition({
 }: {
   recipeIngredients: RecipeIngredient[];
 }) {
+  //TODO - make this data scale to suit serving size
   const calories = Number(
     recipeIngredients
       .reduce((total, ingredient) => total + ingredient.calories, 0)

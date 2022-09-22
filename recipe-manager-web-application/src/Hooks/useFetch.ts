@@ -5,10 +5,12 @@ export default function useFetch<T>({
   endpointPath,
   onComplete,
   onError,
+  queryParams,
 }: {
   endpointPath: string;
   onComplete?: () => void;
   onError?: () => void;
+  queryParams?: Record<string, string>;
 }) {
   const [data, setData] = useState<T>();
   const [loading, setLoading] = useState(true);
@@ -16,12 +18,17 @@ export default function useFetch<T>({
   const auth = useAuth();
 
   useEffect(() => {
-    fetch(endpointPath, {
-      headers: new Headers({
-        method: "GET",
-        Authorization: `Bearer ${auth?.bearerToken}`,
-      }),
-    })
+    fetch(
+      `${endpointPath}${
+        queryParams ? `?${new URLSearchParams(queryParams).toString()}` : ""
+      }`,
+      {
+        headers: new Headers({
+          method: "GET",
+          Authorization: `Bearer ${auth?.bearerToken}`,
+        }),
+      }
+    )
       .then((result) => {
         if (!result.ok) {
           throw Error("Could not fetch the data");
@@ -37,7 +44,7 @@ export default function useFetch<T>({
         setLoading(false);
         onError?.();
       });
-  }, [endpointPath]);
+  }, [endpointPath, queryParams]);
 
   // Returns the fetched data itself, a loading state and a callback to directly modify the fetch data (useful for when a mutation result needs to be reflected to the user without calling the query again)
   return { data, loading, modifyData: setData };
