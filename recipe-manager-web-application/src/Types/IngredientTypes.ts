@@ -1,4 +1,4 @@
-export type Ingredient = {
+export interface Ingredient {
   ingredientName: string;
   ingredientDescription: string;
   imageUrl: string | null;
@@ -9,9 +9,9 @@ export type Ingredient = {
   salt: number | null;
   protein: number | null;
   carbs: number | null;
-};
+}
 
-export type IngredientInput = {
+export interface IngredientInput {
   ingredientName: string;
   ingredientDescription: string;
   imageFile: File | null;
@@ -23,14 +23,14 @@ export type IngredientInput = {
   salt: number | null;
   protein: number | null;
   carbs: number | null;
-};
+}
 
-export type IngredientListItem = {
+export interface IngredientListItem {
   ingredientName: string;
   imageUrl: string | null;
   fruitVeg: boolean;
   measureUnit: MeasureUnit;
-};
+}
 
 export enum MeasureUnit {
   NONE = "NONE",

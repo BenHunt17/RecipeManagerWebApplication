@@ -1,6 +1,6 @@
 import { MeasureUnit } from "./IngredientTypes";
 
-export type RecipeIngredient = {
+export interface RecipeIngredient {
   ingredientName: string;
   calories: number;
   fruitVeg: boolean;
@@ -10,14 +10,14 @@ export type RecipeIngredient = {
   carbs: number | null;
   quantity: number;
   measureUnit: MeasureUnit;
-};
+}
 
-export type RecipeInstruction = {
+export interface RecipeInstruction {
   instructionText: string;
   instructionNumber: number;
-};
+}
 
-export type Recipe = {
+export interface Recipe {
   recipeName: string;
   recipeDescription: string;
   imageUrl: string | null;
@@ -29,26 +29,26 @@ export type Recipe = {
   breakfast: boolean;
   lunch: boolean;
   dinner: boolean;
-};
+}
 
-export type RecipeListItem = {
+export interface RecipeListItem {
   recipeName: string;
   imageUrl: string | null;
   rating: number;
   prepTime: number;
-};
+}
 
-export type RecipeIngredientInput = {
+export interface RecipeIngredientInput {
   ingredientName: string;
   quantity: number;
-};
+}
 
-export type RecipeInstructionInput = {
+export interface RecipeInstructionInput {
   instructionText: string;
   instructionNumber: number;
-};
+}
 
-export type RecipeInput = {
+export interface RecipeInput {
   recipeName: string;
   recipeDescription: string;
   recipeIngredients: RecipeIngredientInput[];
@@ -59,4 +59,4 @@ export type RecipeInput = {
   breakfast: boolean;
   lunch: boolean;
   dinner: boolean;
-};
+}
