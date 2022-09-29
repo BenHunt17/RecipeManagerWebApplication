@@ -4,7 +4,6 @@ import TextInput from "./TextInput";
 
 export default function RangeInput<T extends FieldValues>(
   props: UseControllerProps<T> & {
-    type?: React.HTMLInputTypeAttribute;
     minName: Path<T>;
     maxName: Path<T>;
     minLimit: number;

@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { SubmitButton } from "../../Components/Common/StyledComponents/ButtonComponents";
 import { ErrorMessage } from "../../Components/Common/StyledComponents/ContentComponents";
@@ -13,6 +13,7 @@ import {
   TryParseFloat,
 } from "../../Utilities/FilterParsers";
 import { FlexContainer } from "../../Components/Common/StyledComponents/ShortcutComponents";
+import DiscreteOptionSelector from "../../Components/FormComponents/DiscreteOptionSelector";
 
 interface IngredientFilters {
   calories?: MinMaxValue;
@@ -95,17 +96,10 @@ export default function IngredientFilterForm({
       ...(fatValues ? { fat: fatValues } : {}),
       ...(proteinValues ? { protein: proteinValues } : {}),
       ...(carbValues ? { carbs: caloriesValues } : {}),
-      ...(data.fruitVeg ? { fruitVeg: `EQ:${data.fruitVeg}` } : {}),
+      ...(data.fruitVeg !== undefined
+        ? { fruitVeg: `EQ:${data.fruitVeg}` }
+        : {}),
     });
-    console.log({
-      ...(caloriesValues ? { calories: caloriesValues } : {}),
-      ...(saltValues ? { salt: saltValues } : {}),
-      ...(fatValues ? { fat: fatValues } : {}),
-      ...(proteinValues ? { protein: proteinValues } : {}),
-      ...(carbValues ? { carbs: caloriesValues } : {}),
-      ...(data.fruitVeg ? { fruitVeg: `EQ:${data.fruitVeg}` } : {}),
-    });
-
     close();
   };
 
@@ -177,12 +171,18 @@ export default function IngredientFilterForm({
                 maxLimit={999}
               />
             }
-            error={
-              <ErrorMessage>
-                {formMethods.formState.errors.carbs?.min ||
-                  (formMethods.formState.errors.carbs?.max &&
-                    "Fields can only contain numbers")}
-              </ErrorMessage>
+          />
+          <InputContainer
+            title="1 of 5 a day"
+            input={
+              <DiscreteOptionSelector
+                id="fruit-veg.filter-selector"
+                control={formMethods.control}
+                name="fruitVeg"
+                options={[true, false]}
+                label={(option) => (option ? "Yes" : "No")}
+                width={150}
+              />
             }
           />
           <FlexContainer
