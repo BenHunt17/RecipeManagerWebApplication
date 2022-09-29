@@ -63,11 +63,13 @@ export default function Login() {
             title="Password*"
             input={
               <TextInput
-                type="password"
                 name="password"
                 control={control}
                 rules={{
                   required: "Required Field",
+                }}
+                inputProps={{
+                  type: "password",
                 }}
               />
             }

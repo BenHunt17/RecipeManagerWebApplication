@@ -34,3 +34,10 @@ export const MainFormLayout = styled.div`
   gap: 25px;
   margin-bottom: 25px;
 `;
+
+export const FilterFormLayout = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-bottom: 25px;
+`;

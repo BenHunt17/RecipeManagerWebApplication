@@ -11,9 +11,14 @@ const Input = styled.input`
 `;
 
 export default function TextInput<T extends FieldValues>(
-  props: UseControllerProps<T> & { type?: React.HTMLInputTypeAttribute }
+  props: UseControllerProps<T> & {
+    inputProps?: React.DetailedHTMLProps<
+      React.InputHTMLAttributes<HTMLInputElement>,
+      HTMLInputElement
+    >;
+  }
 ) {
   const { field } = useController(props);
 
-  return <Input type={props.type} {...field} />;
+  return <Input {...field} {...props.inputProps} />;
 }

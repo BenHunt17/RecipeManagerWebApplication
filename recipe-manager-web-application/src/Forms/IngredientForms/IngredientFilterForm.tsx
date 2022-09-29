@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import { useForm } from "react-hook-form";
 import { SubmitButton } from "../../Components/Common/StyledComponents/ButtonComponents";
 import { ErrorMessage } from "../../Components/Common/StyledComponents/ContentComponents";
-import { MainFormLayout } from "../../Components/Common/StyledComponents/Layouts";
+import { FilterFormLayout } from "../../Components/Common/StyledComponents/Layouts";
 import InputContainer from "../../Components/FormComponents/InputContainer";
 import RangeInput from "../../Components/FormComponents/RangeInput";
 import { MinMaxValue, QueryParamters } from "../../Types/CommonTypes";
@@ -12,6 +12,7 @@ import {
   TryParseBoolean,
   TryParseFloat,
 } from "../../Utilities/FilterParsers";
+import { FlexContainer } from "../../Components/Common/StyledComponents/ShortcutComponents";
 
 interface IngredientFilters {
   calories?: MinMaxValue;
@@ -111,7 +112,7 @@ export default function IngredientFilterForm({
   return (
     <Fragment>
       <form onSubmit={formMethods.handleSubmit(onSubmit)}>
-        <MainFormLayout>
+        <FilterFormLayout>
           <InputContainer
             title="Calories"
             input={
@@ -120,6 +121,8 @@ export default function IngredientFilterForm({
                 name="calories"
                 minName="calories.min"
                 maxName="calories.max"
+                minLimit={0}
+                maxLimit={999}
               />
             }
           />
@@ -131,6 +134,8 @@ export default function IngredientFilterForm({
                 name="salt"
                 minName="salt.min"
                 maxName="salt.max"
+                minLimit={0}
+                maxLimit={999}
               />
             }
           />
@@ -142,6 +147,8 @@ export default function IngredientFilterForm({
                 name="fat"
                 minName="fat.min"
                 maxName="fat.max"
+                minLimit={0}
+                maxLimit={999}
               />
             }
           />
@@ -153,6 +160,8 @@ export default function IngredientFilterForm({
                 name="protein"
                 minName="protein.min"
                 maxName="protein.max"
+                minLimit={0}
+                maxLimit={999}
               />
             }
           />
@@ -164,6 +173,8 @@ export default function IngredientFilterForm({
                 name="carbs"
                 minName="carbs.min"
                 maxName="carbs.max"
+                minLimit={0}
+                maxLimit={999}
               />
             }
             error={
@@ -174,16 +185,23 @@ export default function IngredientFilterForm({
               </ErrorMessage>
             }
           />
-          <SubmitButton type="submit">Apply Filters</SubmitButton>
-          <SubmitButton
-            onClick={() => {
-              clearFilters();
-              close();
-            }}
+          <FlexContainer
+            direction="row"
+            justifyContent="flex-start"
+            gap={25}
+            margin="35px 0 0 0"
           >
-            Clear Filters
-          </SubmitButton>
-        </MainFormLayout>
+            <SubmitButton type="submit">Apply Filters</SubmitButton>
+            <SubmitButton
+              onClick={() => {
+                clearFilters();
+                close();
+              }}
+            >
+              Clear Filters
+            </SubmitButton>
+          </FlexContainer>
+        </FilterFormLayout>
       </form>
     </Fragment>
   );
