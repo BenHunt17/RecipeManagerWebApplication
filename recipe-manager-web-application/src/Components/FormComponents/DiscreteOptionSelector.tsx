@@ -44,7 +44,6 @@ export default function DiscreteOptionSelector<T extends FieldValues, U>(
   }
 ) {
   const { field } = useController(props);
-  console.log(field);
 
   return (
     <OptionsContainer width={props.width}>
