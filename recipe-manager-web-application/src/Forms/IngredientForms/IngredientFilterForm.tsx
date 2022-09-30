@@ -95,7 +95,7 @@ export default function IngredientFilterForm({
       ...(saltValues ? { salt: saltValues } : {}),
       ...(fatValues ? { fat: fatValues } : {}),
       ...(proteinValues ? { protein: proteinValues } : {}),
-      ...(carbValues ? { carbs: caloriesValues } : {}),
+      ...(carbValues ? { carbs: carbValues } : {}),
       ...(data.fruitVeg !== undefined
         ? { fruitVeg: `EQ:${data.fruitVeg}` }
         : {}),
@@ -117,6 +117,8 @@ export default function IngredientFilterForm({
                 maxName="calories.max"
                 minLimit={0}
                 maxLimit={999}
+                minError={formMethods.formState.errors.calories?.min?.message}
+                maxError={formMethods.formState.errors.calories?.max?.message}
               />
             }
           />
@@ -130,6 +132,8 @@ export default function IngredientFilterForm({
                 maxName="salt.max"
                 minLimit={0}
                 maxLimit={999}
+                minError={formMethods.formState.errors.salt?.min?.message}
+                maxError={formMethods.formState.errors.salt?.max?.message}
               />
             }
           />
@@ -143,6 +147,8 @@ export default function IngredientFilterForm({
                 maxName="fat.max"
                 minLimit={0}
                 maxLimit={999}
+                minError={formMethods.formState.errors.fat?.min?.message}
+                maxError={formMethods.formState.errors.fat?.max?.message}
               />
             }
           />
@@ -156,6 +162,8 @@ export default function IngredientFilterForm({
                 maxName="protein.max"
                 minLimit={0}
                 maxLimit={999}
+                minError={formMethods.formState.errors.protein?.min?.message}
+                maxError={formMethods.formState.errors.protein?.max?.message}
               />
             }
           />
@@ -169,6 +177,8 @@ export default function IngredientFilterForm({
                 maxName="carbs.max"
                 minLimit={0}
                 maxLimit={999}
+                minError={formMethods.formState.errors.carbs?.min?.message}
+                maxError={formMethods.formState.errors.carbs?.max?.message}
               />
             }
           />
@@ -183,6 +193,11 @@ export default function IngredientFilterForm({
                 label={(option) => (option ? "Yes" : "No")}
                 width={150}
               />
+            }
+            error={
+              <ErrorMessage>
+                {formMethods.formState.errors.fruitVeg?.message}
+              </ErrorMessage>
             }
           />
           <FlexContainer
