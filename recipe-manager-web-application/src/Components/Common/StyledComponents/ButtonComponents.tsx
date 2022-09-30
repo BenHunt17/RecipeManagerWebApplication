@@ -67,3 +67,14 @@ export const SelectionButton = styled.button`
     filter: brightness(90%);
   }
 `;
+
+export const SearchButton = styled.button`
+  width: 70px;
+  height: 40px;
+  color: white;
+  background-color: var(--colour-primary);
+  border: 1px solid var(--colour-primary);
+  padding: 2px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+`;

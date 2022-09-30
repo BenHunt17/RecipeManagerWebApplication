@@ -1,16 +1,14 @@
 import { useState } from "react";
-import { SubmitButton } from "./StyledComponents/ButtonComponents";
+import { SearchButton } from "./StyledComponents/ButtonComponents";
 import { SearchBar } from "./StyledComponents/InputComponents";
 import { FlexContainer } from "./StyledComponents/ShortcutComponents";
 
 export default function SearchAndFilter({
   onSearch,
   showFilterModal,
-  onFilterApply,
 }: {
   onSearch: (query: string) => void;
   showFilterModal: () => void;
-  onFilterApply: (filters: Record<string, string>) => void;
 }) {
   const [searchBarText, setSearchBarText] = useState("");
 
@@ -21,9 +19,9 @@ export default function SearchAndFilter({
         onChange={(e) => setSearchBarText(e.target.value)}
         placeholder="ingredient name"
       />
-      <SubmitButton onClick={() => onSearch(searchBarText)}>
+      <SearchButton onClick={() => onSearch(searchBarText)}>
         Search
-      </SubmitButton>
+      </SearchButton>
       <button onClick={showFilterModal}>Filter</button>
     </FlexContainer>
   );

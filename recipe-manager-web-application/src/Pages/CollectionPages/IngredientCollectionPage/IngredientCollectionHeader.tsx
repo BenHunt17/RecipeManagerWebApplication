@@ -8,7 +8,10 @@ import useModal from "../../../Hooks/useModal";
 import { QueryParamters } from "../../../Types/CommonTypes";
 import { Ingredient } from "../../../Types/IngredientTypes";
 import { PAGINATION_LIMIT } from "../../../Utilities/FilterUtilities";
-import { CollectionHeader } from "../CollectionPageStyled";
+import {
+  CollectionControlsContainer,
+  CollectionHeader,
+} from "../CollectionPageStyled";
 
 export default function IngredientCollectionHeader({
   queryParams,
@@ -90,26 +93,20 @@ export default function IngredientCollectionHeader({
   return (
     <CollectionHeader>
       <h2>Ingredients</h2>
-      <SearchAndFilter
-        onSearch={(query) => setIngredientNameQuery(query)}
-        showFilterModal={() =>
-          showIngredientFilterModal({ currentFilters: queryParams })
-        }
-        onFilterApply={(filters: QueryParamters) => {
-          setQueryParams({
-            ...filters,
-            offset: "PAGE:0",
-            limit: `PAGE:${PAGINATION_LIMIT}`,
-            ingredientNameParam: `LIKE:${ingredientNameQuery}`,
-          });
-        }}
-      />
-      <PageSelector
-        currentPageNumber={pageNumber}
-        totalPages={totalPages}
-        onSelect={(newPageNumber) => setPageNumber(newPageNumber)}
-        disabled={loading}
-      />
+      <CollectionControlsContainer>
+        <SearchAndFilter
+          onSearch={(query) => setIngredientNameQuery(query)}
+          showFilterModal={() =>
+            showIngredientFilterModal({ currentFilters: queryParams })
+          }
+        />
+        <PageSelector
+          currentPageNumber={pageNumber}
+          totalPages={totalPages}
+          onSelect={(newPageNumber) => setPageNumber(newPageNumber)}
+          disabled={loading}
+        />
+      </CollectionControlsContainer>
       <AddButton onClick={showCreateIngredientModal}>
         Create Ingredient
       </AddButton>

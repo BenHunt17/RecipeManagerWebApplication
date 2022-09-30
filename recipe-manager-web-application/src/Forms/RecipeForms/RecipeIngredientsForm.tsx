@@ -22,6 +22,7 @@ import { ErrorMessage } from "../../Components/Common/StyledComponents/ContentCo
 import { RecipeIngredientInput, RecipeInput } from "../../Types/RecipeTypes";
 import { MeasureUnitUnitString } from "../../Utilities/Ingredients";
 import styled from "@emotion/styled";
+import { PaginatedResponse } from "../../Types/CommonTypes";
 
 const UnitContainer = styled.div`
   width: 150px;
@@ -53,8 +54,8 @@ export default function RecipeIngredientsForm({
   >;
   remove: UseFieldArrayRemove;
 }) {
-  const { data, loading } = useFetch<IngredientListItem[]>({
-    endpointPath: "https://localhost:5001/api/ingredients",
+  const { data, loading } = useFetch<PaginatedResponse<IngredientListItem>>({
+    endpointPath: "https://localhost:5001/api/ingredients", //TODO - should now only call this query when the user actually clicks search now that the ingredient name filter exists
   });
 
   const currentRecipeIngredients = watch("recipeIngredients");
@@ -71,7 +72,7 @@ export default function RecipeIngredientsForm({
       <DynamicList
         title="Ingredients"
         items={fields.map((field, index) => {
-          const ingredientMeasureUnit = data.find(
+          const ingredientMeasureUnit = data.items.find(
             (ingredient) =>
               ingredient.ingredientName ===
               currentRecipeIngredients[index].ingredientName
@@ -94,7 +95,7 @@ export default function RecipeIngredientsForm({
                     }}
                     promptMessage="Search Ingredient"
                     searchFunction={(searchText: string) =>
-                      data
+                      data.items
                         .filter((ingredient) =>
                           ingredient.ingredientName
                             .toLowerCase()

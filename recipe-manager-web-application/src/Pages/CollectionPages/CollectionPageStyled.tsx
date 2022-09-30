@@ -27,3 +27,11 @@ export const CollectionHeader = styled.div`
   align-items: center;
   height: 100px;
 `;
+
+export const CollectionControlsContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100px;
+  gap: 25px;
+`;
