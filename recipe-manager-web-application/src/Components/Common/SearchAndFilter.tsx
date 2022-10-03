@@ -54,7 +54,7 @@ export default function SearchAndFilter({
       <IconButton onClick={showFilterModal}>
         <FilterIcon width={20} height={20} />
       </IconButton>
-      <p>{`(${filterCount})`}</p>
+      {!!filterCount && <p>{`(${filterCount})`}</p>}
     </FlexContainer>
   );
 }

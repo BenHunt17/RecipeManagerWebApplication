@@ -44,13 +44,6 @@ export const IconButton = styled.button`
   border: none;
   border-radius: 50%;
   cursor: pointer;
-  &:hover {
-    background-color: rgba(var(--colour-secondary-rgb), 0.3);
-  }
-  &:active {
-    background-color: rgba(var(--colour-secondary-rgb), 0.3);
-    filter: brightness(70%);
-  }
 `;
 
 export const SelectionButton = styled.button`

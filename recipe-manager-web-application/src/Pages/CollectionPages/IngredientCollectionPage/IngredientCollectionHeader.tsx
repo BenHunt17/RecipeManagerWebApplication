@@ -42,7 +42,7 @@ export default function IngredientCollectionHeader({
         setQueryParams({
           offset: "PAGE:0",
           limit: `PAGE:${PAGINATION_LIMIT}`,
-          ...(ingredientNameQuery
+          ...(!!ingredientNameQuery.length
             ? { ingredientName: `LIKE:${ingredientNameQuery}` }
             : {}),
           ...newFilters,
@@ -52,7 +52,7 @@ export default function IngredientCollectionHeader({
         setQueryParams({
           offset: "PAGE:0",
           limit: `PAGE:${PAGINATION_LIMIT}`,
-          ...(ingredientNameQuery
+          ...(!!ingredientNameQuery.length
             ? { ingredientName: `LIKE:${ingredientNameQuery}` }
             : {}),
         })
@@ -86,7 +86,9 @@ export default function IngredientCollectionHeader({
       setQueryParams({
         offset: "PAGE:0",
         limit: `PAGE:${PAGINATION_LIMIT}`,
-        ingredientName: `LIKE:${ingredientNameQuery}`,
+        ...(!!ingredientNameQuery.length
+          ? { ingredientName: `LIKE:${ingredientNameQuery}` }
+          : {}),
       }),
     [setQueryParams, ingredientNameQuery]
   );
