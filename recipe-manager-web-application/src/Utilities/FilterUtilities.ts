@@ -4,11 +4,11 @@ export const PAGINATION_LIMIT = 10;
 
 const defaultFilters = ["offset", "limit"];
 
-export function getProperty<T>(
-  record: Record<string, T>,
+export function getProperty(
+  queryParamters: QueryParamters,
   propertyName: string
 ) {
-  return Object.entries(record).find(
+  return Object.entries(queryParamters).find(
     (property) => property[0] === propertyName
   )?.[1];
 }
