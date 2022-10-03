@@ -7,4 +7,9 @@ export const SearchBar = styled.input`
   padding: 4px;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
+  &:focus {
+    outline: none;
+    border: 2px solid var(--colour-primary);
+    padding: 3px;
+  }
 `;

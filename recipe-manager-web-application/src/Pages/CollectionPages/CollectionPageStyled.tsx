@@ -35,3 +35,11 @@ export const CollectionControlsContainer = styled.div`
   height: 100px;
   gap: 25px;
 `;
+
+//TODO - the collection pages in general need a good refactor
+export const CollectionHeaderLeftContainer = styled.div`
+  display: flex;
+  align-items: center;
+  height: 100px;
+  gap: 25px;
+`;

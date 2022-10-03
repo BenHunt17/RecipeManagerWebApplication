@@ -7,10 +7,11 @@ import IngredientFilterForm from "../../../Forms/IngredientForms/IngredientFilte
 import useModal from "../../../Hooks/useModal";
 import { QueryParamters } from "../../../Types/CommonTypes";
 import { Ingredient } from "../../../Types/IngredientTypes";
-import { PAGINATION_LIMIT } from "../../../Utilities/FilterUtilities";
+import { getCount, PAGINATION_LIMIT } from "../../../Utilities/FilterUtilities";
 import {
   CollectionControlsContainer,
   CollectionHeader,
+  CollectionHeaderLeftContainer,
 } from "../CollectionPageStyled";
 
 export default function IngredientCollectionHeader({
@@ -92,21 +93,24 @@ export default function IngredientCollectionHeader({
 
   return (
     <CollectionHeader>
-      <h2>Ingredients</h2>
-      <CollectionControlsContainer>
-        <SearchAndFilter
-          onSearch={(query) => setIngredientNameQuery(query)}
-          showFilterModal={() =>
-            showIngredientFilterModal({ currentFilters: queryParams })
-          }
-        />
-        <PageSelector
-          currentPageNumber={pageNumber}
-          totalPages={totalPages}
-          onSelect={(newPageNumber) => setPageNumber(newPageNumber)}
-          disabled={loading}
-        />
-      </CollectionControlsContainer>
+      <CollectionHeaderLeftContainer>
+        <h2>Ingredients</h2>
+        <CollectionControlsContainer>
+          <SearchAndFilter
+            onSearch={(query) => setIngredientNameQuery(query)}
+            showFilterModal={() =>
+              showIngredientFilterModal({ currentFilters: queryParams })
+            }
+            filterCount={getCount(queryParams)}
+          />
+          <PageSelector
+            currentPageNumber={pageNumber}
+            totalPages={totalPages}
+            onSelect={(newPageNumber) => setPageNumber(newPageNumber)}
+            disabled={loading}
+          />
+        </CollectionControlsContainer>
+      </CollectionHeaderLeftContainer>
       <AddButton onClick={showCreateIngredientModal}>
         Create Ingredient
       </AddButton>

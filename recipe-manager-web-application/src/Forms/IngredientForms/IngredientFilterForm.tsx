@@ -91,11 +91,11 @@ export default function IngredientFilterForm({
     ];
 
     applyFilters({
-      ...(caloriesValues ? { calories: caloriesValues } : {}),
-      ...(saltValues ? { salt: saltValues } : {}),
-      ...(fatValues ? { fat: fatValues } : {}),
-      ...(proteinValues ? { protein: proteinValues } : {}),
-      ...(carbValues ? { carbs: carbValues } : {}),
+      ...(!!caloriesValues.length ? { calories: caloriesValues } : {}),
+      ...(!!saltValues.length ? { salt: saltValues } : {}),
+      ...(!!fatValues.length ? { fat: fatValues } : {}),
+      ...(!!proteinValues.length ? { protein: proteinValues } : {}),
+      ...(!!carbValues.length ? { carbs: carbValues } : {}),
       ...(data.fruitVeg !== undefined
         ? { fruitVeg: `EQ:${data.fruitVeg}` }
         : {}),

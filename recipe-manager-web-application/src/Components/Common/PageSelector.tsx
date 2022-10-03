@@ -55,7 +55,7 @@ export default function PageSelector({
           Previous
         </StepButton>
         {pageNumbers.map((pageNumber, index) => (
-          <Fragment>
+          <Fragment key={`page-button.page-${pageNumber}`}>
             {index === 1 && pageNumber > 2 && <SquareButton>...</SquareButton>}
             <SquareButton
               key={`select-page.button.page-${pageNumber}`}
