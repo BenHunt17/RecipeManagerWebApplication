@@ -41,7 +41,7 @@ export default function SearchAndFilter({
         <SearchBar
           value={searchBarText}
           onChange={(e) => setSearchBarText(e.target.value)}
-          placeholder="ingredient name"
+          placeholder="Name"
         />
         {/* TODO - do better than this  */}
         {!!searchBarText.length && (

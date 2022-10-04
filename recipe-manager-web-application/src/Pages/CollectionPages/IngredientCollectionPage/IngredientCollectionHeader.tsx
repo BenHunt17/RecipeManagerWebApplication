@@ -5,7 +5,7 @@ import { AddButton } from "../../../Components/Common/StyledComponents/ButtonCom
 import CreateIngredientForm from "../../../Forms/IngredientForms/CreateIngredientForm";
 import IngredientFilterForm from "../../../Forms/IngredientForms/IngredientFilterForm";
 import useModal from "../../../Hooks/useModal";
-import { QueryParamters } from "../../../Types/CommonTypes";
+import { QueryParameters } from "../../../Types/CommonTypes";
 import { Ingredient } from "../../../Types/IngredientTypes";
 import { getCount, PAGINATION_LIMIT } from "../../../Utilities/FilterUtilities";
 import {
@@ -21,8 +21,8 @@ export default function IngredientCollectionHeader({
   loading,
   onAddIngredient,
 }: {
-  queryParams: QueryParamters;
-  setQueryParams: React.Dispatch<React.SetStateAction<QueryParamters>>;
+  queryParams: QueryParameters;
+  setQueryParams: React.Dispatch<React.SetStateAction<QueryParameters>>;
   totalPages: number;
   loading: boolean;
   onAddIngredient: (ingredient: Ingredient) => void;
@@ -35,7 +35,7 @@ export default function IngredientCollectionHeader({
     ingredientFilterModal,
     showIngredientFilterModal,
     closeIngredientFilterModal,
-  ] = useModal("Set Filters", (props: { currentFilters: QueryParamters }) => (
+  ] = useModal("Set Filters", (props: { currentFilters: QueryParameters }) => (
     <IngredientFilterForm
       currentFilters={props.currentFilters}
       applyFilters={(newFilters) =>

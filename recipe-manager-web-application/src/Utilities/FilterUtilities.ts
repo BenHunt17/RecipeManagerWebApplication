@@ -1,20 +1,20 @@
-import { QueryParamters } from "../Types/CommonTypes";
+import { QueryParameters } from "../Types/CommonTypes";
 
 export const PAGINATION_LIMIT = 10;
 
 const defaultFilters = ["offset", "limit"];
 
 export function getProperty(
-  queryParamters: QueryParamters,
+  QueryParameters: QueryParameters,
   propertyName: string
 ) {
-  return Object.entries(queryParamters).find(
+  return Object.entries(QueryParameters).find(
     (property) => property[0] === propertyName
   )?.[1];
 }
 
-export function expandQueryParamters(queryParamters: QueryParamters) {
-  return Object.entries(queryParamters).reduce(
+export function expandQueryParameters(QueryParameters: QueryParameters) {
+  return Object.entries(QueryParameters).reduce(
     (expandedQueryParameters: string[][], queryParameter) => [
       ...expandedQueryParameters,
       ...(queryParameter[1] instanceof Array
@@ -28,7 +28,7 @@ export function expandQueryParamters(queryParamters: QueryParamters) {
   );
 }
 
-export function getCount(queryParameters: QueryParamters) {
+export function getCount(queryParameters: QueryParameters) {
   return Object.entries(queryParameters).reduce(
     (accumulator, current) =>
       (accumulator += !defaultFilters.includes(current[0])

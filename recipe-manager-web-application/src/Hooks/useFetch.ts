@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../Components/AuthProvider";
-import { QueryParamters } from "../Types/CommonTypes";
-import { expandQueryParamters } from "../Utilities/FilterUtilities";
+import { QueryParameters } from "../Types/CommonTypes";
+import { expandQueryParameters } from "../Utilities/FilterUtilities";
 
 export default function useFetch<T>({
   endpointPath,
@@ -12,7 +12,7 @@ export default function useFetch<T>({
   endpointPath: string;
   onComplete?: () => void;
   onError?: () => void;
-  queryParams?: QueryParamters;
+  queryParams?: QueryParameters;
 }) {
   const [data, setData] = useState<T>();
   const [loading, setLoading] = useState(true);
@@ -24,7 +24,7 @@ export default function useFetch<T>({
       `${endpointPath}${
         queryParams
           ? `?${new URLSearchParams(
-              expandQueryParamters(queryParams)
+              expandQueryParameters(queryParams)
             ).toString()}`
           : ""
       }`,

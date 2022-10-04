@@ -35,6 +35,8 @@ export default function PageSelector({
   onSelect: (pageNumber: number) => void;
   disabled?: boolean;
 }) {
+  //TODO - fix the bug with this component not working for one page
+
   const lhsCutOff = Math.max(1, currentPageNumber - 1);
   const rhsCutOff = Math.min(totalPages - 1, currentPageNumber + 1);
 

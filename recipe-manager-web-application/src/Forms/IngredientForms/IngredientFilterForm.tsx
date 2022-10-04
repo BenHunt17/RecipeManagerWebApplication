@@ -5,7 +5,7 @@ import { ErrorMessage } from "../../Components/Common/StyledComponents/ContentCo
 import { FilterFormLayout } from "../../Components/Common/StyledComponents/Layouts";
 import InputContainer from "../../Components/FormComponents/InputContainer";
 import RangeInput from "../../Components/FormComponents/RangeInput";
-import { MinMaxValue, QueryParamters } from "../../Types/CommonTypes";
+import { MinMaxValue, QueryParameters } from "../../Types/CommonTypes";
 import { getProperty } from "../../Utilities/FilterUtilities";
 import {
   FilterOperation,
@@ -30,8 +30,8 @@ export default function IngredientFilterForm({
   clearFilters,
   close,
 }: {
-  currentFilters: QueryParamters;
-  applyFilters: (newFilters: QueryParamters) => void;
+  currentFilters: QueryParameters;
+  applyFilters: (newFilters: QueryParameters) => void;
   clearFilters: () => void;
   close: () => void;
 }) {

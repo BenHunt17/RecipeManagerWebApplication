@@ -4,7 +4,7 @@ import Dashboard from "./Pages/Dashboard";
 import RecipeInformation from "./Pages/RecipeInformation/RecipeInformation";
 import IngredientInformation from "./Pages/IngredientInformation/IngredientInformation";
 import IngredientCollectionPage from "./Pages/CollectionPages/IngredientCollectionPage/IngredientCollectionPage";
-import RecipeCollectionPage from "./Pages/CollectionPages/RecipeCollectionPage";
+import RecipeCollectionPage from "./Pages/CollectionPages/RecipeCollectionPage/RecipeCollectionPage";
 import Login from "./Pages/Login/Login";
 import ProtectedRoutes from "./ProtectedRoutes";
 

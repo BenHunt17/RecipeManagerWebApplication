@@ -10,12 +10,12 @@ import { Ingredient, IngredientListItem } from "../../../Types/IngredientTypes";
 import { CollectionContainer } from "../CollectionPageStyled";
 import DeleteIngredientForm from "../../../Forms/IngredientForms/DeleteIngredientForm";
 import { useState } from "react";
-import { PaginatedResponse, QueryParamters } from "../../../Types/CommonTypes";
+import { PaginatedResponse, QueryParameters } from "../../../Types/CommonTypes";
 import IngredientCollectionHeader from "./IngredientCollectionHeader";
 import { PAGINATION_LIMIT } from "../../../Utilities/FilterUtilities";
 
 export default function IngredientCollectionPage() {
-  const [queryParams, setQueryParams] = useState<QueryParamters>({
+  const [queryParams, setQueryParams] = useState<QueryParameters>({
     offset: "PAGE:0",
     limit: `PAGE:${PAGINATION_LIMIT}`,
   });
