@@ -58,8 +58,7 @@ export default function RecipeCollectionPage() {
         }}
         queryParams={queryParams}
         setQueryParams={setQueryParams}
-        totalPages={data ? Math.ceil(data.total / PAGINATION_LIMIT) : 0}
-        loading={loading}
+        totalPages={data ? Math.ceil(data.total / PAGINATION_LIMIT) : undefined}
       />
       <CollectionContainer hasData={!!data}>
         {!loading ? (

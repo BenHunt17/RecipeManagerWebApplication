@@ -1,83 +1,57 @@
 import styled from "@emotion/styled";
-import { Fragment } from "react";
 import { FlexContainer } from "./StyledComponents/ShortcutComponents";
 
-const SquareButton = styled.button(
-  ({ selected }: { selected?: boolean }) => `
-  height: 35px;
-  width: 35px;
-  color:${selected ? "white" : "var(--colour-text)"};
-  background-color: ${selected ? "var(--colour-primary)" : "white"};
-  font-weight: bold;
-  border: ${
-    selected
-      ? "2px solid var(--colour-primary)"
-      : "1px solid var(--colour-secondary)"
-  };
+const StepButton = styled.button(
+  ({ disabled }: { disabled: boolean }) => `
+  height: 36px;
+  width: 36px;
+  font-size: 16px;
+  color: var(--colour-secondary);
+  background-color: white;
+  border: 1px solid var(--colour-secondary);
+  border-radius: 50%;
+  opacity: ${disabled ? "0.5" : "1"};
+  cursor: ${disabled ? "default" : "pointer"};
 `
 );
 
-const StepButton = styled.button`
-  height: 35px;
-  width: 80px;
-  background-color: white;
-  border: 1px solid var(--colour-secondary);
+const PageCountDisplay = styled.p`
+  color: var(--colour-text);
 `;
 
 export default function PageSelector({
   currentPageNumber,
   totalPages,
   onSelect,
-  disabled,
 }: {
   currentPageNumber: number;
-  totalPages: number;
+  totalPages: number | undefined;
   onSelect: (pageNumber: number) => void;
-  disabled?: boolean;
 }) {
-  //TODO - fix the bug with this component not working for one page
-
-  const lhsCutOff = Math.max(1, currentPageNumber - 1);
-  const rhsCutOff = Math.min(totalPages - 1, currentPageNumber + 1);
-
-  let neighbourPageRange = [];
-  for (let i = lhsCutOff; i < rhsCutOff + 1; i++) {
-    neighbourPageRange.push(i);
-  }
-
-  const pageNumbers = [...new Set([1, ...neighbourPageRange, totalPages - 1])];
+  const disabled = totalPages === undefined;
 
   return (
-    <Fragment>
-      <FlexContainer direction="row" justifyContent="space-between">
-        <StepButton
-          onClick={() => onSelect(currentPageNumber - 1)}
-          disabled={disabled || currentPageNumber === 1}
-        >
-          Previous
-        </StepButton>
-        {pageNumbers.map((pageNumber, index) => (
-          <Fragment key={`page-button.page-${pageNumber}`}>
-            {index === 1 && pageNumber > 2 && <SquareButton>...</SquareButton>}
-            <SquareButton
-              key={`select-page.button.page-${pageNumber}`}
-              selected={pageNumber === currentPageNumber}
-              onClick={() => onSelect(pageNumber)}
-              disabled={disabled}
-            >
-              {pageNumber}
-            </SquareButton>
-            {index === pageNumbers.length - 2 &&
-              pageNumber < totalPages - 2 && <SquareButton>...</SquareButton>}
-          </Fragment>
-        ))}
-        <StepButton
-          onClick={() => onSelect(currentPageNumber + 1)}
-          disabled={disabled || currentPageNumber === totalPages - 1}
-        >
-          Next
-        </StepButton>
-      </FlexContainer>
-    </Fragment>
+    <FlexContainer
+      direction="row"
+      justifyContent="space-between"
+      alignItems="center"
+      gap={12}
+    >
+      <StepButton
+        onClick={() => onSelect(currentPageNumber - 1)}
+        disabled={disabled || currentPageNumber === 1}
+      >
+        <b>&lt;</b>
+      </StepButton>
+      <PageCountDisplay>
+        {!disabled ? `${currentPageNumber} / ${totalPages}` : "Loading items"}
+      </PageCountDisplay>
+      <StepButton
+        onClick={() => onSelect(currentPageNumber + 1)}
+        disabled={disabled || currentPageNumber === totalPages}
+      >
+        <b>&gt;</b>
+      </StepButton>
+    </FlexContainer>
   );
 }

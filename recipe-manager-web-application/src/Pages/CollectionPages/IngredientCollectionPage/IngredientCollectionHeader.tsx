@@ -18,13 +18,11 @@ export default function IngredientCollectionHeader({
   queryParams,
   setQueryParams,
   totalPages,
-  loading,
   onAddIngredient,
 }: {
   queryParams: QueryParameters;
   setQueryParams: React.Dispatch<React.SetStateAction<QueryParameters>>;
-  totalPages: number;
-  loading: boolean;
+  totalPages: number | undefined;
   onAddIngredient: (ingredient: Ingredient) => void;
 }) {
   const [ingredientNameQuery, setIngredientNameQuery] = useState("");
@@ -109,7 +107,6 @@ export default function IngredientCollectionHeader({
             currentPageNumber={pageNumber}
             totalPages={totalPages}
             onSelect={(newPageNumber) => setPageNumber(newPageNumber)}
-            disabled={loading}
           />
         </CollectionControlsContainer>
       </CollectionHeaderLeftContainer>

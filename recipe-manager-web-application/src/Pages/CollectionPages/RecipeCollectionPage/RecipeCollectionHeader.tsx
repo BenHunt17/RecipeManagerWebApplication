@@ -18,13 +18,11 @@ export default function RecipeCollectionHeader({
   queryParams,
   setQueryParams,
   totalPages,
-  loading,
   onAddRecipe,
 }: {
   queryParams: QueryParameters;
   setQueryParams: React.Dispatch<React.SetStateAction<QueryParameters>>;
-  totalPages: number;
-  loading: boolean;
+  totalPages: number | undefined;
   onAddRecipe: (recipe: Recipe) => void;
 }) {
   const [recipeNameQuery, setRecipeNameQuery] = useState("");
@@ -102,7 +100,6 @@ export default function RecipeCollectionHeader({
             currentPageNumber={pageNumber}
             totalPages={totalPages}
             onSelect={(newPageNumber) => setPageNumber(newPageNumber)}
-            disabled={loading}
           />
         </CollectionControlsContainer>
       </CollectionHeaderLeftContainer>
