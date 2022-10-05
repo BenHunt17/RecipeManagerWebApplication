@@ -5,7 +5,7 @@ import {
   UseControllerProps,
 } from "react-hook-form";
 
-const OptionsContainer = styled.div(
+export const OptionsContainer = styled.div(
   ({ width }: { width?: number }) => `
   width:${width ? `${width}px` : "100%"};
   display: flex;
@@ -17,7 +17,7 @@ const OptionsContainer = styled.div(
 `
 );
 
-const OptionBox = styled.div(
+export const OptionBox = styled.div(
   ({ selected }: { selected?: boolean }) =>
     `
     width: 100%;

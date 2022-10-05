@@ -6,6 +6,7 @@ import { FilterFormLayout } from "../../Components/Common/StyledComponents/Layou
 import { FlexContainer } from "../../Components/Common/StyledComponents/ShortcutComponents";
 import DiscreteOptionSelector from "../../Components/FormComponents/DiscreteOptionSelector";
 import InputContainer from "../../Components/FormComponents/InputContainer";
+import NumberSelector from "../../Components/FormComponents/NumberSelector";
 import { QueryParameters, RangeOrTrueValue } from "../../Types/CommonTypes";
 import {
   FilterOperation,
@@ -40,22 +41,23 @@ export default function RecipeFilterForm({
   const breakfastFilters = getProperty(currentFilters, "breakfast");
   const lunchFilters = getProperty(currentFilters, "lunch");
   const dinnerFilters = getProperty(currentFilters, "dinner");
+  console.log(servingSizeFilters);
 
   const formMethods = useForm<RecipeFilters>({
     defaultValues: {
       rating: {
-        min: TryParseInteger(ratingFilters, FilterOperation.GT),
-        max: TryParseInteger(ratingFilters, FilterOperation.LT),
+        min: TryParseInteger(ratingFilters, FilterOperation.GTE),
+        max: TryParseInteger(ratingFilters, FilterOperation.LTE),
         trueValue: TryParseInteger(ratingFilters, FilterOperation.EQ),
       },
       prepTime: {
-        min: TryParseInteger(prepTimeFilters, FilterOperation.GT),
-        max: TryParseInteger(prepTimeFilters, FilterOperation.LT),
+        min: TryParseInteger(prepTimeFilters, FilterOperation.GTE),
+        max: TryParseInteger(prepTimeFilters, FilterOperation.LTE),
         trueValue: TryParseInteger(prepTimeFilters, FilterOperation.EQ),
       },
       servingSize: {
-        min: TryParseInteger(servingSizeFilters, FilterOperation.GT),
-        max: TryParseInteger(servingSizeFilters, FilterOperation.LT),
+        min: TryParseInteger(servingSizeFilters, FilterOperation.GTE),
+        max: TryParseInteger(servingSizeFilters, FilterOperation.LTE),
         trueValue: TryParseInteger(servingSizeFilters, FilterOperation.EQ),
       },
       breakfast: TryParseBoolean(breakfastFilters, FilterOperation.EQ),
@@ -66,18 +68,18 @@ export default function RecipeFilterForm({
 
   const onSubmit = (data: RecipeFilters) => {
     const ratingValues = [
-      ...(data.rating?.min ? [`GT:${data.rating.min}`] : []),
-      ...(data.rating?.max ? [`LT:${data.rating.max}`] : []),
+      ...(data.rating?.min ? [`GTE:${data.rating.min}`] : []),
+      ...(data.rating?.max ? [`LTE:${data.rating.max}`] : []),
       ...(data.rating?.trueValue ? [`EQ:${data.rating.trueValue}`] : []),
     ];
     const prepTimeValues = [
-      ...(data.prepTime?.min ? [`GT:${data.prepTime.min}`] : []),
-      ...(data.prepTime?.max ? [`LT:${data.prepTime.max}`] : []),
+      ...(data.prepTime?.min ? [`GTE:${data.prepTime.min}`] : []),
+      ...(data.prepTime?.max ? [`LTE:${data.prepTime.max}`] : []),
       ...(data.prepTime?.trueValue ? [`EQ:${data.prepTime.trueValue}`] : []),
     ];
     const servingSizeValues = [
-      ...(data.servingSize?.min ? [`GT:${data.servingSize.min}`] : []),
-      ...(data.servingSize?.max ? [`LT:${data.servingSize.max}`] : []),
+      ...(data.servingSize?.min ? [`GTE:${data.servingSize.min}`] : []),
+      ...(data.servingSize?.max ? [`LTE:${data.servingSize.max}`] : []),
       ...(data.servingSize?.trueValue
         ? [`EQ:${data.servingSize.trueValue}`]
         : []),
@@ -100,6 +102,17 @@ export default function RecipeFilterForm({
     <Fragment>
       <form onSubmit={formMethods.handleSubmit(onSubmit)}>
         <FilterFormLayout>
+          <InputContainer
+            title="Rating"
+            input={
+              <NumberSelector
+                id="rating.number-selector"
+                control={formMethods.control}
+                name="rating"
+                options={[1, 2, 3, 4, 5]}
+              />
+            }
+          />
           {/* <InputContainer
             title="Rating"
             input={
@@ -115,6 +128,17 @@ export default function RecipeFilterForm({
               />
             }
           /> */}
+          <InputContainer
+            title="Serving Size"
+            input={
+              <NumberSelector
+                id="rating.number-selector"
+                control={formMethods.control}
+                name="servingSize"
+                options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]}
+              />
+            }
+          />
           <InputContainer
             title="Breakfast"
             input={
