@@ -22,6 +22,7 @@ import UpdateRecipeImageForm from "../../Forms/RecipeForms/UpdateRecipeImageForm
 import EditIcon from "../../SVGs/EditIcon";
 import { TightParagraph } from "../../Components/Common/StyledComponents/ContentComponents";
 import UpdateRecipeForm from "../../Forms/RecipeForms/UpdateRecipeForm";
+import { minutesToTimeString } from "../../Utilities/Recipes";
 
 const ContentLayout = styled.div`
   display: grid;
@@ -33,15 +34,6 @@ const ContentLayout = styled.div`
     display: none;
   }
 `;
-
-export function minutesToTimeString(totalMinutes: number) {
-  const hours = Math.floor(totalMinutes / 60);
-  const minutes = totalMinutes % 60;
-
-  return `${hours < 10 ? "0" : ""}${hours}:${
-    minutes < 10 ? "0" : ""
-  }${minutes}`;
-}
 
 export default function RecipeInformation() {
   const { recipeName } = useParams();

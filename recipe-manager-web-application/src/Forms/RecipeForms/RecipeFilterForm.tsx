@@ -7,7 +7,12 @@ import { FlexContainer } from "../../Components/Common/StyledComponents/Shortcut
 import DiscreteOptionSelector from "../../Components/FormComponents/DiscreteOptionSelector";
 import InputContainer from "../../Components/FormComponents/InputContainer";
 import NumberSelector from "../../Components/FormComponents/NumberSelector";
-import { QueryParameters, RangeOrTrueValue } from "../../Types/CommonTypes";
+import TimeRangeInput from "../../Components/FormComponents/TimeRangeInput";
+import {
+  MinMaxValue,
+  QueryParameters,
+  RangeOrTrueValue,
+} from "../../Types/CommonTypes";
 import {
   FilterOperation,
   TryParseBoolean,
@@ -17,7 +22,7 @@ import { getProperty } from "../../Utilities/FilterUtilities";
 
 interface RecipeFilters {
   rating?: RangeOrTrueValue;
-  prepTime?: RangeOrTrueValue;
+  prepTime?: MinMaxValue;
   servingSize?: RangeOrTrueValue;
   breakfast?: boolean;
   lunch?: boolean;
@@ -41,7 +46,6 @@ export default function RecipeFilterForm({
   const breakfastFilters = getProperty(currentFilters, "breakfast");
   const lunchFilters = getProperty(currentFilters, "lunch");
   const dinnerFilters = getProperty(currentFilters, "dinner");
-  console.log(servingSizeFilters);
 
   const formMethods = useForm<RecipeFilters>({
     defaultValues: {
@@ -51,9 +55,8 @@ export default function RecipeFilterForm({
         trueValue: TryParseInteger(ratingFilters, FilterOperation.EQ),
       },
       prepTime: {
-        min: TryParseInteger(prepTimeFilters, FilterOperation.GTE),
-        max: TryParseInteger(prepTimeFilters, FilterOperation.LTE),
-        trueValue: TryParseInteger(prepTimeFilters, FilterOperation.EQ),
+        min: TryParseInteger(prepTimeFilters, FilterOperation.GTE) ?? 0,
+        max: TryParseInteger(prepTimeFilters, FilterOperation.LTE) ?? 0,
       },
       servingSize: {
         min: TryParseInteger(servingSizeFilters, FilterOperation.GTE),
@@ -75,7 +78,6 @@ export default function RecipeFilterForm({
     const prepTimeValues = [
       ...(data.prepTime?.min ? [`GTE:${data.prepTime.min}`] : []),
       ...(data.prepTime?.max ? [`LTE:${data.prepTime.max}`] : []),
-      ...(data.prepTime?.trueValue ? [`EQ:${data.prepTime.trueValue}`] : []),
     ];
     const servingSizeValues = [
       ...(data.servingSize?.min ? [`GTE:${data.servingSize.min}`] : []),
@@ -113,21 +115,12 @@ export default function RecipeFilterForm({
               />
             }
           />
-          {/* <InputContainer
-            title="Rating"
+          <InputContainer
+            title="Prep Time"
             input={
-              <RangeInput
-                control={formMethods.control}
-                name="calories"
-                minName="calories.min"
-                maxName="calories.max"
-                minLimit={0}
-                maxLimit={999}
-                minError={formMethods.formState.errors.calories?.min?.message}
-                maxError={formMethods.formState.errors.calories?.max?.message}
-              />
+              <TimeRangeInput control={formMethods.control} name="prepTime" />
             }
-          /> */}
+          />
           <InputContainer
             title="Serving Size"
             input={

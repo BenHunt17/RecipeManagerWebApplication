@@ -11,7 +11,7 @@ import useModal from "../../../Hooks/useModal";
 import { PaginatedResponse, QueryParameters } from "../../../Types/CommonTypes";
 import { Recipe, RecipeListItem } from "../../../Types/RecipeTypes";
 import { PAGINATION_LIMIT } from "../../../Utilities/FilterUtilities";
-import { minutesToTimeString } from "../../RecipeInformation/RecipeInformation";
+import { minutesToTimeString } from "../../../Utilities/Recipes";
 import { CollectionContainer } from "../CollectionPageStyled";
 import RecipeCollectionHeader from "./RecipeCollectionHeader";
 
