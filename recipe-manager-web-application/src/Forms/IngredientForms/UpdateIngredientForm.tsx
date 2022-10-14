@@ -139,6 +139,7 @@ export default function UpdateIngredientForm({
                 control={control}
                 name="measureUnit"
                 options={Object.values(MeasureUnit)}
+                label={(option) => option}
               />
             }
           />

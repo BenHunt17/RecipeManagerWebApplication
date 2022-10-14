@@ -12,12 +12,12 @@ const SelectInput = styled.select`
   margin: 0em;
 `;
 
-export default function Select<T extends FieldValues>(
+export default function Select<T extends FieldValues, U>(
   props: UseControllerProps<T> & {
-    options: string[];
+    options: U[];
+    label: (option: U) => string;
   }
 ) {
-  //TODO - Maybe redo this component from scratch because there no way to manage a list of type T and use a string display
   const { field } = useController(props);
 
   return (
@@ -25,9 +25,9 @@ export default function Select<T extends FieldValues>(
       {props.options.map((option) => (
         <option
           style={{ border: "3px solid var(--colour-primary)" }}
-          key={`select.${option}`}
+          key={`select.${props.label(option)}`}
         >
-          {option}
+          {props.label(option)}
         </option>
       ))}
     </SelectInput>

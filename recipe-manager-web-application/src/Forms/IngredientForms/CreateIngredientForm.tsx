@@ -170,12 +170,13 @@ export default function CreateIngredientForm({
               width={100}
             />
             <InputContainer
-              title="Measure Type*"
+              title="Measure Unit*"
               input={
                 <Select
                   control={control}
                   name="measureUnit"
                   options={Object.values(MeasureUnit)}
+                  label={(option) => option}
                 />
               }
             />
