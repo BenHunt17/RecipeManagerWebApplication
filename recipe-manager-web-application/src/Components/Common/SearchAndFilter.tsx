@@ -43,7 +43,6 @@ export default function SearchAndFilter({
           onChange={(e) => setSearchBarText(e.target.value)}
           placeholder="Name"
         />
-        {/* TODO - do better than this  */}
         {!!searchBarText.length && (
           <ClearButton onClick={() => setSearchBarText("")}>x</ClearButton>
         )}
