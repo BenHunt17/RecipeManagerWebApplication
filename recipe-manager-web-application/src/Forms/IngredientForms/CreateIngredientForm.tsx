@@ -150,7 +150,6 @@ export default function CreateIngredientForm({
           >
             <InputContainer
               title={`${
-                //TODO - Fix bug where changing measure type resets the quantity
                 quantityUnit ? `Quantity (${quantityUnit})*` : "Quantity*"
               }`}
               input={
