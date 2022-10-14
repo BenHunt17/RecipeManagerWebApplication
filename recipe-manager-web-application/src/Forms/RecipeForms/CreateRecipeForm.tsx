@@ -29,7 +29,7 @@ const BottomLayout = styled.div`
 const defaultValues = {
   recipeName: "",
   recipeDescription: "",
-  recipeIngredients: [{ ingredientId: undefined, quantity: 0 }],
+  recipeIngredients: [{ ingredientName: "", quantity: 0 }],
   instructions: [{ instructionNumber: 1, instructionText: "" }],
   rating: 0,
   prepTime: 0,

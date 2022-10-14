@@ -10,6 +10,7 @@ import {
 } from "react-hook-form";
 import Overlay from "../Common/Overlay";
 import { SelectionButton } from "../Common/StyledComponents/ButtonComponents";
+import { LoadingSpinner } from "../Common/StyledComponents/ContentComponents";
 import { FlexContainer } from "../Common/StyledComponents/ShortcutComponents";
 import Layer from "../Layer";
 
@@ -28,13 +29,15 @@ const SearchSelectButton = styled.button`
 
 export default function SearchSelect<T extends FieldValues, U>(
   props: UseControllerProps<T> & {
+    options: U[];
     promptMessage: string;
-    searchFunction: (searchText: string) => U[];
+    onSearch: (searchText: string) => void;
     resultLabel: (result: U) => string;
+    loading: boolean;
   }
 ) {
+  const [showOverlay, setShowOverlay] = useState(props.options.length > 0);
   const { field } = useController(props);
-  const [searchResults, setSearchResults] = useState<U[]>([]);
   const searchInputRef = useRef<HTMLInputElement>(null);
 
   const searchInputWidth =
@@ -46,7 +49,6 @@ export default function SearchSelect<T extends FieldValues, U>(
         <input
           ref={searchInputRef}
           disabled={field.value}
-          defaultValue={props.resultLabel(field.value)}
           placeholder={props.promptMessage}
         />
         {field.value ? (
@@ -61,46 +63,47 @@ export default function SearchSelect<T extends FieldValues, U>(
           >
             Clear
           </SearchSelectButton>
+        ) : props.loading ? (
+          <LoadingSpinner />
         ) : (
           <SearchSelectButton
             type="button"
             onClick={() => {
-              setSearchResults(
-                props.searchFunction(searchInputRef.current?.value ?? "")
-              );
+              props.onSearch(searchInputRef.current?.value ?? "");
+              setShowOverlay(true);
             }}
           >
             Search
           </SearchSelectButton>
         )}
       </FlexContainer>
-      {!!searchResults.length && (
+      {showOverlay && !!props.options.length && (
         <Layer>
           <Overlay
             anchorRef={searchInputRef}
-            onOutsideClick={() => setSearchResults([])}
+            onOutsideClick={() => setShowOverlay(false)}
           >
             <div
               css={css`
                 width: ${searchInputWidth - INPUT_HORIZONTAL_PADDING}px;
               `}
             >
-              {searchResults.map((searchResult, index) => {
-                const searchResultLabel = props.resultLabel(searchResult);
+              {props.options.map((option, index) => {
+                const optionLabel = props.resultLabel(option);
 
                 return (
                   <div key={`search-select.search-results.${index}`}>
                     <SelectionButton
                       type="button"
                       onClick={() => {
-                        field.onChange(searchResult);
+                        field.onChange(option);
                         if (searchInputRef.current) {
-                          searchInputRef.current.value = searchResultLabel;
+                          searchInputRef.current.value = optionLabel;
                         }
-                        setSearchResults([]);
+                        setShowOverlay(false);
                       }}
                     >
-                      {searchResultLabel}
+                      {optionLabel}
                     </SelectionButton>
                   </div>
                 );

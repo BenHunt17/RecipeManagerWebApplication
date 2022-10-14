@@ -8,18 +8,23 @@ export default function useFetch<T>({
   onComplete,
   onError,
   queryParams,
+  skip,
 }: {
   endpointPath: string;
   onComplete?: () => void;
   onError?: () => void;
   queryParams?: QueryParameters;
+  skip?: boolean;
 }) {
   const [data, setData] = useState<T>();
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(!skip);
 
   const auth = useAuth();
 
   useEffect(() => {
+    if (skip) {
+      return;
+    }
     fetch(
       `${endpointPath}${
         queryParams

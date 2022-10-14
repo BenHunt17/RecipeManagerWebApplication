@@ -3,7 +3,7 @@ import { SubmitButton } from "../../Components/Common/StyledComponents/ButtonCom
 import { LoadingSpinner } from "../../Components/Common/StyledComponents/ContentComponents";
 import { FlexContainer } from "../../Components/Common/StyledComponents/ShortcutComponents";
 import useMutate, { HttpMethod } from "../../Hooks/useMutate";
-import { Recipe, RecipeIngredient, RecipeInput } from "../../Types/RecipeTypes";
+import { RecipeIngredient, RecipeInput } from "../../Types/RecipeTypes";
 import RecipeIngredientsForm from "./RecipeIngredientsForm";
 
 function extractDefaultValues(existingRecipeIngredients: RecipeIngredient[]) {
