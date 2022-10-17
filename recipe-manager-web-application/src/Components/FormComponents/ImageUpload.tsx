@@ -10,12 +10,11 @@ const ImageUploadContainer = styled.div`
   align-items: center;
   width: 250px;
   height: 250px;
-  background-color: rgba(var(--colour-secondary-rgb), 0.25);
   border: 1px solid var(--colour-light-grey);
   border-radius: 10px;
   overflow: hidden;
   &:hover {
-    background-color: rgba(var(--colour-secondary-rgb), 0.5);
+    background-color: rgba(var(--colour-light-grey-rgb), 0.2);
   }
 `;
 
@@ -54,7 +53,6 @@ export default function ImageUpload({
   image: File | null;
   setImage: React.Dispatch<React.SetStateAction<File | null>>;
 }) {
-  //TODO - Make this component much prettier
   const imageUploadRef = useRef<HTMLInputElement>(null);
 
   return (
@@ -62,7 +60,7 @@ export default function ImageUpload({
       {image ? (
         <img width={250} height={250} src={URL.createObjectURL(image)} />
       ) : (
-        <UploadIcon width={100} height={100} />
+        <UploadIcon width={100} height={100} fill="var(--colour-dark-grey)" />
       )}
       <ImageInput
         ref={imageUploadRef}
