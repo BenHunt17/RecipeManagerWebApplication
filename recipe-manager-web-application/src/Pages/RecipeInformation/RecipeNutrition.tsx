@@ -9,57 +9,44 @@ export default function RecipeNutrition({
   recipeIngredients: RecipeIngredient[];
   servingSize: number;
 }) {
-  //TODO - make this data scale to suit serving size
-  const calories = Number(
-    (
-      recipeIngredients.reduce(
-        (total, ingredient) => total + ingredient.calories,
-        0
-      ) / servingSize
-    ).toFixed(2)
-  ); //Cast to number explicitly to remove trailing 0s
-
-  const fat = Number(
-    (
-      recipeIngredients.reduce(
-        (total, ingredient) => total + (ingredient.fat ?? 0),
-        0
-      ) / servingSize
-    ).toFixed(2)
-  );
-
-  const salt = Number(
-    (
-      recipeIngredients.reduce(
-        (total, ingredient) => total + (ingredient.salt ?? 0),
-        0
-      ) / servingSize
-    ).toFixed(2)
-  );
-
-  const protein = Number(
-    (
-      recipeIngredients.reduce(
-        (total, ingredient) => total + (ingredient.protein ?? 0),
-        0
-      ) / servingSize
-    ).toFixed(2)
-  );
-
-  const carbs = Number(
-    (
-      recipeIngredients.reduce(
-        (total, ingredient) => total + (ingredient.carbs ?? 0),
-        0
-      ) / servingSize
-    ).toFixed(2)
-  );
-
-  const fruitVeg = Number(
+  const calories = (
     recipeIngredients.reduce(
-      (total, ingredient) => total + (ingredient.fruitVeg ? 1 : 0),
+      (total, ingredient) => total + ingredient.calories,
       0
-    )
+    ) / servingSize
+  ).toFixed(2);
+
+  const fat = (
+    recipeIngredients.reduce(
+      (total, ingredient) => total + (ingredient.fat ?? 0),
+      0
+    ) / servingSize
+  ).toFixed(2);
+
+  const salt = (
+    recipeIngredients.reduce(
+      (total, ingredient) => total + (ingredient.salt ?? 0),
+      0
+    ) / servingSize
+  ).toFixed(2);
+
+  const protein = (
+    recipeIngredients.reduce(
+      (total, ingredient) => total + (ingredient.protein ?? 0),
+      0
+    ) / servingSize
+  ).toFixed(2);
+
+  const carbs = (
+    recipeIngredients.reduce(
+      (total, ingredient) => total + (ingredient.carbs ?? 0),
+      0
+    ) / servingSize
+  ).toFixed(2);
+
+  const fruitVeg = recipeIngredients.reduce(
+    (total, ingredient) => total + (ingredient.fruitVeg ? 1 : 0),
+    0
   );
 
   return (
