@@ -146,7 +146,10 @@ export default function RecipeInformation() {
               <ContentBox title="About">
                 <TightParagraph>{data?.recipeDescription}</TightParagraph>
               </ContentBox>
-              <RecipeNutrition recipeIngredients={data.ingredients} />
+              <RecipeNutrition
+                recipeIngredients={data.ingredients}
+                servingSize={data.servingSize}
+              />
             </FlexContainer>
           </ContentLayout>
         ) : (

@@ -4,48 +4,66 @@ import { RecipeIngredient } from "../../Types/RecipeTypes";
 
 export default function RecipeNutrition({
   recipeIngredients,
+  servingSize,
 }: {
   recipeIngredients: RecipeIngredient[];
+  servingSize: number;
 }) {
   //TODO - make this data scale to suit serving size
   const calories = Number(
-    recipeIngredients
-      .reduce((total, ingredient) => total + ingredient.calories, 0)
-      .toFixed(2)
+    (
+      recipeIngredients.reduce(
+        (total, ingredient) => total + ingredient.calories,
+        0
+      ) / servingSize
+    ).toFixed(2)
   ); //Cast to number explicitly to remove trailing 0s
 
   const fat = Number(
-    recipeIngredients
-      .reduce((total, ingredient) => total + (ingredient.fat ?? 0), 0)
-      .toFixed(2)
+    (
+      recipeIngredients.reduce(
+        (total, ingredient) => total + (ingredient.fat ?? 0),
+        0
+      ) / servingSize
+    ).toFixed(2)
   );
 
   const salt = Number(
-    recipeIngredients
-      .reduce((total, ingredient) => total + (ingredient.salt ?? 0), 0)
-      .toFixed(2)
+    (
+      recipeIngredients.reduce(
+        (total, ingredient) => total + (ingredient.salt ?? 0),
+        0
+      ) / servingSize
+    ).toFixed(2)
   );
 
   const protein = Number(
-    recipeIngredients
-      .reduce((total, ingredient) => total + (ingredient.protein ?? 0), 0)
-      .toFixed(2)
+    (
+      recipeIngredients.reduce(
+        (total, ingredient) => total + (ingredient.protein ?? 0),
+        0
+      ) / servingSize
+    ).toFixed(2)
   );
 
   const carbs = Number(
-    recipeIngredients
-      .reduce((total, ingredient) => total + (ingredient.carbs ?? 0), 0)
-      .toFixed(2)
+    (
+      recipeIngredients.reduce(
+        (total, ingredient) => total + (ingredient.carbs ?? 0),
+        0
+      ) / servingSize
+    ).toFixed(2)
   );
 
   const fruitVeg = Number(
-    recipeIngredients
-      .reduce((total, ingredient) => total + (ingredient.fruitVeg ? 1 : 0), 0)
-      .toFixed(2)
+    recipeIngredients.reduce(
+      (total, ingredient) => total + (ingredient.fruitVeg ? 1 : 0),
+      0
+    )
   );
 
   return (
-    <ContentBox title="Nutritional Information">
+    <ContentBox title="Nutritional Information (Per Serving)">
       <StatisticsTable
         id="recipe.nutrition-table"
         data={[
