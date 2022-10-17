@@ -67,7 +67,7 @@ export default function RecipeNutrition({
       <StatisticsTable
         id="recipe.nutrition-table"
         data={[
-          { title: "Kcal", data: `${calories}g` },
+          { title: "Kcal", data: `${calories}` },
           { title: "Fat", data: `${fat}g` },
           { title: "Salt", data: `${salt}g` },
           { title: "Protein", data: `${protein}g` },
