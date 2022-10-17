@@ -61,16 +61,15 @@ export default function UpdateRecipeForm({
       defaultValues: extractDefaultValues(existingRecipe),
     });
 
-  const { callback: updateRecipe, loading } = useMutate<Recipe>(
-    `https://localhost:5001/api/recipe/${recipeName}`,
-    HttpMethod.PUT,
-    (recipe) => {
+  const { callback: updateRecipe, loading } = useMutate<Recipe>({
+    endpointPath: `https://localhost:5001/api/recipe/${recipeName}`,
+    httpMethod: HttpMethod.PUT,
+    onComplete: (recipe) => {
       updateInFetchedRecipe(recipe);
       close();
     },
-    undefined,
-    true
-  );
+    jsonData: true,
+  });
 
   const onSubmit = (formValues: RecipeFormData) => {
     updateRecipe(JSON.stringify(formValues));

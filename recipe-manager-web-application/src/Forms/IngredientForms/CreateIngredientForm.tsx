@@ -48,15 +48,14 @@ export default function CreateIngredientForm({
   const [quantityUnit, setQuantityUnit] = useState<string | undefined>(
     undefined
   );
-  const { callback: createIngredient, loading } = useMutate<Ingredient>(
-    "https://localhost:5001/api/ingredient",
-    HttpMethod.POST,
-    (result: Ingredient) => {
+  const { callback: createIngredient, loading } = useMutate<Ingredient>({
+    endpointPath: "https://localhost:5001/api/ingredient",
+    httpMethod: HttpMethod.POST,
+    onComplete: (result: Ingredient) => {
       addToFetchedIngredients(result);
       close();
     },
-    undefined
-  );
+  });
 
   const onSubmit = (formValues: IngredientInput) => {
     const formData = new FormData();

@@ -71,15 +71,14 @@ export default function CreateRecipeForm({
 
   const [ingredientImage, setIngredientImage] = useState<File | null>(null);
 
-  const { callback: createIngredient, loading } = useMutate<Recipe>(
-    "https://localhost:5001/api/recipe",
-    HttpMethod.POST,
-    (result: Recipe) => {
+  const { callback: createIngredient, loading } = useMutate<Recipe>({
+    endpointPath: "https://localhost:5001/api/recipe",
+    httpMethod: HttpMethod.POST,
+    onComplete: (result: Recipe) => {
       addToFetchedRecipes(result);
       close();
     },
-    undefined
-  );
+  });
 
   const onSubmit = (formValues: RecipeInput) => {
     const formData = new FormData();

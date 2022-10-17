@@ -8,15 +8,21 @@ export enum HttpMethod {
   DELETE = "DELETE",
 }
 
-export default function useMutate<T>(
-  //TODO - Make arguments an object
-  endpointPath: string,
-  httpMethod: HttpMethod,
-  onComplete?: (result: T) => void,
-  onError?: () => void,
-  jsonData?: boolean,
-  textResult?: boolean
-) {
+export default function useMutate<T>({
+  endpointPath,
+  httpMethod,
+  onComplete,
+  onError,
+  jsonData,
+  textResult,
+}: {
+  endpointPath: string;
+  httpMethod: HttpMethod;
+  onComplete?: (result: T) => void;
+  onError?: () => void;
+  jsonData?: boolean;
+  textResult?: boolean;
+}) {
   const [loading, setLoading] = useState(false);
 
   const auth = useAuth();

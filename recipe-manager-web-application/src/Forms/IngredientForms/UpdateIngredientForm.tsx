@@ -18,6 +18,7 @@ import InputContainer from "../../Components/FormComponents/InputContainer";
 import Select from "../../Components/FormComponents/Select";
 import { FlexContainer } from "../../Components/Common/StyledComponents/ShortcutComponents";
 import { MainFormLayout } from "../../Components/Common/StyledComponents/Layouts";
+import { json } from "stream/consumers";
 
 function extractDefaultValues(existingIngredient: Ingredient) {
   return {
@@ -51,16 +52,15 @@ export default function UpdateIngredientForm({
   const [quantityUnit, setQuantityUnit] = useState<string | undefined>(
     undefined
   );
-  const { callback: updateIngredient, loading } = useMutate<Ingredient>(
-    `https://localhost:5001/api/ingredient/${ingredientName}`,
-    HttpMethod.PUT,
-    (ingredient) => {
+  const { callback: updateIngredient, loading } = useMutate<Ingredient>({
+    endpointPath: `https://localhost:5001/api/ingredient/${ingredientName}`,
+    httpMethod: HttpMethod.PUT,
+    onComplete: (ingredient) => {
       updateInFetchedIngredient(ingredient);
       close();
     },
-    undefined,
-    true
-  );
+    jsonData: true,
+  });
 
   const onSubmit = (formValues: IngredientInput) => {
     updateIngredient(JSON.stringify(formValues));

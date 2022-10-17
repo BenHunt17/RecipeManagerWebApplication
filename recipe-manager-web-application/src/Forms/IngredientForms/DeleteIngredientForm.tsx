@@ -14,15 +14,14 @@ export default function DeleteIngredientForm({
   removeFromFetchedIngredients: () => void;
   close: () => void;
 }) {
-  const { callback: deleteIngredient, loading } = useMutate(
-    `https://localhost:5001/api/ingredient/${ingredientName}`,
-    HttpMethod.DELETE,
-    () => {
+  const { callback: deleteIngredient, loading } = useMutate({
+    endpointPath: `https://localhost:5001/api/ingredient/${ingredientName}`,
+    httpMethod: HttpMethod.DELETE,
+    onComplete: () => {
       removeFromFetchedIngredients();
       close();
     },
-    undefined
-  );
+  });
 
   return (
     <Fragment>
