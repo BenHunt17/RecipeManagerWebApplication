@@ -8,8 +8,8 @@ import {
 import DeleteRecipeForm from "../../../Forms/RecipeForms/DeleteRecipeForm";
 import useFetch from "../../../Hooks/useFetch";
 import useModal from "../../../Hooks/useModal";
-import { PaginatedResponse, QueryParameters } from "../../../Types/CommonTypes";
-import { Recipe, RecipeListItem } from "../../../Types/RecipeTypes";
+import { PaginatedResponse, QueryParameters } from "../../../types/commonTypes";
+import { Recipe, RecipeListItem } from "../../../types/recipeTypes";
 import { PAGINATION_LIMIT } from "../../../Utilities/FilterUtilities";
 import { minutesToTimeString } from "../../../Utilities/Recipes";
 import { CollectionContainer } from "../CollectionPageStyled";

@@ -8,7 +8,7 @@ import {
   Recipe,
   RecipeInput,
   RecipeInstruction,
-} from "../../Types/RecipeTypes";
+} from "../../types/recipeTypes";
 import InstructionsForm from "./InstructionsForm";
 
 function extractDefaultValues(existingInstructions: RecipeInstruction[]) {

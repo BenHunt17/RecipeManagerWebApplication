@@ -7,7 +7,7 @@ import { ErrorMessage } from "../../Components/Common/StyledComponents/ContentCo
 import { FlexContainer } from "../../Components/Common/StyledComponents/ShortcutComponents";
 import InputContainer from "../../Components/FormComponents/InputContainer";
 import TextInput from "../../Components/FormComponents/TextInput";
-import { UserCredentials } from "../../Types/UserTypes";
+import { UserCredentials } from "../../types/userTypes";
 
 const LoginPageTemplate = styled.div`
   display: flex;

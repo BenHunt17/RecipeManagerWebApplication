@@ -16,9 +16,9 @@ import UpdateIngredientImageForm from "../../Forms/IngredientForms/UpdateIngredi
 import UpdateIngredientForm from "../../Forms/IngredientForms/UpdateIngredientForm";
 import useFetch from "../../Hooks/useFetch";
 import useModal from "../../Hooks/useModal";
-import { Ingredient } from "../../Types/IngredientTypes";
+import { Ingredient } from "../../types/ingredientTypes";
 import ImageDisplay from "../../Components/Common/ImageDisplay";
-import EditIcon from "../../SVGs/EditIcon";
+import EditIcon from "../../svg/EditIcon";
 import { TightParagraph } from "../../Components/Common/StyledComponents/ContentComponents";
 import IngredientNutrition from "./IngredientNutrition";
 

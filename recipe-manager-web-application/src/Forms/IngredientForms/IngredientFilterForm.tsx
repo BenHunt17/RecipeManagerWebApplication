@@ -5,7 +5,7 @@ import { ErrorMessage } from "../../Components/Common/StyledComponents/ContentCo
 import { FilterFormLayout } from "../../Components/Common/StyledComponents/Layouts";
 import InputContainer from "../../Components/FormComponents/InputContainer";
 import RangeInput from "../../Components/FormComponents/RangeInput";
-import { MinMaxValue, QueryParameters } from "../../Types/CommonTypes";
+import { MinMaxValue, QueryParameters } from "../../types/commonTypes";
 import { getProperty } from "../../Utilities/FilterUtilities";
 import {
   FilterOperation,

@@ -12,7 +12,7 @@ import {
   MinMaxValue,
   QueryParameters,
   RangeOrTrueValue,
-} from "../../Types/CommonTypes";
+} from "../../types/commonTypes";
 import {
   FilterOperation,
   TryParseBoolean,

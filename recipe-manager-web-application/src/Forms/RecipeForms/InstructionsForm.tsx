@@ -15,7 +15,7 @@ import { FlexContainer } from "../../Components/Common/StyledComponents/Shortcut
 import DynamicList from "../../Components/FormComponents/DynamicList";
 import InputContainer from "../../Components/FormComponents/InputContainer";
 import TextArea from "../../Components/FormComponents/TextArea";
-import { RecipeInput, RecipeInstructionInput } from "../../Types/RecipeTypes";
+import { RecipeInput, RecipeInstructionInput } from "../../types/recipeTypes";
 
 const InstructionNumber = styled.h4`
   width: 31px;

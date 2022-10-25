@@ -10,7 +10,7 @@ import {
 import TextInput from "../../Components/FormComponents/TextInput";
 import TextArea from "../../Components/FormComponents/TextArea";
 import InputContainer from "../../Components/FormComponents/InputContainer";
-import { Recipe } from "../../Types/RecipeTypes";
+import { Recipe } from "../../types/recipeTypes";
 import { SubmitButton } from "../../Components/Common/StyledComponents/ButtonComponents";
 import { MainFormLayout } from "../../Components/Common/StyledComponents/Layouts";
 

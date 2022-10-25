@@ -13,7 +13,7 @@ import TextInput from "../../Components/FormComponents/TextInput";
 import TextArea from "../../Components/FormComponents/TextArea";
 import InputContainer from "../../Components/FormComponents/InputContainer";
 import Slider from "../../Components/Common/Slider";
-import { Recipe, RecipeInput } from "../../Types/RecipeTypes";
+import { Recipe, RecipeInput } from "../../types/recipeTypes";
 import InstructionsForm from "./InstructionsForm";
 import { SubmitButton } from "../../Components/Common/StyledComponents/ButtonComponents";
 import { MainFormLayout } from "../../Components/Common/StyledComponents/Layouts";

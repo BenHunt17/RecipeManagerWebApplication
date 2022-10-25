@@ -1,6 +1,6 @@
 import ContentBox from "../../Components/Common/ContentBox";
 import StatisticsTable from "../../Components/Common/StatisticsTable";
-import { Ingredient, MeasureUnit } from "../../Types/IngredientTypes";
+import { Ingredient, MeasureUnit } from "../../types/ingredientTypes";
 
 function getMeasureUnitBaseValueString(measureUnit: MeasureUnit) {
   switch (measureUnit) {

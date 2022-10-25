@@ -5,8 +5,8 @@ import { AddButton } from "../../../Components/Common/StyledComponents/ButtonCom
 import CreateIngredientForm from "../../../Forms/IngredientForms/CreateIngredientForm";
 import IngredientFilterForm from "../../../Forms/IngredientForms/IngredientFilterForm";
 import useModal from "../../../Hooks/useModal";
-import { QueryParameters } from "../../../Types/CommonTypes";
-import { Ingredient } from "../../../Types/IngredientTypes";
+import { QueryParameters } from "../../../types/commonTypes";
+import { Ingredient } from "../../../types/ingredientTypes";
 import { getCount, PAGINATION_LIMIT } from "../../../Utilities/FilterUtilities";
 import {
   CollectionControlsContainer,

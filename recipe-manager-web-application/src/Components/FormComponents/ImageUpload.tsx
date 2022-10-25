@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { useRef } from "react";
-import UploadIcon from "../../SVGs/UploadIcon";
+import UploadIcon from "../../svg/UploadIcon";
 
 const ImageUploadContainer = styled.div`
   position: relative;

@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { HttpMethod } from "../Hooks/useMutate";
-import { UserCredentials } from "../Types/UserTypes";
+import { UserCredentials } from "../types/userTypes";
 
 interface AuthContextType {
   bearerToken: string | undefined;

@@ -11,13 +11,13 @@ import { FlexContainer } from "../../Components/Common/StyledComponents/Shortcut
 import DynamicList from "../../Components/FormComponents/DynamicList";
 import TextInput from "../../Components/FormComponents/TextInput";
 import SearchSelect from "../../Components/FormComponents/SearchSelect";
-import { IngredientListItem } from "../../Types/IngredientTypes";
+import { IngredientListItem } from "../../types/ingredientTypes";
 import useFetch from "../../Hooks/useFetch";
 import InputContainer from "../../Components/FormComponents/InputContainer";
 import { ErrorMessage } from "../../Components/Common/StyledComponents/ContentComponents";
-import { RecipeIngredientInput, RecipeInput } from "../../Types/RecipeTypes";
+import { RecipeIngredientInput, RecipeInput } from "../../types/recipeTypes";
 import styled from "@emotion/styled";
-import { PaginatedResponse, QueryParameters } from "../../Types/CommonTypes";
+import { PaginatedResponse, QueryParameters } from "../../types/commonTypes";
 import { useState } from "react";
 
 const UnitContainer = styled.div`

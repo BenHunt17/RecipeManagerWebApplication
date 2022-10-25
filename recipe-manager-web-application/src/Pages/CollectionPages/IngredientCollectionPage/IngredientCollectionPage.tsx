@@ -6,11 +6,11 @@ import {
 } from "../../../Components/Common/StyledComponents/Layouts";
 import useFetch from "../../../Hooks/useFetch";
 import useModal from "../../../Hooks/useModal";
-import { Ingredient, IngredientListItem } from "../../../Types/IngredientTypes";
+import { Ingredient, IngredientListItem } from "../../../types/ingredientTypes";
 import { CollectionContainer } from "../CollectionPageStyled";
 import DeleteIngredientForm from "../../../Forms/IngredientForms/DeleteIngredientForm";
 import { useState } from "react";
-import { PaginatedResponse, QueryParameters } from "../../../Types/CommonTypes";
+import { PaginatedResponse, QueryParameters } from "../../../types/commonTypes";
 import IngredientCollectionHeader from "./IngredientCollectionHeader";
 import { PAGINATION_LIMIT } from "../../../Utilities/FilterUtilities";
 

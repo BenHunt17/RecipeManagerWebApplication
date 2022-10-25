@@ -3,7 +3,7 @@ import { SubmitButton } from "../../Components/Common/StyledComponents/ButtonCom
 import { LoadingSpinner } from "../../Components/Common/StyledComponents/ContentComponents";
 import { FlexContainer } from "../../Components/Common/StyledComponents/ShortcutComponents";
 import useMutate, { HttpMethod } from "../../Hooks/useMutate";
-import { Ingredient } from "../../Types/IngredientTypes";
+import { Ingredient } from "../../types/ingredientTypes";
 
 export default function DeleteRecipeForm({
   recipeName,

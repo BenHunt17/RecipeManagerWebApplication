@@ -5,8 +5,8 @@ import { Label } from "../../Components/Common/StyledComponents/ContentComponent
 import { FlexContainer } from "../../Components/Common/StyledComponents/ShortcutComponents";
 import UpdateRecipeIngredientsForm from "../../Forms/RecipeForms/UpdateRecipeIngredientsForm";
 import useModal from "../../Hooks/useModal";
-import EditIcon from "../../SVGs/EditIcon";
-import { Recipe, RecipeIngredient } from "../../Types/RecipeTypes";
+import EditIcon from "../../svg/EditIcon";
+import { Recipe, RecipeIngredient } from "../../types/recipeTypes";
 import { MeasureUnitUnitString } from "../../Utilities/Ingredients";
 
 export default function IngredientsList({

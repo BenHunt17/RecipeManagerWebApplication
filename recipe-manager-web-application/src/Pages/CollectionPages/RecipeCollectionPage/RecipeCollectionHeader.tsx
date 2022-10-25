@@ -5,8 +5,8 @@ import { AddButton } from "../../../Components/Common/StyledComponents/ButtonCom
 import CreateRecipeForm from "../../../Forms/RecipeForms/CreateRecipeForm";
 import RecipeFilterForm from "../../../Forms/RecipeForms/RecipeFilterForm";
 import useModal from "../../../Hooks/useModal";
-import { QueryParameters } from "../../../Types/CommonTypes";
-import { Recipe } from "../../../Types/RecipeTypes";
+import { QueryParameters } from "../../../types/commonTypes";
+import { Recipe } from "../../../types/recipeTypes";
 import { getCount, PAGINATION_LIMIT } from "../../../Utilities/FilterUtilities";
 import {
   CollectionControlsContainer,

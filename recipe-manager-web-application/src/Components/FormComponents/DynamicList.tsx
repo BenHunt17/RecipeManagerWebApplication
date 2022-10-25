@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import BinIcon from "../../SVGs/BinIcon";
+import BinIcon from "../../svg/BinIcon";
 import { IconButton } from "../Common/StyledComponents/ButtonComponents";
 import { FlexContainer } from "../Common/StyledComponents/ShortcutComponents";
 

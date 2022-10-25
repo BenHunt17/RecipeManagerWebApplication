@@ -2,8 +2,8 @@ import ContentBox from "../../Components/Common/ContentBox";
 import { IconButton } from "../../Components/Common/StyledComponents/ButtonComponents";
 import UpdateInstructionsForm from "../../Forms/RecipeForms/UpdateInstructionsForm";
 import useModal from "../../Hooks/useModal";
-import EditIcon from "../../SVGs/EditIcon";
-import { Recipe, RecipeInstruction } from "../../Types/RecipeTypes";
+import EditIcon from "../../svg/EditIcon";
+import { Recipe, RecipeInstruction } from "../../types/recipeTypes";
 
 export default function RecipeInstructions({
   recipe,

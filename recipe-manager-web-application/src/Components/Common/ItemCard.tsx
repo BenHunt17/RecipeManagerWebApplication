@@ -3,7 +3,7 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { Link } from "react-router-dom";
-import BinIcon from "../../SVGs/BinIcon";
+import BinIcon from "../../svg/BinIcon";
 import ImagePlaceholder from "./ImagePlaceholder";
 import { IconButton } from "./StyledComponents/ButtonComponents";
 import { FlexContainer } from "./StyledComponents/ShortcutComponents";

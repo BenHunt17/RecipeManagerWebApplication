@@ -1,14 +1,14 @@
 import styled from "@emotion/styled";
 import ContentBox from "../../Components/Common/ContentBox";
-import { Recipe } from "../../Types/RecipeTypes";
+import { Recipe } from "../../types/recipeTypes";
 import RecipeInstructions from "./RecipeInstructions";
 import RecipeIngredientsList from "./RecipeIngredientsList";
 import RecipeNutrition from "./RecipeNutrition";
 import useFetch from "../../Hooks/useFetch";
 import { useParams } from "react-router-dom";
-import BreakfastIcon from "../../SVGs/BreakfastIcon";
-import DinnerIcon from "../../SVGs/DinnerIcon";
-import LunchIcon from "../../SVGs/LunchIcon";
+import BreakfastIcon from "../../svg/BreakfastIcon";
+import DinnerIcon from "../../svg/DinnerIcon";
+import LunchIcon from "../../svg/LunchIcon";
 import { FlexContainer } from "../../Components/Common/StyledComponents/ShortcutComponents";
 import {
   ErrorScreen,
@@ -19,7 +19,7 @@ import ImageDisplay from "../../Components/Common/ImageDisplay";
 import useModal from "../../Hooks/useModal";
 import { IconButton } from "../../Components/Common/StyledComponents/ButtonComponents";
 import UpdateRecipeImageForm from "../../Forms/RecipeForms/UpdateRecipeImageForm";
-import EditIcon from "../../SVGs/EditIcon";
+import EditIcon from "../../svg/EditIcon";
 import { TightParagraph } from "../../Components/Common/StyledComponents/ContentComponents";
 import UpdateRecipeForm from "../../Forms/RecipeForms/UpdateRecipeForm";
 import { minutesToTimeString } from "../../Utilities/Recipes";

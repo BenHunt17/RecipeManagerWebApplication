@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { useState } from "react";
-import FilterIcon from "../../SVGs/FilterIcon";
+import FilterIcon from "../../svg/FilterIcon";
 import { IconButton, SearchButton } from "./StyledComponents/ButtonComponents";
 import { SearchBar } from "./StyledComponents/InputComponents";
 import { FlexContainer } from "./StyledComponents/ShortcutComponents";

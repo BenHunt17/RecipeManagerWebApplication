@@ -7,7 +7,7 @@ import {
   Ingredient,
   IngredientInput,
   MeasureUnit,
-} from "../../Types/IngredientTypes";
+} from "../../types/ingredientTypes";
 import Toggle from "../../Components/FormComponents/Toggle";
 import {
   ErrorMessage,

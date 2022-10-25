@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../Components/AuthProvider";
-import { QueryParameters } from "../Types/CommonTypes";
+import { QueryParameters } from "../types/commonTypes";
 import { expandQueryParameters } from "../Utilities/FilterUtilities";
 
 export default function useFetch<T>({
