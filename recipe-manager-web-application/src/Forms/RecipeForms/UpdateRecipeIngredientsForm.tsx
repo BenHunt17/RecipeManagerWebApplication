@@ -51,7 +51,7 @@ export default function UpdateRecipeIngredientsForm({
   });
 
   const { callback: updateRecipeIngredients, loading } = useMutate({
-    endpointPath: `https://localhost:5001/api/recipe/${recipeName}/recipeingredients`,
+    endpointPath: `${process.env.REACT_APP_RECIPE_MANAGER_API_URL}recipe/${recipeName}/recipeingredients`,
     httpMethod: HttpMethod.PUT,
     onComplete: (recipeIngredients: RecipeIngredient[]) => {
       updateInFetchedRecipe(recipeIngredients);

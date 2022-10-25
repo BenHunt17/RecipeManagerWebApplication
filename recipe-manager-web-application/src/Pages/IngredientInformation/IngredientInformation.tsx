@@ -36,7 +36,7 @@ const PageLayout = styled.div`
 export default function IngredientInformation() {
   const { ingredientName } = useParams();
   const { data, loading, modifyData } = useFetch<Ingredient>({
-    endpointPath: `https://localhost:5001/api/ingredient/${ingredientName}`,
+    endpointPath: `${process.env.REACT_APP_RECIPE_MANAGER_API_URL}ingredient/${ingredientName}`,
   });
 
   const [

@@ -39,7 +39,7 @@ export default function AuthProvider({
   }, [setBearerToken, setAuthenticationPending]);
 
   const refresh = () =>
-    fetch("https://localhost:5001/api/user/refresh", {
+    fetch(`${process.env.REACT_APP_RECIPE_MANAGER_API_URL}user/refresh`, {
       method: HttpMethod.GET,
       credentials: "include",
     })
@@ -65,7 +65,7 @@ export default function AuthProvider({
       .finally(() => setAuthenticationPending(false));
 
   const login = (userCredentials: UserCredentials) =>
-    fetch("https://localhost:5001/api/user/login", {
+    fetch(`${process.env.REACT_APP_RECIPE_MANAGER_API_URL}user/login`, {
       method: HttpMethod.PUT,
       headers: new Headers({
         "Content-Type": "application/json;charset=utf-8",
@@ -94,7 +94,7 @@ export default function AuthProvider({
       });
 
   const logout = () =>
-    fetch("https://localhost:5001/api/user/logout", {
+    fetch(`${process.env.REACT_APP_RECIPE_MANAGER_API_URL}user/logout`, {
       method: HttpMethod.PUT,
       headers: new Headers({
         "Content-Type": "application/json;charset=utf-8",

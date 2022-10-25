@@ -3,7 +3,6 @@ import { SubmitButton } from "../../Components/Common/StyledComponents/ButtonCom
 import { LoadingSpinner } from "../../Components/Common/StyledComponents/ContentComponents";
 import { FlexContainer } from "../../Components/Common/StyledComponents/ShortcutComponents";
 import useMutate, { HttpMethod } from "../../Hooks/useMutate";
-import { Ingredient } from "../../Types/IngredientTypes";
 
 export default function DeleteIngredientForm({
   ingredientName,
@@ -15,7 +14,7 @@ export default function DeleteIngredientForm({
   close: () => void;
 }) {
   const { callback: deleteIngredient, loading } = useMutate({
-    endpointPath: `https://localhost:5001/api/ingredient/${ingredientName}`,
+    endpointPath: `${process.env.REACT_APP_RECIPE_MANAGER_API_URL}ingredient/${ingredientName}`,
     httpMethod: HttpMethod.DELETE,
     onComplete: () => {
       removeFromFetchedIngredients();

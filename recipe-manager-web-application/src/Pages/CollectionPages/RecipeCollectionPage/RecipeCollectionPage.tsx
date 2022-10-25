@@ -24,7 +24,7 @@ export default function RecipeCollectionPage() {
   const { data, loading, modifyData } = useFetch<
     PaginatedResponse<RecipeListItem>
   >({
-    endpointPath: "https://localhost:5001/api/recipes",
+    endpointPath: `${process.env.REACT_APP_RECIPE_MANAGER_API_URL}recipes`,
     queryParams: queryParams,
   });
 

@@ -15,7 +15,7 @@ export default function DeleteRecipeForm({
   close: () => void;
 }) {
   const { callback: deleteRecipe, loading } = useMutate({
-    endpointPath: `https://localhost:5001/api/recipe/${recipeName}`,
+    endpointPath: `${process.env.REACT_APP_RECIPE_MANAGER_API_URL}recipe/${recipeName}`,
     httpMethod: HttpMethod.DELETE,
     onComplete: () => {
       removeFromFetchedRecipes();

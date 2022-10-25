@@ -72,7 +72,7 @@ export default function CreateRecipeForm({
   const [ingredientImage, setIngredientImage] = useState<File | null>(null);
 
   const { callback: createIngredient, loading } = useMutate<Recipe>({
-    endpointPath: "https://localhost:5001/api/recipe",
+    endpointPath: `${process.env.REACT_APP_RECIPE_MANAGER_API_URL}recipe`,
     httpMethod: HttpMethod.POST,
     onComplete: (result: Recipe) => {
       addToFetchedRecipes(result);

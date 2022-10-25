@@ -39,7 +39,7 @@ export default function RecipeInformation() {
   const { recipeName } = useParams();
 
   const { data, loading, modifyData } = useFetch<Recipe>({
-    endpointPath: `https://localhost:5001/api/recipe/${recipeName}`,
+    endpointPath: `${process.env.REACT_APP_RECIPE_MANAGER_API_URL}recipe/${recipeName}`,
   });
 
   const [updateRecipeModal, showUpdateRecipeModal, closeUpdateRecipeModal] =

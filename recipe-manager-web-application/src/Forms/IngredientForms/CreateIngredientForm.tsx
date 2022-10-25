@@ -49,7 +49,7 @@ export default function CreateIngredientForm({
     undefined
   );
   const { callback: createIngredient, loading } = useMutate<Ingredient>({
-    endpointPath: "https://localhost:5001/api/ingredient",
+    endpointPath: `${process.env.REACT_APP_RECIPE_MANAGER_API_URL}ingredient`,
     httpMethod: HttpMethod.POST,
     onComplete: (result: Ingredient) => {
       addToFetchedIngredients(result);

@@ -17,7 +17,7 @@ export default function UpdateRecipeImageForm({
   const [recipeImage, setRecipeImage] = useState<File | null>(null);
 
   const { callback: uploadImage, loading: uploadLoading } = useMutate({
-    endpointPath: `https://localhost:5001/api/recipe/${recipeName}/image`,
+    endpointPath: `${process.env.REACT_APP_RECIPE_MANAGER_API_URL}recipe/${recipeName}/image`,
     httpMethod: HttpMethod.PUT,
     onComplete: (imageUrl: string) => {
       updateInFetchedRecipe(imageUrl);
@@ -27,7 +27,7 @@ export default function UpdateRecipeImageForm({
   });
 
   const { callback: removeImage, loading: removeLoading } = useMutate({
-    endpointPath: `https://localhost:5001/api/recipe/${recipeName}/image`,
+    endpointPath: `${process.env.REACT_APP_RECIPE_MANAGER_API_URL}recipe/${recipeName}/image`,
     httpMethod: HttpMethod.DELETE,
     onComplete: () => {
       updateInFetchedRecipe(null);

@@ -13,11 +13,9 @@ import TextInput from "../../Components/FormComponents/TextInput";
 import SearchSelect from "../../Components/FormComponents/SearchSelect";
 import { IngredientListItem } from "../../Types/IngredientTypes";
 import useFetch from "../../Hooks/useFetch";
-import { LoadingScreen } from "../../Components/Common/StyledComponents/Layouts";
 import InputContainer from "../../Components/FormComponents/InputContainer";
 import { ErrorMessage } from "../../Components/Common/StyledComponents/ContentComponents";
 import { RecipeIngredientInput, RecipeInput } from "../../Types/RecipeTypes";
-import { MeasureUnitUnitString } from "../../Utilities/Ingredients";
 import styled from "@emotion/styled";
 import { PaginatedResponse, QueryParameters } from "../../Types/CommonTypes";
 import { useState } from "react";
@@ -58,7 +56,7 @@ export default function RecipeIngredientsForm({
   console.log(queryParameters, !queryParameters);
 
   const { data, loading } = useFetch<PaginatedResponse<IngredientListItem>>({
-    endpointPath: "https://localhost:5001/api/ingredients",
+    endpointPath: `${process.env.REACT_APP_RECIPE_MANAGER_API_URL}ingredients`,
     queryParams: queryParameters,
     skip: !queryParameters,
   });

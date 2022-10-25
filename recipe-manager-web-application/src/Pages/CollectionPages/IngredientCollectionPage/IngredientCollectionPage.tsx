@@ -23,7 +23,7 @@ export default function IngredientCollectionPage() {
   const { data, loading, modifyData } = useFetch<
     PaginatedResponse<IngredientListItem>
   >({
-    endpointPath: "https://localhost:5001/api/ingredients",
+    endpointPath: `${process.env.REACT_APP_RECIPE_MANAGER_API_URL}ingredients`,
     queryParams: queryParams,
   });
 

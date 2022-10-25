@@ -1,6 +1,4 @@
 import styled from "@emotion/styled";
-import { useEffect } from "react";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../Components/AuthProvider";
