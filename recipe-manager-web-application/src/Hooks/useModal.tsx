@@ -17,13 +17,14 @@ export default function useModal<T>(
     setShowing(true);
   };
 
-  const modal = props && showing && (
-    <Modal
-      title={title}
-      content={<Fragment>{renderContent(props)}</Fragment>}
-      onClose={close}
-    />
-  );
+  const modal =
+    props && showing ? (
+      <Modal
+        title={title}
+        content={<Fragment>{renderContent(props)}</Fragment>}
+        onClose={close}
+      />
+    ) : undefined;
 
   return [modal, open, close] as const;
 }

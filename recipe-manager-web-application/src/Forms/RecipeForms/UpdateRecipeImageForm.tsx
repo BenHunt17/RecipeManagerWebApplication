@@ -1,5 +1,5 @@
 import { useState } from "react";
-import useMutate, { HttpMethod } from "../../Hooks/useMutate";
+import useMutate, { HttpMethod } from "../../hooks/useMutate";
 import { Recipe } from "../../types/recipeTypes";
 import UpdateImageForm from "../UpdateImageForm";
 

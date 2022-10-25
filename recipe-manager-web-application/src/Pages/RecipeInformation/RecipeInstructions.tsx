@@ -1,7 +1,7 @@
 import ContentBox from "../../Components/Common/ContentBox";
 import { IconButton } from "../../Components/Common/StyledComponents/ButtonComponents";
 import UpdateInstructionsForm from "../../Forms/RecipeForms/UpdateInstructionsForm";
-import useModal from "../../Hooks/useModal";
+import useModal from "../../hooks/useModal";
 import EditIcon from "../../svg/EditIcon";
 import { Recipe, RecipeInstruction } from "../../types/recipeTypes";
 

@@ -5,8 +5,8 @@ import { useAuth } from "../../Components/AuthProvider";
 import { SubmitButton } from "../../Components/Common/StyledComponents/ButtonComponents";
 import { ErrorMessage } from "../../Components/Common/StyledComponents/ContentComponents";
 import { FlexContainer } from "../../Components/Common/StyledComponents/ShortcutComponents";
-import InputContainer from "../../Components/FormComponents/InputContainer";
-import TextInput from "../../Components/FormComponents/TextInput";
+import InputContainer from "../../Components/form/InputContainer";
+import TextInput from "../../Components/form/TextInput";
 import { UserCredentials } from "../../types/userTypes";
 
 const LoginPageTemplate = styled.div`

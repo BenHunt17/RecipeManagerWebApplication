@@ -4,10 +4,10 @@ import { SubmitButton } from "../../Components/Common/StyledComponents/ButtonCom
 import { ErrorMessage } from "../../Components/Common/StyledComponents/ContentComponents";
 import { FilterFormLayout } from "../../Components/Common/StyledComponents/Layouts";
 import { FlexContainer } from "../../Components/Common/StyledComponents/ShortcutComponents";
-import DiscreteOptionSelector from "../../Components/FormComponents/DiscreteOptionSelector";
-import InputContainer from "../../Components/FormComponents/InputContainer";
-import NumberSelector from "../../Components/FormComponents/NumberSelector";
-import TimeRangeInput from "../../Components/FormComponents/TimeRangeInput";
+import DiscreteOptionSelector from "../../Components/form/DiscreteOptionSelector";
+import InputContainer from "../../Components/form/InputContainer";
+import NumberSelector from "../../Components/form/NumberSelector";
+import TimeRangeInput from "../../Components/form/TimeRangeInput";
 import {
   MinMaxValue,
   QueryParameters,

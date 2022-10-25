@@ -12,9 +12,9 @@ import {
 } from "react-hook-form";
 import { ErrorMessage } from "../../Components/Common/StyledComponents/ContentComponents";
 import { FlexContainer } from "../../Components/Common/StyledComponents/ShortcutComponents";
-import DynamicList from "../../Components/FormComponents/DynamicList";
-import InputContainer from "../../Components/FormComponents/InputContainer";
-import TextArea from "../../Components/FormComponents/TextArea";
+import DynamicList from "../../Components/form/DynamicList";
+import InputContainer from "../../Components/form/InputContainer";
+import TextArea from "../../Components/form/TextArea";
 import { RecipeInput, RecipeInstructionInput } from "../../types/recipeTypes";
 
 const InstructionNumber = styled.h4`

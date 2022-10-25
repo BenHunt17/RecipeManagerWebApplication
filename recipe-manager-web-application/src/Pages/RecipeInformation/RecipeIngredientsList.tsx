@@ -4,7 +4,7 @@ import { IconButton } from "../../Components/Common/StyledComponents/ButtonCompo
 import { Label } from "../../Components/Common/StyledComponents/ContentComponents";
 import { FlexContainer } from "../../Components/Common/StyledComponents/ShortcutComponents";
 import UpdateRecipeIngredientsForm from "../../Forms/RecipeForms/UpdateRecipeIngredientsForm";
-import useModal from "../../Hooks/useModal";
+import useModal from "../../hooks/useModal";
 import EditIcon from "../../svg/EditIcon";
 import { Recipe, RecipeIngredient } from "../../types/recipeTypes";
 import { MeasureUnitUnitString } from "../../Utilities/Ingredients";

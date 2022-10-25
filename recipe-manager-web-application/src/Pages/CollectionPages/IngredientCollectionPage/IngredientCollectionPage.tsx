@@ -1,24 +1,27 @@
 import ItemCard from "../../../Components/Common/ItemCard";
-import {
-  ErrorScreen,
-  LoadingScreen,
-  PageTemplate,
-} from "../../../Components/Common/StyledComponents/Layouts";
-import useFetch from "../../../Hooks/useFetch";
-import useModal from "../../../Hooks/useModal";
-import { Ingredient, IngredientListItem } from "../../../types/ingredientTypes";
-import { CollectionContainer } from "../CollectionPageStyled";
+import useFetch from "../../../hooks/useFetch";
+import useModal from "../../../hooks/useModal";
+import { IngredientListItem } from "../../../types/ingredientTypes";
 import DeleteIngredientForm from "../../../Forms/IngredientForms/DeleteIngredientForm";
-import { useState } from "react";
+import { Fragment } from "react";
 import { PaginatedResponse, QueryParameters } from "../../../types/commonTypes";
-import IngredientCollectionHeader from "./IngredientCollectionHeader";
 import { PAGINATION_LIMIT } from "../../../Utilities/FilterUtilities";
+import CollectionPage from "../../../Components/pageTemplate/CollectionPage";
+import IngredientFilterForm from "../../../Forms/IngredientForms/IngredientFilterForm";
+import CreateIngredientForm from "../../../Forms/IngredientForms/CreateIngredientForm";
+import { useFilters } from "../../../hooks/useFilters";
+import { useNavigate } from "react-router-dom";
 
 export default function IngredientCollectionPage() {
-  const [queryParams, setQueryParams] = useState<QueryParameters>({
-    offset: "PAGE:0",
-    limit: `PAGE:${PAGINATION_LIMIT}`,
-  });
+  const {
+    queryParams,
+    pageNumber,
+    appendFilters,
+    clearFilters,
+    onSearch,
+    onPageChange,
+  } = useFilters();
+  const navigate = useNavigate();
 
   const { data, loading, modifyData } = useFetch<
     PaginatedResponse<IngredientListItem>
@@ -50,50 +53,75 @@ export default function IngredientCollectionPage() {
     />
   ));
 
-  return (
-    <PageTemplate>
-      <IngredientCollectionHeader
-        onAddIngredient={(ingredient: Ingredient) => {
-          if (data) {
-            modifyData({ ...data, items: [...data.items, ingredient] });
-          }
-        }}
-        queryParams={queryParams}
-        setQueryParams={setQueryParams}
-        totalPages={data ? Math.ceil(data.total / PAGINATION_LIMIT) : undefined}
-      />
-      <CollectionContainer hasData={!!data}>
-        {!loading ? (
-          data ? (
-            data.items.map((ingredient) => {
-              const footerText = [
-                ...(ingredient.fruitVeg ? ["one of your 5 a day"] : []),
-              ];
+  const [
+    ingredientFilterModal,
+    showIngredientFilterModal,
+    closeIngredientFilterModal,
+  ] = useModal("Set Filters", (props: { currentFilters: QueryParameters }) => (
+    <IngredientFilterForm
+      currentFilters={props.currentFilters}
+      applyFilters={appendFilters}
+      clearFilters={clearFilters}
+      close={() => closeIngredientFilterModal()}
+    />
+  ));
 
-              return (
-                <ItemCard
-                  key={`ingredient-card.${ingredient.ingredientName}`}
-                  id={`ingredient-card.${ingredient.ingredientName}`}
-                  title={ingredient.ingredientName}
-                  footerText={footerText}
-                  imageUrl={ingredient.imageUrl}
-                  linkTo={`/ingredient/${ingredient.ingredientName}`}
-                  onDeleteButtonClick={() =>
-                    showDeleteIngredientModal({
-                      ingredientName: ingredient.ingredientName,
-                    })
-                  }
-                />
-              );
-            })
-          ) : (
-            <ErrorScreen>Ingredients not available</ErrorScreen>
-          )
-        ) : (
-          <LoadingScreen>Loading Ingredients...</LoadingScreen>
-        )}
-      </CollectionContainer>
+  const [
+    createIngredientModal,
+    showCreateIngredientModal,
+    closeCreateIngredientModal,
+  ] = useModal("Create Ingredient", () => (
+    <CreateIngredientForm
+      onComplete={(ingredient) =>
+        navigate(`/ingredient/${ingredient.ingredientName}`)
+      }
+      close={() => closeCreateIngredientModal()}
+    />
+  ));
+
+  return (
+    <Fragment>
+      <CollectionPage
+        entityName="Ingredient"
+        data={data?.items}
+        loading={loading}
+        renderItem={(ingredient: IngredientListItem) => {
+          const footerText = [
+            ...(ingredient.fruitVeg ? ["one of your 5 a day"] : []),
+          ];
+
+          return (
+            <ItemCard
+              key={`ingredient-card.${ingredient.ingredientName}`}
+              id={`ingredient-card.${ingredient.ingredientName}`}
+              title={ingredient.ingredientName}
+              footerText={footerText}
+              imageUrl={ingredient.imageUrl}
+              linkTo={`/ingredient/${ingredient.ingredientName}`}
+              onDeleteButtonClick={() =>
+                showDeleteIngredientModal({
+                  ingredientName: ingredient.ingredientName,
+                })
+              }
+            />
+          );
+        }}
+        filter={{
+          queryParams: queryParams,
+          pageNumber: pageNumber,
+          totalPages: data ? Math.ceil(data.total / PAGINATION_LIMIT) : 0,
+        }}
+        callbacks={{
+          setSearchFilter: onSearch,
+          setPageNumber: onPageChange,
+          showFilterModal: () =>
+            showIngredientFilterModal({ currentFilters: queryParams }),
+          showCreateModal: () => showCreateIngredientModal({}),
+        }}
+      />
+      {ingredientFilterModal}
+      {createIngredientModal}
       {deleteIngredientModal}
-    </PageTemplate>
+    </Fragment>
   );
 }

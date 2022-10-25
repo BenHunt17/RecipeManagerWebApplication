@@ -2,22 +2,22 @@ import { Fragment, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { SubmitButton } from "../../Components/Common/StyledComponents/ButtonComponents";
 import { FlexContainer } from "../../Components/Common/StyledComponents/ShortcutComponents";
-import useMutate, { HttpMethod } from "../../Hooks/useMutate";
+import useMutate, { HttpMethod } from "../../hooks/useMutate";
 import {
   Ingredient,
   IngredientInput,
   MeasureUnit,
 } from "../../types/ingredientTypes";
-import Toggle from "../../Components/FormComponents/Toggle";
+import Toggle from "../../Components/form/Toggle";
 import {
   ErrorMessage,
   LoadingSpinner,
 } from "../../Components/Common/StyledComponents/ContentComponents";
-import ImageUpload from "../../Components/FormComponents/ImageUpload";
-import TextInput from "../../Components/FormComponents/TextInput";
-import TextArea from "../../Components/FormComponents/TextArea";
-import InputContainer from "../../Components/FormComponents/InputContainer";
-import Select from "../../Components/FormComponents/Select";
+import ImageUpload from "../../Components/form/ImageUpload";
+import TextInput from "../../Components/form/TextInput";
+import TextArea from "../../Components/form/TextArea";
+import InputContainer from "../../Components/form/InputContainer";
+import Select from "../../Components/form/Select";
 import { MainFormLayout } from "../../Components/Common/StyledComponents/Layouts";
 
 const defaultValues = {
@@ -35,10 +35,10 @@ const defaultValues = {
 };
 
 export default function CreateIngredientForm({
-  addToFetchedIngredients,
+  onComplete,
   close,
 }: {
-  addToFetchedIngredients: (addedIngredient: Ingredient) => void;
+  onComplete: (addedIngredient: Ingredient) => void;
   close: () => void;
 }) {
   const { control, handleSubmit, formState, watch } = useForm<IngredientInput>({
@@ -52,7 +52,7 @@ export default function CreateIngredientForm({
     endpointPath: `${process.env.REACT_APP_RECIPE_MANAGER_API_URL}ingredient`,
     httpMethod: HttpMethod.POST,
     onComplete: (result: Ingredient) => {
-      addToFetchedIngredients(result);
+      onComplete(result);
       close();
     },
   });

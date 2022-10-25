@@ -4,7 +4,7 @@ import SearchAndFilter from "../../../Components/Common/SearchAndFilter";
 import { AddButton } from "../../../Components/Common/StyledComponents/ButtonComponents";
 import CreateRecipeForm from "../../../Forms/RecipeForms/CreateRecipeForm";
 import RecipeFilterForm from "../../../Forms/RecipeForms/RecipeFilterForm";
-import useModal from "../../../Hooks/useModal";
+import useModal from "../../../hooks/useModal";
 import { QueryParameters } from "../../../types/commonTypes";
 import { Recipe } from "../../../types/recipeTypes";
 import { getCount, PAGINATION_LIMIT } from "../../../Utilities/FilterUtilities";

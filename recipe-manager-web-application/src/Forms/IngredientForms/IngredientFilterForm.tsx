@@ -3,8 +3,8 @@ import { useForm } from "react-hook-form";
 import { SubmitButton } from "../../Components/Common/StyledComponents/ButtonComponents";
 import { ErrorMessage } from "../../Components/Common/StyledComponents/ContentComponents";
 import { FilterFormLayout } from "../../Components/Common/StyledComponents/Layouts";
-import InputContainer from "../../Components/FormComponents/InputContainer";
-import RangeInput from "../../Components/FormComponents/RangeInput";
+import InputContainer from "../../Components/form/InputContainer";
+import RangeInput from "../../Components/form/RangeInput";
 import { MinMaxValue, QueryParameters } from "../../types/commonTypes";
 import { getProperty } from "../../Utilities/FilterUtilities";
 import {
@@ -13,7 +13,7 @@ import {
   TryParseFloat,
 } from "../../Utilities/FilterParsers";
 import { FlexContainer } from "../../Components/Common/StyledComponents/ShortcutComponents";
-import DiscreteOptionSelector from "../../Components/FormComponents/DiscreteOptionSelector";
+import DiscreteOptionSelector from "../../Components/form/DiscreteOptionSelector";
 
 interface IngredientFilters {
   calories?: MinMaxValue;

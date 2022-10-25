@@ -14,8 +14,8 @@ import {
 import { FlexContainer } from "../../Components/Common/StyledComponents/ShortcutComponents";
 import UpdateIngredientImageForm from "../../Forms/IngredientForms/UpdateIngredientImageForm";
 import UpdateIngredientForm from "../../Forms/IngredientForms/UpdateIngredientForm";
-import useFetch from "../../Hooks/useFetch";
-import useModal from "../../Hooks/useModal";
+import useFetch from "../../hooks/useFetch";
+import useModal from "../../hooks/useModal";
 import { Ingredient } from "../../types/ingredientTypes";
 import ImageDisplay from "../../Components/Common/ImageDisplay";
 import EditIcon from "../../svg/EditIcon";

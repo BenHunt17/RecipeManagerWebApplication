@@ -8,12 +8,12 @@ import {
   UseFormWatch,
 } from "react-hook-form";
 import { FlexContainer } from "../../Components/Common/StyledComponents/ShortcutComponents";
-import DynamicList from "../../Components/FormComponents/DynamicList";
-import TextInput from "../../Components/FormComponents/TextInput";
-import SearchSelect from "../../Components/FormComponents/SearchSelect";
+import DynamicList from "../../Components/form/DynamicList";
+import TextInput from "../../Components/form/TextInput";
+import SearchSelect from "../../Components/form/SearchSelect";
 import { IngredientListItem } from "../../types/ingredientTypes";
-import useFetch from "../../Hooks/useFetch";
-import InputContainer from "../../Components/FormComponents/InputContainer";
+import useFetch from "../../hooks/useFetch";
+import InputContainer from "../../Components/form/InputContainer";
 import { ErrorMessage } from "../../Components/Common/StyledComponents/ContentComponents";
 import { RecipeIngredientInput, RecipeInput } from "../../types/recipeTypes";
 import styled from "@emotion/styled";

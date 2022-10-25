@@ -2,16 +2,16 @@ import styled from "@emotion/styled";
 import { Fragment, useEffect, useState } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
 import { FlexContainer } from "../../Components/Common/StyledComponents/ShortcutComponents";
-import useMutate, { HttpMethod } from "../../Hooks/useMutate";
-import Toggle from "../../Components/FormComponents/Toggle";
+import useMutate, { HttpMethod } from "../../hooks/useMutate";
+import Toggle from "../../Components/form/Toggle";
 import {
   ErrorMessage,
   LoadingSpinner,
 } from "../../Components/Common/StyledComponents/ContentComponents";
-import ImageUpload from "../../Components/FormComponents/ImageUpload";
-import TextInput from "../../Components/FormComponents/TextInput";
-import TextArea from "../../Components/FormComponents/TextArea";
-import InputContainer from "../../Components/FormComponents/InputContainer";
+import ImageUpload from "../../Components/form/ImageUpload";
+import TextInput from "../../Components/form/TextInput";
+import TextArea from "../../Components/form/TextArea";
+import InputContainer from "../../Components/form/InputContainer";
 import Slider from "../../Components/Common/Slider";
 import { Recipe, RecipeInput } from "../../types/recipeTypes";
 import InstructionsForm from "./InstructionsForm";

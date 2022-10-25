@@ -4,7 +4,7 @@ import { Recipe } from "../../types/recipeTypes";
 import RecipeInstructions from "./RecipeInstructions";
 import RecipeIngredientsList from "./RecipeIngredientsList";
 import RecipeNutrition from "./RecipeNutrition";
-import useFetch from "../../Hooks/useFetch";
+import useFetch from "../../hooks/useFetch";
 import { useParams } from "react-router-dom";
 import BreakfastIcon from "../../svg/BreakfastIcon";
 import DinnerIcon from "../../svg/DinnerIcon";
@@ -16,7 +16,7 @@ import {
   PageTemplate,
 } from "../../Components/Common/StyledComponents/Layouts";
 import ImageDisplay from "../../Components/Common/ImageDisplay";
-import useModal from "../../Hooks/useModal";
+import useModal from "../../hooks/useModal";
 import { IconButton } from "../../Components/Common/StyledComponents/ButtonComponents";
 import UpdateRecipeImageForm from "../../Forms/RecipeForms/UpdateRecipeImageForm";
 import EditIcon from "../../svg/EditIcon";

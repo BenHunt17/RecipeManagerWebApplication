@@ -1,21 +1,21 @@
 import { Fragment, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { SubmitButton } from "../../Components/Common/StyledComponents/ButtonComponents";
-import useMutate, { HttpMethod } from "../../Hooks/useMutate";
+import useMutate, { HttpMethod } from "../../hooks/useMutate";
 import {
   Ingredient,
   IngredientInput,
   MeasureUnit,
 } from "../../types/ingredientTypes";
-import Toggle from "../../Components/FormComponents/Toggle";
+import Toggle from "../../Components/form/Toggle";
 import {
   ErrorMessage,
   LoadingSpinner,
 } from "../../Components/Common/StyledComponents/ContentComponents";
-import TextInput from "../../Components/FormComponents/TextInput";
-import TextArea from "../../Components/FormComponents/TextArea";
-import InputContainer from "../../Components/FormComponents/InputContainer";
-import Select from "../../Components/FormComponents/Select";
+import TextInput from "../../Components/form/TextInput";
+import TextArea from "../../Components/form/TextArea";
+import InputContainer from "../../Components/form/InputContainer";
+import Select from "../../Components/form/Select";
 import { FlexContainer } from "../../Components/Common/StyledComponents/ShortcutComponents";
 import { MainFormLayout } from "../../Components/Common/StyledComponents/Layouts";
 import { json } from "stream/consumers";

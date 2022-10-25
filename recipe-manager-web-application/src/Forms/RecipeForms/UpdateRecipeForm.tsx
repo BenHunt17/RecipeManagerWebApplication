@@ -1,15 +1,15 @@
 import styled from "@emotion/styled";
 import { useForm } from "react-hook-form";
 import { FlexContainer } from "../../Components/Common/StyledComponents/ShortcutComponents";
-import useMutate, { HttpMethod } from "../../Hooks/useMutate";
-import Toggle from "../../Components/FormComponents/Toggle";
+import useMutate, { HttpMethod } from "../../hooks/useMutate";
+import Toggle from "../../Components/form/Toggle";
 import {
   ErrorMessage,
   LoadingSpinner,
 } from "../../Components/Common/StyledComponents/ContentComponents";
-import TextInput from "../../Components/FormComponents/TextInput";
-import TextArea from "../../Components/FormComponents/TextArea";
-import InputContainer from "../../Components/FormComponents/InputContainer";
+import TextInput from "../../Components/form/TextInput";
+import TextArea from "../../Components/form/TextArea";
+import InputContainer from "../../Components/form/InputContainer";
 import { Recipe } from "../../types/recipeTypes";
 import { SubmitButton } from "../../Components/Common/StyledComponents/ButtonComponents";
 import { MainFormLayout } from "../../Components/Common/StyledComponents/Layouts";

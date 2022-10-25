@@ -6,8 +6,8 @@ import {
   PageTemplate,
 } from "../../../Components/Common/StyledComponents/Layouts";
 import DeleteRecipeForm from "../../../Forms/RecipeForms/DeleteRecipeForm";
-import useFetch from "../../../Hooks/useFetch";
-import useModal from "../../../Hooks/useModal";
+import useFetch from "../../../hooks/useFetch";
+import useModal from "../../../hooks/useModal";
 import { PaginatedResponse, QueryParameters } from "../../../types/commonTypes";
 import { Recipe, RecipeListItem } from "../../../types/recipeTypes";
 import { PAGINATION_LIMIT } from "../../../Utilities/FilterUtilities";

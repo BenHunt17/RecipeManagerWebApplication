@@ -3,7 +3,7 @@ import { useFieldArray, useForm } from "react-hook-form";
 import { SubmitButton } from "../../Components/Common/StyledComponents/ButtonComponents";
 import { LoadingSpinner } from "../../Components/Common/StyledComponents/ContentComponents";
 import { FlexContainer } from "../../Components/Common/StyledComponents/ShortcutComponents";
-import useMutate, { HttpMethod } from "../../Hooks/useMutate";
+import useMutate, { HttpMethod } from "../../hooks/useMutate";
 import {
   Recipe,
   RecipeInput,
