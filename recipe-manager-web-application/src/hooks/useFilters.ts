@@ -24,9 +24,7 @@ export function useFilters() {
       setQueryParams({
         offset: "PAGE:0",
         limit: `PAGE:${PAGINATION_LIMIT}`,
-        ...(!!searchQuery.length
-          ? { ingredientName: `LIKE:${searchQuery}` }
-          : {}),
+        ...(!!searchQuery.length ? { searchQuery: `LIKE:${searchQuery}` } : {}),
       }),
     [setQueryParams, searchQuery]
   );
@@ -35,9 +33,7 @@ export function useFilters() {
     setQueryParams({
       offset: "PAGE:0",
       limit: `PAGE:${PAGINATION_LIMIT}`,
-      ...(!!searchQuery.length
-        ? { ingredientName: `LIKE:${searchQuery}` }
-        : {}),
+      ...(!!searchQuery.length ? { searchQuery: `LIKE:${searchQuery}` } : {}),
       ...filters,
     });
 
@@ -45,9 +41,7 @@ export function useFilters() {
     setQueryParams({
       offset: "PAGE:0",
       limit: `PAGE:${PAGINATION_LIMIT}`,
-      ...(!!searchQuery.length
-        ? { ingredientName: `LIKE:${searchQuery}` }
-        : {}),
+      ...(!!searchQuery.length ? { searchQuery: `LIKE:${searchQuery}` } : {}),
     });
 
   return {

@@ -1,15 +1,15 @@
-import ItemCard from "../../../Components/Common/ItemCard";
-import useFetch from "../../../hooks/useFetch";
-import useModal from "../../../hooks/useModal";
-import { IngredientListItem } from "../../../types/ingredientTypes";
-import DeleteIngredientForm from "../../../Forms/IngredientForms/DeleteIngredientForm";
+import ItemCard from "../Components/Common/ItemCard";
+import useFetch from "../hooks/useFetch";
+import useModal from "../hooks/useModal";
+import { IngredientListItem } from "../types/ingredientTypes";
+import DeleteIngredientForm from "../Forms/IngredientForms/DeleteIngredientForm";
 import { Fragment } from "react";
-import { PaginatedResponse, QueryParameters } from "../../../types/commonTypes";
-import { PAGINATION_LIMIT } from "../../../Utilities/FilterUtilities";
-import CollectionPage from "../../../Components/pageTemplate/CollectionPage";
-import IngredientFilterForm from "../../../Forms/IngredientForms/IngredientFilterForm";
-import CreateIngredientForm from "../../../Forms/IngredientForms/CreateIngredientForm";
-import { useFilters } from "../../../hooks/useFilters";
+import { PaginatedResponse, QueryParameters } from "../types/commonTypes";
+import { PAGINATION_LIMIT } from "../Utilities/FilterUtilities";
+import CollectionPage from "../Components/templates/CollectionPage";
+import IngredientFilterForm from "../Forms/IngredientForms/IngredientFilterForm";
+import CreateIngredientForm from "../Forms/IngredientForms/CreateIngredientForm";
+import { useFilters } from "../hooks/useFilters";
 import { useNavigate } from "react-router-dom";
 
 export default function IngredientCollectionPage() {

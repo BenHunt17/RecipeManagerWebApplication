@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Dashboard from "./Pages/Dashboard";
 import RecipeInformation from "./Pages/RecipeInformation/RecipeInformation";
 import IngredientInformation from "./Pages/IngredientInformation/IngredientInformation";
-import IngredientCollectionPage from "./Pages/CollectionPages/IngredientCollectionPage/IngredientCollectionPage";
-import RecipeCollectionPage from "./Pages/CollectionPages/RecipeCollectionPage/RecipeCollectionPage";
+import IngredientCollectionPage from "./Pages/IngredientCollectionPage";
+import RecipeCollectionPage from "./Pages/RecipeCollectionPage";
 import Login from "./Pages/Login/Login";
 import ProtectedRoutes from "./ProtectedRoutes";
 

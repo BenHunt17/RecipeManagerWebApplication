@@ -40,10 +40,10 @@ const defaultValues = {
 };
 
 export default function CreateRecipeForm({
-  addToFetchedRecipes,
+  onComplete,
   close,
 }: {
-  addToFetchedRecipes: (addedRecipe: Recipe) => void;
+  onComplete: (addedRecipe: Recipe) => void;
   close: () => void;
 }) {
   const { control, handleSubmit, formState, clearErrors, watch, setValue } =
@@ -75,7 +75,7 @@ export default function CreateRecipeForm({
     endpointPath: `${process.env.REACT_APP_RECIPE_MANAGER_API_URL}recipe`,
     httpMethod: HttpMethod.POST,
     onComplete: (result: Recipe) => {
-      addToFetchedRecipes(result);
+      onComplete(result);
       close();
     },
   });
