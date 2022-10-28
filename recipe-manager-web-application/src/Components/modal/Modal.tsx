@@ -1,16 +1,5 @@
 import styled from "@emotion/styled";
 import { Fragment } from "react";
-import Layer from "./Layer";
-
-const Overlay = styled.div`
-  width: 100%;
-  height: calc(100% - 150px);
-  position: fixed;
-  top: 150px;
-  left: 0px;
-  background-color: var(--colour-light-grey);
-  opacity: 0.8;
-`;
 
 const ModalContainer = styled.div`
   max-width: 50%;
@@ -52,17 +41,14 @@ export default function Modal({
   onClose: () => void;
 }) {
   return (
-    <Layer>
-      <Fragment>
-        <Overlay />
-        <ModalContainer>
-          <ExitButton onClick={onClose}>X</ExitButton>
-          <ModalContent>
-            <h3>{title}</h3>
-            {content}
-          </ModalContent>
-        </ModalContainer>
-      </Fragment>
-    </Layer>
+    <Fragment>
+      <ModalContainer>
+        <ExitButton onClick={onClose}>X</ExitButton>
+        <ModalContent>
+          <h3>{title}</h3>
+          {content}
+        </ModalContent>
+      </ModalContainer>
+    </Fragment>
   );
 }

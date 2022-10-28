@@ -1,30 +1,33 @@
-import React, { Fragment, useState } from "react";
-import Modal from "../Components/Modal";
+import React, { Fragment, useContext, useRef, useState } from "react";
+import Modal from "../Components/modal/Modal";
+import { ModalsContext } from "../providers/ModalsProvider";
 
 export default function useModal<T>(
   title: string,
   renderContent: (props: T) => React.ReactNode
 ) {
-  const [showing, setShowing] = useState(false);
-  const [props, setProps] = useState<T | undefined>(undefined);
+  const modalsContext = useContext(ModalsContext);
+  const modalIndex = useRef<number>();
 
   const close = () => {
-    setShowing(false);
+    if (modalIndex.current !== undefined) {
+      modalsContext?.removeModal(modalIndex.current);
+    }
   };
 
   const open = (contentProps: T) => {
-    setProps(contentProps);
-    setShowing(true);
-  };
-
-  const modal =
-    props && showing ? (
+    const modal = contentProps ? (
       <Modal
         title={title}
-        content={<Fragment>{renderContent(props)}</Fragment>}
+        content={<Fragment>{renderContent(contentProps)}</Fragment>}
         onClose={close}
       />
     ) : undefined;
 
-  return [modal, open, close] as const;
+    if (modal) {
+      modalIndex.current = modalsContext?.addModal(modal);
+    }
+  };
+
+  return [open, close] as const;
 }

@@ -52,7 +52,6 @@ export default function RecipeIngredientsForm({
   const [queryParameters, setQueryParameters] = useState<
     QueryParameters | undefined
   >(undefined);
-  console.log(queryParameters, !queryParameters);
 
   const { data, loading } = useFetch<PaginatedResponse<IngredientListItem>>({
     endpointPath: `${process.env.REACT_APP_RECIPE_MANAGER_API_URL}ingredients`,

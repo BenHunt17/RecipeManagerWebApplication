@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import { useAuth } from "../Components/AuthProvider";
+import { useAuth } from "./contextHooks";
 
 export enum HttpMethod {
   GET = "GET",

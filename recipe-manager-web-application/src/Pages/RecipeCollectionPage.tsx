@@ -31,26 +31,31 @@ export default function RecipeCollectionPage() {
     queryParams: queryParams,
   });
 
-  const [recipeFilterModal, showRecipeFilterModal, closeRecipeFilterModal] =
-    useModal("Set Filters", (props: { currentFilters: QueryParameters }) => (
+  const [showRecipeFilterModal, closeRecipeFilterModal] = useModal(
+    "Set Filters",
+    (props: { currentFilters: QueryParameters }) => (
       <RecipeFilterForm
         currentFilters={props.currentFilters}
         applyFilters={appendFilters}
         clearFilters={clearFilters}
         close={() => closeRecipeFilterModal()}
       />
-    ));
+    )
+  );
 
-  const [createRecipeModal, showCreateRecipeModal, closeCreateRecipeModal] =
-    useModal("Create Recipe", () => (
+  const [showCreateRecipeModal, closeCreateRecipeModal] = useModal(
+    "Create Recipe",
+    () => (
       <CreateRecipeForm
         onComplete={(recipe) => navigate(`/recipes/${recipe.recipeName}`)}
         close={() => closeCreateRecipeModal()}
       />
-    ));
+    )
+  );
 
-  const [deleteReipeModal, showDeleteRecipeModal, closeDeleteRecipeModal] =
-    useModal("Delete Recipe", (props: { recipeName: string }) => (
+  const [showDeleteRecipeModal, closeDeleteRecipeModal] = useModal(
+    "Delete Recipe",
+    (props: { recipeName: string }) => (
       <DeleteRecipeForm
         recipeName={props.recipeName}
         removeFromFetchedRecipes={() => {
@@ -67,7 +72,8 @@ export default function RecipeCollectionPage() {
         }}
         close={() => closeDeleteRecipeModal()}
       />
-    ));
+    )
+  );
 
   return (
     <Fragment>
@@ -106,9 +112,6 @@ export default function RecipeCollectionPage() {
           showCreateModal: () => showCreateRecipeModal({}),
         }}
       />
-      {recipeFilterModal}
-      {createRecipeModal}
-      {deleteReipeModal}
     </Fragment>
   );
 }

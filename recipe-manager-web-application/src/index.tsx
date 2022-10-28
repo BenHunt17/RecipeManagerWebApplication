@@ -3,15 +3,15 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import LayersProvider from "./Components/LayersProvider";
-import AuthProvider from "./Components/AuthProvider";
+import AuthProvider from "./providers/AuthProvider";
+import ModalsProvider from "./providers/ModalsProvider";
 
 ReactDOM.render(
   <React.StrictMode>
     <AuthProvider>
-      <LayersProvider>
+      <ModalsProvider>
         <App />
-      </LayersProvider>
+      </ModalsProvider>
     </AuthProvider>
   </React.StrictMode>,
   document.getElementById("root")

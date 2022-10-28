@@ -16,20 +16,17 @@ export default function IngredientsList({
   recipe: Recipe;
   updateInFetchedRecipe: (recipe: Recipe) => void;
 }) {
-  const [
-    updateRecipeIngredientsModal,
-    showUpdateRecipeIngredientsModal,
-    closeUpdateRecipeIngredientsModal,
-  ] = useModal("Update Recipe Ingredients", () => (
-    <UpdateRecipeIngredientsForm
-      recipeName={recipe.recipeName}
-      existingRecipeIngredients={recipe.ingredients}
-      updateInFetchedRecipe={(recipeIngredients: RecipeIngredient[]) =>
-        updateInFetchedRecipe({ ...recipe, ingredients: recipeIngredients })
-      }
-      close={() => closeUpdateRecipeIngredientsModal()}
-    />
-  ));
+  const [showUpdateRecipeIngredientsModal, closeUpdateRecipeIngredientsModal] =
+    useModal("Update Recipe Ingredients", () => (
+      <UpdateRecipeIngredientsForm
+        recipeName={recipe.recipeName}
+        existingRecipeIngredients={recipe.ingredients}
+        updateInFetchedRecipe={(recipeIngredients: RecipeIngredient[]) =>
+          updateInFetchedRecipe({ ...recipe, ingredients: recipeIngredients })
+        }
+        close={() => closeUpdateRecipeIngredientsModal()}
+      />
+    ));
 
   return (
     <ContentBox
@@ -53,7 +50,6 @@ export default function IngredientsList({
           </Link>
         ))}
       </FlexContainer>
-      {updateRecipeIngredientsModal}
     </ContentBox>
   );
 }

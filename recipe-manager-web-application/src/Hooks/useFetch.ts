@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { useAuth } from "../Components/AuthProvider";
 import { QueryParameters } from "../types/commonTypes";
 import { expandQueryParameters } from "../Utilities/FilterUtilities";
+import { useAuth } from "./contextHooks";
 
 export default function useFetch<T>({
   endpointPath,

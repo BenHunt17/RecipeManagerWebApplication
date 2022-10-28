@@ -1,11 +1,11 @@
 import styled from "@emotion/styled";
 import { useForm } from "react-hook-form";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useAuth } from "../../Components/AuthProvider";
 import { SubmitButton } from "../../Components/Common/StyledComponents/ButtonComponents";
 import { ErrorMessage } from "../../Components/Common/StyledComponents/ContentComponents";
 import { FlexContainer } from "../../Components/Common/StyledComponents/ShortcutComponents";
 import TextInput from "../../Components/form/TextInput";
+import { useAuth } from "../../hooks/contextHooks";
 import { UserCredentials } from "../../types/userTypes";
 
 const LoginPageTemplate = styled.div`
@@ -20,7 +20,7 @@ export default function Login() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const { control, handleSubmit, formState } = useForm<UserCredentials>({
+  const { control, handleSubmit } = useForm<UserCredentials>({
     defaultValues: { username: "", password: "" },
   });
 

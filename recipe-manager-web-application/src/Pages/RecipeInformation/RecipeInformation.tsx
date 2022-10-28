@@ -42,18 +42,21 @@ export default function RecipeInformation() {
     endpointPath: `${process.env.REACT_APP_RECIPE_MANAGER_API_URL}recipe/${recipeName}`,
   });
 
-  const [updateRecipeModal, showUpdateRecipeModal, closeUpdateRecipeModal] =
-    useModal("Update Recipe", (props: { existingRecipe: Recipe }) => (
+  const [showUpdateRecipeModal, closeUpdateRecipeModal] = useModal(
+    "Update Recipe",
+    (props: { existingRecipe: Recipe }) => (
       <UpdateRecipeForm
         recipeName={recipeName ?? ""}
         existingRecipe={props.existingRecipe}
         updateInFetchedRecipe={(recipe: Recipe) => modifyData(recipe)}
         close={() => closeUpdateRecipeModal()}
       />
-    ));
+    )
+  );
 
-  const [uploadImageModal, showUploadImageModal, closeUploadImageModal] =
-    useModal("Change Image", () => (
+  const [showUploadImageModal, closeUploadImageModal] = useModal(
+    "Change Image",
+    () => (
       <UpdateRecipeImageForm
         recipeName={recipeName ?? ""}
         imageUrl={data?.imageUrl ?? null}
@@ -64,7 +67,8 @@ export default function RecipeInformation() {
         }}
         close={() => closeUploadImageModal()}
       />
-    ));
+    )
+  );
 
   return (
     <PageTemplate>
@@ -158,8 +162,6 @@ export default function RecipeInformation() {
       ) : (
         <LoadingScreen>Loading Recipe Data...</LoadingScreen>
       )}
-      {updateRecipeModal}
-      {uploadImageModal}
     </PageTemplate>
   );
 }

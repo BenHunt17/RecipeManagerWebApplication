@@ -39,11 +39,7 @@ export default function IngredientInformation() {
     endpointPath: `${process.env.REACT_APP_RECIPE_MANAGER_API_URL}ingredient/${ingredientName}`,
   });
 
-  const [
-    updateIngredientModal,
-    showUpdateIngredientModal,
-    closeUpdateIngredientModal,
-  ] = useModal(
+  const [showUpdateIngredientModal, closeUpdateIngredientModal] = useModal(
     "Update Ingredient",
     (props: { existingIngredient: Ingredient }) => (
       <UpdateIngredientForm
@@ -57,8 +53,9 @@ export default function IngredientInformation() {
     )
   );
 
-  const [uploadImageModal, showUploadImageModal, closeUploadImageModal] =
-    useModal("Change Image", () => (
+  const [showUploadImageModal, closeUploadImageModal] = useModal(
+    "Change Image",
+    () => (
       <UpdateIngredientImageForm
         ingredientName={ingredientName ?? ""}
         imageUrl={data?.imageUrl ?? null}
@@ -69,7 +66,8 @@ export default function IngredientInformation() {
         }}
         close={() => closeUploadImageModal()}
       />
-    ));
+    )
+  );
 
   return (
     <PageTemplate>
@@ -124,8 +122,6 @@ export default function IngredientInformation() {
       ) : (
         <LoadingScreen>Loading Ingredient Data...</LoadingScreen>
       )}
-      {updateIngredientModal}
-      {uploadImageModal}
     </PageTemplate>
   );
 }

@@ -30,54 +30,51 @@ export default function IngredientCollectionPage() {
     queryParams: queryParams,
   });
 
-  const [
-    deleteIngredientModal,
-    showDeleteIngredientModal,
-    closeDeleteIngredientModal,
-  ] = useModal("Delete Ingredient", (props: { ingredientName: string }) => (
-    <DeleteIngredientForm
-      ingredientName={props.ingredientName}
-      removeFromFetchedIngredients={() => {
-        if (data) {
-          modifyData({
-            ...data,
-            items:
-              data.items.filter(
-                (item) => item.ingredientName !== props.ingredientName
-              ) ?? [],
-            total: data.total - 1,
-          });
+  const [showDeleteIngredientModal, closeDeleteIngredientModal] = useModal(
+    "Delete Ingredient",
+    (props: { ingredientName: string }) => (
+      <DeleteIngredientForm
+        ingredientName={props.ingredientName}
+        removeFromFetchedIngredients={() => {
+          if (data) {
+            modifyData({
+              ...data,
+              items:
+                data.items.filter(
+                  (item) => item.ingredientName !== props.ingredientName
+                ) ?? [],
+              total: data.total - 1,
+            });
+          }
+        }}
+        close={() => closeDeleteIngredientModal()}
+      />
+    )
+  );
+
+  const [showIngredientFilterModal, closeIngredientFilterModal] = useModal(
+    "Set Filters",
+    (props: { currentFilters: QueryParameters }) => (
+      <IngredientFilterForm
+        currentFilters={props.currentFilters}
+        applyFilters={appendFilters}
+        clearFilters={clearFilters}
+        close={() => closeIngredientFilterModal()}
+      />
+    )
+  );
+
+  const [showCreateIngredientModal, closeCreateIngredientModal] = useModal(
+    "Create Ingredient",
+    () => (
+      <CreateIngredientForm
+        onComplete={(ingredient) =>
+          navigate(`/ingredient/${ingredient.ingredientName}`)
         }
-      }}
-      close={() => closeDeleteIngredientModal()}
-    />
-  ));
-
-  const [
-    ingredientFilterModal,
-    showIngredientFilterModal,
-    closeIngredientFilterModal,
-  ] = useModal("Set Filters", (props: { currentFilters: QueryParameters }) => (
-    <IngredientFilterForm
-      currentFilters={props.currentFilters}
-      applyFilters={appendFilters}
-      clearFilters={clearFilters}
-      close={() => closeIngredientFilterModal()}
-    />
-  ));
-
-  const [
-    createIngredientModal,
-    showCreateIngredientModal,
-    closeCreateIngredientModal,
-  ] = useModal("Create Ingredient", () => (
-    <CreateIngredientForm
-      onComplete={(ingredient) =>
-        navigate(`/ingredient/${ingredient.ingredientName}`)
-      }
-      close={() => closeCreateIngredientModal()}
-    />
-  ));
+        close={() => closeCreateIngredientModal()}
+      />
+    )
+  );
 
   return (
     <Fragment>
@@ -119,9 +116,6 @@ export default function IngredientCollectionPage() {
           showCreateModal: () => showCreateIngredientModal({}),
         }}
       />
-      {ingredientFilterModal}
-      {createIngredientModal}
-      {deleteIngredientModal}
     </Fragment>
   );
 }

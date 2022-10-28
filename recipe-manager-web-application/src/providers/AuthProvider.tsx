@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import { HttpMethod } from "../hooks/useMutate";
 import { UserCredentials } from "../types/userTypes";
 
@@ -8,10 +8,6 @@ interface AuthContextType {
   authenticationDenied: boolean;
   login: (userCredentials: UserCredentials) => Promise<void>;
   logout: () => Promise<void>;
-}
-
-export function useAuth() {
-  return useContext(AuthContext);
 }
 
 export const AuthContext = createContext<AuthContextType | undefined>(

@@ -12,20 +12,19 @@ export default function RecipeInstructions({
   recipe: Recipe;
   updateInFetchedRecipe: (recipe: Recipe) => void;
 }) {
-  const [
-    updateinstructionsModal,
-    showUpdateinstructionsModal,
-    closeUpdateinstructionsModal,
-  ] = useModal("Update Recipe Ingredients", () => (
-    <UpdateInstructionsForm
-      recipeName={recipe.recipeName}
-      existingInstructions={recipe.instructions}
-      updateInFetchedRecipe={(recipeInstructions: RecipeInstruction[]) =>
-        updateInFetchedRecipe({ ...recipe, instructions: recipeInstructions })
-      }
-      close={() => closeUpdateinstructionsModal()}
-    />
-  ));
+  const [showUpdateinstructionsModal, closeUpdateinstructionsModal] = useModal(
+    "Update Recipe Ingredients",
+    () => (
+      <UpdateInstructionsForm
+        recipeName={recipe.recipeName}
+        existingInstructions={recipe.instructions}
+        updateInFetchedRecipe={(recipeInstructions: RecipeInstruction[]) =>
+          updateInFetchedRecipe({ ...recipe, instructions: recipeInstructions })
+        }
+        close={() => closeUpdateinstructionsModal()}
+      />
+    )
+  );
 
   const sortedInstructions = recipe.instructions.sort(
     (first, second) => first.instructionNumber - second.instructionNumber
@@ -47,7 +46,6 @@ export default function RecipeInstructions({
           </li>
         ))}
       </ol>
-      {updateinstructionsModal}
     </ContentBox>
   );
 }
