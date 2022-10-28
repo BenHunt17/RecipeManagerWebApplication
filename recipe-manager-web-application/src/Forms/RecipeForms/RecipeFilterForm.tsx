@@ -5,7 +5,6 @@ import { ErrorMessage } from "../../Components/Common/StyledComponents/ContentCo
 import { FilterFormLayout } from "../../Components/Common/StyledComponents/Layouts";
 import { FlexContainer } from "../../Components/Common/StyledComponents/ShortcutComponents";
 import DiscreteOptionSelector from "../../Components/form/DiscreteOptionSelector";
-import InputContainer from "../../Components/form/InputContainer";
 import NumberSelector from "../../Components/form/NumberSelector";
 import TimeRangeInput from "../../Components/form/TimeRangeInput";
 import {
@@ -104,87 +103,42 @@ export default function RecipeFilterForm({
     <Fragment>
       <form onSubmit={formMethods.handleSubmit(onSubmit)}>
         <FilterFormLayout>
-          <InputContainer
-            title="Rating"
-            input={
-              <NumberSelector
-                id="rating.number-selector"
-                control={formMethods.control}
-                name="rating"
-                options={[1, 2, 3, 4, 5]}
-              />
-            }
+          <NumberSelector
+            id="rating.number-selector"
+            control={formMethods.control}
+            name="rating"
+            options={[1, 2, 3, 4, 5]}
           />
-          <InputContainer
-            title="Prep Time"
-            input={
-              <TimeRangeInput control={formMethods.control} name="prepTime" />
-            }
+          <TimeRangeInput control={formMethods.control} name="prepTime" />
+          <NumberSelector
+            id="rating.number-selector"
+            control={formMethods.control}
+            name="servingSize"
+            options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]}
           />
-          <InputContainer
-            title="Serving Size"
-            input={
-              <NumberSelector
-                id="rating.number-selector"
-                control={formMethods.control}
-                name="servingSize"
-                options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]}
-              />
-            }
+          <DiscreteOptionSelector
+            id="breakfast.filter-selector"
+            control={formMethods.control}
+            name="breakfast"
+            options={[true, false]}
+            label={(option) => (option ? "Yes" : "No")}
+            width={150}
           />
-          <InputContainer
-            title="Breakfast"
-            input={
-              <DiscreteOptionSelector
-                id="breakfast.filter-selector"
-                control={formMethods.control}
-                name="breakfast"
-                options={[true, false]}
-                label={(option) => (option ? "Yes" : "No")}
-                width={150}
-              />
-            }
-            error={
-              <ErrorMessage>
-                {formMethods.formState.errors.breakfast?.message}
-              </ErrorMessage>
-            }
+          <DiscreteOptionSelector
+            id="lunch.filter-selector"
+            control={formMethods.control}
+            name="lunch"
+            options={[true, false]}
+            label={(option) => (option ? "Yes" : "No")}
+            width={150}
           />
-          <InputContainer
-            title="Lunch"
-            input={
-              <DiscreteOptionSelector
-                id="lunch.filter-selector"
-                control={formMethods.control}
-                name="lunch"
-                options={[true, false]}
-                label={(option) => (option ? "Yes" : "No")}
-                width={150}
-              />
-            }
-            error={
-              <ErrorMessage>
-                {formMethods.formState.errors.lunch?.message}
-              </ErrorMessage>
-            }
-          />
-          <InputContainer
-            title="Dinner"
-            input={
-              <DiscreteOptionSelector
-                id="dinner.filter-selector"
-                control={formMethods.control}
-                name="dinner"
-                options={[true, false]}
-                label={(option) => (option ? "Yes" : "No")}
-                width={150}
-              />
-            }
-            error={
-              <ErrorMessage>
-                {formMethods.formState.errors.dinner?.message}
-              </ErrorMessage>
-            }
+          <DiscreteOptionSelector
+            id="dinner.filter-selector"
+            control={formMethods.control}
+            name="dinner"
+            options={[true, false]}
+            label={(option) => (option ? "Yes" : "No")}
+            width={150}
           />
           <FlexContainer
             direction="row"

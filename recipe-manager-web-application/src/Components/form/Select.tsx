@@ -12,6 +12,10 @@ const SelectInput = styled.select`
   margin: 0em;
 `;
 
+const Option = styled.option`
+  border: 3px solid var(--colour-primary);
+`;
+
 export default function Select<T extends FieldValues, U>(
   props: UseControllerProps<T> & {
     options: U[];
@@ -23,12 +27,7 @@ export default function Select<T extends FieldValues, U>(
   return (
     <SelectInput {...field}>
       {props.options.map((option) => (
-        <option
-          style={{ border: "3px solid var(--colour-primary)" }}
-          key={`select.${props.label(option)}`}
-        >
-          {props.label(option)}
-        </option>
+        <Option key={props.label(option)}>{props.label(option)}</Option>
       ))}
     </SelectInput>
   );

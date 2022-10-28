@@ -16,7 +16,6 @@ import {
 import ImageUpload from "../../Components/form/ImageUpload";
 import TextInput from "../../Components/form/TextInput";
 import TextArea from "../../Components/form/TextArea";
-import InputContainer from "../../Components/form/InputContainer";
 import Select from "../../Components/form/Select";
 import { MainFormLayout } from "../../Components/Common/StyledComponents/Layouts";
 
@@ -105,40 +104,22 @@ export default function CreateIngredientForm({
             gap={25}
             margin="0 0 55px 0"
           >
-            <InputContainer
-              title="Ingredient Name*"
-              input={
-                <TextInput
-                  control={control}
-                  name="ingredientName"
-                  rules={{
-                    required: "Required Field",
-                    maxLength: { value: 80, message: "Maximum length of 80" },
-                  }}
-                />
-              }
-              error={
-                <ErrorMessage>
-                  {formState.errors.ingredientName?.message}
-                </ErrorMessage>
-              }
+            <TextInput
+              control={control}
+              name="ingredientName"
+              rules={{
+                required: "Required Field",
+                maxLength: { value: 80, message: "Maximum length of 80" },
+              }}
+            />{" "}
+            <TextArea
+              control={control}
+              name="ingredientDescription"
+              rules={{
+                maxLength: { value: 512, message: "Maximum length of 512" },
+              }}
             />
-            <InputContainer
-              title="Ingredient Description"
-              input={
-                <TextArea
-                  control={control}
-                  name="ingredientDescription"
-                  rules={{
-                    maxLength: { value: 512, message: "Maximum length of 512" },
-                  }}
-                />
-              }
-            />
-            <InputContainer
-              title="Fruit/Veg"
-              input={<Toggle control={control} name="fruitVeg" />}
-            />
+            <Toggle control={control} name="fruitVeg" title="Fruit / Veg" />
           </FlexContainer>
           <ImageUpload image={ingredientImage} setImage={setIngredientImage} />
           <FlexContainer
@@ -147,66 +128,31 @@ export default function CreateIngredientForm({
             justifyContent="space-between"
             gap={10}
           >
-            <InputContainer
-              title={`${
-                quantityUnit ? `Quantity (${quantityUnit})*` : "Quantity*"
-              }`}
-              input={
-                <TextInput
-                  control={control}
-                  name="quantity"
-                  rules={{
-                    required: "Required Field",
-                  }}
-                />
-              }
-              error={
-                <ErrorMessage>
-                  {formState.errors.quantity?.message}
-                </ErrorMessage>
-              }
-              width={100}
+            <TextInput
+              control={control}
+              name="quantity"
+              rules={{
+                required: "Required Field",
+              }}
             />
-            <InputContainer
-              title="Measure Unit*"
-              input={
-                <Select
-                  control={control}
-                  name="measureUnit"
-                  options={Object.values(MeasureUnit)}
-                  label={(option) => option}
-                />
-              }
+            <Select
+              control={control}
+              name="measureUnit"
+              options={Object.values(MeasureUnit)}
+              label={(option) => option}
             />
+            <TextInput
+              control={control}
+              name="calories"
+              rules={{
+                required: "Required Field",
+              }}
+            />
+            <TextInput control={control} name="salt" />
+            <TextInput control={control} name="fat" />
+            <TextInput control={control} name="protein" />
+            <TextInput control={control} name="carbs" />
           </FlexContainer>
-          <InputContainer
-            title="Calories*"
-            input={
-              <TextInput
-                control={control}
-                name="calories"
-                rules={{
-                  required: "Required Field",
-                }}
-              />
-            }
-          />
-          <InputContainer
-            title="Salt"
-            input={<TextInput control={control} name="salt" />}
-          />
-          <InputContainer
-            title="Fat"
-            input={<TextInput control={control} name="fat" />}
-          />
-          <InputContainer
-            title="Protein"
-            input={<TextInput control={control} name="protein" />}
-          />
-          <InputContainer
-            title="Carbs"
-            input={<TextInput control={control} name="carbs" />}
-          />
         </MainFormLayout>
 
         {loading ? (

@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form";
 import { SubmitButton } from "../../Components/Common/StyledComponents/ButtonComponents";
 import { ErrorMessage } from "../../Components/Common/StyledComponents/ContentComponents";
 import { FilterFormLayout } from "../../Components/Common/StyledComponents/Layouts";
-import InputContainer from "../../Components/form/InputContainer";
 import RangeInput from "../../Components/form/RangeInput";
 import { MinMaxValue, QueryParameters } from "../../types/commonTypes";
 import { getProperty } from "../../Utilities/FilterUtilities";
@@ -107,98 +106,63 @@ export default function IngredientFilterForm({
     <Fragment>
       <form onSubmit={formMethods.handleSubmit(onSubmit)}>
         <FilterFormLayout>
-          <InputContainer
-            title="Calories"
-            input={
-              <RangeInput
-                control={formMethods.control}
-                name="calories"
-                minName="calories.min"
-                maxName="calories.max"
-                minLimit={0}
-                maxLimit={999}
-                minError={formMethods.formState.errors.calories?.min?.message}
-                maxError={formMethods.formState.errors.calories?.max?.message}
-              />
-            }
+          <RangeInput
+            control={formMethods.control}
+            name="calories"
+            minName="calories.min"
+            maxName="calories.max"
+            minLimit={0}
+            maxLimit={999}
+            minError={formMethods.formState.errors.calories?.min?.message}
+            maxError={formMethods.formState.errors.calories?.max?.message}
           />
-          <InputContainer
-            title="Salt"
-            input={
-              <RangeInput
-                control={formMethods.control}
-                name="salt"
-                minName="salt.min"
-                maxName="salt.max"
-                minLimit={0}
-                maxLimit={999}
-                minError={formMethods.formState.errors.salt?.min?.message}
-                maxError={formMethods.formState.errors.salt?.max?.message}
-              />
-            }
+          <RangeInput
+            control={formMethods.control}
+            name="salt"
+            minName="salt.min"
+            maxName="salt.max"
+            minLimit={0}
+            maxLimit={999}
+            minError={formMethods.formState.errors.salt?.min?.message}
+            maxError={formMethods.formState.errors.salt?.max?.message}
+          />{" "}
+          <RangeInput
+            control={formMethods.control}
+            name="fat"
+            minName="fat.min"
+            maxName="fat.max"
+            minLimit={0}
+            maxLimit={999}
+            minError={formMethods.formState.errors.fat?.min?.message}
+            maxError={formMethods.formState.errors.fat?.max?.message}
           />
-          <InputContainer
-            title="Fat"
-            input={
-              <RangeInput
-                control={formMethods.control}
-                name="fat"
-                minName="fat.min"
-                maxName="fat.max"
-                minLimit={0}
-                maxLimit={999}
-                minError={formMethods.formState.errors.fat?.min?.message}
-                maxError={formMethods.formState.errors.fat?.max?.message}
-              />
-            }
+          <RangeInput
+            control={formMethods.control}
+            name="protein"
+            minName="protein.min"
+            maxName="protein.max"
+            minLimit={0}
+            maxLimit={999}
+            minError={formMethods.formState.errors.protein?.min?.message}
+            maxError={formMethods.formState.errors.protein?.max?.message}
           />
-          <InputContainer
-            title="Protein"
-            input={
-              <RangeInput
-                control={formMethods.control}
-                name="protein"
-                minName="protein.min"
-                maxName="protein.max"
-                minLimit={0}
-                maxLimit={999}
-                minError={formMethods.formState.errors.protein?.min?.message}
-                maxError={formMethods.formState.errors.protein?.max?.message}
-              />
-            }
+          <RangeInput
+            control={formMethods.control}
+            name="carbs"
+            minName="carbs.min"
+            maxName="carbs.max"
+            minLimit={0}
+            maxLimit={999}
+            minError={formMethods.formState.errors.carbs?.min?.message}
+            maxError={formMethods.formState.errors.carbs?.max?.message}
           />
-          <InputContainer
-            title="Carbs"
-            input={
-              <RangeInput
-                control={formMethods.control}
-                name="carbs"
-                minName="carbs.min"
-                maxName="carbs.max"
-                minLimit={0}
-                maxLimit={999}
-                minError={formMethods.formState.errors.carbs?.min?.message}
-                maxError={formMethods.formState.errors.carbs?.max?.message}
-              />
-            }
-          />
-          <InputContainer
-            title="1 of 5 a day"
-            input={
-              <DiscreteOptionSelector
-                id="fruit-veg.filter-selector"
-                control={formMethods.control}
-                name="fruitVeg"
-                options={[true, false]}
-                label={(option) => (option ? "Yes" : "No")}
-                width={150}
-              />
-            }
-            error={
-              <ErrorMessage>
-                {formMethods.formState.errors.fruitVeg?.message}
-              </ErrorMessage>
-            }
+          <DiscreteOptionSelector
+            id="fruit-veg.filter-selector"
+            control={formMethods.control}
+            name="fruitVeg"
+            options={[true, false]}
+            label={(option) => (option ? "Yes" : "No")}
+            width={150}
           />
           <FlexContainer
             direction="row"

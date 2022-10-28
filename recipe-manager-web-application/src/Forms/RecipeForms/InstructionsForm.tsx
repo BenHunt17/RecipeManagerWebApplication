@@ -13,7 +13,6 @@ import {
 import { ErrorMessage } from "../../Components/Common/StyledComponents/ContentComponents";
 import { FlexContainer } from "../../Components/Common/StyledComponents/ShortcutComponents";
 import DynamicList from "../../Components/form/DynamicList";
-import InputContainer from "../../Components/form/InputContainer";
 import TextArea from "../../Components/form/TextArea";
 import { RecipeInput, RecipeInstructionInput } from "../../types/recipeTypes";
 
@@ -66,24 +65,12 @@ export default function InstructionsForm({
                 width: 100%;
               `}
             >
-              <InputContainer
-                input={
-                  <TextArea
-                    control={control}
-                    name={`instructions.${index}.instructionText`}
-                    rules={{
-                      required: "Required Field",
-                    }}
-                  />
-                }
-                error={
-                  <ErrorMessage>
-                    {
-                      formState.errors.instructions?.[index].instructionText
-                        ?.message
-                    }
-                  </ErrorMessage>
-                }
+              <TextArea
+                control={control}
+                name={`instructions.${index}.instructionText`}
+                rules={{
+                  required: "Required Field",
+                }}
               />
             </div>
           </FlexContainer>

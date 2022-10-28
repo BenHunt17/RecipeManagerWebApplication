@@ -4,15 +4,15 @@ import styled from "@emotion/styled";
 
 export const FlexContainer = styled.div(
   ({
-    direction,
-    justifyContent,
+    direction = "row",
+    justifyContent = "space-between",
     alignItems,
     gap,
     margin,
     width,
   }: {
-    direction: "row" | "column";
-    justifyContent:
+    direction?: "row" | "column";
+    justifyContent?:
       | "flex-start"
       | "flex-end"
       | "center"

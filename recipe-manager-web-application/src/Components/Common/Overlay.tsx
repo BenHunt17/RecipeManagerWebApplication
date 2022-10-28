@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { useEffect, useLayoutEffect, useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 
 const OVERLAY_BOTTOM_MARGIN = 10;
 const OVERLAY_MIN_HEIGHT = 100;
@@ -18,30 +18,11 @@ const OverlayContainer = styled.div(
 export default function Overlay({
   children,
   anchorRef,
-  onOutsideClick,
 }: {
   children: React.ReactNode;
   anchorRef: React.RefObject<HTMLDivElement>;
-  onOutsideClick: () => void;
 }) {
   const wrapperRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    //When the on outside click function changes, will add a click event listener to the document. The on outside click function is warpped in another which ensures the click isn't in the overlay
-    const handleClickOutside = (e: MouseEvent) => {
-      if (
-        wrapperRef.current &&
-        e.target instanceof Node &&
-        !wrapperRef.current.contains(e.target)
-      ) {
-        onOutsideClick();
-      }
-    };
-    document.addEventListener("click", handleClickOutside, true);
-    return () => {
-      document.removeEventListener("click", handleClickOutside, true);
-    };
-  }, [onOutsideClick]);
 
   useLayoutEffect(() => {
     //When the overlay is changed in the DOM, a margin is calculated and applied so that it behaves correctly. Will apply DOM changes before the render

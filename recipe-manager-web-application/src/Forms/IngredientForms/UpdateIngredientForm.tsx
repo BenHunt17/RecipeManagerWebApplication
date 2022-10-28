@@ -14,11 +14,9 @@ import {
 } from "../../Components/Common/StyledComponents/ContentComponents";
 import TextInput from "../../Components/form/TextInput";
 import TextArea from "../../Components/form/TextArea";
-import InputContainer from "../../Components/form/InputContainer";
 import Select from "../../Components/form/Select";
 import { FlexContainer } from "../../Components/Common/StyledComponents/ShortcutComponents";
 import { MainFormLayout } from "../../Components/Common/StyledComponents/Layouts";
-import { json } from "stream/consumers";
 
 function extractDefaultValues(existingIngredient: Ingredient) {
   return {
@@ -89,35 +87,20 @@ export default function UpdateIngredientForm({
             alignItems="center"
             gap={25}
           >
-            <InputContainer
-              title="Ingredient Name*"
-              input={
-                <TextInput
-                  control={control}
-                  name="ingredientName"
-                  rules={{
-                    required: "Required Field",
-                    maxLength: { value: 80, message: "Maximum length of 80" },
-                  }}
-                />
-              }
-              error={
-                <ErrorMessage>
-                  {formState.errors.ingredientName?.message}
-                </ErrorMessage>
-              }
-            />
-            <InputContainer
-              title="Ingredient Description"
-              input={
-                <TextArea
-                  control={control}
-                  name="ingredientDescription"
-                  rules={{
-                    maxLength: { value: 512, message: "Maximum length of 512" },
-                  }}
-                />
-              }
+            <TextInput
+              control={control}
+              name="ingredientName"
+              rules={{
+                required: "Required Field",
+                maxLength: { value: 80, message: "Maximum length of 80" },
+              }}
+            />{" "}
+            <TextArea
+              control={control}
+              name="ingredientDescription"
+              rules={{
+                maxLength: { value: 512, message: "Maximum length of 512" },
+              }}
             />
           </FlexContainer>
           <FlexContainer
@@ -125,61 +108,28 @@ export default function UpdateIngredientForm({
             justifyContent="center"
             margin="10px 0 10px 0"
           >
-            <InputContainer
-              title="Fruit/Veg"
-              input={<Toggle control={control} name="fruitVeg" />}
-            />
+            <Toggle control={control} name="fruitVeg" />
           </FlexContainer>
         </FlexContainer>
         <MainFormLayout>
-          <InputContainer
-            title="Measure Unit*"
-            input={
-              <Select
-                control={control}
-                name="measureUnit"
-                options={Object.values(MeasureUnit)}
-                label={(option) => option}
-              />
-            }
+          <Select
+            control={control}
+            name="measureUnit"
+            options={Object.values(MeasureUnit)}
+            label={(option) => option}
           />
-          <InputContainer
-            title={`${
-              quantityUnit ? `Quantity (${quantityUnit})` : "Quantity"
-            }`}
-            input={
-              <TextInput
-                control={control}
-                name="quantity"
-                rules={{
-                  required: "Required Field",
-                }}
-              />
-            }
-            error={
-              <ErrorMessage>{formState.errors.quantity?.message}</ErrorMessage>
-            }
+          <TextInput
+            control={control}
+            name="quantity"
+            rules={{
+              required: "Required Field",
+            }}
           />
-          <InputContainer
-            title="Calories"
-            input={<TextInput control={control} name="calories" />}
-          />
-          <InputContainer
-            title="Salt"
-            input={<TextInput control={control} name="salt" />}
-          />
-          <InputContainer
-            title="Fat"
-            input={<TextInput control={control} name="fat" />}
-          />
-          <InputContainer
-            title="Protein"
-            input={<TextInput control={control} name="protein" />}
-          />
-          <InputContainer
-            title="Carbs"
-            input={<TextInput control={control} name="carbs" />}
-          />
+          <TextInput control={control} name="calories" />
+          <TextInput control={control} name="salt" />
+          <TextInput control={control} name="fat" />
+          <TextInput control={control} name="protein" />
+          <TextInput control={control} name="carbs" />
         </MainFormLayout>
 
         {loading ? (

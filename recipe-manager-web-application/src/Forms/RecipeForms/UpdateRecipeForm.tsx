@@ -9,7 +9,6 @@ import {
 } from "../../Components/Common/StyledComponents/ContentComponents";
 import TextInput from "../../Components/form/TextInput";
 import TextArea from "../../Components/form/TextArea";
-import InputContainer from "../../Components/form/InputContainer";
 import { Recipe } from "../../types/recipeTypes";
 import { SubmitButton } from "../../Components/Common/StyledComponents/ButtonComponents";
 import { MainFormLayout } from "../../Components/Common/StyledComponents/Layouts";
@@ -96,162 +95,105 @@ export default function UpdateRecipeForm({
     <form onSubmit={handleSubmit(onSubmit)}>
       <FlexContainer direction="column" justifyContent="space-between" gap={25}>
         <MainFormLayout>
-          <InputContainer
-            title="Recipe Name*"
-            input={
-              <TextInput
-                control={control}
-                name="recipeName"
-                rules={{
-                  required: "Required Field",
-                  maxLength: {
-                    value: 80,
-                    message: "Maximum length of 80",
-                  },
-                }}
-              />
-            }
-            error={
-              <ErrorMessage>
-                {formState.errors.recipeName?.message}
-              </ErrorMessage>
-            }
+          <TextInput
+            control={control}
+            name="recipeName"
+            rules={{
+              required: "Required Field",
+              maxLength: {
+                value: 80,
+                message: "Maximum length of 80",
+              },
+            }}
           />
-          <InputContainer
-            title="Recipe Description"
-            input={
-              <TextArea
-                control={control}
-                name="recipeDescription"
-                rules={{
-                  maxLength: {
-                    value: 512,
-                    message: "Maximum length of 512",
-                  },
-                }}
-              />
-            }
+          <TextArea
+            control={control}
+            name="recipeDescription"
+            rules={{
+              maxLength: {
+                value: 512,
+                message: "Maximum length of 512",
+              },
+            }}
           />
         </MainFormLayout>
         <BottomLayout>
-          <InputContainer
-            title="Rating*"
-            input={
-              //TODO - Maybe make each of these exportable components in a utils file or something so that this wordy fform code isn't being duplicated
-              <TextInput
-                control={control}
-                name="rating"
-                rules={{
-                  required: "Required Field",
-                  min: {
-                    value: 1,
-                    message: "Must be greater than 0",
-                  },
-                  max: {
-                    value: 5,
-                    message: "Maximum 5",
-                  },
-                }}
-              />
-            }
-            error={
-              <ErrorMessage>{formState.errors.rating?.message}</ErrorMessage>
-            }
+          <TextInput
+            control={control}
+            name="rating"
+            rules={{
+              required: "Required Field",
+              min: {
+                value: 1,
+                message: "Must be greater than 0",
+              },
+              max: {
+                value: 5,
+                message: "Maximum 5",
+              },
+            }}
           />
-          <InputContainer
-            title="Prep Time*"
-            input={
-              <TextInput
-                control={control}
-                name="prepTime"
-                rules={{
-                  required: "Required Field",
-                  min: {
-                    value: 0,
-                    message: "Must be greater than 0",
-                  },
-                }}
-              />
-            }
-            error={
-              <ErrorMessage>{formState.errors.prepTime?.message}</ErrorMessage>
-            }
+          <TextInput
+            control={control}
+            name="prepTime"
+            rules={{
+              required: "Required Field",
+              min: {
+                value: 0,
+                message: "Must be greater than 0",
+              },
+            }}
           />
-          <InputContainer
-            title="Serving Size*"
-            input={
-              <TextInput
-                control={control}
-                name="servingSize"
-                rules={{
-                  required: "Required Field",
-                  min: {
-                    value: 1,
-                    message: "Must be greater than 0",
-                  },
-                  max: {
-                    value: 12,
-                    message: "Maximum 12",
-                  },
-                }}
-              />
-            }
-            error={
-              <ErrorMessage>
-                {formState.errors.servingSize?.message}
-              </ErrorMessage>
-            }
+          <TextInput
+            control={control}
+            name="servingSize"
+            rules={{
+              required: "Required Field",
+              min: {
+                value: 1,
+                message: "Must be greater than 0",
+              },
+              max: {
+                value: 12,
+                message: "Maximum 12",
+              },
+            }}
           />
-          <InputContainer
-            title="Breakfast"
-            input={
-              <Toggle
-                control={control}
-                name="breakfast"
-                rules={{
-                  validate: (breakfast) =>
-                    validateMealError(
-                      !!breakfast,
-                      control._formValues.lunch,
-                      control._formValues.dinner
-                    ),
-                }}
-              />
-            }
+          <Toggle
+            control={control}
+            name="breakfast"
+            rules={{
+              validate: (breakfast) =>
+                validateMealError(
+                  !!breakfast,
+                  control._formValues.lunch,
+                  control._formValues.dinner
+                ),
+            }}
           />
-          <InputContainer
-            title="Lunch"
-            input={
-              <Toggle
-                control={control}
-                name="lunch"
-                rules={{
-                  validate: (lunch) =>
-                    validateMealError(
-                      control._formValues.breakfast,
-                      !!lunch,
-                      control._formValues.dinner
-                    ),
-                }}
-              />
-            }
+          <Toggle
+            control={control}
+            name="lunch"
+            rules={{
+              validate: (lunch) =>
+                validateMealError(
+                  control._formValues.breakfast,
+                  !!lunch,
+                  control._formValues.dinner
+                ),
+            }}
           />
-          <InputContainer
-            title="Dinner"
-            input={
-              <Toggle
-                control={control}
-                name="dinner"
-                rules={{
-                  validate: (dinner) =>
-                    validateMealError(
-                      control._formValues.breakfast,
-                      control._formValues.lunch,
-                      !!dinner
-                    ),
-                }}
-              />
-            }
+          <Toggle
+            control={control}
+            name="dinner"
+            rules={{
+              validate: (dinner) =>
+                validateMealError(
+                  control._formValues.breakfast,
+                  control._formValues.lunch,
+                  !!dinner
+                ),
+            }}
           />
         </BottomLayout>
         <ErrorMessage>

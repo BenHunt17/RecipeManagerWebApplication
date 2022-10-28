@@ -5,7 +5,6 @@ import { useAuth } from "../../Components/AuthProvider";
 import { SubmitButton } from "../../Components/Common/StyledComponents/ButtonComponents";
 import { ErrorMessage } from "../../Components/Common/StyledComponents/ContentComponents";
 import { FlexContainer } from "../../Components/Common/StyledComponents/ShortcutComponents";
-import InputContainer from "../../Components/form/InputContainer";
 import TextInput from "../../Components/form/TextInput";
 import { UserCredentials } from "../../types/userTypes";
 
@@ -42,38 +41,22 @@ export default function Login() {
           width={450}
         >
           <h2>Login</h2>
-          <InputContainer
-            title="Username*"
-            input={
-              <TextInput
-                name="username"
-                control={control}
-                rules={{
-                  required: "Required Field",
-                }}
-              />
-            }
-            error={
-              <ErrorMessage>{formState.errors.username?.message}</ErrorMessage>
-            }
+          <TextInput
+            name="username"
+            control={control}
+            rules={{
+              required: "Required Field",
+            }}
           />
-          <InputContainer
-            title="Password*"
-            input={
-              <TextInput
-                name="password"
-                control={control}
-                rules={{
-                  required: "Required Field",
-                }}
-                inputProps={{
-                  type: "password",
-                }}
-              />
-            }
-            error={
-              <ErrorMessage>{formState.errors.password?.message}</ErrorMessage>
-            }
+          <TextInput
+            name="password"
+            control={control}
+            rules={{
+              required: "Required Field",
+            }}
+            inputProps={{
+              type: "password",
+            }}
           />
           {auth?.authenticationDenied && (
             <ErrorMessage large>Incorrect Credentials</ErrorMessage>

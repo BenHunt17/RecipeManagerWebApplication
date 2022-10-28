@@ -13,7 +13,6 @@ import TextInput from "../../Components/form/TextInput";
 import SearchSelect from "../../Components/form/SearchSelect";
 import { IngredientListItem } from "../../types/ingredientTypes";
 import useFetch from "../../hooks/useFetch";
-import InputContainer from "../../Components/form/InputContainer";
 import { ErrorMessage } from "../../Components/Common/StyledComponents/ContentComponents";
 import { RecipeIngredientInput, RecipeInput } from "../../types/recipeTypes";
 import styled from "@emotion/styled";
@@ -87,50 +86,26 @@ export default function RecipeIngredientsForm({
             justifyContent="flex-start"
             gap={10}
           >
-            <InputContainer
-              input={
-                <SearchSelect
-                  control={control}
-                  name={`recipeIngredients.${index}.ingredientName`}
-                  rules={{
-                    required: "Required Field",
-                  }}
-                  options={(data?.items ?? []).map(
-                    (ingredient) => ingredient.ingredientName
-                  )}
-                  promptMessage="Search Ingredient"
-                  onSearch={searchIngredients}
-                  resultLabel={(result) => result ?? ""}
-                  loading={loading}
-                />
-              }
-              error={
-                <ErrorMessage>
-                  {
-                    formState.errors.recipeIngredients?.[index].ingredientName
-                      ?.message
-                  }
-                </ErrorMessage>
-              }
+            <SearchSelect
+              control={control}
+              name={`recipeIngredients.${index}.ingredientName`}
+              rules={{
+                required: "Required Field",
+              }}
+              options={(data?.items ?? []).map(
+                (ingredient) => ingredient.ingredientName
+              )}
+              placeholder="Search Ingredient"
+              onSearch={searchIngredients}
+              resultLabel={(result) => result ?? ""}
+              loading={loading}
             />
-            <InputContainer
-              input={
-                <TextInput
-                  control={control}
-                  rules={{
-                    required: "Required Field",
-                  }}
-                  name={`recipeIngredients.${index}.quantity`}
-                />
-              }
-              error={
-                <ErrorMessage>
-                  {
-                    formState.errors.recipeIngredients?.[index].quantity
-                      ?.message
-                  }
-                </ErrorMessage>
-              }
+            <TextInput
+              control={control}
+              rules={{
+                required: "Required Field",
+              }}
+              name={`recipeIngredients.${index}.quantity`}
             />
             {/* TODO - Make this entire form look prettier */}
             <UnitContainer>
