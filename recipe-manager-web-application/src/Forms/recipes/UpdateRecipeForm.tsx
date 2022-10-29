@@ -9,7 +9,7 @@ import {
 } from "../../Components/Common/StyledComponents/ContentComponents";
 import TextInput from "../../Components/form/TextInput";
 import TextArea from "../../Components/form/TextArea";
-import { Recipe } from "../../types/recipeTypes";
+import { Recipe, RecipeInput } from "../../types/recipeTypes";
 import { SubmitButton } from "../../Components/Common/StyledComponents/ButtonComponents";
 import { MainFormLayout } from "../../Components/Common/StyledComponents/Layouts";
 
@@ -19,17 +19,6 @@ const BottomLayout = styled.div`
   gap: 25px;
   margin-bottom: 25px;
 `;
-
-type RecipeFormData = {
-  recipeName: string;
-  recipeDescription: string;
-  rating: number;
-  prepTime: number;
-  servingSize: number;
-  breakfast: boolean;
-  lunch: boolean;
-  dinner: boolean;
-};
 
 function extractDefaultValues(existingRecipe: Recipe) {
   return {
@@ -55,8 +44,8 @@ export default function UpdateRecipeForm({
   updateInFetchedRecipe: (updatedRecipe: Recipe) => void;
   close: () => void;
 }) {
-  const { control, handleSubmit, formState, clearErrors, watch, setValue } =
-    useForm<RecipeFormData>({
+  const { control, handleSubmit, formState, clearErrors } =
+    useForm<RecipeInput>({
       defaultValues: extractDefaultValues(existingRecipe),
     });
 
@@ -70,7 +59,7 @@ export default function UpdateRecipeForm({
     jsonData: true,
   });
 
-  const onSubmit = (formValues: RecipeFormData) => {
+  const onSubmit = (formValues: RecipeInput) => {
     updateRecipe(JSON.stringify(formValues));
   };
 

@@ -1,4 +1,4 @@
-import { MeasureUnit } from "./ingredientTypes";
+import { IngredientListItem, MeasureUnit } from "./ingredientTypes";
 
 export interface RecipeIngredient {
   ingredientName: string;
@@ -51,8 +51,6 @@ export interface RecipeInstructionInput {
 export interface RecipeInput {
   recipeName: string;
   recipeDescription: string;
-  recipeIngredients: RecipeIngredientInput[];
-  instructions: RecipeInstructionInput[];
   rating: number;
   prepTime: number;
   servingSize: number;

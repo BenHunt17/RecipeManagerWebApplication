@@ -3,6 +3,10 @@ import BinIcon from "../../svg/BinIcon";
 import { IconButton } from "../Common/StyledComponents/ButtonComponents";
 import { FlexContainer } from "../Common/StyledComponents/ShortcutComponents";
 
+const Title = styled.b`
+  color: var(--colour-text);
+`;
+
 const ItemsList = styled.div`
   max-height: 350px;
   display: flex;
@@ -29,35 +33,33 @@ const AddNewButton = styled.button`
   }
 `;
 
-export default function DynamicList({
+export default function FormList({
   title,
-  items,
-  defaultItemsCount,
+  sections,
+  defaultItemsCount = 0,
   addItem,
   removeItem,
 }: {
   title: string;
-  items: JSX.Element[];
+  sections: JSX.Element[];
   defaultItemsCount?: number;
   addItem: () => void;
   removeItem: (index: number) => void;
 }) {
-  //A generic component which allows user to add as many inputs as they need
-
   return (
     <FlexContainer direction="column" justifyContent="space-between" gap={25}>
-      <b>{title}</b>
+      <Title>{title}</Title>
       <ItemsList>
-        {items?.map((item, index) => (
+        {sections?.map((section, index) => (
           <FlexContainer
-            key={index}
+            key={section.key}
             direction="row"
             justifyContent="space-between"
             alignItems="center"
             gap={25}
           >
-            {item}
-            {items.length > (defaultItemsCount ?? 0) && (
+            {section}
+            {sections.length > defaultItemsCount && (
               <IconButton type="button" onClick={() => removeItem(index)}>
                 <BinIcon width={17} height={26} />
               </IconButton>

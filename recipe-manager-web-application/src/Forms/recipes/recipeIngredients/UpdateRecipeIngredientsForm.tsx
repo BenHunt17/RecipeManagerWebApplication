@@ -1,28 +1,23 @@
 import { useFieldArray, useForm } from "react-hook-form";
-import { SubmitButton } from "../../Components/Common/StyledComponents/ButtonComponents";
-import { LoadingSpinner } from "../../Components/Common/StyledComponents/ContentComponents";
-import { FlexContainer } from "../../Components/Common/StyledComponents/ShortcutComponents";
-import useMutate, { HttpMethod } from "../../hooks/useMutate";
-import { RecipeIngredient, RecipeInput } from "../../types/recipeTypes";
+import { SubmitButton } from "../../../Components/Common/StyledComponents/ButtonComponents";
+import { LoadingSpinner } from "../../../Components/Common/StyledComponents/ContentComponents";
+import { FlexContainer } from "../../../Components/Common/StyledComponents/ShortcutComponents";
+import useMutate, { HttpMethod } from "../../../hooks/useMutate";
+import { RecipeIngredientFormInput } from "../../../types/formTypes";
+import { RecipeIngredient } from "../../../types/recipeTypes";
 import RecipeIngredientsForm from "./RecipeIngredientsForm";
 
 function extractDefaultValues(existingRecipeIngredients: RecipeIngredient[]) {
   return {
-    recipeName: "",
-    recipeDescription: "",
-    recipeIngredients: existingRecipeIngredients.map((recipeIngredient) => {
+    ingredients: existingRecipeIngredients.map((recipeIngredient) => {
       return {
-        ingredientName: recipeIngredient.ingredientName,
+        ingredient: {
+          ingredientName: recipeIngredient.ingredientName,
+          measureUnit: recipeIngredient.measureUnit,
+        },
         quantity: recipeIngredient.quantity,
       };
     }),
-    instructions: [],
-    rating: 0,
-    prepTime: 0,
-    servingSize: 0,
-    breakfast: false,
-    lunch: false,
-    dinner: false,
   };
 }
 
@@ -37,9 +32,10 @@ export default function UpdateRecipeIngredientsForm({
   updateInFetchedRecipe: (recipeIngredients: RecipeIngredient[]) => void;
   close: () => void;
 }) {
-  const { control, handleSubmit, formState, watch } = useForm<RecipeInput>({
-    defaultValues: extractDefaultValues(existingRecipeIngredients), //Need to have form for entir recipe ingredients since the controller is needed in the recipe ingredients form :/
-  });
+  const { control, handleSubmit, formState, watch } =
+    useForm<RecipeIngredientFormInput>({
+      defaultValues: extractDefaultValues(existingRecipeIngredients), //Need to have form for entir recipe ingredients since the controller is needed in the recipe ingredients form :/
+    });
 
   const {
     fields: recipeIngredientFields,
@@ -47,7 +43,7 @@ export default function UpdateRecipeIngredientsForm({
     remove: recipeIngredientsRemove,
   } = useFieldArray({
     control: control,
-    name: "recipeIngredients",
+    name: "ingredients",
   });
 
   const { callback: updateRecipeIngredients, loading } = useMutate({
@@ -60,8 +56,8 @@ export default function UpdateRecipeIngredientsForm({
     jsonData: true,
   });
 
-  const onSubmit = (formValues: RecipeInput) => {
-    updateRecipeIngredients(JSON.stringify(formValues.recipeIngredients)); //Only stringifies the recipe ingredients
+  const onSubmit = (formValues: RecipeIngredientFormInput) => {
+    updateRecipeIngredients(JSON.stringify(formValues.ingredients));
   };
 
   return (

@@ -3,11 +3,11 @@ import ContentBox from "../../Components/Common/ContentBox";
 import { IconButton } from "../../Components/Common/StyledComponents/ButtonComponents";
 import { Label } from "../../Components/Common/StyledComponents/ContentComponents";
 import { FlexContainer } from "../../Components/Common/StyledComponents/ShortcutComponents";
-import UpdateRecipeIngredientsForm from "../../Forms/RecipeForms/UpdateRecipeIngredientsForm";
+import UpdateRecipeIngredientsForm from "../../Forms/recipes/recipeIngredients/UpdateRecipeIngredientsForm";
 import useModal from "../../hooks/useModal";
 import EditIcon from "../../svg/EditIcon";
 import { Recipe, RecipeIngredient } from "../../types/recipeTypes";
-import { MeasureUnitUnitString } from "../../Utilities/Ingredients";
+import { MeasureUnitToString } from "../../Utilities/Ingredients";
 
 export default function IngredientsList({
   recipe,
@@ -46,7 +46,7 @@ export default function IngredientsList({
           >
             <Label>{`${ingredient.ingredientName} | ${Number(
               ingredient.quantity.toFixed(2)
-            )} ${MeasureUnitUnitString(ingredient.measureUnit)}`}</Label>
+            )} ${MeasureUnitToString(ingredient.measureUnit)}`}</Label>
           </Link>
         ))}
       </FlexContainer>

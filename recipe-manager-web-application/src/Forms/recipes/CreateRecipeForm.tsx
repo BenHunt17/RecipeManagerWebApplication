@@ -13,10 +13,18 @@ import TextInput from "../../Components/form/TextInput";
 import TextArea from "../../Components/form/TextArea";
 import Slider from "../../Components/Common/Slider";
 import { Recipe, RecipeInput } from "../../types/recipeTypes";
-import InstructionsForm from "./InstructionsForm";
+import InstructionsForm, {
+  DEFAULT_INSTRUCTION_FORM_VALUE,
+} from "./InstructionsForm";
 import { SubmitButton } from "../../Components/Common/StyledComponents/ButtonComponents";
 import { MainFormLayout } from "../../Components/Common/StyledComponents/Layouts";
-import RecipeIngredientsForm from "./RecipeIngredientsForm";
+import RecipeIngredientsForm, {
+  DEFAULT_RECIPE_INGREDIENT_FORM_VALUE,
+} from "./recipeIngredients/RecipeIngredientsForm";
+import {
+  InstructionsFormInput,
+  RecipeIngredientFormInput,
+} from "../../types/formTypes";
 
 const BottomLayout = styled.div`
   display: grid;
@@ -28,8 +36,6 @@ const BottomLayout = styled.div`
 const defaultValues = {
   recipeName: "",
   recipeDescription: "",
-  recipeIngredients: [{ ingredientName: "", quantity: 0 }],
-  instructions: [{ instructionNumber: 1, instructionText: "" }],
   rating: 0,
   prepTime: 0,
   servingSize: 0,
@@ -45,18 +51,39 @@ export default function CreateRecipeForm({
   onComplete: (addedRecipe: Recipe) => void;
   close: () => void;
 }) {
-  const { control, handleSubmit, formState, clearErrors, watch, setValue } =
+  const { control, handleSubmit, formState, clearErrors } =
     useForm<RecipeInput>({
       defaultValues,
     });
+
+  const {
+    control: recipeIngredientsControl,
+    formState: recipeIngredientsFormState,
+    watch: recipeIngredientsWatch,
+  } = useForm<RecipeIngredientFormInput>({
+    defaultValues: {
+      ingredients: [DEFAULT_RECIPE_INGREDIENT_FORM_VALUE],
+    },
+  });
+
+  const {
+    control: instructionsControl,
+    formState: instructionsFormState,
+    watch: instructionsWatch,
+    setValue: instructionsSetValue,
+  } = useForm<InstructionsFormInput>({
+    defaultValues: {
+      instructions: [DEFAULT_INSTRUCTION_FORM_VALUE],
+    },
+  });
 
   const {
     fields: recipeIngredientFields,
     append: recipeIngredientsAppend,
     remove: recipeIngredientsRemove,
   } = useFieldArray({
-    control: control,
-    name: "recipeIngredients",
+    control: recipeIngredientsControl,
+    name: "ingredients",
   });
 
   const {
@@ -64,7 +91,7 @@ export default function CreateRecipeForm({
     append: instructionsAppend,
     remove: instructionsRemove,
   } = useFieldArray({
-    control: control,
+    control: instructionsControl,
     name: "instructions",
   });
 
@@ -79,6 +106,9 @@ export default function CreateRecipeForm({
     },
   });
 
+  const recipeIngredients = recipeIngredientsWatch("ingredients");
+  const instructions = instructionsWatch("instructions");
+
   const onSubmit = (formValues: RecipeInput) => {
     const formData = new FormData();
 
@@ -90,9 +120,16 @@ export default function CreateRecipeForm({
     formData.append("recipeDescription", formValues.recipeDescription);
     formData.append(
       "recipeIngredients",
-      JSON.stringify(formValues.recipeIngredients)
+      JSON.stringify(
+        recipeIngredients.map((recipeIngredient) => {
+          return {
+            ingredientName: recipeIngredient.ingredient.ingredientName,
+            quantity: recipeIngredient.quantity,
+          };
+        })
+      )
     );
-    formData.append("instructions", JSON.stringify(formValues.instructions));
+    formData.append("instructions", JSON.stringify(instructions));
     formData.append("rating", formValues.rating.toString());
     formData.append("prepTime", formValues.prepTime.toString());
     formData.append("servingSize", formValues.servingSize.toString());
@@ -104,7 +141,7 @@ export default function CreateRecipeForm({
   };
 
   useEffect(() => {
-    const subscription = watch((value, { name }) => {
+    const subscription = instructionsWatch((value, { name }) => {
       if (name === "instructions" && value.instructions) {
         if (
           value.instructions.some(
@@ -114,7 +151,7 @@ export default function CreateRecipeForm({
           )
         ) {
           //If the instruction numbers sequence has a gap in it, then will recalculate every number
-          setValue(
+          instructionsSetValue(
             "instructions",
             value.instructions.map((instruction, index) => {
               return {
@@ -127,7 +164,7 @@ export default function CreateRecipeForm({
       }
     });
     return () => subscription.unsubscribe();
-  }, [watch]);
+  }, [instructionsWatch]);
 
   const validateMealError = (
     breakfast: boolean,
@@ -272,17 +309,17 @@ export default function CreateRecipeForm({
               </ErrorMessage>
             </Fragment>,
             <InstructionsForm
-              control={control}
+              control={instructionsControl}
               fields={instructionFields}
-              formState={formState}
+              formState={instructionsFormState}
               append={instructionsAppend}
               remove={instructionsRemove}
             />,
             <RecipeIngredientsForm
-              control={control}
+              control={recipeIngredientsControl}
               fields={recipeIngredientFields}
-              formState={formState}
-              watch={watch}
+              formState={recipeIngredientsFormState}
+              watch={recipeIngredientsWatch}
               append={recipeIngredientsAppend}
               remove={recipeIngredientsRemove}
             />,

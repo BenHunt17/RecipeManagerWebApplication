@@ -18,10 +18,10 @@ import {
 import ImageDisplay from "../../Components/Common/ImageDisplay";
 import useModal from "../../hooks/useModal";
 import { IconButton } from "../../Components/Common/StyledComponents/ButtonComponents";
-import UpdateRecipeImageForm from "../../Forms/RecipeForms/UpdateRecipeImageForm";
+import UpdateRecipeImageForm from "../../Forms/recipes/UpdateRecipeImageForm";
 import EditIcon from "../../svg/EditIcon";
 import { TightParagraph } from "../../Components/Common/StyledComponents/ContentComponents";
-import UpdateRecipeForm from "../../Forms/RecipeForms/UpdateRecipeForm";
+import UpdateRecipeForm from "../../Forms/recipes/UpdateRecipeForm";
 import { minutesToTimeString } from "../../Utilities/Recipes";
 
 const ContentLayout = styled.div`

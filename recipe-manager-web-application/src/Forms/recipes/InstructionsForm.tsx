@@ -10,11 +10,16 @@ import {
   UseFieldArrayAppend,
   UseFieldArrayRemove,
 } from "react-hook-form";
-import { ErrorMessage } from "../../Components/Common/StyledComponents/ContentComponents";
 import { FlexContainer } from "../../Components/Common/StyledComponents/ShortcutComponents";
-import DynamicList from "../../Components/form/DynamicList";
 import TextArea from "../../Components/form/TextArea";
+import FormList from "../../Components/templates/FormList";
+import { InstructionsFormInput } from "../../types/formTypes";
 import { RecipeInput, RecipeInstructionInput } from "../../types/recipeTypes";
+
+export const DEFAULT_INSTRUCTION_FORM_VALUE = {
+  instructionNumber: 1,
+  instructionText: "",
+};
 
 const InstructionNumber = styled.h4`
   width: 31px;
@@ -29,13 +34,13 @@ export default function InstructionsForm({
   append,
   remove,
 }: {
-  control: Control<RecipeInput>;
+  control: Control<InstructionsFormInput>;
   fields: FieldArrayWithId<
     RecipeInstructionInput[],
     ArrayPath<RecipeInstructionInput[]>,
     "id"
   >[];
-  formState: FormState<RecipeInput>;
+  formState: FormState<InstructionsFormInput>;
   append: UseFieldArrayAppend<
     RecipeInstructionInput[],
     ArrayPath<RecipeInstructionInput[]>
@@ -43,9 +48,9 @@ export default function InstructionsForm({
   remove: UseFieldArrayRemove;
 }) {
   return (
-    <DynamicList
+    <FormList
       title="instructions"
-      items={fields.map((field, index) => (
+      sections={fields.map((field, index) => (
         <div
           css={css`
             width: 100%;

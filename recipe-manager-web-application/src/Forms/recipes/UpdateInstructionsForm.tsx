@@ -4,32 +4,11 @@ import { SubmitButton } from "../../Components/Common/StyledComponents/ButtonCom
 import { LoadingSpinner } from "../../Components/Common/StyledComponents/ContentComponents";
 import { FlexContainer } from "../../Components/Common/StyledComponents/ShortcutComponents";
 import useMutate, { HttpMethod } from "../../hooks/useMutate";
-import {
-  Recipe,
-  RecipeInput,
-  RecipeInstruction,
-} from "../../types/recipeTypes";
-import InstructionsForm from "./InstructionsForm";
-
-function extractDefaultValues(existingInstructions: RecipeInstruction[]) {
-  return {
-    recipeName: "",
-    recipeDescription: "",
-    recipeIngredients: [],
-    instructions: existingInstructions.map((instruction) => {
-      return {
-        instructionNumber: instruction.instructionNumber,
-        instructionText: instruction.instructionText,
-      };
-    }),
-    rating: 0,
-    prepTime: 0,
-    servingSize: 0,
-    breakfast: false,
-    lunch: false,
-    dinner: false,
-  };
-}
+import { InstructionsFormInput } from "../../types/formTypes";
+import { RecipeInstruction } from "../../types/recipeTypes";
+import InstructionsForm, {
+  DEFAULT_INSTRUCTION_FORM_VALUE,
+} from "./InstructionsForm";
 
 export default function UpdateRecipeIngredientsForm({
   recipeName,
@@ -43,8 +22,8 @@ export default function UpdateRecipeIngredientsForm({
   close: () => void;
 }) {
   const { control, handleSubmit, formState, watch, setValue } =
-    useForm<RecipeInput>({
-      defaultValues: extractDefaultValues(existingInstructions), //Need to have form for entir recipe ingredients since the controller is needed in the recipe ingredients form :/
+    useForm<InstructionsFormInput>({
+      defaultValues: { instructions: existingInstructions }, //Need to have form for entir recipe ingredients since the controller is needed in the recipe ingredients form :/
     });
 
   const {
@@ -66,7 +45,7 @@ export default function UpdateRecipeIngredientsForm({
     jsonData: true,
   });
 
-  const onSubmit = (formValues: RecipeInput) => {
+  const onSubmit = (formValues: InstructionsFormInput) => {
     updateInstructions(JSON.stringify(formValues.instructions));
   };
 

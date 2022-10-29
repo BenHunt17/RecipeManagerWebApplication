@@ -7,6 +7,7 @@ import {
   useController,
   UseControllerProps,
 } from "react-hook-form";
+import { Ingredient } from "../../types/ingredientTypes";
 import { formatFieldName } from "../../Utilities/formUtils";
 import OutsideClickProvider from "../Common/OutsideClickProvider";
 import Overlay from "../Common/Overlay";
@@ -51,7 +52,10 @@ function OverlayContent<U>({
     return (
       <div css={{ overflowY: "auto" }}>
         {options.map((option) => (
-          <Option onClick={() => onOptionClick(option)}>
+          <Option
+            key={resultLabel(option)}
+            onClick={() => onOptionClick(option)}
+          >
             {resultLabel?.(option)}
           </Option>
         ))}
@@ -66,7 +70,9 @@ export default function SearchSelect<T extends FieldValues, U>(
     options: U[];
     loading: boolean;
     onSearch: (searchText: string) => void;
+    defaultValue: U;
     resultLabel: (result: U) => string;
+    deepEqual?: (ingredientA: U, ingredientB: U) => boolean;
     placeholder?: string;
   }
 ) {
@@ -75,28 +81,34 @@ export default function SearchSelect<T extends FieldValues, U>(
   const [showOverlay, setShowOverlay] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
+  const valueSelected = !!field.value
+    ? !props.deepEqual?.(field.value, props.defaultValue) ??
+      field.value === props.defaultValue
+    : false;
+
   return (
     <OutsideClickProvider callback={() => setShowOverlay(false)}>
       {formatFieldName(field.name, false, false)}
       <FlexContainer>
         <input
           ref={inputRef}
-          value={!!field.value ? field.value : searchText}
+          value={valueSelected ? props.resultLabel(field.value) : searchText}
           onChange={(e) => setSearchText(e.currentTarget.value)}
-          disabled={!!field.value}
+          disabled={valueSelected}
           placeholder={props.placeholder}
         />
         <SearchSelectButton
+          type="button"
           onClick={() => {
-            if (!!field.value) {
-              field.onChange(undefined);
+            if (valueSelected) {
+              field.onChange(props.defaultValue);
               return;
             }
             props.onSearch(searchText);
             setShowOverlay(true);
           }}
         >
-          {!!field.value ? "x" : "Search"}
+          {valueSelected ? "x" : "Search"}
         </SearchSelectButton>
       </FlexContainer>
       {showOverlay && (
