@@ -1,14 +1,12 @@
 import { useEffect } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
-import { SubmitButton } from "../../Components/Common/StyledComponents/ButtonComponents";
-import { LoadingSpinner } from "../../Components/Common/StyledComponents/ContentComponents";
-import { FlexContainer } from "../../Components/Common/StyledComponents/ShortcutComponents";
-import useMutate, { HttpMethod } from "../../hooks/useMutate";
-import { InstructionsFormInput } from "../../types/formTypes";
-import { RecipeInstruction } from "../../types/recipeTypes";
-import InstructionsForm, {
-  DEFAULT_INSTRUCTION_FORM_VALUE,
-} from "./InstructionsForm";
+import { SubmitButton } from "../../../Components/Common/StyledComponents/ButtonComponents";
+import { LoadingSpinner } from "../../../Components/Common/StyledComponents/ContentComponents";
+import { FlexContainer } from "../../../Components/Common/StyledComponents/ShortcutComponents";
+import useMutate, { HttpMethod } from "../../../hooks/useMutate";
+import { InstructionsFormInput } from "../../../types/formTypes";
+import { RecipeInstruction } from "../../../types/recipeTypes";
+import InstructionsForm from "./InstructionsForm";
 
 export default function UpdateRecipeIngredientsForm({
   recipeName,
@@ -49,6 +47,7 @@ export default function UpdateRecipeIngredientsForm({
     updateInstructions(JSON.stringify(formValues.instructions));
   };
 
+  //TODO - this is used in another form. maybe make a feature hooks file
   useEffect(() => {
     const subscription = watch((value, { name }) => {
       if (name === "instructions" && value.instructions) {

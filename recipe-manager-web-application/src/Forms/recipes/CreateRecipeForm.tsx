@@ -15,7 +15,7 @@ import Slider from "../../Components/Common/Slider";
 import { Recipe, RecipeInput } from "../../types/recipeTypes";
 import InstructionsForm, {
   DEFAULT_INSTRUCTION_FORM_VALUE,
-} from "./InstructionsForm";
+} from "./instructions/InstructionsForm";
 import { SubmitButton } from "../../Components/Common/StyledComponents/ButtonComponents";
 import { MainFormLayout } from "../../Components/Common/StyledComponents/Layouts";
 import RecipeIngredientsForm, {
