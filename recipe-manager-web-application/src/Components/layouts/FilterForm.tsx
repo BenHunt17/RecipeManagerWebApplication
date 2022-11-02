@@ -15,7 +15,7 @@ export default function FilterForm({
   compactGrid,
 }: {
   rows?: JSX.Element[];
-  grid?: [JSX.Element];
+  grid?: JSX.Element[];
   compactGrid?: JSX.Element[];
 }) {
   return (
