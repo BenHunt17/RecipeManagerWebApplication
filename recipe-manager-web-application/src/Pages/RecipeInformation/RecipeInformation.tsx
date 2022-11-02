@@ -18,7 +18,7 @@ import {
 import ImageDisplay from "../../Components/Common/ImageDisplay";
 import useModal from "../../hooks/useModal";
 import { IconButton } from "../../Components/Common/StyledComponents/ButtonComponents";
-import UpdateRecipeImageForm from "../../Forms/recipes/UpdateRecipeImageForm";
+import UpdateRecipeImageForm from "../../Forms/recipes/recipeImage/UpdateRecipeImageForm";
 import EditIcon from "../../svg/EditIcon";
 import { TightParagraph } from "../../Components/Common/StyledComponents/ContentComponents";
 import UpdateRecipeForm from "../../Forms/recipes/UpdateRecipeForm";

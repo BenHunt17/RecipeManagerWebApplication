@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import { useNavigate } from "react-router-dom";
 import ItemCard from "../Components/Common/ItemCard";
-import CollectionPage from "../Components/templates/CollectionPage";
+import CollectionPage from "../Components/layouts/CollectionPage";
 import CreateRecipeForm from "../Forms/recipes/CreateRecipeForm";
 import DeleteRecipeForm from "../Forms/recipes/DeleteRecipeForm";
 import RecipeFilterForm from "../Forms/recipes/RecipeFilterForm";
@@ -78,7 +78,7 @@ export default function RecipeCollectionPage() {
   return (
     <Fragment>
       <CollectionPage
-        entityName="Ingredient"
+        entityName="Recipe"
         data={data?.items}
         loading={loading}
         renderItem={(recipe: RecipeListItem) => {

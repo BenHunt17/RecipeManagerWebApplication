@@ -1,7 +1,6 @@
 import { useState } from "react";
-import useMutate, { HttpMethod } from "../../hooks/useMutate";
-import { Recipe } from "../../types/recipeTypes";
-import UpdateImageForm from "../UpdateImageForm";
+import useMutate, { HttpMethod } from "../../../hooks/useMutate";
+import UpdateImageForm from "../../UpdateImageForm";
 
 export default function UpdateRecipeImageForm({
   recipeName,

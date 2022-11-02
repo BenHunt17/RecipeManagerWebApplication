@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import { Fragment } from "react";
 import {
   FieldValues,
   useController,
@@ -25,7 +24,7 @@ export default function TextArea<T extends FieldValues>(
   const { field, fieldState } = useController(props);
 
   return (
-    <div>
+    <div className="hundredWidth">
       {formatFieldName(field.name, !!props.required, !!props.title)}
       <Input {...field} {...props.textAreaProps} />
       <ErrorMessage>

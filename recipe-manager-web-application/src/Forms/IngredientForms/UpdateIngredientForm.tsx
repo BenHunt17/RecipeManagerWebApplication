@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment } from "react";
 import { useForm } from "react-hook-form";
 import { SubmitButton } from "../../Components/Common/StyledComponents/ButtonComponents";
 import useMutate, { HttpMethod } from "../../hooks/useMutate";
@@ -7,16 +7,8 @@ import {
   IngredientInput,
   MeasureUnit,
 } from "../../types/ingredientTypes";
-import Toggle from "../../Components/form/Toggle";
-import {
-  ErrorMessage,
-  LoadingSpinner,
-} from "../../Components/Common/StyledComponents/ContentComponents";
-import TextInput from "../../Components/form/TextInput";
-import TextArea from "../../Components/form/TextArea";
-import Select from "../../Components/form/Select";
-import { FlexContainer } from "../../Components/Common/StyledComponents/ShortcutComponents";
-import { MainFormLayout } from "../../Components/Common/StyledComponents/Layouts";
+import { LoadingSpinner } from "../../Components/Common/StyledComponents/ContentComponents";
+import IngredientForm from "./IngredientForm";
 
 function extractDefaultValues(existingIngredient: Ingredient) {
   return {
@@ -44,12 +36,9 @@ export default function UpdateIngredientForm({
   updateInFetchedIngredient: (updatedIngredient: Ingredient) => void;
   close: () => void;
 }) {
-  const { control, handleSubmit, formState, watch } = useForm<IngredientInput>({
+  const { control, handleSubmit, formState } = useForm<IngredientInput>({
     defaultValues: extractDefaultValues(existingIngredient),
   });
-  const [quantityUnit, setQuantityUnit] = useState<string | undefined>(
-    undefined
-  );
   const { callback: updateIngredient, loading } = useMutate<Ingredient>({
     endpointPath: `${process.env.REACT_APP_RECIPE_MANAGER_API_URL}ingredient/${ingredientName}`,
     httpMethod: HttpMethod.PUT,
@@ -64,74 +53,10 @@ export default function UpdateIngredientForm({
     updateIngredient(JSON.stringify(formValues));
   };
 
-  useEffect(() => {
-    const subscription = watch((value, { name }) => {
-      if (name === "measureUnit" && value.measureUnit) {
-        setQuantityUnit(value.measureUnit);
-      }
-    });
-    return () => subscription.unsubscribe();
-  }, [watch]);
-
   return (
     <Fragment>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <FlexContainer
-          direction="column"
-          justifyContent="center"
-          alignItems="center"
-        >
-          <FlexContainer
-            direction="row"
-            justifyContent="space-around"
-            alignItems="center"
-            gap={25}
-          >
-            <TextInput
-              control={control}
-              name="ingredientName"
-              rules={{
-                required: "Required Field",
-                maxLength: { value: 80, message: "Maximum length of 80" },
-              }}
-            />{" "}
-            <TextArea
-              control={control}
-              name="ingredientDescription"
-              rules={{
-                maxLength: { value: 512, message: "Maximum length of 512" },
-              }}
-            />
-          </FlexContainer>
-          <FlexContainer
-            direction="row"
-            justifyContent="center"
-            margin="10px 0 10px 0"
-          >
-            <Toggle control={control} name="fruitVeg" />
-          </FlexContainer>
-        </FlexContainer>
-        <MainFormLayout>
-          <Select
-            control={control}
-            name="measureUnit"
-            options={Object.values(MeasureUnit)}
-            label={(option) => option}
-          />
-          <TextInput
-            control={control}
-            name="quantity"
-            rules={{
-              required: "Required Field",
-            }}
-          />
-          <TextInput control={control} name="calories" />
-          <TextInput control={control} name="salt" />
-          <TextInput control={control} name="fat" />
-          <TextInput control={control} name="protein" />
-          <TextInput control={control} name="carbs" />
-        </MainFormLayout>
-
+        <IngredientForm control={control} formState={formState} />
         {loading ? (
           <LoadingSpinner />
         ) : (

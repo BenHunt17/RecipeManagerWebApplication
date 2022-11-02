@@ -23,7 +23,7 @@ export default function TextInput<T extends FieldValues>(
   const { field, fieldState } = useController(props);
 
   return (
-    <div>
+    <div className="hundredWidth">
       {formatFieldName(field.name, !!props.required, !!props.title)}
       <Input {...field} {...props.inputProps} />
       <ErrorMessage>

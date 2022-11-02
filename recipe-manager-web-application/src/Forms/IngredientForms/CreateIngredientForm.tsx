@@ -1,23 +1,14 @@
 import { Fragment, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { SubmitButton } from "../../Components/Common/StyledComponents/ButtonComponents";
-import { FlexContainer } from "../../Components/Common/StyledComponents/ShortcutComponents";
 import useMutate, { HttpMethod } from "../../hooks/useMutate";
 import {
   Ingredient,
   IngredientInput,
   MeasureUnit,
 } from "../../types/ingredientTypes";
-import Toggle from "../../Components/form/Toggle";
-import {
-  ErrorMessage,
-  LoadingSpinner,
-} from "../../Components/Common/StyledComponents/ContentComponents";
-import ImageUpload from "../../Components/form/ImageUpload";
-import TextInput from "../../Components/form/TextInput";
-import TextArea from "../../Components/form/TextArea";
-import Select from "../../Components/form/Select";
-import { MainFormLayout } from "../../Components/Common/StyledComponents/Layouts";
+import { LoadingSpinner } from "../../Components/Common/StyledComponents/ContentComponents";
+import IngredientForm from "./IngredientForm";
 
 const defaultValues = {
   ingredientName: "",
@@ -97,64 +88,14 @@ export default function CreateIngredientForm({
   return (
     <Fragment>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <MainFormLayout>
-          <FlexContainer
-            direction="column"
-            justifyContent="space-between"
-            gap={25}
-            margin="0 0 55px 0"
-          >
-            <TextInput
-              control={control}
-              name="ingredientName"
-              rules={{
-                required: "Required Field",
-                maxLength: { value: 80, message: "Maximum length of 80" },
-              }}
-            />{" "}
-            <TextArea
-              control={control}
-              name="ingredientDescription"
-              rules={{
-                maxLength: { value: 512, message: "Maximum length of 512" },
-              }}
-            />
-            <Toggle control={control} name="fruitVeg" title="Fruit / Veg" />
-          </FlexContainer>
-          <ImageUpload image={ingredientImage} setImage={setIngredientImage} />
-          <FlexContainer
-            direction="row"
-            width={250}
-            justifyContent="space-between"
-            gap={10}
-          >
-            <TextInput
-              control={control}
-              name="quantity"
-              rules={{
-                required: "Required Field",
-              }}
-            />
-            <Select
-              control={control}
-              name="measureUnit"
-              options={Object.values(MeasureUnit)}
-              label={(option) => option}
-            />
-            <TextInput
-              control={control}
-              name="calories"
-              rules={{
-                required: "Required Field",
-              }}
-            />
-            <TextInput control={control} name="salt" />
-            <TextInput control={control} name="fat" />
-            <TextInput control={control} name="protein" />
-            <TextInput control={control} name="carbs" />
-          </FlexContainer>
-        </MainFormLayout>
-
+        <IngredientForm
+          control={control}
+          formState={formState}
+          ingredientImageController={{
+            value: ingredientImage,
+            onChange: setIngredientImage,
+          }}
+        />
         {loading ? (
           <LoadingSpinner />
         ) : (

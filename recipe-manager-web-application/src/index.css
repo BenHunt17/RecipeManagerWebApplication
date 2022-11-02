@@ -75,6 +75,10 @@ ol li {
   text-decoration: none;
 }
 
+.hundredWidth {
+  width: 100%;
+}
+
 ::-webkit-scrollbar {
   width: 5px;
 }

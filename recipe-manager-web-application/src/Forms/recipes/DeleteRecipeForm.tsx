@@ -3,7 +3,6 @@ import { SubmitButton } from "../../Components/Common/StyledComponents/ButtonCom
 import { LoadingSpinner } from "../../Components/Common/StyledComponents/ContentComponents";
 import { FlexContainer } from "../../Components/Common/StyledComponents/ShortcutComponents";
 import useMutate, { HttpMethod } from "../../hooks/useMutate";
-import { Ingredient } from "../../types/ingredientTypes";
 
 export default function DeleteRecipeForm({
   recipeName,
@@ -23,6 +22,7 @@ export default function DeleteRecipeForm({
     },
   });
 
+  //TODO - make this form more generic since its used alot
   return (
     <Fragment>
       <p>

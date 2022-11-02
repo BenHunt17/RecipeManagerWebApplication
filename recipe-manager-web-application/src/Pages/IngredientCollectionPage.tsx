@@ -6,7 +6,7 @@ import DeleteIngredientForm from "../Forms/IngredientForms/DeleteIngredientForm"
 import { Fragment } from "react";
 import { PaginatedResponse, QueryParameters } from "../types/commonTypes";
 import { PAGINATION_LIMIT } from "../Utilities/FilterUtilities";
-import CollectionPage from "../Components/templates/CollectionPage";
+import CollectionPage from "../Components/layouts/CollectionPage";
 import IngredientFilterForm from "../Forms/IngredientForms/IngredientFilterForm";
 import CreateIngredientForm from "../Forms/IngredientForms/CreateIngredientForm";
 import { useFilters } from "../hooks/useFilters";

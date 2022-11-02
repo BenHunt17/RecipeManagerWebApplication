@@ -13,7 +13,7 @@ import {
   MeasureUnit,
 } from "../../../types/ingredientTypes";
 import { RecipeIngredientInput, RecipeInput } from "../../../types/recipeTypes";
-import FormList from "../../../Components/templates/FormList";
+import FormList from "../../../Components/layouts/FormList";
 import { RecipeIngredientFieldSection } from "./RecipeIngredientFieldSection";
 import { RecipeIngredientFormInput } from "../../../types/formTypes";
 

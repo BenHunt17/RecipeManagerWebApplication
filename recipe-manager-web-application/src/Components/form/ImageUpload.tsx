@@ -8,8 +8,8 @@ const ImageUploadContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 250px;
-  height: 250px;
+  aspect-ratio: 1 / 1;
+  width: 100%;
   border: 1px solid var(--colour-light-grey);
   border-radius: 10px;
   overflow: hidden;

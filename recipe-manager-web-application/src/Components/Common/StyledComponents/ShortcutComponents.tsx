@@ -7,6 +7,8 @@ export const FlexContainer = styled.div(
     direction = "row",
     justifyContent = "space-between",
     alignItems,
+    flexBasis,
+    flexGrow,
     gap,
     margin,
     width,
@@ -28,14 +30,18 @@ export const FlexContainer = styled.div(
       | "baseline"
       | "initial"
       | "inherit";
+    flexBasis?: number | string;
+    flexGrow?: number;
     gap?: number;
     margin?: string;
-    width?: number;
+    width?: number | string;
   }) => ({
     display: "flex",
     flexDirection: direction,
-    justifyContent: justifyContent,
-    alignItems: alignItems,
+    justifyContent,
+    alignItems,
+    flexGrow,
+    flexBasis,
     gap: `${gap}px`,
     margin: margin,
     width: width,
