@@ -4,6 +4,7 @@ import {
   useController,
   UseControllerProps,
 } from "react-hook-form";
+import { formatFieldName } from "../../Utilities/formUtils";
 import { OptionBox, OptionsContainer } from "./DiscreteOptionSelector";
 
 export default function NumberSelector<T extends FieldValues>(
@@ -32,22 +33,25 @@ export default function NumberSelector<T extends FieldValues>(
   };
 
   return (
-    <OptionsContainer width={props.width}>
-      {props.options.map((option) => (
-        <OptionBox
-          key={`${props.id}.option.${option}`}
-          selected={
-            option === field.value.min ||
-            option === field.value.max ||
-            option === field.value.trueValue
-          }
-          onClick={() => {
-            onChange(option);
-          }}
-        >
-          {option}
-        </OptionBox>
-      ))}
-    </OptionsContainer>
+    <div className="hundredWidth">
+      {formatFieldName(field.name, false, false)}
+      <OptionsContainer width={props.width}>
+        {props.options.map((option) => (
+          <OptionBox
+            key={`${props.id}.option.${option}`}
+            selected={
+              option === field.value.min ||
+              option === field.value.max ||
+              option === field.value.trueValue
+            }
+            onClick={() => {
+              onChange(option);
+            }}
+          >
+            {option}
+          </OptionBox>
+        ))}
+      </OptionsContainer>
+    </div>
   );
 }

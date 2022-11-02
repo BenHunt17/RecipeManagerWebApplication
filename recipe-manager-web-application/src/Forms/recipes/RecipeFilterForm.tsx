@@ -1,12 +1,11 @@
 import { Fragment } from "react";
 import { useForm } from "react-hook-form";
 import { SubmitButton } from "../../Components/Common/StyledComponents/ButtonComponents";
-import { ErrorMessage } from "../../Components/Common/StyledComponents/ContentComponents";
-import { FilterFormLayout } from "../../Components/Common/StyledComponents/Layouts";
 import { FlexContainer } from "../../Components/Common/StyledComponents/ShortcutComponents";
 import DiscreteOptionSelector from "../../Components/form/DiscreteOptionSelector";
 import NumberSelector from "../../Components/form/NumberSelector";
 import TimeRangeInput from "../../Components/form/TimeRangeInput";
+import FilterForm from "../../Components/layouts/FilterForm";
 import {
   MinMaxValue,
   QueryParameters,
@@ -102,61 +101,68 @@ export default function RecipeFilterForm({
   return (
     <Fragment>
       <form onSubmit={formMethods.handleSubmit(onSubmit)}>
-        <FilterFormLayout>
-          <NumberSelector
-            id="rating.number-selector"
-            control={formMethods.control}
-            name="rating"
-            options={[1, 2, 3, 4, 5]}
-          />
-          <TimeRangeInput control={formMethods.control} name="prepTime" />
-          <NumberSelector
-            id="rating.number-selector"
-            control={formMethods.control}
-            name="servingSize"
-            options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]}
-          />
-          <DiscreteOptionSelector
-            id="breakfast.filter-selector"
-            control={formMethods.control}
-            name="breakfast"
-            options={[true, false]}
-            label={(option) => (option ? "Yes" : "No")}
-            width={150}
-          />
-          <DiscreteOptionSelector
-            id="lunch.filter-selector"
-            control={formMethods.control}
-            name="lunch"
-            options={[true, false]}
-            label={(option) => (option ? "Yes" : "No")}
-            width={150}
-          />
-          <DiscreteOptionSelector
-            id="dinner.filter-selector"
-            control={formMethods.control}
-            name="dinner"
-            options={[true, false]}
-            label={(option) => (option ? "Yes" : "No")}
-            width={150}
-          />
-          <FlexContainer
-            direction="row"
-            justifyContent="flex-start"
-            gap={25}
-            margin="35px 0 0 0"
+        <FilterForm
+          rows={[
+            <NumberSelector
+              id="rating.number-selector"
+              control={formMethods.control}
+              name="rating"
+              options={[1, 2, 3, 4, 5]}
+            />,
+            <NumberSelector
+              id="rating.number-selector"
+              control={formMethods.control}
+              name="servingSize"
+              options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]}
+            />,
+          ]}
+          grid={[
+            <TimeRangeInput control={formMethods.control} name="prepTime" />,
+          ]}
+          compactGrid={[
+            <DiscreteOptionSelector
+              id="breakfast.filter-selector"
+              control={formMethods.control}
+              name="breakfast"
+              options={[true, false]}
+              label={(option) => (option ? "Yes" : "No")}
+              width={150}
+            />,
+            <DiscreteOptionSelector
+              id="lunch.filter-selector"
+              control={formMethods.control}
+              name="lunch"
+              options={[true, false]}
+              label={(option) => (option ? "Yes" : "No")}
+              width={150}
+            />,
+            <DiscreteOptionSelector
+              id="dinner.filter-selector"
+              control={formMethods.control}
+              name="dinner"
+              options={[true, false]}
+              label={(option) => (option ? "Yes" : "No")}
+              width={150}
+            />,
+          ]}
+        />
+
+        <FlexContainer
+          direction="row"
+          justifyContent="flex-start"
+          gap={25}
+          margin="35px 0 0 0"
+        >
+          <SubmitButton type="submit">Apply Filters</SubmitButton>
+          <SubmitButton
+            onClick={() => {
+              clearFilters();
+              close();
+            }}
           >
-            <SubmitButton type="submit">Apply Filters</SubmitButton>
-            <SubmitButton
-              onClick={() => {
-                clearFilters();
-                close();
-              }}
-            >
-              Clear Filters
-            </SubmitButton>
-          </FlexContainer>
-        </FilterFormLayout>
+            Clear Filters
+          </SubmitButton>
+        </FlexContainer>
       </form>
     </Fragment>
   );

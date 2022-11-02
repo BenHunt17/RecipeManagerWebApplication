@@ -53,7 +53,11 @@ export default function Toggle<T extends FieldValues>(
 
   return (
     <div>
-      {formatFieldName(field.name, !!props.required, !!props.title)}
+      {formatFieldName(
+        props.title ?? field.name,
+        !!props.required,
+        !!props.title
+      )}
       <br />
       <ToggleContainer>
         <CheckboxInput type="checkbox" checked={field.value} {...field} />

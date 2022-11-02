@@ -24,7 +24,11 @@ export default function TextInput<T extends FieldValues>(
 
   return (
     <div className="hundredWidth">
-      {formatFieldName(field.name, !!props.required, !!props.title)}
+      {formatFieldName(
+        props.title ?? field.name,
+        !!props.required,
+        !!props.title
+      )}
       <Input {...field} {...props.inputProps} />
       <ErrorMessage>
         {!!fieldState.error?.message && fieldState.error.message}

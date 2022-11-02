@@ -1,6 +1,15 @@
 import { Fragment } from "react";
-import { FieldValues, Path, UseControllerProps } from "react-hook-form";
-import { ErrorMessage } from "../Common/StyledComponents/ContentComponents";
+import {
+  FieldValues,
+  Path,
+  useController,
+  UseControllerProps,
+} from "react-hook-form";
+import { formatFieldName } from "../../Utilities/formUtils";
+import {
+  ErrorMessage,
+  TightParagraph,
+} from "../Common/StyledComponents/ContentComponents";
 import { FlexContainer } from "../Common/StyledComponents/ShortcutComponents";
 import TextInput from "./TextInput";
 
@@ -14,8 +23,13 @@ export default function RangeInput<T extends FieldValues>(
     maxError?: string;
   }
 ) {
+  const { field } = useController(props);
+
   return (
-    <Fragment>
+    <div>
+      <TightParagraph>
+        {formatFieldName(field.name, false, false)}
+      </TightParagraph>
       <FlexContainer
         direction="row"
         justifyContent="space-between"
@@ -38,6 +52,7 @@ export default function RangeInput<T extends FieldValues>(
             },
           }}
           inputProps={{ placeholder: `Min value: ${props.minLimit}` }}
+          title=""
         />
         <pre>- To -</pre>
         <TextInput
@@ -56,16 +71,9 @@ export default function RangeInput<T extends FieldValues>(
             },
           }}
           inputProps={{ placeholder: `Max value: ${props.maxLimit}` }}
+          title=""
         />
       </FlexContainer>
-      <Fragment>
-        {props.minError && (
-          <ErrorMessage>{`Minimum value ${props.minError}`}</ErrorMessage>
-        )}
-        {props.maxError && (
-          <ErrorMessage>{`Maximum value ${props.maxError}`} </ErrorMessage>
-        )}
-      </Fragment>
-    </Fragment>
+    </div>
   );
 }

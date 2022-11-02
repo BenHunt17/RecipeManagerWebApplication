@@ -4,6 +4,7 @@ import {
   useController,
   UseControllerProps,
 } from "react-hook-form";
+import { formatFieldName } from "../../Utilities/formUtils";
 
 export const OptionsContainer = styled.div(
   ({ width }: { width?: number }) => `
@@ -46,24 +47,27 @@ export default function DiscreteOptionSelector<T extends FieldValues, U>(
   const { field } = useController(props);
 
   return (
-    <OptionsContainer width={props.width}>
-      {props.options.map((option) => (
-        <OptionBox
-          key={`${props.id}.option.${props.label(option)}`}
-          selected={
-            props.deepEqual?.(field.value, option) ?? field.value === option
-          }
-          onClick={() => {
-            field.onChange(
+    <div className="hundredWidth">
+      {formatFieldName(field.name, false, false)}
+      <OptionsContainer width={props.width}>
+        {props.options.map((option) => (
+          <OptionBox
+            key={`${props.id}.option.${props.label(option)}`}
+            selected={
               props.deepEqual?.(field.value, option) ?? field.value === option
-                ? null
-                : option
-            );
-          }}
-        >
-          {props.label(option)}
-        </OptionBox>
-      ))}
-    </OptionsContainer>
+            }
+            onClick={() => {
+              field.onChange(
+                props.deepEqual?.(field.value, option) ?? field.value === option
+                  ? null
+                  : option
+              );
+            }}
+          >
+            {props.label(option)}
+          </OptionBox>
+        ))}
+      </OptionsContainer>
+    </div>
   );
 }

@@ -27,10 +27,3 @@ export const ErrorScreen = styled.div`
   font-size: 28px;
   overflow: hidden;
 `;
-
-export const FilterFormLayout = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-  margin-bottom: 25px;
-`;

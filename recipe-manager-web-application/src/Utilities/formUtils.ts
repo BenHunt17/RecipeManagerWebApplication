@@ -1,17 +1,17 @@
 export function formatFieldName(
   name: string,
   required: boolean,
-  dontSpacify: boolean
+  isSpecificTitle: boolean
 ) {
-  let formatedName = name;
-  if (!dontSpacify) {
+  let formattedName = name;
+  if (!isSpecificTitle) {
     const splitText = name.split(".");
     if (splitText.length > 1) {
-      formatedName = splitText[splitText.length - 1];
+      formattedName = splitText[splitText.length - 1];
     }
-    formatedName = formatedName.replace(/([A-Z])/g, " $1");
+    formattedName = formattedName.replace(/([A-Z])/g, " $1");
   }
-  return `${formatedName.charAt(0).toUpperCase()}${formatedName.slice(1)} ${
+  return `${formattedName.charAt(0).toUpperCase()}${formattedName.slice(1)} ${
     required ? "*" : ""
   }`;
 }

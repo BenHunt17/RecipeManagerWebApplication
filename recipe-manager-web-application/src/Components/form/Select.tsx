@@ -31,7 +31,11 @@ export default function Select<T extends FieldValues, U>(
 
   return (
     <div className="hundredWidth">
-      {formatFieldName(field.name, !!props.required, !!props.title)}
+      {formatFieldName(
+        props.title ?? field.name,
+        !!props.required,
+        !!props.title
+      )}
       <SelectInput {...field}>
         {props.options.map((option) => (
           <Option key={props.label(option)}>{props.label(option)}</Option>

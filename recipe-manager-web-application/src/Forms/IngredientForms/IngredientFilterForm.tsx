@@ -1,8 +1,6 @@
 import { Fragment, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { SubmitButton } from "../../Components/Common/StyledComponents/ButtonComponents";
-import { ErrorMessage } from "../../Components/Common/StyledComponents/ContentComponents";
-import { FilterFormLayout } from "../../Components/Common/StyledComponents/Layouts";
 import RangeInput from "../../Components/form/RangeInput";
 import { MinMaxValue, QueryParameters } from "../../types/commonTypes";
 import { getProperty } from "../../Utilities/FilterUtilities";
@@ -13,6 +11,7 @@ import {
 } from "../../Utilities/FilterParsers";
 import { FlexContainer } from "../../Components/Common/StyledComponents/ShortcutComponents";
 import DiscreteOptionSelector from "../../Components/form/DiscreteOptionSelector";
+import FilterForm from "../../Components/layouts/FilterForm";
 
 interface IngredientFilters {
   calories?: MinMaxValue;
@@ -105,82 +104,86 @@ export default function IngredientFilterForm({
   return (
     <Fragment>
       <form onSubmit={formMethods.handleSubmit(onSubmit)}>
-        <FilterFormLayout>
-          <RangeInput
-            control={formMethods.control}
-            name="calories"
-            minName="calories.min"
-            maxName="calories.max"
-            minLimit={0}
-            maxLimit={999}
-            minError={formMethods.formState.errors.calories?.min?.message}
-            maxError={formMethods.formState.errors.calories?.max?.message}
-          />
-          <RangeInput
-            control={formMethods.control}
-            name="salt"
-            minName="salt.min"
-            maxName="salt.max"
-            minLimit={0}
-            maxLimit={999}
-            minError={formMethods.formState.errors.salt?.min?.message}
-            maxError={formMethods.formState.errors.salt?.max?.message}
-          />{" "}
-          <RangeInput
-            control={formMethods.control}
-            name="fat"
-            minName="fat.min"
-            maxName="fat.max"
-            minLimit={0}
-            maxLimit={999}
-            minError={formMethods.formState.errors.fat?.min?.message}
-            maxError={formMethods.formState.errors.fat?.max?.message}
-          />
-          <RangeInput
-            control={formMethods.control}
-            name="protein"
-            minName="protein.min"
-            maxName="protein.max"
-            minLimit={0}
-            maxLimit={999}
-            minError={formMethods.formState.errors.protein?.min?.message}
-            maxError={formMethods.formState.errors.protein?.max?.message}
-          />
-          <RangeInput
-            control={formMethods.control}
-            name="carbs"
-            minName="carbs.min"
-            maxName="carbs.max"
-            minLimit={0}
-            maxLimit={999}
-            minError={formMethods.formState.errors.carbs?.min?.message}
-            maxError={formMethods.formState.errors.carbs?.max?.message}
-          />
-          <DiscreteOptionSelector
-            id="fruit-veg.filter-selector"
-            control={formMethods.control}
-            name="fruitVeg"
-            options={[true, false]}
-            label={(option) => (option ? "Yes" : "No")}
-            width={150}
-          />
-          <FlexContainer
-            direction="row"
-            justifyContent="flex-start"
-            gap={25}
-            margin="35px 0 0 0"
+        <FilterForm
+          rows={[
+            <RangeInput
+              control={formMethods.control}
+              name="calories"
+              minName="calories.min"
+              maxName="calories.max"
+              minLimit={0}
+              maxLimit={999}
+              minError={formMethods.formState.errors.calories?.min?.message}
+              maxError={formMethods.formState.errors.calories?.max?.message}
+            />,
+            <RangeInput
+              control={formMethods.control}
+              name="salt"
+              minName="salt.min"
+              maxName="salt.max"
+              minLimit={0}
+              maxLimit={999}
+              minError={formMethods.formState.errors.salt?.min?.message}
+              maxError={formMethods.formState.errors.salt?.max?.message}
+            />,
+            <RangeInput
+              control={formMethods.control}
+              name="fat"
+              minName="fat.min"
+              maxName="fat.max"
+              minLimit={0}
+              maxLimit={999}
+              minError={formMethods.formState.errors.fat?.min?.message}
+              maxError={formMethods.formState.errors.fat?.max?.message}
+            />,
+            <RangeInput
+              control={formMethods.control}
+              name="protein"
+              minName="protein.min"
+              maxName="protein.max"
+              minLimit={0}
+              maxLimit={999}
+              minError={formMethods.formState.errors.protein?.min?.message}
+              maxError={formMethods.formState.errors.protein?.max?.message}
+            />,
+            <RangeInput
+              control={formMethods.control}
+              name="carbs"
+              minName="carbs.min"
+              maxName="carbs.max"
+              minLimit={0}
+              maxLimit={999}
+              minError={formMethods.formState.errors.carbs?.min?.message}
+              maxError={formMethods.formState.errors.carbs?.max?.message}
+            />,
+          ]}
+          grid={[
+            <DiscreteOptionSelector
+              id="fruit-veg.filter-selector"
+              control={formMethods.control}
+              name="fruitVeg"
+              options={[true, false]}
+              label={(option) => (option ? "Yes" : "No")}
+              width={150}
+            />,
+          ]}
+        />
+        <FlexContainer
+          direction="row"
+          justifyContent="flex-start"
+          gap={25}
+          margin="35px 0 0 0"
+        >
+          <SubmitButton type="submit">Apply Filters</SubmitButton>
+          <SubmitButton
+            onClick={() => {
+              clearFilters();
+              close();
+            }}
           >
-            <SubmitButton type="submit">Apply Filters</SubmitButton>
-            <SubmitButton
-              onClick={() => {
-                clearFilters();
-                close();
-              }}
-            >
-              Clear Filters
-            </SubmitButton>
-          </FlexContainer>
-        </FilterFormLayout>
+            Clear Filters
+          </SubmitButton>
+        </FlexContainer>
       </form>
     </Fragment>
   );
