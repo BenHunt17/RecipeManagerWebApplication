@@ -68,7 +68,11 @@ ol li {
 }
 
 .headerLink:hover {
-  background-color: rgba(var(--colour-secondary-rgb), 0.5);
+  filter: brightness(75%);
+}
+
+.headerLink:active {
+  filter: brightness(70%);
 }
 
 .nakedLink {

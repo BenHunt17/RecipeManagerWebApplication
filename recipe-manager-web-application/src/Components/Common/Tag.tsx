@@ -7,11 +7,11 @@ const Root = styled.div`
   border-radius: 5px;
   overflow: hidden;
   &:hover {
-    background-color: rgba(var(--colour-secondary-rgb), 0.75);
+    filter: brightness(95%);
     cursor: pointer;
   }
   &:active {
-    opacity: 0.7;
+    filter: brightness(90%);
   }
 `;
 
@@ -21,7 +21,7 @@ const MainContent = styled.div`
 `;
 
 const EndSlot = styled.div`
-  //   background-color: rgba(var(--colour-secondary-rgb), 0.6);
+  background-color: white;
   color: var(--colour-text);
   border-left: 1px solid var(--colour-text);
   padding: 10px;

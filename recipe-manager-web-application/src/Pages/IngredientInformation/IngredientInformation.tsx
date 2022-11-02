@@ -4,7 +4,6 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { useParams } from "react-router-dom";
 import ContentBox from "../../Components/Common/ContentBox";
-import StatisticsTable from "../../Components/Common/StatisticsTable";
 import { IconButton } from "../../Components/Common/StyledComponents/ButtonComponents";
 import {
   ErrorScreen,
