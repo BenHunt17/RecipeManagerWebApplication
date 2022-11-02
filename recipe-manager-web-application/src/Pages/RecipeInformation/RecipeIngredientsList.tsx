@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import ContentBox from "../../Components/Common/ContentBox";
 import { IconButton } from "../../Components/Common/StyledComponents/ButtonComponents";
-import { Label } from "../../Components/Common/StyledComponents/ContentComponents";
 import { FlexContainer } from "../../Components/Common/StyledComponents/ShortcutComponents";
+import Tag from "../../Components/Common/Tag";
 import UpdateRecipeIngredientsForm from "../../Forms/recipes/recipeIngredients/UpdateRecipeIngredientsForm";
 import useModal from "../../hooks/useModal";
 import EditIcon from "../../svg/EditIcon";
@@ -44,9 +44,12 @@ export default function IngredientsList({
             to={`/ingredient/${ingredient.ingredientName}`}
             className="nakedLink"
           >
-            <Label>{`${ingredient.ingredientName} | ${Number(
-              ingredient.quantity.toFixed(2)
-            )} ${MeasureUnitToString(ingredient.measureUnit)}`}</Label>
+            <Tag
+              value={ingredient.ingredientName}
+              endSlotValue={`${Number(
+                ingredient.quantity.toFixed(2)
+              )} ${MeasureUnitToString(ingredient.measureUnit)}`}
+            />
           </Link>
         ))}
       </FlexContainer>
