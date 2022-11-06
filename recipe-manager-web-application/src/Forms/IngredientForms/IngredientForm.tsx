@@ -6,14 +6,13 @@ import TextInput from "../../Components/form/TextInput";
 import Toggle from "../../Components/form/Toggle";
 import StandardForm from "../../Components/layouts/StandardForm";
 import { IngredientInput, MeasureUnit } from "../../types/ingredientTypes";
+import { MeasureUnitToString } from "../../Utilities/Ingredients";
 
 export default function IngredientForm({
   control,
-  formState,
   ingredientImageController,
 }: {
   control: Control<IngredientInput>;
-  formState: FormState<IngredientInput>;
   ingredientImageController?: {
     value: File | null;
     onChange: React.Dispatch<React.SetStateAction<File | null>>;
@@ -30,6 +29,7 @@ export default function IngredientForm({
               required: "Required Field",
               maxLength: { value: 80, message: "Maximum length of 80" },
             }}
+            required
           />
         ),
         descriptionField: (
@@ -54,12 +54,17 @@ export default function IngredientForm({
             rules={{
               required: "Required Field",
             }}
+            required
           />
           <Select
             control={control}
             name="measureUnit"
             options={Object.values(MeasureUnit)}
-            label={(option) => option}
+            label={(option) => MeasureUnitToString(option)}
+            rules={{
+              required: "Required Field",
+            }}
+            required
           />
         </FlexContainer>,
         <TextInput
@@ -68,6 +73,7 @@ export default function IngredientForm({
           rules={{
             required: "Required Field",
           }}
+          required
         />,
         <TextInput control={control} name="salt" />,
         <TextInput control={control} name="fat" />,

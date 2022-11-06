@@ -1,6 +1,5 @@
 import { Fragment } from "react";
-import { Control, FormState, UseFormClearErrors } from "react-hook-form";
-import { ErrorMessage } from "../../Components/Common/StyledComponents/ContentComponents";
+import { Control } from "react-hook-form";
 import TextArea from "../../Components/form/TextArea";
 import TextInput from "../../Components/form/TextInput";
 import Toggle from "../../Components/form/Toggle";
@@ -9,35 +8,14 @@ import { RecipeInput } from "../../types/recipeTypes";
 
 export function RecipeForm({
   control,
-  formState,
-  clearErrors,
   recipeImageController,
 }: {
   control: Control<RecipeInput>;
-  formState: FormState<RecipeInput>;
-  clearErrors: UseFormClearErrors<RecipeInput>;
   recipeImageController?: {
     value: File | null;
     onChange: React.Dispatch<React.SetStateAction<File | null>>;
   };
 }) {
-  const validateMealError = (
-    breakfast: boolean,
-    lunch: boolean,
-    dinner: boolean
-  ) => {
-    //Checks if one of the three meals are true. If not then returns an error message. Else returns true and removes all errors for the meal fields
-    if (!(breakfast || lunch || dinner)) {
-      //Returns error message if not valid
-      return "Recipe must be at least one of the 3 meals of a day";
-    } else {
-      clearErrors("breakfast"); //Manually removes errors for all three feidls since only one field is updated at a time
-      clearErrors("lunch");
-      clearErrors("dinner");
-      return true;
-    }
-  };
-
   return (
     <Fragment>
       <StandardForm
@@ -53,6 +31,7 @@ export function RecipeForm({
                   message: "Maximum length of 80",
                 },
               }}
+              required
             />
           ),
           descriptionField: (
@@ -70,42 +49,9 @@ export function RecipeForm({
         }}
         imageController={recipeImageController}
         columnFields={[
-          <Toggle
-            control={control}
-            name="breakfast"
-            rules={{
-              validate: (breakfast) =>
-                validateMealError(
-                  !!breakfast,
-                  control._formValues.lunch,
-                  control._formValues.dinner
-                ),
-            }}
-          />,
-          <Toggle
-            control={control}
-            name="lunch"
-            rules={{
-              validate: (lunch) =>
-                validateMealError(
-                  control._formValues.breakfast,
-                  !!lunch,
-                  control._formValues.dinner
-                ),
-            }}
-          />,
-          <Toggle
-            control={control}
-            name="dinner"
-            rules={{
-              validate: (dinner) =>
-                validateMealError(
-                  control._formValues.breakfast,
-                  control._formValues.lunch,
-                  !!dinner
-                ),
-            }}
-          />,
+          <Toggle control={control} name="breakfast" />,
+          <Toggle control={control} name="lunch" />,
+          <Toggle control={control} name="dinner" />,
         ]}
         gridFields={[
           <TextInput
@@ -122,6 +68,7 @@ export function RecipeForm({
                 message: "Maximum 5",
               },
             }}
+            required
           />,
           <TextInput
             control={control}
@@ -129,10 +76,11 @@ export function RecipeForm({
             rules={{
               required: "Required Field",
               min: {
-                value: 0,
+                value: 1,
                 message: "Must be greater than 0",
               },
             }}
+            required
           />,
           <TextInput
             control={control}
@@ -148,14 +96,10 @@ export function RecipeForm({
                 message: "Maximum 12",
               },
             }}
+            required
           />,
         ]}
       />
-      <ErrorMessage>
-        {formState.errors.breakfast?.message ??
-          formState.errors.lunch?.message ??
-          formState.errors.dinner?.message}
-      </ErrorMessage>
     </Fragment>
   );
 }

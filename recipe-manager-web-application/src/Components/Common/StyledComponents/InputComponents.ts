@@ -13,3 +13,11 @@ export const SearchBar = styled.input`
     padding: 3px;
   }
 `;
+
+export const InputError = styled.p`
+  position: absolute;
+  font-size: 11px;
+  color: var(--colour-error);
+  margin: 0px;
+  margin-top: 1px;
+`;

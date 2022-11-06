@@ -1,47 +1,30 @@
 import {
+  Control,
   FieldValues,
+  Path,
   useController,
   UseControllerProps,
 } from "react-hook-form";
-import {
-  minutesToTimeString,
-  timeStringToMinutes,
-} from "../../Utilities/Recipes";
-import { FlexContainer } from "../Common/StyledComponents/ShortcutComponents";
+import { formatFieldName } from "../../Utilities/formUtils";
+import RangeInput from "../layouts/RangeInput";
+import TimeInput from "./TimeInput";
 
 export default function TimeRangeInput<T extends FieldValues>(
-  props: UseControllerProps<T>
+  props: UseControllerProps<T> & {
+    control: Control<T>;
+    minName: Path<T>;
+    maxName: Path<T>;
+  }
 ) {
   const { field } = useController(props);
 
   return (
-    <FlexContainer
-      direction="row"
-      justifyContent="flex-start"
-      alignItems="center"
-      gap={25}
-    >
-      <input
-        type="time"
-        value={minutesToTimeString(field.value.min)}
-        onChange={(e) => {
-          field.onChange({
-            min: timeStringToMinutes(e.target.value),
-            max: field.value.max,
-          });
-        }}
-      />
-      <pre>- To -</pre>
-      <input
-        type="time"
-        value={minutesToTimeString(field.value.max)}
-        onChange={(e) =>
-          field.onChange({
-            min: field.value.min,
-            max: timeStringToMinutes(e.target.value),
-          })
-        }
-      />
-    </FlexContainer>
+    <div className="hundredWidth">
+      {formatFieldName(field.name, false)}
+      <RangeInput>
+        <TimeInput control={props.control} name={props.minName} title="" />
+        <TimeInput control={props.control} name={props.maxName} title="" />
+      </RangeInput>
+    </div>
   );
 }

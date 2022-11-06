@@ -5,12 +5,11 @@ import {
   UseControllerProps,
 } from "react-hook-form";
 import { formatFieldName } from "../../Utilities/formUtils";
-import { ErrorMessage } from "../Common/StyledComponents/ContentComponents";
+import { InputError } from "../Common/StyledComponents/InputComponents";
 
 const Input = styled.input`
   width: calc(100% - 8px);
   height: 25px;
-  margin-bottom: 8px;
 `;
 
 export default function TextInput<T extends FieldValues>(
@@ -24,15 +23,12 @@ export default function TextInput<T extends FieldValues>(
 
   return (
     <div className="hundredWidth">
-      {formatFieldName(
-        props.title ?? field.name,
-        !!props.required,
-        !!props.title
-      )}
+      {props.title ??
+        formatFieldName(props.title ?? field.name, !!props.required)}
       <Input {...field} {...props.inputProps} />
-      <ErrorMessage>
+      <InputError>
         {!!fieldState.error?.message && fieldState.error.message}
-      </ErrorMessage>
+      </InputError>
     </div>
   );
 }

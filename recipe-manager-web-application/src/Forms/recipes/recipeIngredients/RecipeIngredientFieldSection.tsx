@@ -50,7 +50,7 @@ export function RecipeIngredientFieldSection({
       setQueryParameters(undefined);
       return;
     }
-    setQueryParameters({ ingredientName: `LIKE:${searchText}` });
+    setQueryParameters({ searchQuery: `LIKE:${searchText}` });
   };
 
   return (

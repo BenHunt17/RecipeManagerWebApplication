@@ -36,10 +36,9 @@ export default function CreateRecipeForm({
   onComplete: (addedRecipe: Recipe) => void;
   close: () => void;
 }) {
-  const { control, handleSubmit, formState, clearErrors } =
-    useForm<RecipeInput>({
-      defaultValues,
-    });
+  const { control, handleSubmit } = useForm<RecipeInput>({
+    defaultValues,
+  });
 
   const {
     control: recipeIngredientsControl,
@@ -158,8 +157,6 @@ export default function CreateRecipeForm({
           slides={[
             <RecipeForm
               control={control}
-              formState={formState}
-              clearErrors={clearErrors}
               recipeImageController={{
                 value: recipeImage,
                 onChange: setRecipeImage,

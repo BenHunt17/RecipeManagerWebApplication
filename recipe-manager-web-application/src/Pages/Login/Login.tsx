@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { useForm } from "react-hook-form";
 import { useLocation, useNavigate } from "react-router-dom";
 import { SubmitButton } from "../../Components/Common/StyledComponents/ButtonComponents";
-import { ErrorMessage } from "../../Components/Common/StyledComponents/ContentComponents";
+import { InputError } from "../../Components/Common/StyledComponents/InputComponents";
 import { FlexContainer } from "../../Components/Common/StyledComponents/ShortcutComponents";
 import TextInput from "../../Components/form/TextInput";
 import { useAuth } from "../../hooks/contextHooks";
@@ -59,7 +59,7 @@ export default function Login() {
             }}
           />
           {auth?.authenticationDenied && (
-            <ErrorMessage large>Incorrect Credentials</ErrorMessage>
+            <InputError>Incorrect Credentials</InputError>
           )}
           <SubmitButton type="submit">Login</SubmitButton>
         </FlexContainer>

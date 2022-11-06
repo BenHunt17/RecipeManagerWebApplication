@@ -22,11 +22,3 @@ export const LoadingSpinner = styled.div`
 export const TightParagraph = styled.p`
   margin: 0;
 `;
-
-export const ErrorMessage = styled.p(
-  ({ large }: { large?: boolean }) => `
-  color: var(--colour-error);
-  font-size: ${large ? "24" : "11"}px;
-  margin: 0px;
-`
-);

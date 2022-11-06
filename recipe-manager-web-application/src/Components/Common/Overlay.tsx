@@ -20,7 +20,7 @@ export default function Overlay({
   anchorRef,
 }: {
   children: React.ReactNode;
-  anchorRef: React.RefObject<HTMLDivElement>;
+  anchorRef: React.RefObject<HTMLElement>;
 }) {
   const wrapperRef = useRef<HTMLDivElement>(null);
 

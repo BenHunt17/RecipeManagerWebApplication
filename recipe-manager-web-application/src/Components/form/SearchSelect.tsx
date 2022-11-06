@@ -74,6 +74,8 @@ export default function SearchSelect<T extends FieldValues, U>(
     resultLabel: (result: U) => string;
     deepEqual?: (ingredientA: U, ingredientB: U) => boolean;
     placeholder?: string;
+    required?: boolean;
+    title?: string;
   }
 ) {
   const { field } = useController(props);
@@ -88,7 +90,7 @@ export default function SearchSelect<T extends FieldValues, U>(
 
   return (
     <OutsideClickProvider callback={() => setShowOverlay(false)}>
-      {formatFieldName(field.name, false, false)}
+      {props.title ?? formatFieldName(field.name, !!props.required)}
       <FlexContainer>
         <input
           ref={inputRef}

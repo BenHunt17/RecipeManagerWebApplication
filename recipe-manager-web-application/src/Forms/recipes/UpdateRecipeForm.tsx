@@ -29,10 +29,9 @@ export default function UpdateRecipeForm({
   updateInFetchedRecipe: (updatedRecipe: Recipe) => void;
   close: () => void;
 }) {
-  const { control, handleSubmit, formState, clearErrors } =
-    useForm<RecipeInput>({
-      defaultValues: extractDefaultValues(existingRecipe),
-    });
+  const { control, handleSubmit } = useForm<RecipeInput>({
+    defaultValues: extractDefaultValues(existingRecipe),
+  });
 
   const { callback: updateRecipe, loading } = useMutate<Recipe>({
     endpointPath: `${process.env.REACT_APP_RECIPE_MANAGER_API_URL}recipe/${recipeName}`,
@@ -50,11 +49,7 @@ export default function UpdateRecipeForm({
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <RecipeForm
-        control={control}
-        formState={formState}
-        clearErrors={clearErrors}
-      />
+      <RecipeForm control={control} />
       {loading ? <LoadingSpinner /> : <SubmitButton>Submit</SubmitButton>}
     </form>
   );

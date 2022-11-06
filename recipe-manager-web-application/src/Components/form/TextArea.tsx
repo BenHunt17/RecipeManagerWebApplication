@@ -5,13 +5,12 @@ import {
   UseControllerProps,
 } from "react-hook-form";
 import { formatFieldName } from "../../Utilities/formUtils";
-import { ErrorMessage } from "../Common/StyledComponents/ContentComponents";
+import { InputError } from "../Common/StyledComponents/InputComponents";
 
 const Input = styled.textarea`
   width: calc(100% - 8px);
   height: 55px;
   resize: none;
-  margin-bottom: 8px;
 `;
 
 export default function TextArea<T extends FieldValues>(
@@ -25,15 +24,12 @@ export default function TextArea<T extends FieldValues>(
 
   return (
     <div className="hundredWidth">
-      {formatFieldName(
-        props.title ?? field.name,
-        !!props.required,
-        !!props.title
-      )}
+      {props.title ??
+        formatFieldName(props.title ?? field.name, !!props.required)}
       <Input {...field} {...props.textAreaProps} />
-      <ErrorMessage>
+      <InputError>
         {!!fieldState.error?.message && fieldState.error.message}
-      </ErrorMessage>
+      </InputError>
     </div>
   );
 }

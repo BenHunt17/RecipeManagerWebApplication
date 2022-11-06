@@ -49,16 +49,24 @@ export default function StandardForm({
             />
           )}
         </FlexContainer>
-        {centerFields?.map((centerField) => (
-          <FlexContainer justifyContent="center" alignItems="center">
+        {centerFields?.map((centerField, index) => (
+          <FlexContainer
+            key={index}
+            justifyContent="center"
+            alignItems="center"
+          >
             {centerField}
           </FlexContainer>
         ))}
         <FlexContainer justifyContent="space-between" gap={25}>
-          {columnFields?.map((columnField) => columnField)}
+          {columnFields?.map((columnField, index) => (
+            <div key={index}>{columnField}</div>
+          ))}
         </FlexContainer>
         <GridContainer>
-          {gridFields?.map((gridField) => gridField)}
+          {gridFields?.map((gridField, index) => (
+            <div key={index}>{gridField}</div>
+          ))}
         </GridContainer>
       </FlexContainer>
     </Root>

@@ -56,7 +56,7 @@ export default function UpdateIngredientForm({
   return (
     <Fragment>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <IngredientForm control={control} formState={formState} />
+        <IngredientForm control={control} />
         {loading ? (
           <LoadingSpinner />
         ) : (

@@ -5,14 +5,13 @@ import {
   UseControllerProps,
 } from "react-hook-form";
 import { formatFieldName } from "../../Utilities/formUtils";
-import { ErrorMessage } from "../Common/StyledComponents/ContentComponents";
+import { InputError } from "../Common/StyledComponents/InputComponents";
 
 const SelectInput = styled.select`
   width: 100%;
   height: 31px;
   padding: 1px 2px;
   border-width: 2px;
-  margin-bottom: 8px;
 `;
 
 const Option = styled.option`
@@ -29,21 +28,29 @@ export default function Select<T extends FieldValues, U>(
 ) {
   const { field, fieldState } = useController(props);
 
+  const options = [...(!props.required ? [undefined] : []), ...props.options];
+  const label = (option: U | undefined) =>
+    option !== undefined ? props.label(option) : "-";
+
   return (
     <div className="hundredWidth">
-      {formatFieldName(
-        props.title ?? field.name,
-        !!props.required,
-        !!props.title
-      )}
-      <SelectInput {...field}>
-        {props.options.map((option) => (
-          <Option key={props.label(option)}>{props.label(option)}</Option>
+      {props.title ?? formatFieldName(field.name, !!props.required)}
+      <SelectInput
+        {...field}
+        value={label(field.value)}
+        onChange={(e) =>
+          field.onChange(
+            options.find((option) => label(option) === e.target.value)
+          )
+        }
+      >
+        {options.map((option) => (
+          <Option key={`${field.name}${label(option)}`}>{label(option)}</Option>
         ))}
       </SelectInput>
-      <ErrorMessage>
+      <InputError>
         {!!fieldState.error?.message && fieldState.error.message}
-      </ErrorMessage>
+      </InputError>
     </div>
   );
 }

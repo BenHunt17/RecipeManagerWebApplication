@@ -1,7 +1,6 @@
-import { Fragment, useEffect } from "react";
+import { Fragment } from "react";
 import { useForm } from "react-hook-form";
 import { SubmitButton } from "../../Components/Common/StyledComponents/ButtonComponents";
-import RangeInput from "../../Components/form/RangeInput";
 import { MinMaxValue, QueryParameters } from "../../types/commonTypes";
 import { getProperty } from "../../Utilities/FilterUtilities";
 import {
@@ -10,8 +9,8 @@ import {
   TryParseFloat,
 } from "../../Utilities/FilterParsers";
 import { FlexContainer } from "../../Components/Common/StyledComponents/ShortcutComponents";
-import DiscreteOptionSelector from "../../Components/form/DiscreteOptionSelector";
 import FilterForm from "../../Components/layouts/FilterForm";
+import NumberRangeInput from "../../Components/form/NumberRangeInput";
 
 interface IngredientFilters {
   calories?: MinMaxValue;
@@ -106,67 +105,59 @@ export default function IngredientFilterForm({
       <form onSubmit={formMethods.handleSubmit(onSubmit)}>
         <FilterForm
           rows={[
-            <RangeInput
+            <NumberRangeInput
               control={formMethods.control}
               name="calories"
               minName="calories.min"
               maxName="calories.max"
-              minLimit={0}
-              maxLimit={999}
-              minError={formMethods.formState.errors.calories?.min?.message}
-              maxError={formMethods.formState.errors.calories?.max?.message}
+              minValue={0}
+              maxValue={999}
             />,
-            <RangeInput
+            <NumberRangeInput
               control={formMethods.control}
               name="salt"
               minName="salt.min"
               maxName="salt.max"
-              minLimit={0}
-              maxLimit={999}
-              minError={formMethods.formState.errors.salt?.min?.message}
-              maxError={formMethods.formState.errors.salt?.max?.message}
+              minValue={0}
+              maxValue={999}
             />,
-            <RangeInput
+            <NumberRangeInput
               control={formMethods.control}
               name="fat"
               minName="fat.min"
               maxName="fat.max"
-              minLimit={0}
-              maxLimit={999}
-              minError={formMethods.formState.errors.fat?.min?.message}
-              maxError={formMethods.formState.errors.fat?.max?.message}
+              minValue={0}
+              maxValue={999}
             />,
-            <RangeInput
+            <NumberRangeInput
               control={formMethods.control}
               name="protein"
               minName="protein.min"
               maxName="protein.max"
-              minLimit={0}
-              maxLimit={999}
-              minError={formMethods.formState.errors.protein?.min?.message}
-              maxError={formMethods.formState.errors.protein?.max?.message}
+              minValue={0}
+              maxValue={999}
             />,
-            <RangeInput
+            <NumberRangeInput
               control={formMethods.control}
               name="carbs"
               minName="carbs.min"
               maxName="carbs.max"
-              minLimit={0}
-              maxLimit={999}
-              minError={formMethods.formState.errors.carbs?.min?.message}
-              maxError={formMethods.formState.errors.carbs?.max?.message}
+              minValue={0}
+              maxValue={999}
             />,
           ]}
-          grid={[
-            <DiscreteOptionSelector
-              id="fruit-veg.filter-selector"
-              control={formMethods.control}
-              name="fruitVeg"
-              options={[true, false]}
-              label={(option) => (option ? "Yes" : "No")}
-              width={150}
-            />,
-          ]}
+          grid={
+            [
+              // <DiscreteOptionSelector
+              //   id="fruit-veg.filter-selector"
+              //   control={formMethods.control}
+              //   name="fruitVeg"
+              //   options={[true, false]}
+              //   label={(option) => (option ? "Yes" : "No")}
+              //   width={150}
+              // />,
+            ]
+          }
         />
         <FlexContainer
           direction="row"

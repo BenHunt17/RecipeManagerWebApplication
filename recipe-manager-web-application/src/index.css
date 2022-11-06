@@ -59,6 +59,10 @@ ol li {
   padding: 10px 0 10px 0;
 }
 
+pre {
+  margin: 0;
+}
+
 .headerLink {
   text-decoration: none;
   font-weight: bold;

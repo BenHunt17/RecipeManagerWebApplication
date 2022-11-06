@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { useState } from "react";
+import { IconButton } from "./StyledComponents/ButtonComponents";
 import { FlexContainer } from "./StyledComponents/ShortcutComponents";
 
 const SliderContainer = styled.div`
@@ -17,31 +18,16 @@ const SlideIndexLight = styled.div(
 `
 );
 
-const ArrowButton = styled.button(
-  ({ disabled }: { disabled: boolean }) => `
-  color: var(--colour-text);
-  opacity: ${disabled ? "0.5" : "1"};`
-);
-
-const ButtonContent = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 5px;
-`;
-
-const Arrow = styled.span`
-  font-size: 20px;
-  color: var(--colour-primary);
-`;
-
 const Frame = styled.div(
   ({ translationX }: { translationX: number }) => `
   position: absolute;
-  width: 500px;
+  width: 100%;
   transform: translateX(${translationX}%);
   transition: transform 0.4s;
 `
 );
+
+const ArrowButton = styled.button``;
 
 function getFrameTranslation(index: number, currentSlide: number) {
   //If slide is at the index then it shouldn't be translated. If it is more then translate off screen to right, else to left
@@ -78,38 +64,24 @@ export default function Slider({ slides }: { slides: JSX.Element[] }) {
       ))}
       <FlexContainer
         direction="row"
-        justifyContent="center"
+        justifyContent="space-between"
+        alignItems="center"
         gap={10}
-        margin="100% 0 25px 0"
+        margin="calc(100% + 25px) 0 25px 0"
       >
-        {new Array(slidesCount).fill(0).map((_, slideIndex) => (
-          <SlideIndexLight
-            key={`create-ingredient-form.slides.slideIndex.${slideIndex}`}
-            illuminated={slideIndex === currentSlide}
-          />
-        ))}
-      </FlexContainer>
-      <FlexContainer direction="row" justifyContent="space-between">
-        <ArrowButton
-          type="button"
-          onClick={previousSlide}
-          disabled={currentSlide === 0}
-        >
-          <ButtonContent>
-            <Arrow style={{ color: "var(--colour-primary)" }}>🢀</Arrow>
-            Previous Slide
-          </ButtonContent>
-        </ArrowButton>
-        <ArrowButton
-          type="button"
-          onClick={nextSlide}
-          disabled={currentSlide === slidesCount - 1}
-        >
-          <ButtonContent>
-            Next Slide
-            <Arrow>🢂</Arrow>
-          </ButtonContent>
-        </ArrowButton>
+        <FlexContainer width={50} />
+        <FlexContainer gap={10}>
+          {new Array(slidesCount).fill(0).map((_, slideIndex) => (
+            <SlideIndexLight
+              key={`create-ingredient-form.slides.slideIndex.${slideIndex}`}
+              illuminated={slideIndex === currentSlide}
+            />
+          ))}
+        </FlexContainer>
+        <FlexContainer width={50}>
+          <IconButton onClick={previousSlide}>&lt;</IconButton>
+          <IconButton onClick={nextSlide}>&gt;</IconButton>
+        </FlexContainer>
       </FlexContainer>
     </SliderContainer>
   );

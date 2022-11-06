@@ -31,13 +31,10 @@ export default function CreateIngredientForm({
   onComplete: (addedIngredient: Ingredient) => void;
   close: () => void;
 }) {
-  const { control, handleSubmit, formState, watch } = useForm<IngredientInput>({
+  const { control, handleSubmit } = useForm<IngredientInput>({
     defaultValues,
   });
   const [ingredientImage, setIngredientImage] = useState<File | null>(null);
-  const [quantityUnit, setQuantityUnit] = useState<string | undefined>(
-    undefined
-  );
   const { callback: createIngredient, loading } = useMutate<Ingredient>({
     endpointPath: `${process.env.REACT_APP_RECIPE_MANAGER_API_URL}ingredient`,
     httpMethod: HttpMethod.POST,
@@ -76,21 +73,11 @@ export default function CreateIngredientForm({
     createIngredient(formData);
   };
 
-  useEffect(() => {
-    const subscription = watch((value, { name }) => {
-      if (name === "measureUnit" && value.measureUnit) {
-        setQuantityUnit(value.measureUnit);
-      }
-    });
-    return () => subscription.unsubscribe();
-  }, [watch]);
-
   return (
     <Fragment>
       <form onSubmit={handleSubmit(onSubmit)}>
         <IngredientForm
           control={control}
-          formState={formState}
           ingredientImageController={{
             value: ingredientImage,
             onChange: setIngredientImage,

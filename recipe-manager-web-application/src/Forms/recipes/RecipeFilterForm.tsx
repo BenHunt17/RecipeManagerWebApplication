@@ -2,8 +2,8 @@ import { Fragment } from "react";
 import { useForm } from "react-hook-form";
 import { SubmitButton } from "../../Components/Common/StyledComponents/ButtonComponents";
 import { FlexContainer } from "../../Components/Common/StyledComponents/ShortcutComponents";
-import DiscreteOptionSelector from "../../Components/form/DiscreteOptionSelector";
-import NumberSelector from "../../Components/form/NumberSelector";
+import Select from "../../Components/form/Select";
+import SelectRangeInput from "../../Components/form/SelectRangeInput";
 import TimeRangeInput from "../../Components/form/TimeRangeInput";
 import FilterForm from "../../Components/layouts/FilterForm";
 import {
@@ -103,46 +103,49 @@ export default function RecipeFilterForm({
       <form onSubmit={formMethods.handleSubmit(onSubmit)}>
         <FilterForm
           rows={[
-            <NumberSelector
-              id="rating.number-selector"
+            <SelectRangeInput
               control={formMethods.control}
               name="rating"
+              minName="rating.min"
+              maxName="rating.max"
               options={[1, 2, 3, 4, 5]}
+              label={(option) => option.toString()}
             />,
-            <NumberSelector
-              id="rating.number-selector"
+            <SelectRangeInput
               control={formMethods.control}
               name="servingSize"
+              minName="servingSize.min"
+              maxName="servingSize.max"
               options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]}
+              label={(option) => option.toString()}
             />,
           ]}
           grid={[
-            <TimeRangeInput control={formMethods.control} name="prepTime" />,
+            <TimeRangeInput
+              control={formMethods.control}
+              name="prepTime"
+              minName="prepTime.min"
+              maxName="prepTime.max"
+            />,
           ]}
           compactGrid={[
-            <DiscreteOptionSelector
-              id="breakfast.filter-selector"
+            <Select
               control={formMethods.control}
               name="breakfast"
               options={[true, false]}
               label={(option) => (option ? "Yes" : "No")}
-              width={150}
             />,
-            <DiscreteOptionSelector
-              id="lunch.filter-selector"
+            <Select
               control={formMethods.control}
               name="lunch"
               options={[true, false]}
               label={(option) => (option ? "Yes" : "No")}
-              width={150}
             />,
-            <DiscreteOptionSelector
-              id="dinner.filter-selector"
+            <Select
               control={formMethods.control}
               name="dinner"
               options={[true, false]}
               label={(option) => (option ? "Yes" : "No")}
-              width={150}
             />,
           ]}
         />
