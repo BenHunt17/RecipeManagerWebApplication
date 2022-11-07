@@ -1,8 +1,9 @@
 import styled from "@emotion/styled";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useLocation, useNavigate } from "react-router-dom";
 import { SubmitButton } from "../../Components/Common/StyledComponents/ButtonComponents";
-import { InputError } from "../../Components/Common/StyledComponents/InputComponents";
+import { LoadingSpinner } from "../../Components/Common/StyledComponents/ContentComponents";
 import { FlexContainer } from "../../Components/Common/StyledComponents/ShortcutComponents";
 import TextInput from "../../Components/form/TextInput";
 import { useAuth } from "../../hooks/contextHooks";
@@ -13,6 +14,13 @@ const LoginPageTemplate = styled.div`
   height: calc(100vh - 200px); //Full screen height minus header and margin
   justify-content: center;
   align-items: center;
+`;
+
+const ErrorMessage = styled.b`
+  font-size: 16px;
+  color: var(--colour-error);
+  margin: 0px;
+  margin-top: 1px;
 `;
 
 export default function Login() {
@@ -26,8 +34,15 @@ export default function Login() {
 
   const from = (location.state as { from: Location })?.from?.pathname || "";
 
+  useEffect(() => {
+    if (!auth?.bearerToken) {
+      return;
+    }
+    navigate(from);
+  }, [auth?.bearerToken]);
+
   const onSubmit = (formValues: UserCredentials) => {
-    auth?.login(formValues).then(() => navigate(from));
+    auth?.login(formValues);
   };
 
   return (
@@ -58,10 +73,14 @@ export default function Login() {
               type: "password",
             }}
           />
-          {auth?.authenticationDenied && (
-            <InputError>Incorrect Credentials</InputError>
+          <ErrorMessage>
+            {auth?.authenticationDenied ? "Incorrect Credentials" : ""}
+          </ErrorMessage>
+          {auth?.authenticationPending ? (
+            <LoadingSpinner />
+          ) : (
+            <SubmitButton type="submit">Login</SubmitButton>
           )}
-          <SubmitButton type="submit">Login</SubmitButton>
         </FlexContainer>
       </form>
     </LoginPageTemplate>

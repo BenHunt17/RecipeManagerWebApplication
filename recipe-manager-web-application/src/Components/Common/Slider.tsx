@@ -79,8 +79,12 @@ export default function Slider({ slides }: { slides: JSX.Element[] }) {
           ))}
         </FlexContainer>
         <FlexContainer width={50}>
-          <IconButton onClick={previousSlide}>&lt;</IconButton>
-          <IconButton onClick={nextSlide}>&gt;</IconButton>
+          <IconButton type="button" onClick={previousSlide}>
+            &lt;
+          </IconButton>
+          <IconButton type="button" onClick={nextSlide}>
+            &gt;
+          </IconButton>
         </FlexContainer>
       </FlexContainer>
     </SliderContainer>

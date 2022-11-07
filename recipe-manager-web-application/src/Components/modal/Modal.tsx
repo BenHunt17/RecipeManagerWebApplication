@@ -1,17 +1,22 @@
 import styled from "@emotion/styled";
-import { Fragment } from "react";
+import { Fragment, useRef } from "react";
+import useObserveRect from "../../hooks/useObserveRect";
 
-const ModalContainer = styled.div`
+const ModalContainer = styled.div(
+  ({ width, height }: { width: number; height: number }) => `
   max-width: 50%;
-  max-height: calc(90% - 150px);
+  max-height: 80%;
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, calc(-50% + 75px));
+  transform: translate(-${Math.floor(width / 2)}px, -${Math.floor(
+    height / 2
+  )}px);
   border-radius: 10px;
   background-color: white;
   overflow-y: auto;
-`;
+`
+);
 
 const ModalContent = styled.div`
   padding: 55px;
@@ -40,9 +45,17 @@ export default function Modal({
   content: JSX.Element;
   onClose: () => void;
 }) {
+  const modalRef = useRef<HTMLDivElement>(null);
+
+  const rect = useObserveRect(modalRef);
+
   return (
     <Fragment>
-      <ModalContainer>
+      <ModalContainer
+        ref={modalRef}
+        width={rect?.width ?? 0}
+        height={rect?.height ?? 0}
+      >
         <ExitButton onClick={onClose}>X</ExitButton>
         <ModalContent>
           <h3>{title}</h3>

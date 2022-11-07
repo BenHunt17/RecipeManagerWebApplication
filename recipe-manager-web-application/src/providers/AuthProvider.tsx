@@ -22,7 +22,7 @@ export default function AuthProvider({
   children: React.ReactNode;
 }) {
   const [bearerToken, setBearerToken] = useState<string>();
-  const [authenticationPending, setAuthenticationPending] = useState(true);
+  const [authenticationPending, setAuthenticationPending] = useState(false);
   const [authenticationDenied, setAuthenicationDenied] = useState(false);
 
   useEffect(() => {
@@ -32,7 +32,7 @@ export default function AuthProvider({
       //Refresh is wrapped in an interval so that the browser will automatically try refresh before the token expires.
       bearerTokenExpireTime
     );
-  }, [setBearerToken, setAuthenticationPending]);
+  }, []);
 
   const refresh = () =>
     fetch(`${process.env.REACT_APP_RECIPE_MANAGER_API_URL}user/refresh`, {
@@ -60,8 +60,9 @@ export default function AuthProvider({
       })
       .finally(() => setAuthenticationPending(false));
 
-  const login = (userCredentials: UserCredentials) =>
-    fetch(`${process.env.REACT_APP_RECIPE_MANAGER_API_URL}user/login`, {
+  const login = (userCredentials: UserCredentials) => {
+    setAuthenticationPending(true);
+    return fetch(`${process.env.REACT_APP_RECIPE_MANAGER_API_URL}user/login`, {
       method: HttpMethod.PUT,
       headers: new Headers({
         "Content-Type": "application/json;charset=utf-8",
@@ -87,7 +88,9 @@ export default function AuthProvider({
       .catch((error) => {
         console.log(error);
         setAuthenicationDenied(true);
-      });
+      })
+      .finally(() => setAuthenticationPending(false));
+  };
 
   const logout = () =>
     fetch(`${process.env.REACT_APP_RECIPE_MANAGER_API_URL}user/logout`, {
