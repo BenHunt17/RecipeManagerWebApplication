@@ -14,11 +14,14 @@ import {
 import { MeasureUnitToString } from "../../../Utilities/Ingredients";
 import { DEFAULT_RECIPE_INGREDIENT_FORM_VALUE } from "./RecipeIngredientsForm";
 
+const QuantityFieldContainer = styled.div`
+  width: 110px;
+`;
+
 const UnitContainer = styled.div`
-  width: 150px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  display: flex;
+  align-items: center;
+  height: 25px;
 `;
 
 interface Ingredient {
@@ -54,12 +57,7 @@ export function RecipeIngredientFieldSection({
   };
 
   return (
-    <FlexContainer
-      key={fieldId}
-      direction="row"
-      justifyContent="flex-start"
-      gap={10}
-    >
+    <FlexContainer key={fieldId} alignItems="center" gap={10}>
       <SearchSelect
         control={control}
         name={`ingredients.${fieldId}.ingredient`}
@@ -83,15 +81,18 @@ export function RecipeIngredientFieldSection({
           ingredientA.measureUnit === ingredientB.measureUnit
         }
         loading={loading}
+        required
       />
-      <TextInput
-        control={control}
-        rules={{
-          required: "Required Field",
-        }}
-        name={`ingredients.${fieldId}.quantity`}
-      />
-      {/* TODO - Make this entire form look prettier */}
+      <QuantityFieldContainer>
+        <TextInput
+          control={control}
+          rules={{
+            required: "Required Field",
+          }}
+          name={`ingredients.${fieldId}.quantity`}
+          required
+        />
+      </QuantityFieldContainer>
       <UnitContainer>
         {MeasureUnitToString(selectedIngredient.measureUnit)}
       </UnitContainer>

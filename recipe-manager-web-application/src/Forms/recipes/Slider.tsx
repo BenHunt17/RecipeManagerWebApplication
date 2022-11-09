@@ -1,7 +1,9 @@
 import styled from "@emotion/styled";
 import { useState } from "react";
-import { IconButton } from "./StyledComponents/ButtonComponents";
-import { FlexContainer } from "./StyledComponents/ShortcutComponents";
+import { IconButton } from "../../Components/Common/StyledComponents/ButtonComponents";
+import { FlexContainer } from "../../Components/Common/StyledComponents/ShortcutComponents";
+
+const FRAME_HEIGHT = "55vh";
 
 const SliderContainer = styled.div`
   position: relative;
@@ -18,16 +20,21 @@ const SlideIndexLight = styled.div(
 `
 );
 
-const Frame = styled.div(
+const Frame = styled.div`
+  width: 100%;
+  height: ${FRAME_HEIGHT};
+`;
+
+const FrameContent = styled.div(
   ({ translationX }: { translationX: number }) => `
   position: absolute;
   width: 100%;
+  height: ${FRAME_HEIGHT};
   transform: translateX(${translationX}%);
   transition: transform 0.4s;
+  overflow: auto;
 `
 );
-
-const ArrowButton = styled.button``;
 
 function getFrameTranslation(index: number, currentSlide: number) {
   //If slide is at the index then it shouldn't be translated. If it is more then translate off screen to right, else to left
@@ -54,20 +61,21 @@ export default function Slider({ slides }: { slides: JSX.Element[] }) {
 
   return (
     <SliderContainer>
-      {slides.map((slide, index) => (
-        <Frame
-          key={slide.key ?? `slider.slide-${index}`}
-          translationX={getFrameTranslation(index, currentSlide)}
-        >
-          {slide}
-        </Frame>
-      ))}
+      <Frame>
+        {slides.map((slide, index) => (
+          <FrameContent
+            key={index}
+            translationX={getFrameTranslation(index, currentSlide)}
+          >
+            {slide}
+          </FrameContent>
+        ))}
+      </Frame>
       <FlexContainer
         direction="row"
         justifyContent="space-between"
         alignItems="center"
-        gap={10}
-        margin="calc(100% + 25px) 0 25px 0"
+        margin="25px 0 0 0"
       >
         <FlexContainer width={50} />
         <FlexContainer gap={10}>

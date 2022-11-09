@@ -47,35 +47,28 @@ export default function RecipeIngredientsForm({
   const currentRecipeIngredients = watch("ingredients");
 
   return (
-    <FlexContainer
-      direction="column"
-      justifyContent="space-between"
-      gap={25}
-      margin="0 0 25px 0"
-    >
-      <FormList
-        title="Ingredients"
-        sections={fields.map((field, index) => {
-          const selectedIngredient = currentRecipeIngredients[index].ingredient;
+    <FormList
+      title="Ingredients"
+      sections={fields.map((field, index) => {
+        const selectedIngredient = currentRecipeIngredients[index].ingredient;
 
-          return (
-            <RecipeIngredientFieldSection
-              key={field.id}
-              fieldId={index}
-              control={control}
-              selectedIngredient={{
-                ingredientName: selectedIngredient.ingredientName,
-                measureUnit: selectedIngredient.measureUnit,
-              }}
-            />
-          );
-        })}
-        defaultItemsCount={1}
-        addItem={() => append(DEFAULT_RECIPE_INGREDIENT_FORM_VALUE)}
-        removeItem={(index: number) => {
-          remove(index);
-        }}
-      />
-    </FlexContainer>
+        return (
+          <RecipeIngredientFieldSection
+            key={field.id}
+            fieldId={index}
+            control={control}
+            selectedIngredient={{
+              ingredientName: selectedIngredient.ingredientName,
+              measureUnit: selectedIngredient.measureUnit,
+            }}
+          />
+        );
+      })}
+      defaultItemsCount={1}
+      addItem={() => append(DEFAULT_RECIPE_INGREDIENT_FORM_VALUE)}
+      removeItem={(index: number) => {
+        remove(index);
+      }}
+    />
   );
 }

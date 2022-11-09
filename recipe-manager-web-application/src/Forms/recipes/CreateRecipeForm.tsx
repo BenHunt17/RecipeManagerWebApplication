@@ -3,7 +3,7 @@ import { useFieldArray, useForm } from "react-hook-form";
 import { FlexContainer } from "../../Components/Common/StyledComponents/ShortcutComponents";
 import useMutate, { HttpMethod } from "../../hooks/useMutate";
 import { LoadingSpinner } from "../../Components/Common/StyledComponents/ContentComponents";
-import Slider from "../../Components/Common/Slider";
+import Slider from "./Slider";
 import { Recipe, RecipeInput } from "../../types/recipeTypes";
 import InstructionsForm, {
   DEFAULT_INSTRUCTION_FORM_VALUE,
@@ -152,7 +152,12 @@ export default function CreateRecipeForm({
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <FlexContainer direction="column" justifyContent="space-between" gap={25}>
+      <FlexContainer
+        direction="column"
+        justifyContent="space-between"
+        gap={25}
+        height="100%"
+      >
         <Slider
           slides={[
             <RecipeForm
@@ -165,7 +170,6 @@ export default function CreateRecipeForm({
             <InstructionsForm
               control={instructionsControl}
               fields={instructionFields}
-              formState={instructionsFormState}
               append={instructionsAppend}
               remove={instructionsRemove}
             />,

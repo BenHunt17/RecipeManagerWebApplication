@@ -1,6 +1,3 @@
-/** @jsxImportSource @emotion/react */
-
-import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { Control } from "react-hook-form";
 import { FlexContainer } from "../../../Components/Common/StyledComponents/ShortcutComponents";
@@ -8,7 +5,8 @@ import TextArea from "../../../Components/form/TextArea";
 import { InstructionsFormInput } from "../../../types/formTypes";
 
 const InstructionNumber = styled.h4`
-  width: 31px;
+  width: 21px;
+  font-size: 20px;
   color: var(--colour-text);
   margin: 0;
 `;
@@ -21,32 +19,23 @@ export default function InstructionFieldSection({
   control: Control<InstructionsFormInput>;
 }) {
   return (
-    <div
-      key={fieldId}
-      css={css`
-        width: 100%;
-      `}
-    >
+    <div key={fieldId} className="hundredWidth">
       <FlexContainer
         key={fieldId}
         direction="row"
         justifyContent="space-between"
-        alignItems="flex-start"
+        alignItems="center"
         gap={10}
       >
-        <InstructionNumber>{fieldId + 1}.</InstructionNumber>
-        <div
-          css={css`
-            min-width: 350px;
-            width: 100%;
-          `}
-        >
+        <InstructionNumber>{fieldId + 1}</InstructionNumber>
+        <div className="hundredWidth">
           <TextArea
             control={control}
             name={`instructions.${fieldId}.instructionText`}
             rules={{
               required: "Required Field",
             }}
+            required
           />
         </div>
       </FlexContainer>

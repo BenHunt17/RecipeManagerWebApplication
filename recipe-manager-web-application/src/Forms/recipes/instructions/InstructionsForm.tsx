@@ -1,11 +1,9 @@
 /** @jsxImportSource @emotion/react */
 
-import styled from "@emotion/styled";
 import {
   ArrayPath,
   Control,
   FieldArrayWithId,
-  FormState,
   UseFieldArrayAppend,
   UseFieldArrayRemove,
 } from "react-hook-form";
@@ -22,7 +20,6 @@ export const DEFAULT_INSTRUCTION_FORM_VALUE = {
 export default function InstructionsForm({
   control,
   fields,
-  formState,
   append,
   remove,
 }: {
@@ -32,7 +29,6 @@ export default function InstructionsForm({
     ArrayPath<RecipeInstructionInput[]>,
     "id"
   >[];
-  formState: FormState<InstructionsFormInput>;
   append: UseFieldArrayAppend<
     RecipeInstructionInput[],
     ArrayPath<RecipeInstructionInput[]>

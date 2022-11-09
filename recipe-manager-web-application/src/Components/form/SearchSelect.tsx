@@ -7,7 +7,6 @@ import {
   useController,
   UseControllerProps,
 } from "react-hook-form";
-import { Ingredient } from "../../types/ingredientTypes";
 import { formatFieldName } from "../../Utilities/formUtils";
 import OutsideClickProvider from "../Common/OutsideClickProvider";
 import Overlay from "../Common/Overlay";
@@ -89,43 +88,46 @@ export default function SearchSelect<T extends FieldValues, U>(
     : false;
 
   return (
-    <OutsideClickProvider callback={() => setShowOverlay(false)}>
-      {props.title ?? formatFieldName(field.name, !!props.required)}
-      <FlexContainer>
-        <input
-          ref={inputRef}
-          value={valueSelected ? props.resultLabel(field.value) : searchText}
-          onChange={(e) => setSearchText(e.currentTarget.value)}
-          disabled={valueSelected}
-          placeholder={props.placeholder}
-        />
-        <SearchSelectButton
-          type="button"
-          onClick={() => {
-            if (valueSelected) {
-              field.onChange(props.defaultValue);
-              return;
-            }
-            props.onSearch(searchText);
-            setShowOverlay(true);
-          }}
-        >
-          {valueSelected ? "x" : "Search"}
-        </SearchSelectButton>
-      </FlexContainer>
-      {showOverlay && (
-        <Overlay anchorRef={inputRef}>
-          <OverlayContent
-            options={props.options}
-            resultLabel={props.resultLabel}
-            onOptionClick={(option) => {
-              field.onChange(option);
-              setShowOverlay(false);
-            }}
-            loading={props.loading}
+    <div className="hundredWidth">
+      <OutsideClickProvider callback={() => setShowOverlay(false)}>
+        {props.title ?? formatFieldName(field.name, !!props.required)}
+        <FlexContainer>
+          <input
+            className="hundredWidth"
+            ref={inputRef}
+            value={valueSelected ? props.resultLabel(field.value) : searchText}
+            onChange={(e) => setSearchText(e.currentTarget.value)}
+            disabled={valueSelected}
+            placeholder={props.placeholder}
           />
-        </Overlay>
-      )}
-    </OutsideClickProvider>
+          <SearchSelectButton
+            type="button"
+            onClick={() => {
+              if (valueSelected) {
+                field.onChange(props.defaultValue);
+                return;
+              }
+              props.onSearch(searchText);
+              setShowOverlay(true);
+            }}
+          >
+            {valueSelected ? "x" : "Search"}
+          </SearchSelectButton>
+        </FlexContainer>
+        {showOverlay && (
+          <Overlay anchorRef={inputRef}>
+            <OverlayContent
+              options={props.options}
+              resultLabel={props.resultLabel}
+              onOptionClick={(option) => {
+                field.onChange(option);
+                setShowOverlay(false);
+              }}
+              loading={props.loading}
+            />
+          </Overlay>
+        )}
+      </OutsideClickProvider>
+    </div>
   );
 }

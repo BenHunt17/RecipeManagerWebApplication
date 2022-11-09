@@ -13,6 +13,6 @@ export function MeasureUnitToString(measureUnit: MeasureUnit) {
     case MeasureUnit.TBSP:
       return "tbsp";
     default:
-      return "unknown units";
+      return "N/A";
   }
 }

@@ -12,6 +12,7 @@ export const FlexContainer = styled.div(
     gap,
     margin,
     width,
+    height,
   }: {
     direction?: "row" | "column";
     justifyContent?:
@@ -21,7 +22,8 @@ export const FlexContainer = styled.div(
       | "space-between"
       | "space-around"
       | "initial"
-      | "inherit";
+      | "inherit"
+      | "stretch";
     alignItems?:
       | "stretch"
       | "center"
@@ -35,6 +37,7 @@ export const FlexContainer = styled.div(
     gap?: number;
     margin?: string;
     width?: number | string;
+    height?: number | string;
   }) => ({
     display: "flex",
     flexDirection: direction,
@@ -44,6 +47,7 @@ export const FlexContainer = styled.div(
     flexBasis,
     gap: `${gap}px`,
     margin: margin,
-    width: width,
+    width,
+    height,
   })
 );

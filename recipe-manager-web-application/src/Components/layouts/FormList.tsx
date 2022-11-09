@@ -1,6 +1,11 @@
 import styled from "@emotion/styled";
+import { useRef } from "react";
+import useObserveRect from "../../hooks/useObserveRect";
 import BinIcon from "../../svg/BinIcon";
-import { IconButton } from "../Common/StyledComponents/ButtonComponents";
+import {
+  AddButton,
+  IconButton,
+} from "../Common/StyledComponents/ButtonComponents";
 import { FlexContainer } from "../Common/StyledComponents/ShortcutComponents";
 
 const Title = styled.b`
@@ -8,30 +13,36 @@ const Title = styled.b`
 `;
 
 const ItemsList = styled.div`
-  max-height: 350px;
   display: flex;
   flex-direction: column;
   gap: 25px;
-  border-top: solid 1px var(--colour-dark-grey);
-  padding: 10px;
+  height: calc(100% - 55px);
   overflow-y: auto;
+  border: 2px solid var(--colour-primary);
+  border-radius: 5px;
+  padding: 5px;
 `;
 
-const AddNewButton = styled.button`
-  width: 100px;
-  height: 26px;
-  color: var(--colour-text);
-  border: 1px solid var(--colour-light-grey);
-  border-radius: 10px;
-  box-shadow: 0px 2px 1px var(--colour-light-grey);
-  cursor: pointer;
-  &:hover {
-    filter: brightness(95%);
-  }
-  &:active {
-    filter: brightness(90%);
-  }
+const Section = styled.div`
+  width: calc(100% - 65px);
+  background-color: rgba(var(--colour-secondary-rgb), 0.25);
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  padding: 6px;
 `;
+
+const SectionEndSlot = styled.div(
+  ({ height }: { height: number }) => `
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 65px;
+  height: ${height}px;
+  background-color: var(--colour-primary);
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+`
+);
 
 export default function FormList({
   title,
@@ -46,30 +57,38 @@ export default function FormList({
   addItem: () => void;
   removeItem: (index: number) => void;
 }) {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const rect = useObserveRect(sectionRef);
+
   return (
-    <FlexContainer direction="column" justifyContent="space-between" gap={25}>
-      <Title>{title}</Title>
+    <FlexContainer
+      direction="column"
+      justifyContent="flex-start"
+      gap={10}
+      height="100%"
+    >
+      <FlexContainer alignItems="center" height={55}>
+        <Title>{title}</Title>
+        <AddButton type="button" onClick={addItem}>
+          Add Item +
+        </AddButton>
+      </FlexContainer>
       <ItemsList>
         {sections?.map((section, index) => (
-          <FlexContainer
-            key={section.key}
-            direction="row"
-            justifyContent="space-between"
-            alignItems="center"
-            gap={25}
-          >
-            {section}
-            {sections.length > defaultItemsCount && (
-              <IconButton type="button" onClick={() => removeItem(index)}>
-                <BinIcon width={17} height={26} />
-              </IconButton>
-            )}
+          <FlexContainer alignItems="center">
+            <Section key={section.key} ref={sectionRef}>
+              {section}
+            </Section>
+            <SectionEndSlot height={rect?.height ?? 0}>
+              {sections.length > defaultItemsCount && (
+                <IconButton type="button" onClick={() => removeItem(index)}>
+                  <BinIcon width={17} height={26} fill="white" />
+                </IconButton>
+              )}
+            </SectionEndSlot>
           </FlexContainer>
         ))}
       </ItemsList>
-      <AddNewButton type="button" onClick={addItem}>
-        Add Item +
-      </AddNewButton>
     </FlexContainer>
   );
 }

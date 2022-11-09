@@ -80,7 +80,6 @@ export default function UpdateRecipeIngredientsForm({
         <InstructionsForm
           control={control}
           fields={instructionFields}
-          formState={formState}
           append={instructionsAppend}
           remove={instructionsRemove}
         />
