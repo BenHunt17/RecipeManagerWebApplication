@@ -2,13 +2,13 @@ import ItemCard from "../Components/Common/ItemCard";
 import useFetch from "../hooks/useFetch";
 import useModal from "../hooks/useModal";
 import { IngredientListItem } from "../types/ingredientTypes";
-import DeleteIngredientForm from "../Forms/IngredientForms/DeleteIngredientForm";
+import DeleteIngredientForm from "../Forms/ingredients/DeleteIngredientForm";
 import { Fragment } from "react";
 import { PaginatedResponse, QueryParameters } from "../types/commonTypes";
 import { PAGINATION_LIMIT } from "../Utilities/FilterUtilities";
 import CollectionPage from "../Components/layouts/CollectionPage";
-import IngredientFilterForm from "../Forms/IngredientForms/IngredientFilterForm";
-import CreateIngredientForm from "../Forms/IngredientForms/CreateIngredientForm";
+import IngredientFilterForm from "../Forms/ingredients/IngredientFilterForm";
+import CreateIngredientForm from "../Forms/ingredients/CreateIngredientForm";
 import { useFilters } from "../hooks/useFilters";
 import { useNavigate } from "react-router-dom";
 
