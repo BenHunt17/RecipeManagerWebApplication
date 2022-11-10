@@ -6,7 +6,7 @@ import {
   UseControllerProps,
 } from "react-hook-form";
 import { formatFieldName } from "../../Utilities/formUtils";
-import { InputError } from "../Common/StyledComponents/InputComponents";
+import { InputError } from "../Common/styled/input";
 import RangeInput from "../layouts/RangeInput";
 import Select from "./Select";
 

@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { useState } from "react";
 import { Control } from "react-hook-form";
-import { FlexContainer } from "../../../Components/Common/StyledComponents/ShortcutComponents";
+import { FlexContainer } from "../../../Components/Common/styled/layouts";
 import SearchSelect from "../../../Components/form/SearchSelect";
 import TextInput from "../../../Components/form/TextInput";
 import useFetch from "../../../hooks/useFetch";

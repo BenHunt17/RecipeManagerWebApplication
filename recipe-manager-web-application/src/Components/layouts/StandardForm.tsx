@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { FlexContainer } from "../Common/StyledComponents/ShortcutComponents";
+import { FlexContainer } from "../Common/styled/layouts";
 import ImageUpload from "../form/ImageUpload";
 
 const Root = styled.div`

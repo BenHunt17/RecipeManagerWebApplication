@@ -1,9 +1,9 @@
 import styled from "@emotion/styled";
 import { useState } from "react";
 import FilterIcon from "../../svg/FilterIcon";
-import { IconButton, SearchButton } from "./StyledComponents/ButtonComponents";
-import { SearchBar } from "./StyledComponents/InputComponents";
-import { FlexContainer } from "./StyledComponents/ShortcutComponents";
+import { IconButton, SearchButton } from "./styled/buttons";
+import { SearchBar } from "./styled/input";
+import { FlexContainer } from "./styled/layouts";
 
 const SearchBarContainer = styled.div`
   position: relative;

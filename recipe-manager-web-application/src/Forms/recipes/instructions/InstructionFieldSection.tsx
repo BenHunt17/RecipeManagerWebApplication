@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { Control } from "react-hook-form";
-import { FlexContainer } from "../../../Components/Common/StyledComponents/ShortcutComponents";
+import { FlexContainer } from "../../../Components/Common/styled/layouts";
 import TextArea from "../../../Components/form/TextArea";
 import { InstructionsFormInput } from "../../../types/formTypes";
 

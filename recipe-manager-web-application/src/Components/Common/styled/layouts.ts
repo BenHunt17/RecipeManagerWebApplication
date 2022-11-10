@@ -1,6 +1,10 @@
 import styled from "@emotion/styled";
 
-//Exists purely to provide abstraction for using common processes such as flex box
+export const PageTemplate = styled.div`
+  height: calc(100vh - 200px); //Full screen height minus header and margin
+  overflow: hidden;
+  margin: 30px 100px 20px 100px;
+`;
 
 export const FlexContainer = styled.div(
   ({

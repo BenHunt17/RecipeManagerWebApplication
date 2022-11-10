@@ -1,5 +1,5 @@
 import React, { Children } from "react";
-import { FlexContainer } from "../Common/StyledComponents/ShortcutComponents";
+import { FlexContainer } from "../Common/styled/layouts";
 
 export default function RangeInput({
   children,

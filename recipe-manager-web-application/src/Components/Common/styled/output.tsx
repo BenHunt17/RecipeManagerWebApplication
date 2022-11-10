@@ -22,3 +22,25 @@ export const LoadingSpinner = styled.div`
 export const TightParagraph = styled.p`
   margin: 0;
 `;
+
+export const LoadingScreen = styled.div`
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--colour-dark-grey);
+  font-weight: bold;
+  font-size: 28px;
+  overflow: hidden;
+`;
+
+export const ErrorScreen = styled.div`
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--colour-error);
+  font-weight: bold;
+  font-size: 28px;
+  overflow: hidden;
+`;

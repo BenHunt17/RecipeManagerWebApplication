@@ -9,18 +9,18 @@ import { useParams } from "react-router-dom";
 import BreakfastIcon from "../../svg/BreakfastIcon";
 import DinnerIcon from "../../svg/DinnerIcon";
 import LunchIcon from "../../svg/LunchIcon";
-import { FlexContainer } from "../../Components/Common/StyledComponents/ShortcutComponents";
+import { FlexContainer } from "../../Components/Common/styled/layouts";
+import { PageTemplate } from "../../Components/Common/styled/layouts";
+import ImageDisplay from "../../Components/Common/ImageDisplay";
+import useModal from "../../hooks/useModal";
+import { IconButton } from "../../Components/Common/styled/buttons";
+import UpdateRecipeImageForm from "../../Forms/recipes/recipeImage/UpdateRecipeImageForm";
+import EditIcon from "../../svg/EditIcon";
 import {
   ErrorScreen,
   LoadingScreen,
-  PageTemplate,
-} from "../../Components/Common/StyledComponents/Layouts";
-import ImageDisplay from "../../Components/Common/ImageDisplay";
-import useModal from "../../hooks/useModal";
-import { IconButton } from "../../Components/Common/StyledComponents/ButtonComponents";
-import UpdateRecipeImageForm from "../../Forms/recipes/recipeImage/UpdateRecipeImageForm";
-import EditIcon from "../../svg/EditIcon";
-import { TightParagraph } from "../../Components/Common/StyledComponents/ContentComponents";
+  TightParagraph,
+} from "../../Components/Common/styled/output";
 import UpdateRecipeForm from "../../Forms/recipes/UpdateRecipeForm";
 import { minutesToTimeString } from "../../Utilities/Recipes";
 
@@ -70,98 +70,97 @@ export default function RecipeInformation() {
     )
   );
 
+  if (loading) {
+    return (
+      <PageTemplate>
+        <LoadingScreen>Loading Recipe...</LoadingScreen>
+      </PageTemplate>
+    );
+  }
+  if (!data) {
+    return (
+      <PageTemplate>
+        <ErrorScreen>Recipe not available</ErrorScreen>
+      </PageTemplate>
+    );
+  }
+
   return (
     <PageTemplate>
-      {!loading ? (
-        data ? (
-          <ContentLayout>
-            <FlexContainer
-              direction="row"
-              justifyContent="space-between"
-              alignItems="center"
-              gap={25}
-            >
-              <h2>{data.recipeName}</h2>
-              <IconButton
-                onClick={() => showUpdateRecipeModal({ existingRecipe: data })}
-              >
-                <EditIcon width={24} height={30} />
-              </IconButton>
-            </FlexContainer>
-            <FlexContainer
-              direction="row"
-              justifyContent="space-between"
-              alignItems="center"
-              gap={25}
-            >
-              <p>
-                🕐
-                <b> {minutesToTimeString(data.prepTime)}</b>
-              </p>
-              <p>
-                Serves: <b>{data?.servingSize}</b>
-              </p>
-              <FlexContainer
-                direction="row"
-                justifyContent="space-between"
-                gap={10}
-              >
-                <BreakfastIcon
-                  opacity={data.breakfast ? "1" : "0.2"}
-                  width={25}
-                  height={25}
-                />
-                <LunchIcon
-                  opacity={data.lunch ? "1" : "0.2"}
-                  width={25}
-                  height={25}
-                />
-                <DinnerIcon
-                  opacity={data.dinner ? "1" : "0.2"}
-                  width={25}
-                  height={25}
-                />
-              </FlexContainer>
-              <h2>{"⭐".repeat(data.rating ?? 0)}</h2>
-            </FlexContainer>
-            <FlexContainer
-              direction="column"
-              justifyContent="flex-start"
-              gap={25}
-            >
-              <RecipeIngredientsList
-                recipe={data}
-                updateInFetchedRecipe={modifyData}
-              />
-              <RecipeInstructions
-                recipe={data}
-                updateInFetchedRecipe={modifyData}
-              />
-            </FlexContainer>
-            <FlexContainer
-              direction="column"
-              justifyContent="flex-start"
-              gap={25}
-            >
-              <ImageDisplay
-                imageUrl={data.imageUrl}
-                onClick={() => showUploadImageModal({})}
-              />
-              <ContentBox title="About">
-                <TightParagraph>{data?.recipeDescription}</TightParagraph>
-              </ContentBox>
-              <RecipeNutrition
-                recipeIngredients={data.ingredients}
-                servingSize={data.servingSize}
-              />
-            </FlexContainer>
-          </ContentLayout>
-        ) : (
-          <ErrorScreen>Recipe data not available</ErrorScreen>
-        )
-      ) : (
-        <LoadingScreen>Loading Recipe Data...</LoadingScreen>
-      )}
+      <ContentLayout>
+        <FlexContainer
+          direction="row"
+          justifyContent="space-between"
+          alignItems="center"
+          gap={25}
+        >
+          <h2>{data.recipeName}</h2>
+          <IconButton
+            onClick={() => showUpdateRecipeModal({ existingRecipe: data })}
+          >
+            <EditIcon width={24} height={30} />
+          </IconButton>
+        </FlexContainer>
+        <FlexContainer
+          direction="row"
+          justifyContent="space-between"
+          alignItems="center"
+          gap={25}
+        >
+          <p>
+            🕐
+            <b> {minutesToTimeString(data.prepTime)}</b>
+          </p>
+          <p>
+            Serves: <b>{data?.servingSize}</b>
+          </p>
+          <FlexContainer
+            direction="row"
+            justifyContent="space-between"
+            gap={10}
+          >
+            <BreakfastIcon
+              opacity={data.breakfast ? "1" : "0.2"}
+              width={25}
+              height={25}
+            />
+            <LunchIcon
+              opacity={data.lunch ? "1" : "0.2"}
+              width={25}
+              height={25}
+            />
+            <DinnerIcon
+              opacity={data.dinner ? "1" : "0.2"}
+              width={25}
+              height={25}
+            />
+          </FlexContainer>
+          <h2>{"⭐".repeat(data.rating ?? 0)}</h2>
+        </FlexContainer>
+        <FlexContainer direction="column" justifyContent="flex-start" gap={25}>
+          <RecipeIngredientsList
+            recipe={data}
+            updateInFetchedRecipe={modifyData}
+          />
+          <RecipeInstructions
+            recipe={data}
+            updateInFetchedRecipe={modifyData}
+          />
+        </FlexContainer>
+        <FlexContainer direction="column" justifyContent="flex-start" gap={25}>
+          <ImageDisplay
+            imageUrl={data.imageUrl}
+            onClick={() => showUploadImageModal({})}
+          />
+          <ContentBox title="About">
+            <TightParagraph>{data?.recipeDescription}</TightParagraph>
+          </ContentBox>
+          <RecipeNutrition
+            recipeIngredients={data.ingredients}
+            servingSize={data.servingSize}
+          />
+        </FlexContainer>
+      </ContentLayout>
     </PageTemplate>
   );
 }

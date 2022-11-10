@@ -1,8 +1,8 @@
 import { useForm } from "react-hook-form";
 import useMutate, { HttpMethod } from "../../hooks/useMutate";
-import { LoadingSpinner } from "../../Components/Common/StyledComponents/ContentComponents";
+import { LoadingSpinner } from "../../Components/Common/styled/output";
 import { Recipe, RecipeInput } from "../../types/recipeTypes";
-import { SubmitButton } from "../../Components/Common/StyledComponents/ButtonComponents";
+import { SubmitButton } from "../../Components/Common/styled/buttons";
 import { RecipeForm } from "./RecipeForm";
 
 function extractDefaultValues(existingRecipe: Recipe) {

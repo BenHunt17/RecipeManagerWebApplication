@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import ContentBox from "../../Components/Common/ContentBox";
-import { IconButton } from "../../Components/Common/StyledComponents/ButtonComponents";
-import { FlexContainer } from "../../Components/Common/StyledComponents/ShortcutComponents";
+import { IconButton } from "../../Components/Common/styled/buttons";
+import { FlexContainer } from "../../Components/Common/styled/layouts";
 import Tag from "../../Components/Common/Tag";
 import UpdateRecipeIngredientsForm from "../../Forms/recipes/recipeIngredients/UpdateRecipeIngredientsForm";
 import useModal from "../../hooks/useModal";

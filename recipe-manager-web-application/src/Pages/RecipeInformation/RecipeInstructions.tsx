@@ -1,5 +1,5 @@
 import ContentBox from "../../Components/Common/ContentBox";
-import { IconButton } from "../../Components/Common/StyledComponents/ButtonComponents";
+import { IconButton } from "../../Components/Common/styled/buttons";
 import UpdateInstructionsForm from "../../Forms/recipes/instructions/UpdateInstructionsForm";
 import useModal from "../../hooks/useModal";
 import EditIcon from "../../svg/EditIcon";

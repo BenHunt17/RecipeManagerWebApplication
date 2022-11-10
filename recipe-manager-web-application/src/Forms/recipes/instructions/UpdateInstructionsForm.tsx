@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
-import { SubmitButton } from "../../../Components/Common/StyledComponents/ButtonComponents";
-import { LoadingSpinner } from "../../../Components/Common/StyledComponents/ContentComponents";
-import { FormListContainer } from "../../../Components/Common/StyledComponents/InputComponents";
-import { FlexContainer } from "../../../Components/Common/StyledComponents/ShortcutComponents";
+import { SubmitButton } from "../../../Components/Common/styled/buttons";
+import { LoadingSpinner } from "../../../Components/Common/styled/output";
+import { FormListContainer } from "../../../Components/Common/styled/input";
 import useMutate, { HttpMethod } from "../../../hooks/useMutate";
 import { InstructionsFormInput } from "../../../types/formTypes";
 import { RecipeInstruction } from "../../../types/recipeTypes";
 import InstructionsForm from "./InstructionsForm";
+import { FlexContainer } from "../../../Components/Common/styled/layouts";
 
 export default function UpdateRecipeIngredientsForm({
   recipeName,

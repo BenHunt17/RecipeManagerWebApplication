@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
-import { FlexContainer } from "../../Components/Common/StyledComponents/ShortcutComponents";
+import { FlexContainer } from "../../Components/Common/styled/layouts";
 import useMutate, { HttpMethod } from "../../hooks/useMutate";
-import { LoadingSpinner } from "../../Components/Common/StyledComponents/ContentComponents";
+import { LoadingSpinner } from "../../Components/Common/styled/output";
 import Slider from "./Slider";
 import { Recipe, RecipeInput } from "../../types/recipeTypes";
 import InstructionsForm, {
   DEFAULT_INSTRUCTION_FORM_VALUE,
 } from "./instructions/InstructionsForm";
-import { SubmitButton } from "../../Components/Common/StyledComponents/ButtonComponents";
+import { SubmitButton } from "../../Components/Common/styled/buttons";
 import RecipeIngredientsForm, {
   DEFAULT_RECIPE_INGREDIENT_FORM_VALUE,
 } from "./recipeIngredients/RecipeIngredientsForm";

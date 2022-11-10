@@ -4,13 +4,9 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { useParams } from "react-router-dom";
 import ContentBox from "../../Components/Common/ContentBox";
-import { IconButton } from "../../Components/Common/StyledComponents/ButtonComponents";
-import {
-  ErrorScreen,
-  LoadingScreen,
-  PageTemplate,
-} from "../../Components/Common/StyledComponents/Layouts";
-import { FlexContainer } from "../../Components/Common/StyledComponents/ShortcutComponents";
+import { IconButton } from "../../Components/Common/styled/buttons";
+import { PageTemplate } from "../../Components/Common/styled/layouts";
+import { FlexContainer } from "../../Components/Common/styled/layouts";
 import UpdateIngredientImageForm from "../../Forms/IngredientForms/UpdateIngredientImageForm";
 import UpdateIngredientForm from "../../Forms/IngredientForms/UpdateIngredientForm";
 import useFetch from "../../hooks/useFetch";
@@ -18,7 +14,11 @@ import useModal from "../../hooks/useModal";
 import { Ingredient } from "../../types/ingredientTypes";
 import ImageDisplay from "../../Components/Common/ImageDisplay";
 import EditIcon from "../../svg/EditIcon";
-import { TightParagraph } from "../../Components/Common/StyledComponents/ContentComponents";
+import {
+  ErrorScreen,
+  LoadingScreen,
+  TightParagraph,
+} from "../../Components/Common/styled/output";
 import IngredientNutrition from "./IngredientNutrition";
 
 const PageLayout = styled.div`
@@ -68,59 +68,66 @@ export default function IngredientInformation() {
     )
   );
 
+  if (loading) {
+    return (
+      <PageTemplate>
+        <LoadingScreen>Loading Ingredient...</LoadingScreen>
+      </PageTemplate>
+    );
+  }
+  if (!data) {
+    return (
+      <PageTemplate>
+        <ErrorScreen>Ingredient not available</ErrorScreen>
+      </PageTemplate>
+    );
+  }
+
   return (
     <PageTemplate>
-      {!loading ? (
-        data ? (
-          <PageLayout>
-            <FlexContainer
-              direction="row"
-              justifyContent="space-between"
-              alignItems="center"
-              gap={25}
-            >
-              <h2
-                css={css`
-                  grid-column: span 2;
-                `}
-              >
-                {data.ingredientName}
-              </h2>
-              {data.fruitVeg && <p>🍏 5 a Day</p>}
-              <IconButton
-                onClick={() =>
-                  showUpdateIngredientModal({
-                    existingIngredient: data,
-                  })
-                }
-              >
-                <EditIcon width={24} height={30} />
-              </IconButton>
-            </FlexContainer>
-            <div />
-            <FlexContainer
-              direction="column"
-              justifyContent="space-between"
-              gap={25}
-            >
-              <ImageDisplay
-                imageUrl={data.imageUrl}
-                onClick={() => {
-                  showUploadImageModal({});
-                }}
-              />
-              <ContentBox title="About">
-                <TightParagraph>{data?.ingredientDescription}</TightParagraph>
-              </ContentBox>
-              <IngredientNutrition ingredient={data} />
-            </FlexContainer>
-          </PageLayout>
-        ) : (
-          <ErrorScreen>Ingredient data not available</ErrorScreen>
-        )
-      ) : (
-        <LoadingScreen>Loading Ingredient Data...</LoadingScreen>
-      )}
+      <PageLayout>
+        <FlexContainer
+          direction="row"
+          justifyContent="space-between"
+          alignItems="center"
+          gap={25}
+        >
+          <h2
+            css={css`
+              grid-column: span 2;
+            `}
+          >
+            {data.ingredientName}
+          </h2>
+          {data.fruitVeg && <p>🍏 5 a Day</p>}
+          <IconButton
+            onClick={() =>
+              showUpdateIngredientModal({
+                existingIngredient: data,
+              })
+            }
+          >
+            <EditIcon width={24} height={30} />
+          </IconButton>
+        </FlexContainer>
+        <div />
+        <FlexContainer
+          direction="column"
+          justifyContent="space-between"
+          gap={25}
+        >
+          <ImageDisplay
+            imageUrl={data.imageUrl}
+            onClick={() => {
+              showUploadImageModal({});
+            }}
+          />
+          <ContentBox title="About">
+            <TightParagraph>{data?.ingredientDescription}</TightParagraph>
+          </ContentBox>
+          <IngredientNutrition ingredient={data} />
+        </FlexContainer>
+      </PageLayout>
     </PageTemplate>
   );
 }

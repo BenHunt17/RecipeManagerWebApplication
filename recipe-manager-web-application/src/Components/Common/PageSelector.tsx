@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { FlexContainer } from "./StyledComponents/ShortcutComponents";
+import { FlexContainer } from "./styled/layouts";
 
 const StepButton = styled.button(
   ({ disabled }: { disabled: boolean }) => `

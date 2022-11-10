@@ -1,12 +1,12 @@
 import { useFieldArray, useForm } from "react-hook-form";
-import { SubmitButton } from "../../../Components/Common/StyledComponents/ButtonComponents";
-import { LoadingSpinner } from "../../../Components/Common/StyledComponents/ContentComponents";
-import { FormListContainer } from "../../../Components/Common/StyledComponents/InputComponents";
-import { FlexContainer } from "../../../Components/Common/StyledComponents/ShortcutComponents";
+import { SubmitButton } from "../../../Components/Common/styled/buttons";
+import { LoadingSpinner } from "../../../Components/Common/styled/output";
+import { FormListContainer } from "../../../Components/Common/styled/input";
 import useMutate, { HttpMethod } from "../../../hooks/useMutate";
 import { RecipeIngredientFormInput } from "../../../types/formTypes";
 import { RecipeIngredient } from "../../../types/recipeTypes";
 import RecipeIngredientsForm from "./RecipeIngredientsForm";
+import { FlexContainer } from "../../../Components/Common/styled/layouts";
 
 function extractDefaultValues(existingRecipeIngredients: RecipeIngredient[]) {
   return {

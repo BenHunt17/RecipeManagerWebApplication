@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import { useForm } from "react-hook-form";
-import { SubmitButton } from "../../Components/Common/StyledComponents/ButtonComponents";
-import { FlexContainer } from "../../Components/Common/StyledComponents/ShortcutComponents";
+import { SubmitButton } from "../../Components/Common/styled/buttons";
+import { FlexContainer } from "../../Components/Common/styled/layouts";
 import Select from "../../Components/form/Select";
 import SelectRangeInput from "../../Components/form/SelectRangeInput";
 import TimeRangeInput from "../../Components/form/TimeRangeInput";

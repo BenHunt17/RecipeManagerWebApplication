@@ -1,11 +1,8 @@
 import styled from "@emotion/styled";
 import React, { Fragment, useState } from "react";
-import {
-  AddButton,
-  SubmitButton,
-} from "../Components/Common/StyledComponents/ButtonComponents";
-import { LoadingSpinner } from "../Components/Common/StyledComponents/ContentComponents";
-import { FlexContainer } from "../Components/Common/StyledComponents/ShortcutComponents";
+import { AddButton, SubmitButton } from "../Components/Common/styled/buttons";
+import { FlexContainer } from "../Components/Common/styled/layouts";
+import { LoadingSpinner } from "../Components/Common/styled/output";
 
 const ImageContainer = styled.div`
   display: flex;

@@ -10,7 +10,7 @@ import {
 import { formatFieldName } from "../../Utilities/formUtils";
 import OutsideClickProvider from "../Common/OutsideClickProvider";
 import Overlay from "../Common/Overlay";
-import { FlexContainer } from "../Common/StyledComponents/ShortcutComponents";
+import { FlexContainer } from "../Common/styled/layouts";
 
 const SearchSelectButton = styled.button`
   height: 30px;

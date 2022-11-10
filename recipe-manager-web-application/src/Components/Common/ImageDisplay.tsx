@@ -22,6 +22,7 @@ const ImageFrameEditOverlay = styled.div`
     background-color: rgba(var(--colour-light-grey-rgb), 0.75);
     opacity: 1;
     transition: 0.4s;
+    cursor: pointer;
   }
 `;
 

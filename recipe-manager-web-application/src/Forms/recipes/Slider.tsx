@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { useState } from "react";
-import { IconButton } from "../../Components/Common/StyledComponents/ButtonComponents";
-import { FlexContainer } from "../../Components/Common/StyledComponents/ShortcutComponents";
+import { IconButton } from "../../Components/Common/styled/buttons";
+import { FlexContainer } from "../../Components/Common/styled/layouts";
 
 const FRAME_HEIGHT = "55vh";
 

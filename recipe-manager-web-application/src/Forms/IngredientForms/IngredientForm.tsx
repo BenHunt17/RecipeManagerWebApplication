@@ -1,5 +1,5 @@
 import { Control, FormState } from "react-hook-form";
-import { FlexContainer } from "../../Components/Common/StyledComponents/ShortcutComponents";
+import { FlexContainer } from "../../Components/Common/styled/layouts";
 import Select from "../../Components/form/Select";
 import TextArea from "../../Components/form/TextArea";
 import TextInput from "../../Components/form/TextInput";

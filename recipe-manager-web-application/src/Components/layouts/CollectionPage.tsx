@@ -3,12 +3,9 @@ import { QueryParameters } from "../../types/commonTypes";
 import { getCount } from "../../Utilities/FilterUtilities";
 import PageSelector from "../Common/PageSelector";
 import SearchAndFilter from "../Common/SearchAndFilter";
-import { AddButton } from "../Common/StyledComponents/ButtonComponents";
-import {
-  ErrorScreen,
-  LoadingScreen,
-  PageTemplate,
-} from "../Common/StyledComponents/Layouts";
+import { AddButton } from "../Common/styled/buttons";
+import { PageTemplate } from "../Common/styled/layouts";
+import { ErrorScreen, LoadingScreen } from "../Common/styled/output";
 
 const CollectionContainer = styled.div(
   ({ hasData }: { hasData?: boolean }) => ({

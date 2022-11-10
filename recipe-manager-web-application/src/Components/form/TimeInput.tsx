@@ -8,7 +8,7 @@ import {
   minutesToTimeString,
   timeStringToMinutes,
 } from "../../Utilities/Recipes";
-import { InputError } from "../Common/StyledComponents/InputComponents";
+import { InputError } from "../Common/styled/input";
 
 export default function TimeInput<T extends FieldValues>(
   props: UseControllerProps<T> & { required?: boolean; title?: string }

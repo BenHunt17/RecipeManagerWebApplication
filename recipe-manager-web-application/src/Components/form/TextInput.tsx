@@ -5,7 +5,7 @@ import {
   UseControllerProps,
 } from "react-hook-form";
 import { formatFieldName } from "../../Utilities/formUtils";
-import { InputError } from "../Common/StyledComponents/InputComponents";
+import { InputError } from "../Common/styled/input";
 
 const Input = styled.input`
   width: calc(100% - 8px);

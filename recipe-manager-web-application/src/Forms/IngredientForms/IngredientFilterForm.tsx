@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import { useForm } from "react-hook-form";
-import { SubmitButton } from "../../Components/Common/StyledComponents/ButtonComponents";
+import { SubmitButton } from "../../Components/Common/styled/buttons";
 import { MinMaxValue, QueryParameters } from "../../types/commonTypes";
 import { getProperty } from "../../Utilities/FilterUtilities";
 import {
@@ -8,7 +8,7 @@ import {
   TryParseBoolean,
   TryParseFloat,
 } from "../../Utilities/FilterParsers";
-import { FlexContainer } from "../../Components/Common/StyledComponents/ShortcutComponents";
+import { FlexContainer } from "../../Components/Common/styled/layouts";
 import FilterForm from "../../Components/layouts/FilterForm";
 import NumberRangeInput from "../../Components/form/NumberRangeInput";
 
