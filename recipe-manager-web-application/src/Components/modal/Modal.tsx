@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { Fragment, useRef } from "react";
-import useObserveRect from "../../hooks/useObserveRect";
+import useObserveDimensions from "../../hooks/useObserveDimensions";
 
 const ModalContainer = styled.div(
   ({ width, height }: { width: number; height: number }) => `
@@ -47,14 +47,14 @@ export default function Modal({
 }) {
   const modalRef = useRef<HTMLDivElement>(null);
 
-  const rect = useObserveRect(modalRef);
+  const dimensions = useObserveDimensions(modalRef);
 
   return (
     <Fragment>
       <ModalContainer
         ref={modalRef}
-        width={rect?.width ?? 0}
-        height={rect?.height ?? 0}
+        width={dimensions?.width ?? 0}
+        height={dimensions?.height ?? 0}
       >
         <ExitButton onClick={onClose}>X</ExitButton>
         <ModalContent>

@@ -1,11 +1,5 @@
 import styled from "@emotion/styled";
-import { useRef } from "react";
-import useObserveRect from "../../../hooks/useObserveRect";
-import BinIcon from "../../../svg/BinIcon";
-import {
-  AddButton,
-  IconButton,
-} from "../../Common/StyledComponents/ButtonComponents";
+import { AddButton } from "../../Common/StyledComponents/ButtonComponents";
 import { FlexContainer } from "../../Common/StyledComponents/ShortcutComponents";
 import FormListSection from "./FormListSection";
 

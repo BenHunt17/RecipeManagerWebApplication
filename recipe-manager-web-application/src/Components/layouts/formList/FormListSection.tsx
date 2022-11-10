@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { useRef } from "react";
-import useObserveRect from "../../../hooks/useObserveRect";
+import useObserveDimensions from "../../../hooks/useObserveDimensions";
 import BinIcon from "../../../svg/BinIcon";
 import { IconButton } from "../../Common/StyledComponents/ButtonComponents";
 import { FlexContainer } from "../../Common/StyledComponents/ShortcutComponents";
@@ -36,12 +36,12 @@ export default function FormListSection({
   onRemove: () => void;
 }) {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const rect = useObserveRect(sectionRef);
+  const dimensions = useObserveDimensions(sectionRef);
 
   return (
     <FlexContainer alignItems="center">
       <Section ref={sectionRef}>{section}</Section>
-      <SectionEndSlot height={rect?.height ?? 0}>
+      <SectionEndSlot height={dimensions?.height ?? 0}>
         {showBinButton && (
           <IconButton type="button" onClick={() => onRemove()}>
             <BinIcon width={17} height={26} fill="white" />
