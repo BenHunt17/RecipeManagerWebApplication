@@ -1,6 +1,7 @@
 import { useFieldArray, useForm } from "react-hook-form";
 import { SubmitButton } from "../../../Components/Common/StyledComponents/ButtonComponents";
 import { LoadingSpinner } from "../../../Components/Common/StyledComponents/ContentComponents";
+import { FormListContainer } from "../../../Components/Common/StyledComponents/InputComponents";
 import { FlexContainer } from "../../../Components/Common/StyledComponents/ShortcutComponents";
 import useMutate, { HttpMethod } from "../../../hooks/useMutate";
 import { RecipeIngredientFormInput } from "../../../types/formTypes";
@@ -57,20 +58,30 @@ export default function UpdateRecipeIngredientsForm({
   });
 
   const onSubmit = (formValues: RecipeIngredientFormInput) => {
-    updateRecipeIngredients(JSON.stringify(formValues.ingredients));
+    updateRecipeIngredients(
+      JSON.stringify(
+        formValues.ingredients.map((recipeIngredient) => {
+          return {
+            ingredientName: recipeIngredient.ingredient.ingredientName,
+            quantity: recipeIngredient.quantity,
+          };
+        })
+      )
+    );
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <FlexContainer direction="column" justifyContent="flex-start" gap={25}>
-        <RecipeIngredientsForm
-          control={control}
-          fields={recipeIngredientFields}
-          formState={formState}
-          watch={watch}
-          append={recipeIngredientsAppend}
-          remove={recipeIngredientsRemove}
-        />
+        <FormListContainer>
+          <RecipeIngredientsForm
+            control={control}
+            fields={recipeIngredientFields}
+            watch={watch}
+            append={recipeIngredientsAppend}
+            remove={recipeIngredientsRemove}
+          />
+        </FormListContainer>
         {loading ? <LoadingSpinner /> : <SubmitButton>Submit</SubmitButton>}
       </FlexContainer>
     </form>

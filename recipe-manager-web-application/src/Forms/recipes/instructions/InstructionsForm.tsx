@@ -7,7 +7,7 @@ import {
   UseFieldArrayAppend,
   UseFieldArrayRemove,
 } from "react-hook-form";
-import FormList from "../../../Components/layouts/FormList";
+import FormList from "../../../Components/layouts/formList/FormList";
 import { InstructionsFormInput } from "../../../types/formTypes";
 import { RecipeInstructionInput } from "../../../types/recipeTypes";
 import InstructionFieldSection from "./InstructionFieldSection";

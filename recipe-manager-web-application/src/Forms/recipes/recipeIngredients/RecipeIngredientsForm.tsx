@@ -13,7 +13,7 @@ import {
   MeasureUnit,
 } from "../../../types/ingredientTypes";
 import { RecipeIngredientInput, RecipeInput } from "../../../types/recipeTypes";
-import FormList from "../../../Components/layouts/FormList";
+import FormList from "../../../Components/layouts/formList/FormList";
 import { RecipeIngredientFieldSection } from "./RecipeIngredientFieldSection";
 import { RecipeIngredientFormInput } from "../../../types/formTypes";
 
@@ -25,7 +25,6 @@ export const DEFAULT_RECIPE_INGREDIENT_FORM_VALUE = {
 export default function RecipeIngredientsForm({
   control,
   fields,
-  formState,
   watch,
   append,
   remove,
@@ -36,7 +35,6 @@ export default function RecipeIngredientsForm({
     ArrayPath<RecipeIngredientInput[]>,
     "id"
   >[];
-  formState: FormState<RecipeIngredientFormInput>;
   watch: UseFormWatch<RecipeIngredientFormInput>;
   append: UseFieldArrayAppend<
     RecipeIngredientInput[],

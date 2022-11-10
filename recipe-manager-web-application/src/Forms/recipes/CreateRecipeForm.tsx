@@ -113,7 +113,17 @@ export default function CreateRecipeForm({
         })
       )
     );
-    formData.append("instructions", JSON.stringify(instructions));
+    formData.append(
+      "instructions",
+      JSON.stringify(
+        instructions.map((instruction, index) => {
+          return {
+            instructionNumber: index + 1,
+            instructionText: instruction.instructionText,
+          };
+        })
+      )
+    );
     formData.append("rating", formValues.rating.toString());
     formData.append("prepTime", formValues.prepTime.toString());
     formData.append("servingSize", formValues.servingSize.toString());
@@ -123,32 +133,6 @@ export default function CreateRecipeForm({
 
     createIngredient(formData);
   };
-
-  useEffect(() => {
-    const subscription = instructionsWatch((value, { name }) => {
-      if (name === "instructions" && value.instructions) {
-        if (
-          value.instructions.some(
-            (instruction) =>
-              (instruction?.instructionNumber ?? 0) >
-              (value.instructions?.length ?? 0)
-          )
-        ) {
-          //If the instruction numbers sequence has a gap in it, then will recalculate every number
-          instructionsSetValue(
-            "instructions",
-            value.instructions.map((instruction, index) => {
-              return {
-                instructionNumber: index + 1,
-                instructionText: instruction?.instructionText ?? "",
-              };
-            })
-          );
-        }
-      }
-    });
-    return () => subscription.unsubscribe();
-  }, [instructionsWatch]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -176,7 +160,6 @@ export default function CreateRecipeForm({
             <RecipeIngredientsForm
               control={recipeIngredientsControl}
               fields={recipeIngredientFields}
-              formState={recipeIngredientsFormState}
               watch={recipeIngredientsWatch}
               append={recipeIngredientsAppend}
               remove={recipeIngredientsRemove}

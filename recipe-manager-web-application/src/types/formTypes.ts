@@ -12,5 +12,5 @@ export interface RecipeIngredientFormInput {
 }
 
 export interface InstructionsFormInput {
-  instructions: RecipeInstructionInput[];
+  instructions: { instructionText: string }[];
 }

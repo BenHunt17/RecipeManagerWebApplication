@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
 import { SubmitButton } from "../../../Components/Common/StyledComponents/ButtonComponents";
 import { LoadingSpinner } from "../../../Components/Common/StyledComponents/ContentComponents";
+import { FormListContainer } from "../../../Components/Common/StyledComponents/InputComponents";
 import { FlexContainer } from "../../../Components/Common/StyledComponents/ShortcutComponents";
 import useMutate, { HttpMethod } from "../../../hooks/useMutate";
 import { InstructionsFormInput } from "../../../types/formTypes";
@@ -19,10 +20,9 @@ export default function UpdateRecipeIngredientsForm({
   updateInFetchedRecipe: (recipeInstructions: RecipeInstruction[]) => void;
   close: () => void;
 }) {
-  const { control, handleSubmit, formState, watch, setValue } =
-    useForm<InstructionsFormInput>({
-      defaultValues: { instructions: existingInstructions }, //Need to have form for entir recipe ingredients since the controller is needed in the recipe ingredients form :/
-    });
+  const { control, handleSubmit } = useForm<InstructionsFormInput>({
+    defaultValues: { instructions: existingInstructions }, //Need to have form for entir recipe ingredients since the controller is needed in the recipe ingredients form :/
+  });
 
   const {
     fields: instructionFields,
@@ -44,45 +44,29 @@ export default function UpdateRecipeIngredientsForm({
   });
 
   const onSubmit = (formValues: InstructionsFormInput) => {
-    updateInstructions(JSON.stringify(formValues.instructions));
+    updateInstructions(
+      JSON.stringify(
+        formValues.instructions.map((instruction, index) => {
+          return {
+            instructionNumber: index + 1,
+            instructionText: instruction.instructionText,
+          };
+        })
+      )
+    );
   };
-
-  //TODO - this is used in another form. maybe make a feature hooks file
-  useEffect(() => {
-    const subscription = watch((value, { name }) => {
-      if (name === "instructions" && value.instructions) {
-        if (
-          value.instructions.some(
-            (instruction) =>
-              (instruction?.instructionNumber ?? 0) >
-              (value.instructions?.length ?? 0)
-          )
-        ) {
-          //If the instruction numbers sequence has a gap in it, then will recalculate every number
-          setValue(
-            "instructions",
-            value.instructions.map((instruction, index) => {
-              return {
-                instructionNumber: index + 1,
-                instructionText: instruction?.instructionText ?? "",
-              };
-            })
-          );
-        }
-      }
-    });
-    return () => subscription.unsubscribe();
-  }, [watch]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <FlexContainer direction="column" justifyContent="flex-start" gap={25}>
-        <InstructionsForm
-          control={control}
-          fields={instructionFields}
-          append={instructionsAppend}
-          remove={instructionsRemove}
-        />
+        <FormListContainer>
+          <InstructionsForm
+            control={control}
+            fields={instructionFields}
+            append={instructionsAppend}
+            remove={instructionsRemove}
+          />
+        </FormListContainer>
         {loading ? <LoadingSpinner /> : <SubmitButton>Submit</SubmitButton>}
       </FlexContainer>
     </form>

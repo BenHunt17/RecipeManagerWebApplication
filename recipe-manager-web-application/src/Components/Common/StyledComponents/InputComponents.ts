@@ -21,3 +21,7 @@ export const InputError = styled.p`
   margin: 0px;
   margin-top: 1px;
 `;
+
+export const FormListContainer = styled.div`
+  height: 50vh;
+`;
