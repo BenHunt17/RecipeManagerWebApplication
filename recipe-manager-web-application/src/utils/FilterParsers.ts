@@ -39,7 +39,7 @@ export function TryParseFloat(
   }
 
   const parsedFloat = parseFloat(payload);
-  return parsedFloat !== NaN ? parsedFloat : undefined;
+  return !isNaN(parsedFloat) ? parsedFloat : undefined;
 }
 
 export function TryParseInteger(
@@ -52,7 +52,7 @@ export function TryParseInteger(
   }
 
   const parsedInteger = parseInt(payload);
-  return parsedInteger !== NaN ? parsedInteger : undefined;
+  return !isNaN(parsedInteger) ? parsedInteger : undefined;
 }
 
 export function TryParseBoolean(

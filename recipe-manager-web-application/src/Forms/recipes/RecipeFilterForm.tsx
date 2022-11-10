@@ -1,11 +1,11 @@
 import { Fragment } from "react";
 import { useForm } from "react-hook-form";
-import { SubmitButton } from "../../Components/Common/styled/buttons";
-import { FlexContainer } from "../../Components/Common/styled/layouts";
-import Select from "../../Components/form/Select";
-import SelectRangeInput from "../../Components/form/SelectRangeInput";
-import TimeRangeInput from "../../Components/form/TimeRangeInput";
-import FilterForm from "../../Components/layouts/FilterForm";
+import { SubmitButton } from "../../components/styled/buttons";
+import { FlexContainer } from "../../components/styled/layouts";
+import Select from "../../components/form/Select";
+import SelectRangeInput from "../../components/form/SelectRangeInput";
+import TimeRangeInput from "../../components/form/TimeRangeInput";
+import FilterForm from "../../components/layout/FilterForm";
 import {
   MinMaxValue,
   QueryParameters,
@@ -15,8 +15,8 @@ import {
   FilterOperation,
   TryParseBoolean,
   TryParseInteger,
-} from "../../Utilities/FilterParsers";
-import { getProperty } from "../../Utilities/FilterUtilities";
+} from "../../utils/FilterParsers";
+import { getProperty } from "../../utils/FilterParams";
 
 interface RecipeFilters {
   rating?: RangeOrTrueValue;

@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { FlexContainer } from "../Common/styled/layouts";
+import { FlexContainer } from "../styled/layouts";
 
 const GridContainer = styled.div(
   ({ columnCount }: { columnCount: number }) => `

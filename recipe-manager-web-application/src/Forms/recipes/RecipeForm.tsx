@@ -1,9 +1,9 @@
 import { Fragment } from "react";
 import { Control } from "react-hook-form";
-import TextArea from "../../Components/form/TextArea";
-import TextInput from "../../Components/form/TextInput";
-import Toggle from "../../Components/form/Toggle";
-import StandardForm from "../../Components/layouts/StandardForm";
+import TextArea from "../../components/form/TextArea";
+import TextInput from "../../components/form/TextInput";
+import Toggle from "../../components/form/Toggle";
+import StandardForm from "../../components/layout/StandardForm";
 import { RecipeInput } from "../../types/recipeTypes";
 
 export function RecipeForm({

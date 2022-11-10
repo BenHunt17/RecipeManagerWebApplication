@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import "../index.css";
+import "../../index.css";
 import styled from "@emotion/styled";
-import { useAuth } from "../hooks/contextHooks";
+import { useAuth } from "../../hooks/contextHooks";
 
 const HeaderRoot = styled.div`
   width: 100%;

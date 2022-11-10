@@ -5,8 +5,8 @@ import styled from "@emotion/styled";
 import { Link } from "react-router-dom";
 import BinIcon from "../../svg/BinIcon";
 import ImagePlaceholder from "./ImagePlaceholder";
-import { IconButton } from "./styled/buttons";
-import { FlexContainer } from "./styled/layouts";
+import { IconButton } from "../styled/buttons";
+import { FlexContainer } from "../styled/layouts";
 
 const CardContainer = styled.div`
   position: relative;

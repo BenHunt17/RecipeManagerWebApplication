@@ -5,9 +5,9 @@ import {
   useController,
   UseControllerProps,
 } from "react-hook-form";
-import { formatFieldName } from "../../Utilities/formUtils";
-import { InputError } from "../Common/styled/input";
-import RangeInput from "../layouts/RangeInput";
+import { formatFieldName } from "../../utils/form";
+import { InputError } from "../styled/input";
+import RangeInput from "../layout/RangeInput";
 import Select from "./Select";
 
 export default function SelectRangeInput<T extends FieldValues, U>(

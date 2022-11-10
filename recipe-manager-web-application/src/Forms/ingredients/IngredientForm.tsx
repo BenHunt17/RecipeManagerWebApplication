@@ -1,12 +1,12 @@
 import { Control, FormState } from "react-hook-form";
-import { FlexContainer } from "../../Components/Common/styled/layouts";
-import Select from "../../Components/form/Select";
-import TextArea from "../../Components/form/TextArea";
-import TextInput from "../../Components/form/TextInput";
-import Toggle from "../../Components/form/Toggle";
-import StandardForm from "../../Components/layouts/StandardForm";
+import { FlexContainer } from "../../components/styled/layouts";
+import Select from "../../components/form/Select";
+import TextArea from "../../components/form/TextArea";
+import TextInput from "../../components/form/TextInput";
+import Toggle from "../../components/form/Toggle";
+import StandardForm from "../../components/layout/StandardForm";
 import { IngredientInput, MeasureUnit } from "../../types/ingredientTypes";
-import { MeasureUnitToString } from "../../Utilities/Ingredients";
+import { measureUnitToString } from "../../utils/ingredient";
 
 export default function IngredientForm({
   control,
@@ -60,7 +60,7 @@ export default function IngredientForm({
             control={control}
             name="measureUnit"
             options={Object.values(MeasureUnit)}
-            label={(option) => MeasureUnitToString(option)}
+            label={(option) => measureUnitToString(option)}
             rules={{
               required: "Required Field",
             }}

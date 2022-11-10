@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
-import { AddButton } from "../../Common/styled/buttons";
-import { FlexContainer } from "../../Common/styled/layouts";
+import { AddButton } from "../../styled/buttons";
+import { FlexContainer } from "../../styled/layouts";
 import FormListSection from "./FormListSection";
 
 const Title = styled.b`

@@ -1,6 +1,6 @@
 import { MeasureUnit } from "../types/ingredientTypes";
 
-export function MeasureUnitToString(measureUnit: MeasureUnit) {
+export function measureUnitToString(measureUnit: MeasureUnit) {
   switch (measureUnit) {
     case MeasureUnit.KG:
       return "kg";

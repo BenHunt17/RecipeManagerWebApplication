@@ -7,10 +7,10 @@ import {
   useController,
   UseControllerProps,
 } from "react-hook-form";
-import { formatFieldName } from "../../Utilities/formUtils";
-import OutsideClickProvider from "../Common/OutsideClickProvider";
-import Overlay from "../Common/Overlay";
-import { FlexContainer } from "../Common/styled/layouts";
+import { formatFieldName } from "../../utils/form";
+import OutsideClickProvider from "../common/OutsideClickProvider";
+import Overlay from "../common/Overlay";
+import { FlexContainer } from "../styled/layouts";
 
 const SearchSelectButton = styled.button`
   height: 30px;

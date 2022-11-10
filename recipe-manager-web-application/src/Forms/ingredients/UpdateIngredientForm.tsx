@@ -1,13 +1,13 @@
 import { Fragment } from "react";
 import { useForm } from "react-hook-form";
-import { SubmitButton } from "../../Components/Common/styled/buttons";
+import { SubmitButton } from "../../components/styled/buttons";
 import useMutate, { HttpMethod } from "../../hooks/useMutate";
 import {
   Ingredient,
   IngredientInput,
   MeasureUnit,
 } from "../../types/ingredientTypes";
-import { LoadingSpinner } from "../../Components/Common/styled/output";
+import { LoadingSpinner } from "../../components/styled/output";
 import IngredientForm from "./IngredientForm";
 
 function extractDefaultValues(existingIngredient: Ingredient) {

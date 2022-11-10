@@ -14,7 +14,7 @@ export function timeStringToMinutes(timeString: string) {
 
   const hours = parseInt(timeString.slice(0, 2));
   const minutes = parseInt(timeString.slice(3, 5));
-  if (hours === NaN || minutes === NaN) {
+  if (isNaN(hours) || isNaN(minutes)) {
     return 0;
   }
 

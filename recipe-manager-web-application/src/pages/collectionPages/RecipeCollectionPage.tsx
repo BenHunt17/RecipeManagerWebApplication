@@ -1,17 +1,17 @@
 import { Fragment } from "react";
 import { useNavigate } from "react-router-dom";
-import ItemCard from "../Components/Common/ItemCard";
-import CollectionPage from "../Components/layouts/CollectionPage";
-import CreateRecipeForm from "../Forms/recipes/CreateRecipeForm";
-import DeleteRecipeForm from "../Forms/recipes/DeleteRecipeForm";
-import RecipeFilterForm from "../Forms/recipes/RecipeFilterForm";
-import useFetch from "../hooks/useFetch";
-import { useFilters } from "../hooks/useFilters";
-import useModal from "../hooks/useModal";
-import { PaginatedResponse, QueryParameters } from "../types/commonTypes";
-import { RecipeListItem } from "../types/recipeTypes";
-import { PAGINATION_LIMIT } from "../Utilities/FilterUtilities";
-import { minutesToTimeString } from "../Utilities/Recipes";
+import ItemCard from "../../components/common/ItemCard";
+import CollectionPage from "../../components/layout/CollectionPage";
+import CreateRecipeForm from "../../forms/recipes/CreateRecipeForm";
+import DeleteRecipeForm from "../../forms/recipes/DeleteRecipeForm";
+import RecipeFilterForm from "../../forms/recipes/RecipeFilterForm";
+import useFetch from "../../hooks/useFetch";
+import { useFilters } from "../../hooks/useFilters";
+import useModal from "../../hooks/useModal";
+import { PaginatedResponse, QueryParameters } from "../../types/commonTypes";
+import { RecipeListItem } from "../../types/recipeTypes";
+import { PAGINATION_LIMIT } from "../../utils/FilterParams";
+import { minutesToTimeString } from "../../utils/recipe";
 
 export default function RecipeCollectionPage() {
   const {

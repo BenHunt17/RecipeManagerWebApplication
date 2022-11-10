@@ -1,16 +1,16 @@
 import { Fragment } from "react";
 import { useForm } from "react-hook-form";
-import { SubmitButton } from "../../Components/Common/styled/buttons";
+import { SubmitButton } from "../../components/styled/buttons";
 import { MinMaxValue, QueryParameters } from "../../types/commonTypes";
-import { getProperty } from "../../Utilities/FilterUtilities";
+import { getProperty } from "../../utils/FilterParams";
 import {
   FilterOperation,
   TryParseBoolean,
   TryParseFloat,
-} from "../../Utilities/FilterParsers";
-import { FlexContainer } from "../../Components/Common/styled/layouts";
-import FilterForm from "../../Components/layouts/FilterForm";
-import NumberRangeInput from "../../Components/form/NumberRangeInput";
+} from "../../utils/FilterParsers";
+import { FlexContainer } from "../../components/styled/layouts";
+import FilterForm from "../../components/layout/FilterForm";
+import NumberRangeInput from "../../components/form/NumberRangeInput";
 
 interface IngredientFilters {
   calories?: MinMaxValue;

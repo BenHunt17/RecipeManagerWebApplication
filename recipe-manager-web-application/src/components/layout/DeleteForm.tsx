@@ -1,7 +1,7 @@
 import { Fragment } from "react";
-import { SubmitButton } from "../Common/styled/buttons";
-import { FlexContainer } from "../Common/styled/layouts";
-import { LoadingSpinner } from "../Common/styled/output";
+import { SubmitButton } from "../styled/buttons";
+import { FlexContainer } from "../styled/layouts";
+import { LoadingSpinner } from "../styled/output";
 
 export default function DeleteForm({
   message,

@@ -1,9 +1,9 @@
 import styled from "@emotion/styled";
 import { useState } from "react";
 import { Control } from "react-hook-form";
-import { FlexContainer } from "../../../Components/Common/styled/layouts";
-import SearchSelect from "../../../Components/form/SearchSelect";
-import TextInput from "../../../Components/form/TextInput";
+import { FlexContainer } from "../../../components/styled/layouts";
+import SearchSelect from "../../../components/form/SearchSelect";
+import TextInput from "../../../components/form/TextInput";
 import useFetch from "../../../hooks/useFetch";
 import { PaginatedResponse, QueryParameters } from "../../../types/commonTypes";
 import { RecipeIngredientFormInput } from "../../../types/formTypes";
@@ -11,7 +11,7 @@ import {
   IngredientListItem,
   MeasureUnit,
 } from "../../../types/ingredientTypes";
-import { MeasureUnitToString } from "../../../Utilities/Ingredients";
+import { measureUnitToString } from "../../../utils/ingredient";
 import { DEFAULT_RECIPE_INGREDIENT_FORM_VALUE } from "./RecipeIngredientsForm";
 
 const QuantityFieldContainer = styled.div`
@@ -94,7 +94,7 @@ export function RecipeIngredientFieldSection({
         />
       </QuantityFieldContainer>
       <UnitContainer>
-        {MeasureUnitToString(selectedIngredient.measureUnit)}
+        {measureUnitToString(selectedIngredient.measureUnit)}
       </UnitContainer>
     </FlexContainer>
   );

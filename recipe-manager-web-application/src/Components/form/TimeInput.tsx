@@ -3,12 +3,9 @@ import {
   useController,
   UseControllerProps,
 } from "react-hook-form";
-import { formatFieldName } from "../../Utilities/formUtils";
-import {
-  minutesToTimeString,
-  timeStringToMinutes,
-} from "../../Utilities/Recipes";
-import { InputError } from "../Common/styled/input";
+import { formatFieldName } from "../../utils/form";
+import { minutesToTimeString, timeStringToMinutes } from "../../utils/recipe";
+import { InputError } from "../styled/input";
 
 export default function TimeInput<T extends FieldValues>(
   props: UseControllerProps<T> & { required?: boolean; title?: string }

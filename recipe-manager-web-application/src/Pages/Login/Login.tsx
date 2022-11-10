@@ -2,10 +2,10 @@ import styled from "@emotion/styled";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useLocation, useNavigate } from "react-router-dom";
-import { SubmitButton } from "../../Components/Common/styled/buttons";
-import { LoadingSpinner } from "../../Components/Common/styled/output";
-import { FlexContainer } from "../../Components/Common/styled/layouts";
-import TextInput from "../../Components/form/TextInput";
+import { SubmitButton } from "../../components/styled/buttons";
+import { LoadingSpinner } from "../../components/styled/output";
+import { FlexContainer } from "../../components/styled/layouts";
+import TextInput from "../../components/form/TextInput";
 import { useAuth } from "../../hooks/contextHooks";
 import { UserCredentials } from "../../types/userTypes";
 

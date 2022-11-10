@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
-import ContentBox from "../../Components/Common/ContentBox";
-import { IconButton } from "../../Components/Common/styled/buttons";
-import { FlexContainer } from "../../Components/Common/styled/layouts";
-import Tag from "../../Components/Common/Tag";
-import UpdateRecipeIngredientsForm from "../../Forms/recipes/recipeIngredients/UpdateRecipeIngredientsForm";
+import ContentBox from "../../components/common/ContentBox";
+import { IconButton } from "../../components/styled/buttons";
+import { FlexContainer } from "../../components/styled/layouts";
+import Tag from "../../components/common/Tag";
+import UpdateRecipeIngredientsForm from "../../forms/recipes/recipeIngredients/UpdateRecipeIngredientsForm";
 import useModal from "../../hooks/useModal";
 import EditIcon from "../../svg/EditIcon";
 import { Recipe, RecipeIngredient } from "../../types/recipeTypes";
-import { MeasureUnitToString } from "../../Utilities/Ingredients";
+import { measureUnitToString } from "../../utils/ingredient";
 
 export default function IngredientsList({
   recipe,
@@ -48,7 +48,7 @@ export default function IngredientsList({
               value={ingredient.ingredientName}
               endSlotValue={`${Number(
                 ingredient.quantity.toFixed(2)
-              )} ${MeasureUnitToString(ingredient.measureUnit)}`}
+              )} ${measureUnitToString(ingredient.measureUnit)}`}
             />
           </Link>
         ))}

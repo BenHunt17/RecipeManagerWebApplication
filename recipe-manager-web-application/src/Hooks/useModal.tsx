@@ -1,6 +1,6 @@
 import React, { Fragment, useContext, useRef, useState } from "react";
-import OutsideClickProvider from "../Components/Common/OutsideClickProvider";
-import Modal from "../Components/modal/Modal";
+import OutsideClickProvider from "../components/common/OutsideClickProvider";
+import Modal from "../components/common/modal/Modal";
 import { ModalsContext } from "../providers/ModalsProvider";
 
 export default function useModal<T>(

@@ -1,4 +1,4 @@
-import DeleteForm from "../../Components/layouts/DeleteForm";
+import DeleteForm from "../../components/layout/DeleteForm";
 import useMutate, { HttpMethod } from "../../hooks/useMutate";
 
 export default function DeleteIngredientForm({

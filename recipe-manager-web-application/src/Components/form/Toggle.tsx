@@ -4,7 +4,7 @@ import {
   useController,
   UseControllerProps,
 } from "react-hook-form";
-import { formatFieldName } from "../../Utilities/formUtils";
+import { formatFieldName } from "../../utils/form";
 
 const ToggleContainer = styled.label`
   position: relative;

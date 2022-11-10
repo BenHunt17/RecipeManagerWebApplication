@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { Fragment, useRef } from "react";
-import useObserveDimensions from "../../hooks/useObserveDimensions";
+import useObserveDimensions from "../../../hooks/useObserveDimensions";
 
 const ModalContainer = styled.div(
   ({ width, height }: { width: number; height: number }) => `

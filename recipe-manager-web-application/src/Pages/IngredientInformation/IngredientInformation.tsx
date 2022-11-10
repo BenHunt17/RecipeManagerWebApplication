@@ -3,22 +3,22 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { useParams } from "react-router-dom";
-import ContentBox from "../../Components/Common/ContentBox";
-import { IconButton } from "../../Components/Common/styled/buttons";
-import { PageTemplate } from "../../Components/Common/styled/layouts";
-import { FlexContainer } from "../../Components/Common/styled/layouts";
-import UpdateIngredientImageForm from "../../Forms/ingredients/UpdateIngredientImageForm";
-import UpdateIngredientForm from "../../Forms/ingredients/UpdateIngredientForm";
+import ContentBox from "../../components/common/ContentBox";
+import { IconButton } from "../../components/styled/buttons";
+import { PageTemplate } from "../../components/styled/layouts";
+import { FlexContainer } from "../../components/styled/layouts";
+import UpdateIngredientImageForm from "../../forms/ingredients/UpdateIngredientImageForm";
+import UpdateIngredientForm from "../../forms/ingredients/UpdateIngredientForm";
 import useFetch from "../../hooks/useFetch";
 import useModal from "../../hooks/useModal";
 import { Ingredient } from "../../types/ingredientTypes";
-import ImageDisplay from "../../Components/Common/ImageDisplay";
+import ImageDisplay from "../../components/common/ImageDisplay";
 import EditIcon from "../../svg/EditIcon";
 import {
   ErrorScreen,
   LoadingScreen,
   TightParagraph,
-} from "../../Components/Common/styled/output";
+} from "../../components/styled/output";
 import IngredientNutrition from "./IngredientNutrition";
 
 const PageLayout = styled.div`

@@ -1,11 +1,11 @@
-import Header from "./Components/Header";
+import Header from "./components/layout/Header";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Dashboard from "./Pages/Dashboard";
-import RecipeInformation from "./Pages/RecipeInformation/RecipeInformation";
-import IngredientInformation from "./Pages/IngredientInformation/IngredientInformation";
-import IngredientCollectionPage from "./Pages/IngredientCollectionPage";
-import RecipeCollectionPage from "./Pages/RecipeCollectionPage";
-import Login from "./Pages/Login/Login";
+import Dashboard from "./pages/dashboard/Dashboard";
+import RecipeInformation from "./pages/recipeInformation/RecipeInformation";
+import IngredientInformation from "./pages/ingredientInformation/IngredientInformation";
+import IngredientCollectionPage from "./pages/collectionPages/IngredientCollectionPage";
+import RecipeCollectionPage from "./pages/collectionPages/RecipeCollectionPage";
+import Login from "./pages/login/Login";
 import ProtectedRoutes from "./ProtectedRoutes";
 
 function App() {

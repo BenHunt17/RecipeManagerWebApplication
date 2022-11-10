@@ -2,8 +2,8 @@ import styled from "@emotion/styled";
 import { useRef } from "react";
 import useObserveDimensions from "../../../hooks/useObserveDimensions";
 import BinIcon from "../../../svg/BinIcon";
-import { IconButton } from "../../Common/styled/buttons";
-import { FlexContainer } from "../../Common/styled/layouts";
+import { IconButton } from "../../styled/buttons";
+import { FlexContainer } from "../../styled/layouts";
 
 const Section = styled.div`
   width: calc(100% - 65px);

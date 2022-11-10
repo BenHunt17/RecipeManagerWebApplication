@@ -4,8 +4,8 @@ import {
   useController,
   UseControllerProps,
 } from "react-hook-form";
-import { formatFieldName } from "../../Utilities/formUtils";
-import { InputError } from "../Common/styled/input";
+import { formatFieldName } from "../../utils/form";
+import { InputError } from "../styled/input";
 
 const Input = styled.textarea`
   width: calc(100% - 8px);

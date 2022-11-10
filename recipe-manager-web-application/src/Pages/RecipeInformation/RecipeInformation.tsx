@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import ContentBox from "../../Components/Common/ContentBox";
+import ContentBox from "../../components/common/ContentBox";
 import { Recipe } from "../../types/recipeTypes";
 import RecipeInstructions from "./RecipeInstructions";
 import RecipeIngredientsList from "./RecipeIngredientsList";
@@ -9,20 +9,20 @@ import { useParams } from "react-router-dom";
 import BreakfastIcon from "../../svg/BreakfastIcon";
 import DinnerIcon from "../../svg/DinnerIcon";
 import LunchIcon from "../../svg/LunchIcon";
-import { FlexContainer } from "../../Components/Common/styled/layouts";
-import { PageTemplate } from "../../Components/Common/styled/layouts";
-import ImageDisplay from "../../Components/Common/ImageDisplay";
+import { FlexContainer } from "../../components/styled/layouts";
+import { PageTemplate } from "../../components/styled/layouts";
+import ImageDisplay from "../../components/common/ImageDisplay";
 import useModal from "../../hooks/useModal";
-import { IconButton } from "../../Components/Common/styled/buttons";
-import UpdateRecipeImageForm from "../../Forms/recipes/recipeImage/UpdateRecipeImageForm";
+import { IconButton } from "../../components/styled/buttons";
+import UpdateRecipeImageForm from "../../forms/recipes/recipeImage/UpdateRecipeImageForm";
 import EditIcon from "../../svg/EditIcon";
 import {
   ErrorScreen,
   LoadingScreen,
   TightParagraph,
-} from "../../Components/Common/styled/output";
-import UpdateRecipeForm from "../../Forms/recipes/UpdateRecipeForm";
-import { minutesToTimeString } from "../../Utilities/Recipes";
+} from "../../components/styled/output";
+import UpdateRecipeForm from "../../forms/recipes/UpdateRecipeForm";
+import { minutesToTimeString } from "../../utils/recipe";
 
 const ContentLayout = styled.div`
   display: grid;
