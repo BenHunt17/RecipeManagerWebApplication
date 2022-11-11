@@ -1,4 +1,4 @@
-import React, { Fragment, useContext, useRef, useState } from "react";
+import React, { Fragment, useContext, useRef } from "react";
 import Modal from "../components/common/modal/Modal";
 import { ModalsContext } from "../providers/ModalsProvider";
 import OutsideClickWrapper from "../components/common/OutsideClickWrapper";

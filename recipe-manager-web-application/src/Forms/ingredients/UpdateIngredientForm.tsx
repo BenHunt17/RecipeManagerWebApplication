@@ -36,7 +36,7 @@ export default function UpdateIngredientForm({
   updateInFetchedIngredient: (updatedIngredient: Ingredient) => void;
   close: () => void;
 }) {
-  const { control, handleSubmit, formState } = useForm<IngredientInput>({
+  const { control, handleSubmit } = useForm<IngredientInput>({
     defaultValues: extractDefaultValues(existingIngredient),
   });
   const { callback: updateIngredient, loading } = useMutate<Ingredient>({

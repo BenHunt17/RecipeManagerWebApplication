@@ -39,7 +39,7 @@ export default function Login() {
       return;
     }
     navigate(from);
-  }, [auth?.bearerToken]);
+  }, [auth?.bearerToken, from, navigate]);
 
   const onSubmit = (formValues: UserCredentials) => {
     auth?.login(formValues);

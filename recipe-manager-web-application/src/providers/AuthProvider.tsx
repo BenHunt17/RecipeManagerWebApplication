@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useState } from "react";
 import useMutate, { HttpMethod } from "../hooks/useMutate";
 import { UserCredentials } from "../types/userTypes";
 
@@ -24,11 +24,19 @@ export default function AuthProvider({
   const [bearerToken, setBearerToken] = useState<string>();
   const [authenticationDenied, setAuthenicationDenied] = useState(false);
 
+  const refreshToken = () =>
+    setInterval(
+      () => refresh(),
+      //Refresh is wrapped in an interval so that the browser will automatically try refresh before the token expires.
+      bearerTokenExpireTime
+    );
+
   const { callback: login, loading: loginLoading } = useMutate<string>({
     endpointPath: `${process.env.REACT_APP_RECIPE_MANAGER_API_URL}user/login`,
     httpMethod: HttpMethod.PUT,
     onComplete: (token) => {
       setBearerToken(token);
+      refreshToken();
     },
     onError: () => {
       setAuthenicationDenied(true);
@@ -44,19 +52,13 @@ export default function AuthProvider({
   const { callback: refresh } = useMutate<string>({
     endpointPath: `${process.env.REACT_APP_RECIPE_MANAGER_API_URL}user/refresh`,
     httpMethod: HttpMethod.GET, //Even tho it's a GET endpoint, it still needs a mutate callback
-    onComplete: (token) => setBearerToken(token),
+    onComplete: (token) => {
+      setBearerToken(token);
+      refreshToken();
+    },
     onError: () => setAuthenicationDenied(true),
     options: { includeCredentials: true },
   });
-
-  useEffect(() => {
-    refresh();
-    setInterval(
-      () => refresh(),
-      //Refresh is wrapped in an interval so that the browser will automatically try refresh before the token expires.
-      bearerTokenExpireTime
-    );
-  }, []);
 
   return (
     <AuthContext.Provider

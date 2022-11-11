@@ -47,7 +47,7 @@ export default function ImageDisplay({
         </ImageFrameEditOverlay>
       )}
       {imageUrl ? (
-        <img src={imageUrl} width="100%" />
+        <img src={imageUrl} width="100%" alt="read write display" />
       ) : (
         <ImagePlaceholder height="400px" />
       )}

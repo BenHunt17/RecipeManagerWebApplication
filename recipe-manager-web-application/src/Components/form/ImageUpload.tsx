@@ -58,7 +58,12 @@ export default function ImageUpload({
   return (
     <ImageUploadContainer>
       {image ? (
-        <img width={250} height={250} src={URL.createObjectURL(image)} />
+        <img
+          width={250}
+          height={250}
+          src={URL.createObjectURL(image)}
+          alt="form upload"
+        />
       ) : (
         <UploadIcon width={100} height={100} fill="var(--colour-dark-grey)" />
       )}

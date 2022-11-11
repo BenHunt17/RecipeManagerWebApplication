@@ -57,7 +57,9 @@ export default function UpdateImageForm({
           gap={25}
         >
           <ImageContainer>
-            {imageUrl ? <img src={imageUrl} width="200px" /> : null}
+            {imageUrl ? (
+              <img src={imageUrl} width="200px" alt="no result" />
+            ) : null}
           </ImageContainer>
           <ImageUploadContainer>
             <input

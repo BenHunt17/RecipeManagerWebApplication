@@ -10,7 +10,7 @@ import {
   IngredientListItem,
   MeasureUnit,
 } from "../../../types/ingredientTypes";
-import { RecipeIngredientInput, RecipeInput } from "../../../types/recipeTypes";
+import { RecipeIngredientInput } from "../../../types/recipeTypes";
 import FormList from "../../../components/form/formList/FormList";
 import { RecipeIngredientFieldSection } from "./RecipeIngredientFieldSection";
 import { RecipeIngredientFormInput } from "../../../types/formTypes";

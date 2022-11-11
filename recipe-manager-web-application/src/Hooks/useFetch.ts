@@ -58,7 +58,7 @@ export default function useFetch<T>({
         setLoading(false);
         onError?.();
       });
-  }, [endpointPath, queryParams]);
+  }, [endpointPath, queryParams, auth?.bearerToken, onComplete, onError, skip]);
 
   // Returns the fetched data itself, a loading state and a callback to directly modify the fetch data (useful for when a mutation result needs to be reflected to the user without calling the query again)
   return { data, loading, modifyData: setData };

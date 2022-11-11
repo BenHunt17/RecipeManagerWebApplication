@@ -1,4 +1,4 @@
-import { Control, FormState } from "react-hook-form";
+import { Control } from "react-hook-form";
 import { FlexContainer } from "../../components/styled/layouts";
 import Select from "../../components/form/Select";
 import TextArea from "../../components/form/TextArea";

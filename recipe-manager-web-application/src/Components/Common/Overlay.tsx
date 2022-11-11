@@ -23,6 +23,15 @@ export default function Overlay({
   anchorRef: React.RefObject<HTMLElement>;
 }) {
   const wrapperRef = useRef<HTMLDivElement>(null);
+  const documentElement = document.body;
+  const anchorBottom = anchorRef.current?.getBoundingClientRect().bottom;
+  const pageBottom = documentElement?.getBoundingClientRect().bottom;
+
+  //Height of the overlay is the distance between the anchor and the bottom of the document. Also removes the margin value to ensure the correct gap
+  const overlayMaxHeight =
+    anchorBottom && pageBottom
+      ? pageBottom - anchorBottom - OVERLAY_BOTTOM_MARGIN
+      : 0;
 
   useLayoutEffect(() => {
     //When the overlay is changed in the DOM, a margin is calculated and applied so that it behaves correctly. Will apply DOM changes before the render
@@ -51,17 +60,7 @@ export default function Overlay({
         -AnchorDisplacementTop - overlayHeight
       ).toFixed()}px`;
     }
-  }, [wrapperRef?.current]);
-
-  const documentElement = document.body;
-  const anchorBottom = anchorRef.current?.getBoundingClientRect().bottom;
-  const pageBottom = documentElement?.getBoundingClientRect().bottom;
-
-  //Height of the overlay is the distance between the anchor and the bottom of the document. Also removes the margin value to ensure the correct gap
-  const overlayMaxHeight =
-    anchorBottom && pageBottom
-      ? pageBottom - anchorBottom - OVERLAY_BOTTOM_MARGIN
-      : 0;
+  }, [anchorRef, overlayMaxHeight]);
 
   return (
     <OverlayContainer

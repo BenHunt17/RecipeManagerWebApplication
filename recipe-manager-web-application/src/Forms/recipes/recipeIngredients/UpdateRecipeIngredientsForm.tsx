@@ -33,10 +33,9 @@ export default function UpdateRecipeIngredientsForm({
   updateInFetchedRecipe: (recipeIngredients: RecipeIngredient[]) => void;
   close: () => void;
 }) {
-  const { control, handleSubmit, formState, watch } =
-    useForm<RecipeIngredientFormInput>({
-      defaultValues: extractDefaultValues(existingRecipeIngredients), //Need to have form for entir recipe ingredients since the controller is needed in the recipe ingredients form :/
-    });
+  const { control, handleSubmit, watch } = useForm<RecipeIngredientFormInput>({
+    defaultValues: extractDefaultValues(existingRecipeIngredients), //Need to have form for entir recipe ingredients since the controller is needed in the recipe ingredients form :/
+  });
 
   const {
     fields: recipeIngredientFields,

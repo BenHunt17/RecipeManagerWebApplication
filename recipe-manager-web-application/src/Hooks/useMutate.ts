@@ -66,7 +66,14 @@ export default function useMutate<T>({
           onError?.();
         });
     },
-    [endpointPath, httpMethod]
+    [
+      endpointPath,
+      httpMethod,
+      auth?.bearerToken,
+      onComplete,
+      onError,
+      options?.includeCredentials,
+    ]
   );
 
   return { callback, loading };

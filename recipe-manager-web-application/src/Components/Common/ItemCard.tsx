@@ -123,7 +123,7 @@ export default function ItemCard({
           <ImageContainer>
             {/* Image is technically to right of the card so that it is rendered over it. Some fiddly css margin is used to re-position it */}
             {imageUrl ? (
-              <img src={imageUrl} height={160} />
+              <img src={imageUrl} height={160} alt="item card" />
             ) : (
               <ImagePlaceholder height="150px" />
             )}

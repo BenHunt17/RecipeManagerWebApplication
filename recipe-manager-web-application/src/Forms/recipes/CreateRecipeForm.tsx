@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
 import { FlexContainer } from "../../components/styled/layouts";
 import useMutate, { HttpMethod } from "../../hooks/useMutate";
@@ -40,26 +40,19 @@ export default function CreateRecipeForm({
     defaultValues,
   });
 
-  const {
-    control: recipeIngredientsControl,
-    formState: recipeIngredientsFormState,
-    watch: recipeIngredientsWatch,
-  } = useForm<RecipeIngredientFormInput>({
-    defaultValues: {
-      ingredients: [DEFAULT_RECIPE_INGREDIENT_FORM_VALUE],
-    },
-  });
+  const { control: recipeIngredientsControl, watch: recipeIngredientsWatch } =
+    useForm<RecipeIngredientFormInput>({
+      defaultValues: {
+        ingredients: [DEFAULT_RECIPE_INGREDIENT_FORM_VALUE],
+      },
+    });
 
-  const {
-    control: instructionsControl,
-    formState: instructionsFormState,
-    watch: instructionsWatch,
-    setValue: instructionsSetValue,
-  } = useForm<InstructionsFormInput>({
-    defaultValues: {
-      instructions: [DEFAULT_INSTRUCTION_FORM_VALUE],
-    },
-  });
+  const { control: instructionsControl, watch: instructionsWatch } =
+    useForm<InstructionsFormInput>({
+      defaultValues: {
+        instructions: [DEFAULT_INSTRUCTION_FORM_VALUE],
+      },
+    });
 
   const {
     fields: recipeIngredientFields,

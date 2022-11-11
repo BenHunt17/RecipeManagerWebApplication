@@ -11,9 +11,9 @@ export function useFilters() {
   const [pageNumber, setPageNumber] = useState(1);
 
   useEffect(() => {
-    setQueryParams(() => {
+    setQueryParams((currentParams) => {
       return {
-        ...queryParams,
+        ...currentParams,
         offset: `PAGE:${(pageNumber - 1) * PAGINATION_LIMIT}`,
       };
     });

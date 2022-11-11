@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useState } from "react";
 import { useForm } from "react-hook-form";
 import { SubmitButton } from "../../components/styled/buttons";
 import useMutate, { HttpMethod } from "../../hooks/useMutate";
