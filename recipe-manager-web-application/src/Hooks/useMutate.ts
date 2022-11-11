@@ -8,23 +8,18 @@ export enum HttpMethod {
   DELETE = "DELETE",
 }
 
-//TODO - these fetch hooks need to have the paramters groups/cleaned a bit
 export default function useMutate<T>({
   endpointPath,
   httpMethod,
   onComplete,
   onError,
-  jsonData,
-  textResult,
-  includeCredentials,
+  options,
 }: {
   endpointPath: string;
   httpMethod: HttpMethod;
   onComplete?: (result: T) => void;
   onError?: () => void;
-  jsonData?: boolean;
-  textResult?: boolean;
-  includeCredentials?: boolean;
+  options?: { includeCredentials?: boolean };
 }) {
   const [loading, setLoading] = useState(false);
 
@@ -36,15 +31,16 @@ export default function useMutate<T>({
 
       fetch(endpointPath, {
         method: httpMethod,
-        headers: !jsonData
-          ? new Headers({
-              Authorization: `Bearer ${auth?.bearerToken}`,
-            })
-          : new Headers({
-              Authorization: `Bearer ${auth?.bearerToken}`,
-              "Content-Type": "application/json;charset=utf-8",
-            }),
-        credentials: includeCredentials ? "include" : "same-origin",
+        headers:
+          typeof payload !== "string"
+            ? new Headers({
+                Authorization: `Bearer ${auth?.bearerToken}`,
+              })
+            : new Headers({
+                Authorization: `Bearer ${auth?.bearerToken}`,
+                "Content-Type": "application/json;charset=utf-8",
+              }),
+        credentials: options?.includeCredentials ? "include" : "same-origin",
         body: payload,
       })
         .then((result) => {
@@ -55,7 +51,10 @@ export default function useMutate<T>({
             //No content
             return null;
           }
-          return !textResult ? result.json() : result.text();
+          const isJson = result.headers
+            .get("content-type")
+            ?.includes("application/json");
+          return isJson ? result.json() : result.text();
         })
         .then((data) => {
           setLoading(false);

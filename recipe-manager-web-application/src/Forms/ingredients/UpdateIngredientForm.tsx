@@ -46,7 +46,6 @@ export default function UpdateIngredientForm({
       updateInFetchedIngredient(ingredient);
       close();
     },
-    jsonData: true,
   });
 
   const onSubmit = (formValues: IngredientInput) => {

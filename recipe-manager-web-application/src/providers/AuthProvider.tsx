@@ -22,7 +22,6 @@ export default function AuthProvider({
   children: React.ReactNode;
 }) {
   const [bearerToken, setBearerToken] = useState<string>();
-  // const [authenticationPending, setAuthenticationPending] = useState(false);
   const [authenticationDenied, setAuthenicationDenied] = useState(false);
 
   const { callback: login, loading: loginLoading } = useMutate<string>({
@@ -34,17 +33,12 @@ export default function AuthProvider({
     onError: () => {
       setAuthenicationDenied(true);
     },
-    jsonData: true,
-    textResult: true,
-    includeCredentials: true,
   });
 
   const { callback: logout } = useMutate({
     endpointPath: `${process.env.REACT_APP_RECIPE_MANAGER_API_URL}user/logout`,
     httpMethod: HttpMethod.PUT,
     onComplete: () => setBearerToken(""),
-    jsonData: true,
-    includeCredentials: true,
   });
 
   const { callback: refresh } = useMutate<string>({
@@ -52,8 +46,7 @@ export default function AuthProvider({
     httpMethod: HttpMethod.GET, //Even tho it's a GET endpoint, it still needs a mutate callback
     onComplete: (token) => setBearerToken(token),
     onError: () => setAuthenicationDenied(true),
-    includeCredentials: true,
-    textResult: true,
+    options: { includeCredentials: true },
   });
 
   useEffect(() => {

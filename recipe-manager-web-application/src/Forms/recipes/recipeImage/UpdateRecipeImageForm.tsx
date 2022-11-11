@@ -22,7 +22,6 @@ export default function UpdateRecipeImageForm({
       updateInFetchedRecipe(imageUrl);
       close();
     },
-    textResult: true,
   });
 
   const { callback: removeImage, loading: removeLoading } = useMutate({

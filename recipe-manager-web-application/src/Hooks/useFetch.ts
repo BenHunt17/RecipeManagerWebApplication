@@ -44,7 +44,10 @@ export default function useFetch<T>({
         if (!result.ok) {
           throw Error("Could not fetch the data");
         }
-        return result.json();
+        const isJson = result.headers
+          .get("content-type")
+          ?.includes("application/json");
+        return isJson ? result.json() : result.text();
       })
       .then((data) => {
         setData(data);

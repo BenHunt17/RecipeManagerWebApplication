@@ -40,7 +40,6 @@ export default function UpdateRecipeIngredientsForm({
       updateInFetchedRecipe(recipeInstructions);
       close();
     },
-    jsonData: true,
   });
 
   const onSubmit = (formValues: InstructionsFormInput) => {
