@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 
-export default function OutsideClickProvider({
+export default function OutsideClickWrapper({
   children,
   callback,
 }: {

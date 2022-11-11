@@ -1,7 +1,7 @@
 import React, { Fragment, useContext, useRef, useState } from "react";
-import OutsideClickProvider from "../components/common/OutsideClickProvider";
 import Modal from "../components/common/modal/Modal";
 import { ModalsContext } from "../providers/ModalsProvider";
+import OutsideClickWrapper from "../components/common/OutsideClickWrapper";
 
 export default function useModal<T>(
   title: string,
@@ -18,13 +18,13 @@ export default function useModal<T>(
 
   const open = (contentProps: T) => {
     const modal = contentProps ? (
-      <OutsideClickProvider callback={close}>
+      <OutsideClickWrapper callback={close}>
         <Modal
           title={title}
           content={<Fragment>{renderContent(contentProps)}</Fragment>}
           onClose={close}
         />
-      </OutsideClickProvider>
+      </OutsideClickWrapper>
     ) : undefined;
 
     if (modal) {

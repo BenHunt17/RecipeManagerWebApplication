@@ -8,7 +8,7 @@ import {
   UseControllerProps,
 } from "react-hook-form";
 import { formatFieldName } from "../../utils/form";
-import OutsideClickProvider from "../common/OutsideClickProvider";
+import OutsideClickWrapper from "../common/OutsideClickWrapper";
 import Overlay from "../common/Overlay";
 import { FlexContainer } from "../styled/layouts";
 
@@ -89,7 +89,7 @@ export default function SearchSelect<T extends FieldValues, U>(
 
   return (
     <div className="hundredWidth">
-      <OutsideClickProvider callback={() => setShowOverlay(false)}>
+      <OutsideClickWrapper callback={() => setShowOverlay(false)}>
         {props.title ?? formatFieldName(field.name, !!props.required)}
         <FlexContainer>
           <input
@@ -127,7 +127,7 @@ export default function SearchSelect<T extends FieldValues, U>(
             />
           </Overlay>
         )}
-      </OutsideClickProvider>
+      </OutsideClickWrapper>
     </div>
   );
 }
