@@ -1,13 +1,13 @@
 import React, { createContext, useEffect, useState } from "react";
-import { HttpMethod } from "../hooks/useMutate";
+import useMutate, { HttpMethod } from "../hooks/useMutate";
 import { UserCredentials } from "../types/userTypes";
 
 interface AuthContextType {
   bearerToken: string | undefined;
   authenticationPending: boolean;
   authenticationDenied: boolean;
-  login: (userCredentials: UserCredentials) => Promise<void>;
-  logout: () => Promise<void>;
+  login: (userCredentials: UserCredentials) => void;
+  logout: () => void;
 }
 
 export const AuthContext = createContext<AuthContextType | undefined>(
@@ -22,8 +22,39 @@ export default function AuthProvider({
   children: React.ReactNode;
 }) {
   const [bearerToken, setBearerToken] = useState<string>();
-  const [authenticationPending, setAuthenticationPending] = useState(false);
+  // const [authenticationPending, setAuthenticationPending] = useState(false);
   const [authenticationDenied, setAuthenicationDenied] = useState(false);
+
+  const { callback: login, loading: loginLoading } = useMutate<string>({
+    endpointPath: `${process.env.REACT_APP_RECIPE_MANAGER_API_URL}user/login`,
+    httpMethod: HttpMethod.PUT,
+    onComplete: (token) => {
+      setBearerToken(token);
+    },
+    onError: () => {
+      setAuthenicationDenied(true);
+    },
+    jsonData: true,
+    textResult: true,
+    includeCredentials: true,
+  });
+
+  const { callback: logout } = useMutate({
+    endpointPath: `${process.env.REACT_APP_RECIPE_MANAGER_API_URL}user/logout`,
+    httpMethod: HttpMethod.PUT,
+    onComplete: () => setBearerToken(""),
+    jsonData: true,
+    includeCredentials: true,
+  });
+
+  const { callback: refresh } = useMutate<string>({
+    endpointPath: `${process.env.REACT_APP_RECIPE_MANAGER_API_URL}user/refresh`,
+    httpMethod: HttpMethod.GET, //Even tho it's a GET endpoint, it still needs a mutate callback
+    onComplete: (token) => setBearerToken(token),
+    onError: () => setAuthenicationDenied(true),
+    includeCredentials: true,
+    textResult: true,
+  });
 
   useEffect(() => {
     refresh();
@@ -34,89 +65,13 @@ export default function AuthProvider({
     );
   }, []);
 
-  const refresh = () =>
-    fetch(`${process.env.REACT_APP_RECIPE_MANAGER_API_URL}user/refresh`, {
-      method: HttpMethod.GET,
-      credentials: "include",
-    })
-      .then((result) => {
-        if (!result.ok) {
-          setBearerToken("");
-          throw Error("Unable to refresh the bearer token");
-        }
-        return result.text();
-      })
-      .then((data) => {
-        try {
-          setBearerToken(data);
-        } catch {
-          setAuthenicationDenied(true);
-          throw Error("Invalid response json");
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-        setBearerToken("");
-      })
-      .finally(() => setAuthenticationPending(false));
-
-  const login = (userCredentials: UserCredentials) => {
-    setAuthenticationPending(true);
-    return fetch(`${process.env.REACT_APP_RECIPE_MANAGER_API_URL}user/login`, {
-      method: HttpMethod.PUT,
-      headers: new Headers({
-        "Content-Type": "application/json;charset=utf-8",
-      }),
-      credentials: "include",
-      body: JSON.stringify(userCredentials),
-    })
-      .then((result) => {
-        if (!result.ok) {
-          setAuthenicationDenied(true);
-          throw Error("Could not login");
-        }
-        return result.text();
-      })
-      .then((data) => {
-        try {
-          setBearerToken(data);
-        } catch {
-          setAuthenicationDenied(true);
-          throw Error("Invalid response json");
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-        setAuthenicationDenied(true);
-      })
-      .finally(() => setAuthenticationPending(false));
-  };
-
-  const logout = () =>
-    fetch(`${process.env.REACT_APP_RECIPE_MANAGER_API_URL}user/logout`, {
-      method: HttpMethod.PUT,
-      headers: new Headers({
-        "Content-Type": "application/json;charset=utf-8",
-      }),
-      credentials: "include",
-    })
-      .then((result) => {
-        if (!result.ok) {
-          throw Error("Could not logout");
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-      .finally(() => setBearerToken(""));
-
   return (
     <AuthContext.Provider
       value={{
         bearerToken: bearerToken,
-        authenticationPending: authenticationPending,
+        authenticationPending: loginLoading,
         authenticationDenied: authenticationDenied,
-        login: login,
+        login: (credentials) => login(JSON.stringify(credentials)),
         logout: logout,
       }}
     >

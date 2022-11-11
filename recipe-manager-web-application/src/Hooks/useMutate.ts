@@ -8,6 +8,7 @@ export enum HttpMethod {
   DELETE = "DELETE",
 }
 
+//TODO - these fetch hooks need to have the paramters groups/cleaned a bit
 export default function useMutate<T>({
   endpointPath,
   httpMethod,
@@ -15,6 +16,7 @@ export default function useMutate<T>({
   onError,
   jsonData,
   textResult,
+  includeCredentials,
 }: {
   endpointPath: string;
   httpMethod: HttpMethod;
@@ -22,6 +24,7 @@ export default function useMutate<T>({
   onError?: () => void;
   jsonData?: boolean;
   textResult?: boolean;
+  includeCredentials?: boolean;
 }) {
   const [loading, setLoading] = useState(false);
 
@@ -41,6 +44,7 @@ export default function useMutate<T>({
               Authorization: `Bearer ${auth?.bearerToken}`,
               "Content-Type": "application/json;charset=utf-8",
             }),
+        credentials: includeCredentials ? "include" : "same-origin",
         body: payload,
       })
         .then((result) => {
