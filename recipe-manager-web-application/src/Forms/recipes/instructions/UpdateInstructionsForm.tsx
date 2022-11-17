@@ -7,6 +7,8 @@ import { InstructionsFormInput } from "../../../types/formTypes";
 import { RecipeInstruction } from "../../../types/recipeTypes";
 import InstructionsForm from "./InstructionsForm";
 import { FlexContainer } from "../../../components/styled/layouts";
+import { addToRecentActivity } from "../../../utils/recentActivityController";
+import { ItemKeyContext } from "../../../types/storageTypes";
 
 export default function UpdateRecipeIngredientsForm({
   recipeName,
@@ -37,6 +39,13 @@ export default function UpdateRecipeIngredientsForm({
     httpMethod: HttpMethod.PUT,
     onComplete: (recipeInstructions: RecipeInstruction[]) => {
       updateInFetchedRecipe(recipeInstructions);
+      addToRecentActivity(
+        "recipe instructions",
+        recipeName,
+        ItemKeyContext.UPDATE,
+        `recipe/${recipeName}`,
+        null
+      );
       close();
     },
   });

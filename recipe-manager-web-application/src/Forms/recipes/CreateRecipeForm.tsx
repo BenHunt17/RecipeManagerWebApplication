@@ -17,6 +17,8 @@ import {
   RecipeIngredientFormInput,
 } from "../../types/formTypes";
 import { RecipeForm } from "./RecipeForm";
+import { addToRecentActivity } from "../../utils/recentActivityController";
+import { ItemKeyContext } from "../../types/storageTypes";
 
 const defaultValues = {
   recipeName: "",
@@ -79,6 +81,13 @@ export default function CreateRecipeForm({
     httpMethod: HttpMethod.POST,
     onComplete: (result: Recipe) => {
       onComplete(result);
+      addToRecentActivity(
+        "recipe",
+        result.recipeName,
+        ItemKeyContext.CREATE,
+        `recipe/${result.recipeName}`,
+        result.imageUrl
+      );
       close();
     },
   });

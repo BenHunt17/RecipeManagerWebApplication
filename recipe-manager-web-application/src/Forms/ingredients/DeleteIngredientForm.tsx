@@ -1,5 +1,7 @@
 import DeleteForm from "../../components/layout/DeleteForm";
 import useMutate, { HttpMethod } from "../../hooks/useMutate";
+import { ItemKeyContext } from "../../types/storageTypes";
+import { addToRecentActivity } from "../../utils/recentActivityController";
 
 export default function DeleteIngredientForm({
   ingredientName,
@@ -15,6 +17,13 @@ export default function DeleteIngredientForm({
     httpMethod: HttpMethod.DELETE,
     onComplete: () => {
       removeFromFetchedIngredients();
+      addToRecentActivity(
+        "ingredient",
+        ingredientName,
+        ItemKeyContext.DELETE,
+        "ingredients",
+        null
+      );
       close();
     },
   });

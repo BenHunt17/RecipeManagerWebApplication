@@ -12,8 +12,6 @@ export function isActivity(obj: unknown): obj is Activity {
     typeof (obj as Activity).activityName === "string" &&
     (obj as Activity).title !== undefined &&
     typeof (obj as Activity).title === "string" &&
-    (obj as Activity).description !== undefined &&
-    typeof (obj as Activity).description === "string" &&
     (obj as Activity).timeStamp !== undefined &&
     typeof (obj as Activity).timeStamp === "string" &&
     (obj as Activity).pageLink !== undefined &&

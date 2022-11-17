@@ -7,6 +7,8 @@ import { RecipeIngredientFormInput } from "../../../types/formTypes";
 import { RecipeIngredient } from "../../../types/recipeTypes";
 import RecipeIngredientsForm from "./RecipeIngredientsForm";
 import { FlexContainer } from "../../../components/styled/layouts";
+import { addToRecentActivity } from "../../../utils/recentActivityController";
+import { ItemKeyContext } from "../../../types/storageTypes";
 
 function extractDefaultValues(existingRecipeIngredients: RecipeIngredient[]) {
   return {
@@ -51,6 +53,13 @@ export default function UpdateRecipeIngredientsForm({
     httpMethod: HttpMethod.PUT,
     onComplete: (recipeIngredients: RecipeIngredient[]) => {
       updateInFetchedRecipe(recipeIngredients);
+      addToRecentActivity(
+        "recipe ingredients",
+        recipeName,
+        ItemKeyContext.UPDATE,
+        `recipe/${recipeName}`,
+        null
+      );
       close();
     },
   });

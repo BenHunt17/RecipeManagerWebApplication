@@ -9,6 +9,8 @@ import {
 } from "../../types/ingredientTypes";
 import { LoadingSpinner } from "../../components/styled/output";
 import IngredientForm from "./IngredientForm";
+import { addToRecentActivity } from "../../utils/recentActivityController";
+import { ItemKeyContext } from "../../types/storageTypes";
 
 function extractDefaultValues(existingIngredient: Ingredient) {
   return {
@@ -44,6 +46,13 @@ export default function UpdateIngredientForm({
     httpMethod: HttpMethod.PUT,
     onComplete: (ingredient) => {
       updateInFetchedIngredient(ingredient);
+      addToRecentActivity(
+        "ingredient",
+        ingredientName,
+        ItemKeyContext.UPDATE,
+        `ingredient/${ingredientName}`,
+        null
+      );
       close();
     },
   });

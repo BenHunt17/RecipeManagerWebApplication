@@ -1,5 +1,7 @@
 import { useState } from "react";
 import useMutate, { HttpMethod } from "../../hooks/useMutate";
+import { ItemKeyContext } from "../../types/storageTypes";
+import { addToRecentActivity } from "../../utils/recentActivityController";
 import UpdateImageForm from "../UpdateImageForm";
 
 export default function UpdateIngredientImageForm({
@@ -20,6 +22,13 @@ export default function UpdateIngredientImageForm({
     httpMethod: HttpMethod.PUT,
     onComplete: (imageUrl: string) => {
       updateInFetchedIngredient(imageUrl);
+      addToRecentActivity(
+        "ingredient image",
+        ingredientName,
+        ItemKeyContext.UPDATE,
+        `ingredient/${ingredientName}`,
+        imageUrl
+      );
       close();
     },
   });
@@ -29,6 +38,13 @@ export default function UpdateIngredientImageForm({
     httpMethod: HttpMethod.DELETE,
     onComplete: () => {
       updateInFetchedIngredient(null);
+      addToRecentActivity(
+        "ingredient image",
+        ingredientName,
+        ItemKeyContext.DELETE,
+        `ingredient/${ingredientName}`,
+        null
+      );
       close();
     },
   });

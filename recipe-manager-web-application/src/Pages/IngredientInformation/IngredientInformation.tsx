@@ -21,8 +21,9 @@ import {
 } from "../../components/styled/output";
 import { useEffect } from "react";
 import { addItemToStorage } from "../../utils/storageService";
-import { ContainerType } from "../../types/storageTypes";
+import { ContainerType, ItemKeyContext } from "../../types/storageTypes";
 import IngredientNutrition from "./IngredientNutrition";
+import { addToRecentActivity } from "../../utils/recentActivityController";
 
 const PageLayout = styled.div`
   display: grid;
@@ -72,15 +73,13 @@ export default function IngredientInformation() {
   );
 
   useEffect(() => {
-    addItemToStorage(ContainerType.RECENT_ACTIVITY, {
-      itemKey: ingredientName ?? "",
-      activityName: "Viewed Ingredient",
-      title: ingredientName,
-      description: "Viewing information for ingredient",
-      pageLink: `/ingredient/${ingredientName}`,
-      timeStamp: new Date().toUTCString(),
-      imageUrl: data?.imageUrl,
-    });
+    addToRecentActivity(
+      "ingredient",
+      data?.ingredientName ?? "",
+      ItemKeyContext.VIEW,
+      `ingredient/${data?.ingredientName ?? ""}`,
+      data?.imageUrl
+    );
   }, [data, ingredientName]);
 
   if (loading) {

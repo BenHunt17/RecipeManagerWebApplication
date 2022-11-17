@@ -9,6 +9,8 @@ import {
 } from "../../types/ingredientTypes";
 import { LoadingSpinner } from "../../components/styled/output";
 import IngredientForm from "./IngredientForm";
+import { ItemKeyContext } from "../../types/storageTypes";
+import { addToRecentActivity } from "../../utils/recentActivityController";
 
 const defaultValues = {
   ingredientName: "",
@@ -40,6 +42,13 @@ export default function CreateIngredientForm({
     httpMethod: HttpMethod.POST,
     onComplete: (result: Ingredient) => {
       onComplete(result);
+      addToRecentActivity(
+        "ingredient",
+        result.ingredientName,
+        ItemKeyContext.CREATE,
+        `ingredient/${result.ingredientName}`,
+        result.imageUrl
+      );
       close();
     },
   });
