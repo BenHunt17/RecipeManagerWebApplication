@@ -10,7 +10,7 @@ import { useFilters } from "../../hooks/useFilters";
 import useModal from "../../hooks/useModal";
 import { PaginatedResponse, QueryParameters } from "../../types/commonTypes";
 import { RecipeListItem } from "../../types/recipeTypes";
-import { PAGINATION_LIMIT } from "../../utils/FilterParams";
+import { PAGINATION_LIMIT } from "../../utils/filterParams";
 import { minutesToTimeString } from "../../utils/recipe";
 
 export default function RecipeCollectionPage() {

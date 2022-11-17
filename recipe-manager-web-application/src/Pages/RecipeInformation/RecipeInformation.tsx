@@ -23,6 +23,9 @@ import {
 } from "../../components/styled/output";
 import UpdateRecipeForm from "../../forms/recipes/UpdateRecipeForm";
 import { minutesToTimeString } from "../../utils/recipe";
+import { useEffect } from "react";
+import { ContainerType } from "../../types/storageTypes";
+import { addItemToStorage } from "../../utils/storageService";
 
 const ContentLayout = styled.div`
   display: grid;
@@ -69,6 +72,18 @@ export default function RecipeInformation() {
       />
     )
   );
+
+  useEffect(() => {
+    addItemToStorage(ContainerType.RECENT_ACTIVITY, {
+      itemKey: recipeName ?? "",
+      activityName: "Viewed recipe",
+      title: recipeName,
+      description: "Viewing information for recipe",
+      pageLink: `/recipe/${recipeName}`,
+      timeStamp: new Date().toDateString(),
+      imageUrl: data?.imageUrl,
+    });
+  }, [data, recipeName]);
 
   if (loading) {
     return (

@@ -19,6 +19,9 @@ import {
   LoadingScreen,
   TightParagraph,
 } from "../../components/styled/output";
+import { useEffect } from "react";
+import { addItemToStorage } from "../../utils/storageService";
+import { ContainerType } from "../../types/storageTypes";
 import IngredientNutrition from "./IngredientNutrition";
 
 const PageLayout = styled.div`
@@ -67,6 +70,18 @@ export default function IngredientInformation() {
       />
     )
   );
+
+  useEffect(() => {
+    addItemToStorage(ContainerType.RECENT_ACTIVITY, {
+      itemKey: ingredientName ?? "",
+      activityName: "Viewed Ingredient",
+      title: ingredientName,
+      description: "Viewing information for ingredient",
+      pageLink: `/ingredient/${ingredientName}`,
+      timeStamp: new Date().toUTCString(),
+      imageUrl: data?.imageUrl,
+    });
+  }, [data, ingredientName]);
 
   if (loading) {
     return (

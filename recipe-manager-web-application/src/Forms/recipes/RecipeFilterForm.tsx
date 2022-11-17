@@ -15,8 +15,8 @@ import {
   FilterOperation,
   TryParseBoolean,
   TryParseInteger,
-} from "../../utils/FilterParsers";
-import { getProperty } from "../../utils/FilterParams";
+} from "../../utils/filterParsers";
+import { getProperty } from "../../utils/filterParams";
 
 interface RecipeFilters {
   rating?: RangeOrTrueValue;

@@ -5,7 +5,7 @@ import { IngredientListItem } from "../../types/ingredientTypes";
 import DeleteIngredientForm from "../../forms/ingredients/DeleteIngredientForm";
 import { Fragment } from "react";
 import { PaginatedResponse, QueryParameters } from "../../types/commonTypes";
-import { PAGINATION_LIMIT } from "../../utils/FilterParams";
+import { PAGINATION_LIMIT } from "../../utils/filterParams";
 import CollectionPage from "../../components/layout/CollectionPage";
 import IngredientFilterForm from "../../forms/ingredients/IngredientFilterForm";
 import CreateIngredientForm from "../../forms/ingredients/CreateIngredientForm";

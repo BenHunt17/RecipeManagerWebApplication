@@ -35,6 +35,10 @@ p {
   color: var(--colour-text);
 }
 
+.textColour {
+  color: var(--colour-text);
+}
+
 ol {
   list-style-type: none;
   display: inline;

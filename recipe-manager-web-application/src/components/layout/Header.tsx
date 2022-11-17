@@ -49,9 +49,6 @@ export default function Header() {
           <Link to="/ingredients" className="headerLink">
             Ingredients
           </Link>
-          <Link to="/meal-plans" className="headerLink">
-            Meal Plans
-          </Link>
           {/* Button styling is temporary since likely to have an account menu in future */}
           <LogoutButton onClick={() => auth.logout()}>Logout</LogoutButton>{" "}
         </NavigationBar>
