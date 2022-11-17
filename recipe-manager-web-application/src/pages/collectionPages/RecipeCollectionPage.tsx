@@ -31,6 +31,8 @@ export default function RecipeCollectionPage() {
     queryParams: queryParams,
   });
 
+  const total = data?.total ? data.total - 1 : 0;
+
   const [showRecipeFilterModal, closeRecipeFilterModal] = useModal(
     "Set Filters",
     (props: { currentFilters: QueryParameters }) => (
@@ -63,10 +65,10 @@ export default function RecipeCollectionPage() {
             modifyData({
               ...data,
               items:
-                data.items.filter(
+                data.items?.filter(
                   (recipe) => recipe.recipeName !== props.recipeName
                 ) ?? [],
-              total: data.total - 1,
+              total,
             });
           }
         }}
@@ -86,15 +88,15 @@ export default function RecipeCollectionPage() {
             <ItemCard
               key={`recipe-card.${recipe.recipeName}`}
               id={`recipe-card.${recipe.recipeName}`}
-              title={recipe.recipeName}
+              title={recipe?.recipeName ?? ""}
               footerText={[
-                `Rating: ${"★".repeat(recipe.rating)}`,
-                `🕐 ${minutesToTimeString(recipe.prepTime)}`,
+                `Rating: ${"★".repeat(recipe?.rating ?? 0)}`,
+                `🕐 ${minutesToTimeString(recipe?.prepTime ?? 0)}`,
               ]}
               imageUrl={recipe.imageUrl}
               linkTo={`/recipe/${recipe.recipeName}`}
               onDeleteButtonClick={() =>
-                showDeleteRecipeModal({ recipeName: recipe.recipeName })
+                showDeleteRecipeModal({ recipeName: recipe?.recipeName ?? "" })
               }
             />
           );
@@ -102,7 +104,7 @@ export default function RecipeCollectionPage() {
         filter={{
           queryParams: queryParams,
           pageNumber: pageNumber,
-          totalPages: data ? Math.ceil(data.total / PAGINATION_LIMIT) : 0,
+          totalPages: data ? Math.ceil(total / PAGINATION_LIMIT) : 0,
         }}
         callbacks={{
           setSearchFilter: onSearch,

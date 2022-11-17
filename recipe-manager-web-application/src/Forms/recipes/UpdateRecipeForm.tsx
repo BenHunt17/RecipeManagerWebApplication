@@ -37,6 +37,9 @@ export default function UpdateRecipeForm({
     endpointPath: `${process.env.REACT_APP_RECIPE_MANAGER_API_URL}recipe/${recipeName}`,
     httpMethod: HttpMethod.PUT,
     onComplete: (recipe) => {
+      if (!recipe) {
+        return;
+      }
       updateInFetchedRecipe(recipe);
       close();
     },

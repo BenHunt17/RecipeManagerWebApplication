@@ -30,6 +30,8 @@ export default function IngredientCollectionPage() {
     queryParams: queryParams,
   });
 
+  const total = data?.total ? data.total - 1 : 0;
+
   const [showDeleteIngredientModal, closeDeleteIngredientModal] = useModal(
     "Delete Ingredient",
     (props: { ingredientName: string }) => (
@@ -40,10 +42,10 @@ export default function IngredientCollectionPage() {
             modifyData({
               ...data,
               items:
-                data.items.filter(
+                data.items?.filter(
                   (item) => item.ingredientName !== props.ingredientName
                 ) ?? [],
-              total: data.total - 1,
+              total,
             });
           }
         }}
@@ -91,13 +93,13 @@ export default function IngredientCollectionPage() {
             <ItemCard
               key={`ingredient-card.${ingredient.ingredientName}`}
               id={`ingredient-card.${ingredient.ingredientName}`}
-              title={ingredient.ingredientName}
+              title={ingredient?.ingredientName ?? ""}
               footerText={footerText}
-              imageUrl={ingredient.imageUrl}
+              imageUrl={ingredient?.imageUrl}
               linkTo={`/ingredient/${ingredient.ingredientName}`}
               onDeleteButtonClick={() =>
                 showDeleteIngredientModal({
-                  ingredientName: ingredient.ingredientName,
+                  ingredientName: ingredient?.ingredientName ?? "",
                 })
               }
             />
@@ -106,7 +108,7 @@ export default function IngredientCollectionPage() {
         filter={{
           queryParams: queryParams,
           pageNumber: pageNumber,
-          totalPages: data ? Math.ceil(data.total / PAGINATION_LIMIT) : 0,
+          totalPages: data ? Math.ceil(total / PAGINATION_LIMIT) : 0,
         }}
         callbacks={{
           setSearchFilter: onSearch,

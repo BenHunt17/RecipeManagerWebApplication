@@ -40,14 +40,17 @@ export default function CreateIngredientForm({
   const { callback: createIngredient, loading } = useMutate<Ingredient>({
     endpointPath: `${process.env.REACT_APP_RECIPE_MANAGER_API_URL}ingredient`,
     httpMethod: HttpMethod.POST,
-    onComplete: (result: Ingredient) => {
-      onComplete(result);
+    onComplete: (ingredient) => {
+      if (!ingredient) {
+        return;
+      }
+      onComplete(ingredient);
       addToRecentActivity(
         "ingredient",
-        result.ingredientName,
+        ingredient?.ingredientName ?? "",
         ItemKeyContext.CREATE,
-        `ingredient/${result.ingredientName}`,
-        result.imageUrl
+        `ingredient/${ingredient.ingredientName}`,
+        ingredient.imageUrl
       );
       close();
     },

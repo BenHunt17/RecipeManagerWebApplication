@@ -1,5 +1,6 @@
 import ContentBox from "../../components/common/ContentBox";
 import { IconButton } from "../../components/styled/buttons";
+import { ErrorScreen } from "../../components/styled/output";
 import UpdateInstructionsForm from "../../forms/recipes/instructions/UpdateInstructionsForm";
 import useModal from "../../hooks/useModal";
 import EditIcon from "../../svg/EditIcon";
@@ -16,8 +17,8 @@ export default function RecipeInstructions({
     "Update Recipe Ingredients",
     () => (
       <UpdateInstructionsForm
-        recipeName={recipe.recipeName}
-        existingInstructions={recipe.instructions}
+        recipeName={recipe.recipeName ?? ""}
+        existingInstructions={recipe?.instructions ?? []}
         updateInFetchedRecipe={(recipeInstructions: RecipeInstruction[]) =>
           updateInFetchedRecipe({ ...recipe, instructions: recipeInstructions })
         }
@@ -26,8 +27,13 @@ export default function RecipeInstructions({
     )
   );
 
+  if (!recipe.instructions) {
+    return <ErrorScreen>Could not find recipe instructions</ErrorScreen>;
+  }
+
   const sortedInstructions = recipe.instructions.sort(
-    (first, second) => first.instructionNumber - second.instructionNumber
+    (first, second) =>
+      (first?.instructionNumber ?? 0) - (second?.instructionNumber ?? 0)
   ); //Sorts the instructions by instruction number since it is assumed that they aren't returned in order from api
 
   return (

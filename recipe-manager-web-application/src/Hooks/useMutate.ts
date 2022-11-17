@@ -17,7 +17,7 @@ export default function useMutate<T>({
 }: {
   endpointPath: string;
   httpMethod: HttpMethod;
-  onComplete?: (result: T) => void;
+  onComplete?: (result: T | undefined) => void;
   onError?: () => void;
   options?: { includeCredentials?: boolean };
 }) {

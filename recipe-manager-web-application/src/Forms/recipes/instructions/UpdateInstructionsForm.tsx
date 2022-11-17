@@ -34,10 +34,15 @@ export default function UpdateRecipeIngredientsForm({
     name: "instructions",
   });
 
-  const { callback: updateInstructions, loading } = useMutate({
+  const { callback: updateInstructions, loading } = useMutate<
+    RecipeInstruction[]
+  >({
     endpointPath: `${process.env.REACT_APP_RECIPE_MANAGER_API_URL}recipe/${recipeName}/recipeinstructions`,
     httpMethod: HttpMethod.PUT,
-    onComplete: (recipeInstructions: RecipeInstruction[]) => {
+    onComplete: (recipeInstructions) => {
+      if (!recipeInstructions) {
+        return;
+      }
       updateInFetchedRecipe(recipeInstructions);
       addToRecentActivity(
         "recipe instructions",

@@ -75,7 +75,7 @@ export function RecipeIngredientFieldSection({
         placeholder="Search Ingredient"
         defaultValue={DEFAULT_RECIPE_INGREDIENT_FORM_VALUE.ingredient}
         onSearch={searchIngredients}
-        resultLabel={(result) => result.ingredientName}
+        resultLabel={(result) => result?.ingredientName ?? ""}
         deepEqual={(ingredientA, ingredientB) =>
           ingredientA.ingredientName === ingredientB.ingredientName &&
           ingredientA.measureUnit === ingredientB.measureUnit

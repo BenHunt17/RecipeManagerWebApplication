@@ -79,14 +79,17 @@ export default function CreateRecipeForm({
   const { callback: createIngredient, loading } = useMutate<Recipe>({
     endpointPath: `${process.env.REACT_APP_RECIPE_MANAGER_API_URL}recipe`,
     httpMethod: HttpMethod.POST,
-    onComplete: (result: Recipe) => {
-      onComplete(result);
+    onComplete: (recipe) => {
+      if (!recipe) {
+        return;
+      }
+      onComplete(recipe);
       addToRecentActivity(
         "recipe",
-        result.recipeName,
+        recipe?.recipeName ?? "",
         ItemKeyContext.CREATE,
-        `recipe/${result.recipeName}`,
-        result.imageUrl
+        `recipe/${recipe.recipeName}`,
+        recipe.imageUrl
       );
       close();
     },

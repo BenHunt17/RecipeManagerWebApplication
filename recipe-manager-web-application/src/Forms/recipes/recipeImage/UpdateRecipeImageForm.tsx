@@ -17,10 +17,13 @@ export default function UpdateRecipeImageForm({
 }) {
   const [recipeImage, setRecipeImage] = useState<File | null>(null);
 
-  const { callback: uploadImage, loading: uploadLoading } = useMutate({
+  const { callback: uploadImage, loading: uploadLoading } = useMutate<string>({
     endpointPath: `${process.env.REACT_APP_RECIPE_MANAGER_API_URL}recipe/${recipeName}/image`,
     httpMethod: HttpMethod.PUT,
-    onComplete: (imageUrl: string) => {
+    onComplete: (imageUrl) => {
+      if (!imageUrl) {
+        return;
+      }
       updateInFetchedRecipe(imageUrl);
       addToRecentActivity(
         "recipe image",

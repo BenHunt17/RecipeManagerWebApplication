@@ -27,13 +27,16 @@ export default function IngredientNutrition({
   return (
     <ContentBox
       title={`Nutritional Information (Per ${getMeasureUnitBaseValueString(
-        ingredient.measureUnit
+        ingredient?.measureUnit ?? MeasureUnit.NONE
       )})`}
     >
       <StatisticsTable
         id="nutrition-stats-table"
         data={[
-          { title: "kcal", data: ingredient.calories },
+          {
+            title: "kcal",
+            data: ingredient.calories ? ingredient.calories : "Unknown",
+          },
           {
             title: "Fat",
             data: ingredient.fat ? `${ingredient.fat}g` : "Unknown",

@@ -8,6 +8,8 @@ import useModal from "../../hooks/useModal";
 import EditIcon from "../../svg/EditIcon";
 import { Recipe, RecipeIngredient } from "../../types/recipeTypes";
 import { measureUnitToString } from "../../utils/ingredient";
+import { ErrorScreen } from "../../components/styled/output";
+import { MeasureUnit } from "../../types/ingredientTypes";
 
 export default function IngredientsList({
   recipe,
@@ -19,14 +21,18 @@ export default function IngredientsList({
   const [showUpdateRecipeIngredientsModal, closeUpdateRecipeIngredientsModal] =
     useModal("Update Recipe Ingredients", () => (
       <UpdateRecipeIngredientsForm
-        recipeName={recipe.recipeName}
-        existingRecipeIngredients={recipe.ingredients}
+        recipeName={recipe?.recipeName ?? ""}
+        existingRecipeIngredients={recipe?.ingredients ?? []}
         updateInFetchedRecipe={(recipeIngredients: RecipeIngredient[]) =>
           updateInFetchedRecipe({ ...recipe, ingredients: recipeIngredients })
         }
         close={() => closeUpdateRecipeIngredientsModal()}
       />
     ));
+
+  if (!recipe.ingredients) {
+    return <ErrorScreen>Could not find recipe ingredients</ErrorScreen>;
+  }
 
   return (
     <ContentBox
@@ -45,10 +51,12 @@ export default function IngredientsList({
             className="nakedLink"
           >
             <Tag
-              value={ingredient.ingredientName}
+              value={ingredient?.ingredientName ?? ""}
               endSlotValue={`${Number(
-                ingredient.quantity.toFixed(2)
-              )} ${measureUnitToString(ingredient.measureUnit)}`}
+                (ingredient?.quantity ?? 0).toFixed(2)
+              )} ${measureUnitToString(
+                ingredient?.measureUnit ?? MeasureUnit.NONE
+              )}`}
             />
           </Link>
         ))}

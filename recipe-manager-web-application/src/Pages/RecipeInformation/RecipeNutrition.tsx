@@ -11,7 +11,7 @@ export default function RecipeNutrition({
 }) {
   const calories = (
     recipeIngredients.reduce(
-      (total, ingredient) => total + ingredient.calories,
+      (total, ingredient) => total + (ingredient.calories ?? 0),
       0
     ) / servingSize
   ).toFixed(2);

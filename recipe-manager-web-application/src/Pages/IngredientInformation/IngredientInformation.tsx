@@ -20,8 +20,7 @@ import {
   TightParagraph,
 } from "../../components/styled/output";
 import { useEffect } from "react";
-import { addItemToStorage } from "../../utils/storageService";
-import { ContainerType, ItemKeyContext } from "../../types/storageTypes";
+import { ItemKeyContext } from "../../types/storageTypes";
 import IngredientNutrition from "./IngredientNutrition";
 import { addToRecentActivity } from "../../utils/recentActivityController";
 

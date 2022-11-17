@@ -1,14 +1,14 @@
 export interface Ingredient {
-  ingredientName: string;
-  ingredientDescription: string;
-  imageUrl: string | null;
-  measureUnit: MeasureUnit;
-  calories: number;
-  fruitVeg: boolean;
-  fat: number | null;
-  salt: number | null;
-  protein: number | null;
-  carbs: number | null;
+  ingredientName?: string;
+  ingredientDescription?: string;
+  imageUrl?: string | null;
+  measureUnit?: MeasureUnit;
+  calories?: number;
+  fruitVeg?: boolean;
+  fat?: number | null;
+  salt?: number | null;
+  protein?: number | null;
+  carbs?: number | null;
 }
 
 export interface IngredientInput {
@@ -26,10 +26,10 @@ export interface IngredientInput {
 }
 
 export interface IngredientListItem {
-  ingredientName: string;
-  imageUrl: string | null;
-  fruitVeg: boolean;
-  measureUnit: MeasureUnit;
+  ingredientName?: string;
+  imageUrl?: string | null;
+  fruitVeg?: boolean;
+  measureUnit?: MeasureUnit;
 }
 
 export enum MeasureUnit {

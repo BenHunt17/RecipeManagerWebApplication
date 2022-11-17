@@ -1,7 +1,7 @@
 export interface PaginatedResponse<T> {
-  items: T[];
-  offset: number;
-  total: number;
+  items?: T[];
+  offset?: number;
+  total?: number;
 }
 
 export type QueryParameters = Record<string, string | string[]>;

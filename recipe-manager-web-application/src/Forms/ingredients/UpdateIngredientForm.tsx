@@ -45,6 +45,9 @@ export default function UpdateIngredientForm({
     endpointPath: `${process.env.REACT_APP_RECIPE_MANAGER_API_URL}ingredient/${ingredientName}`,
     httpMethod: HttpMethod.PUT,
     onComplete: (ingredient) => {
+      if (!ingredient) {
+        return;
+      }
       updateInFetchedIngredient(ingredient);
       addToRecentActivity(
         "ingredient",

@@ -24,8 +24,7 @@ import {
 import UpdateRecipeForm from "../../forms/recipes/UpdateRecipeForm";
 import { minutesToTimeString } from "../../utils/recipe";
 import { useEffect } from "react";
-import { ContainerType, ItemKeyContext } from "../../types/storageTypes";
-import { addItemToStorage } from "../../utils/storageService";
+import { ItemKeyContext } from "../../types/storageTypes";
 import { addToRecentActivity } from "../../utils/recentActivityController";
 
 const ContentLayout = styled.div`
@@ -123,7 +122,7 @@ export default function RecipeInformation() {
         >
           <p>
             🕐
-            <b> {minutesToTimeString(data.prepTime)}</b>
+            <b> {minutesToTimeString(data?.prepTime ?? 0)}</b>
           </p>
           <p>
             Serves: <b>{data?.servingSize}</b>
@@ -170,8 +169,8 @@ export default function RecipeInformation() {
             <TightParagraph>{data?.recipeDescription}</TightParagraph>
           </ContentBox>
           <RecipeNutrition
-            recipeIngredients={data.ingredients}
-            servingSize={data.servingSize}
+            recipeIngredients={data?.ingredients ?? []}
+            servingSize={data?.servingSize ?? 0}
           />
         </FlexContainer>
       </ContentLayout>

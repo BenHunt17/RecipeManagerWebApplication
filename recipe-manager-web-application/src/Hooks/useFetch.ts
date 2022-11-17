@@ -19,7 +19,7 @@ export default function useFetch<T>({
   skip?: boolean;
   options?: { includeCredentials?: boolean };
 }) {
-  const [data, setData] = useState<T>();
+  const [data, setData] = useState<T | undefined>();
   const [loading, setLoading] = useState(!skip);
 
   const auth = useAuth();

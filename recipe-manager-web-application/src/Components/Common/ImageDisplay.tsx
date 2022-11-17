@@ -36,7 +36,7 @@ export default function ImageDisplay({
   imageUrl,
   onClick,
 }: {
-  imageUrl: string | null;
+  imageUrl: string | null | undefined;
   onClick?: () => void;
 }) {
   return (

@@ -83,7 +83,7 @@ export default function ItemCard({
   id: string;
   title: string;
   footerText?: string[]; //Only first 3 strings will actually be regarded
-  imageUrl: string | null;
+  imageUrl: string | null | undefined;
   linkTo: string;
   onDeleteButtonClick?: () => void;
 }) {
