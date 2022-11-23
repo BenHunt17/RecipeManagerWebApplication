@@ -34,7 +34,7 @@ export interface IngredientListItem {
 
 export enum MeasureUnit {
   NONE = "NONE",
-  KG = "KG",
+  G = "G",
   ML = "ML",
   DISCRETE = "DISCRETE",
   TSP = "TSP",
