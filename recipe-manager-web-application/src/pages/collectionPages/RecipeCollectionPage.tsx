@@ -49,7 +49,7 @@ export default function RecipeCollectionPage() {
     "Create Recipe",
     () => (
       <CreateRecipeForm
-        onComplete={(recipe) => navigate(`/recipes/${recipe.recipeName}`)}
+        onComplete={(recipe) => navigate(`/recipe/${recipe.recipeName}`)}
         close={() => closeCreateRecipeModal()}
       />
     )

@@ -7,7 +7,7 @@ export function measureUnitToString(measureUnit: MeasureUnit) {
     case MeasureUnit.ML:
       return "ml";
     case MeasureUnit.DISCRETE:
-      return "units";
+      return "unit";
     case MeasureUnit.TSP:
       return "tsp";
     case MeasureUnit.TBSP:
