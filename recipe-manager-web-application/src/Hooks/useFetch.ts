@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { QueryParameters } from "../types/commonTypes";
-import { expandQueryParameters } from "../utils/filterParams";
+import { QueryParameters } from "../type/commonTypes";
+import { expandQueryParameters } from "../util/filterParams";
 import { useAuth } from "./contextHooks";
 import { HttpMethod } from "./useMutate";
 

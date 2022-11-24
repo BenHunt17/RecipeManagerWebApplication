@@ -1,13 +1,13 @@
 import { Fragment } from "react";
 import { useForm } from "react-hook-form";
 import { SubmitButton } from "../../components/styled/buttons";
-import { MinMaxValue, QueryParameters } from "../../types/commonTypes";
-import { getProperty } from "../../utils/filterParams";
+import { MinMaxValue, QueryParameters } from "../../type/commonTypes";
+import { getProperty } from "../../util/filterParams";
 import {
   FilterOperation,
   TryParseBoolean,
   TryParseFloat,
-} from "../../utils/filterParsers";
+} from "../../util/filterParsers";
 import { FlexContainer } from "../../components/styled/layouts";
 import FilterForm from "../../components/layout/FilterForm";
 import NumberRangeInput from "../../components/form/NumberRangeInput";

@@ -4,7 +4,7 @@ import TextArea from "../../components/form/TextArea";
 import TextInput from "../../components/form/TextInput";
 import Toggle from "../../components/form/Toggle";
 import StandardForm from "../../components/layout/StandardForm";
-import { RecipeInput } from "../../types/recipeTypes";
+import { RecipeInput } from "../../type/recipeTypes";
 
 export function RecipeForm({
   control,

@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { FlexContainer } from "../../../components/styled/layouts";
-import { Activity, ContainerType } from "../../../types/storageTypes";
-import { getItemsFromStorage } from "../../../utils/storageService";
+import { Activity, ContainerType } from "../../../type/storageTypes";
+import { getItemsFromStorage } from "../../../util/storageService";
 import { ActivityCard } from "./ActivityCard";
 
 export function isActivity(obj: unknown): obj is Activity {

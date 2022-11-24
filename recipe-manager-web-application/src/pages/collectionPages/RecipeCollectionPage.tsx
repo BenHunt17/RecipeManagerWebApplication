@@ -8,10 +8,10 @@ import RecipeFilterForm from "../../forms/recipes/RecipeFilterForm";
 import useFetch from "../../hooks/useFetch";
 import { useFilters } from "../../hooks/useFilters";
 import useModal from "../../hooks/useModal";
-import { PaginatedResponse, QueryParameters } from "../../types/commonTypes";
-import { RecipeListItem } from "../../types/recipeTypes";
-import { PAGINATION_LIMIT } from "../../utils/filterParams";
-import { minutesToTimeString } from "../../utils/recipe";
+import { PaginatedResponse, QueryParameters } from "../../type/commonTypes";
+import { RecipeListItem } from "../../type/recipeTypes";
+import { PAGINATION_LIMIT } from "../../util/filterParams";
+import { minutesToTimeString } from "../../util/recipe";
 
 export default function RecipeCollectionPage() {
   const {

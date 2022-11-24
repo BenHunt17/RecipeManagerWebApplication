@@ -5,8 +5,8 @@ import TextArea from "../../components/form/TextArea";
 import TextInput from "../../components/form/TextInput";
 import Toggle from "../../components/form/Toggle";
 import StandardForm from "../../components/layout/StandardForm";
-import { IngredientInput, MeasureUnit } from "../../types/ingredientTypes";
-import { measureUnitToString } from "../../utils/ingredient";
+import { IngredientInput, MeasureUnit } from "../../type/ingredientTypes";
+import { measureUnitToString } from "../../util/ingredient";
 
 export default function IngredientForm({
   control,

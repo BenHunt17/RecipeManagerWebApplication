@@ -4,7 +4,7 @@ import { ErrorScreen } from "../../components/styled/output";
 import UpdateInstructionsForm from "../../forms/recipes/instructions/UpdateInstructionsForm";
 import useModal from "../../hooks/useModal";
 import EditIcon from "../../svg/EditIcon";
-import { Recipe, RecipeInstruction } from "../../types/recipeTypes";
+import { Recipe, RecipeInstruction } from "../../type/recipeTypes";
 
 export default function RecipeInstructions({
   recipe,

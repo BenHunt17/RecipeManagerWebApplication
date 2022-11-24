@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import ContentBox from "../../components/common/ContentBox";
-import { Recipe } from "../../types/recipeTypes";
+import { Recipe } from "../../type/recipeTypes";
 import RecipeInstructions from "./RecipeInstructions";
 import RecipeIngredientsList from "./RecipeIngredientsList";
 import RecipeNutrition from "./RecipeNutrition";
@@ -22,10 +22,10 @@ import {
   TightParagraph,
 } from "../../components/styled/output";
 import UpdateRecipeForm from "../../forms/recipes/UpdateRecipeForm";
-import { minutesToTimeString } from "../../utils/recipe";
+import { minutesToTimeString } from "../../util/recipe";
 import { useEffect } from "react";
-import { ItemKeyContext } from "../../types/storageTypes";
-import { addToRecentActivity } from "../../utils/recentActivityController";
+import { ItemKeyContext } from "../../type/storageTypes";
+import { addToRecentActivity } from "../../util/recentActivityController";
 
 const ContentLayout = styled.div`
   display: grid;

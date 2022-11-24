@@ -5,7 +5,7 @@ import {
   useController,
   UseControllerProps,
 } from "react-hook-form";
-import { formatFieldName } from "../../utils/form";
+import { formatFieldName } from "../../util/form";
 import RangeInput from "../layout/RangeInput";
 import TimeInput from "./TimeInput";
 

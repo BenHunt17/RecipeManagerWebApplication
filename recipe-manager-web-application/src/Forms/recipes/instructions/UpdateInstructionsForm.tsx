@@ -3,12 +3,12 @@ import { SubmitButton } from "../../../components/styled/buttons";
 import { LoadingSpinner } from "../../../components/styled/output";
 import { FormListContainer } from "../../../components/styled/input";
 import useMutate, { HttpMethod } from "../../../hooks/useMutate";
-import { InstructionsFormInput } from "../../../types/formTypes";
-import { RecipeInstruction } from "../../../types/recipeTypes";
+import { InstructionsFormInput } from "../../../type/formTypes";
+import { RecipeInstruction } from "../../../type/recipeTypes";
 import InstructionsForm from "./InstructionsForm";
 import { FlexContainer } from "../../../components/styled/layouts";
-import { addToRecentActivity } from "../../../utils/recentActivityController";
-import { ItemKeyContext } from "../../../types/storageTypes";
+import { addToRecentActivity } from "../../../util/recentActivityController";
+import { ItemKeyContext } from "../../../type/storageTypes";
 
 export default function UpdateRecipeIngredientsForm({
   recipeName,

@@ -8,8 +8,8 @@ import {
   UseFieldArrayRemove,
 } from "react-hook-form";
 import FormList from "../../../components/form/formList/FormList";
-import { InstructionsFormInput } from "../../../types/formTypes";
-import { RecipeInstructionInput } from "../../../types/recipeTypes";
+import { InstructionsFormInput } from "../../../type/formTypes";
+import { RecipeInstructionInput } from "../../../type/recipeTypes";
 import InstructionFieldSection from "./InstructionFieldSection";
 
 export const DEFAULT_INSTRUCTION_FORM_VALUE = {

@@ -1,4 +1,4 @@
-import { MeasureUnit } from "../types/ingredientTypes";
+import { MeasureUnit } from "../type/ingredientTypes";
 
 export function measureUnitToString(measureUnit: MeasureUnit) {
   switch (measureUnit) {

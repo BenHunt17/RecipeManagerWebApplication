@@ -4,7 +4,7 @@ import {
   useController,
   UseControllerProps,
 } from "react-hook-form";
-import { formatFieldName } from "../../utils/form";
+import { formatFieldName } from "../../util/form";
 import { InputError } from "../styled/input";
 
 const Input = styled.input`

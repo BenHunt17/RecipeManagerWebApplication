@@ -6,10 +6,10 @@ import Tag from "../../components/common/Tag";
 import UpdateRecipeIngredientsForm from "../../forms/recipes/recipeIngredients/UpdateRecipeIngredientsForm";
 import useModal from "../../hooks/useModal";
 import EditIcon from "../../svg/EditIcon";
-import { Recipe, RecipeIngredient } from "../../types/recipeTypes";
-import { measureUnitToString } from "../../utils/ingredient";
+import { Recipe, RecipeIngredient } from "../../type/recipeTypes";
+import { measureUnitToString } from "../../util/ingredient";
 import { ErrorScreen } from "../../components/styled/output";
-import { MeasureUnit } from "../../types/ingredientTypes";
+import { MeasureUnit } from "../../type/ingredientTypes";
 
 export default function IngredientsList({
   recipe,

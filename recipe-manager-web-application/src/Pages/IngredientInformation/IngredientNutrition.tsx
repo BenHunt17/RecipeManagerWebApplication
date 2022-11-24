@@ -1,7 +1,7 @@
 import ContentBox from "../../components/common/ContentBox";
 import StatisticsTable from "../../components/common/StatisticsTable";
-import { Ingredient, MeasureUnit } from "../../types/ingredientTypes";
-import { measureUnitToString } from "../../utils/ingredient";
+import { Ingredient, MeasureUnit } from "../../type/ingredientTypes";
+import { measureUnitToString } from "../../util/ingredient";
 
 export default function IngredientNutrition({
   ingredient,

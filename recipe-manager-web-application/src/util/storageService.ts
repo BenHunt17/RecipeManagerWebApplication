@@ -1,4 +1,4 @@
-import { ContainerType, StorageItem } from "../types/storageTypes";
+import { ContainerType, StorageItem } from "../type/storageTypes";
 
 export function getItemsFromStorage(containerName: ContainerType) {
   try {

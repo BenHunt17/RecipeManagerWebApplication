@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import useMutate, { HttpMethod } from "../../hooks/useMutate";
 import { LoadingSpinner } from "../../components/styled/output";
-import { Recipe, RecipeInput } from "../../types/recipeTypes";
+import { Recipe, RecipeInput } from "../../type/recipeTypes";
 import { SubmitButton } from "../../components/styled/buttons";
 import { RecipeForm } from "./RecipeForm";
 

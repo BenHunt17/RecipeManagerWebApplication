@@ -10,13 +10,13 @@ import {
   MinMaxValue,
   QueryParameters,
   RangeOrTrueValue,
-} from "../../types/commonTypes";
+} from "../../type/commonTypes";
 import {
   FilterOperation,
   TryParseBoolean,
   TryParseInteger,
-} from "../../utils/filterParsers";
-import { getProperty } from "../../utils/filterParams";
+} from "../../util/filterParsers";
+import { getProperty } from "../../util/filterParams";
 
 interface RecipeFilters {
   rating?: RangeOrTrueValue;

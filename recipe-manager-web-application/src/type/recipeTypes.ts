@@ -1,4 +1,4 @@
-import { IngredientListItem, MeasureUnit } from "./ingredientTypes";
+import { MeasureUnit } from "./ingredientTypes";
 
 export interface RecipeIngredient {
   ingredientName?: string;

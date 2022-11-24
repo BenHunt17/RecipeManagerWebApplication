@@ -1,6 +1,6 @@
 import ContentBox from "../../components/common/ContentBox";
 import StatisticsTable from "../../components/common/StatisticsTable";
-import { RecipeIngredient } from "../../types/recipeTypes";
+import { RecipeIngredient } from "../../type/recipeTypes";
 
 export default function RecipeNutrition({
   recipeIngredients,

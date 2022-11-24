@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { Control } from "react-hook-form";
 import { FlexContainer } from "../../../components/styled/layouts";
 import TextArea from "../../../components/form/TextArea";
-import { InstructionsFormInput } from "../../../types/formTypes";
+import { InstructionsFormInput } from "../../../type/formTypes";
 
 const InstructionNumber = styled.h4`
   width: 21px;

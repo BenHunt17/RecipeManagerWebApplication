@@ -7,7 +7,7 @@ import { LoadingSpinner } from "../../components/styled/output";
 import { FlexContainer } from "../../components/styled/layouts";
 import TextInput from "../../components/form/TextInput";
 import { useAuth } from "../../hooks/contextHooks";
-import { UserCredentials } from "../../types/userTypes";
+import { UserCredentials } from "../../type/userTypes";
 
 const LoginPageTemplate = styled.div`
   display: flex;

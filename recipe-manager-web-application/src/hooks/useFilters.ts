@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { QueryParameters } from "../types/commonTypes";
-import { PAGINATION_LIMIT } from "../utils/filterParams";
+import { QueryParameters } from "../type/commonTypes";
+import { PAGINATION_LIMIT } from "../util/filterParams";
 
 export function useFilters() {
   const [queryParams, setQueryParams] = useState<QueryParameters>({

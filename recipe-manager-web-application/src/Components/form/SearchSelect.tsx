@@ -7,7 +7,7 @@ import {
   useController,
   UseControllerProps,
 } from "react-hook-form";
-import { formatFieldName } from "../../utils/form";
+import { formatFieldName } from "../../util/form";
 import OutsideClickWrapper from "../common/OutsideClickWrapper";
 import Overlay from "../common/Overlay";
 import { FlexContainer } from "../styled/layouts";

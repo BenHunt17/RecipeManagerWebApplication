@@ -6,11 +6,11 @@ import {
   Ingredient,
   IngredientInput,
   MeasureUnit,
-} from "../../types/ingredientTypes";
+} from "../../type/ingredientTypes";
 import { LoadingSpinner } from "../../components/styled/output";
 import IngredientForm from "./IngredientForm";
-import { ItemKeyContext } from "../../types/storageTypes";
-import { addToRecentActivity } from "../../utils/recentActivityController";
+import { ItemKeyContext } from "../../type/storageTypes";
+import { addToRecentActivity } from "../../util/recentActivityController";
 
 const defaultValues = {
   ingredientName: "",

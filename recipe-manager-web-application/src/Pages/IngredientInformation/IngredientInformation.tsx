@@ -11,7 +11,7 @@ import UpdateIngredientImageForm from "../../forms/ingredients/UpdateIngredientI
 import UpdateIngredientForm from "../../forms/ingredients/UpdateIngredientForm";
 import useFetch from "../../hooks/useFetch";
 import useModal from "../../hooks/useModal";
-import { Ingredient } from "../../types/ingredientTypes";
+import { Ingredient } from "../../type/ingredientTypes";
 import ImageDisplay from "../../components/common/ImageDisplay";
 import EditIcon from "../../svg/EditIcon";
 import {
@@ -20,9 +20,9 @@ import {
   TightParagraph,
 } from "../../components/styled/output";
 import { useEffect } from "react";
-import { ItemKeyContext } from "../../types/storageTypes";
+import { ItemKeyContext } from "../../type/storageTypes";
 import IngredientNutrition from "./IngredientNutrition";
-import { addToRecentActivity } from "../../utils/recentActivityController";
+import { addToRecentActivity } from "../../util/recentActivityController";
 
 const PageLayout = styled.div`
   display: grid;

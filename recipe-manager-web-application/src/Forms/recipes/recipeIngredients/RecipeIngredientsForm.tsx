@@ -6,14 +6,11 @@ import {
   UseFieldArrayRemove,
   UseFormWatch,
 } from "react-hook-form";
-import {
-  IngredientListItem,
-  MeasureUnit,
-} from "../../../types/ingredientTypes";
-import { RecipeIngredientInput } from "../../../types/recipeTypes";
+import { IngredientListItem, MeasureUnit } from "../../../type/ingredientTypes";
+import { RecipeIngredientInput } from "../../../type/recipeTypes";
 import FormList from "../../../components/form/formList/FormList";
 import { RecipeIngredientFieldSection } from "./RecipeIngredientFieldSection";
-import { RecipeIngredientFormInput } from "../../../types/formTypes";
+import { RecipeIngredientFormInput } from "../../../type/formTypes";
 
 export const DEFAULT_RECIPE_INGREDIENT_FORM_VALUE = {
   ingredient: { ingredientName: "", measureUnit: MeasureUnit.NONE },

@@ -1,4 +1,4 @@
-import { QueryParameters } from "../types/commonTypes";
+import { QueryParameters } from "../type/commonTypes";
 
 export const PAGINATION_LIMIT = 10;
 

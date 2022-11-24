@@ -1,7 +1,7 @@
 import DeleteForm from "../../components/layout/DeleteForm";
 import useMutate, { HttpMethod } from "../../hooks/useMutate";
-import { ItemKeyContext } from "../../types/storageTypes";
-import { addToRecentActivity } from "../../utils/recentActivityController";
+import { ItemKeyContext } from "../../type/storageTypes";
+import { addToRecentActivity } from "../../util/recentActivityController";
 
 export default function DeleteRecipeForm({
   recipeName,

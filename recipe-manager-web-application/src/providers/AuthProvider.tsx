@@ -1,7 +1,7 @@
 import React, { createContext, useEffect, useState } from "react";
 import useFetch from "../hooks/useFetch";
 import useMutate, { HttpMethod } from "../hooks/useMutate";
-import { UserCredentials } from "../types/userTypes";
+import { UserCredentials } from "../type/userTypes";
 
 interface AuthContextType {
   bearerToken: string | undefined;

@@ -3,12 +3,12 @@ import { SubmitButton } from "../../../components/styled/buttons";
 import { LoadingSpinner } from "../../../components/styled/output";
 import { FormListContainer } from "../../../components/styled/input";
 import useMutate, { HttpMethod } from "../../../hooks/useMutate";
-import { RecipeIngredientFormInput } from "../../../types/formTypes";
-import { RecipeIngredient } from "../../../types/recipeTypes";
+import { RecipeIngredientFormInput } from "../../../type/formTypes";
+import { RecipeIngredient } from "../../../type/recipeTypes";
 import RecipeIngredientsForm from "./RecipeIngredientsForm";
 import { FlexContainer } from "../../../components/styled/layouts";
-import { addToRecentActivity } from "../../../utils/recentActivityController";
-import { ItemKeyContext } from "../../../types/storageTypes";
+import { addToRecentActivity } from "../../../util/recentActivityController";
+import { ItemKeyContext } from "../../../type/storageTypes";
 
 function extractDefaultValues(existingRecipeIngredients: RecipeIngredient[]) {
   return {

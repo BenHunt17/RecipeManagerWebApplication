@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
-import { QueryParameters } from "../../types/commonTypes";
-import { getCount } from "../../utils/filterParams";
+import { QueryParameters } from "../../type/commonTypes";
+import { getCount } from "../../util/filterParams";
 import PageSelector from "../common/PageSelector";
 import SearchAndFilter from "../common/SearchAndFilter";
 import { AddButton } from "../styled/buttons";

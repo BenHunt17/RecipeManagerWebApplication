@@ -5,13 +5,10 @@ import { FlexContainer } from "../../../components/styled/layouts";
 import SearchSelect from "../../../components/form/SearchSelect";
 import TextInput from "../../../components/form/TextInput";
 import useFetch from "../../../hooks/useFetch";
-import { PaginatedResponse, QueryParameters } from "../../../types/commonTypes";
-import { RecipeIngredientFormInput } from "../../../types/formTypes";
-import {
-  IngredientListItem,
-  MeasureUnit,
-} from "../../../types/ingredientTypes";
-import { measureUnitToString } from "../../../utils/ingredient";
+import { PaginatedResponse, QueryParameters } from "../../../type/commonTypes";
+import { RecipeIngredientFormInput } from "../../../type/formTypes";
+import { IngredientListItem, MeasureUnit } from "../../../type/ingredientTypes";
+import { measureUnitToString } from "../../../util/ingredient";
 import { DEFAULT_RECIPE_INGREDIENT_FORM_VALUE } from "./RecipeIngredientsForm";
 
 const QuantityFieldContainer = styled.div`

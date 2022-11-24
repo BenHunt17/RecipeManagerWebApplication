@@ -5,7 +5,7 @@ import styled from "@emotion/styled";
 import { Link } from "react-router-dom";
 import { FlexContainer } from "../../../components/styled/layouts";
 import { TightParagraph } from "../../../components/styled/output";
-import { Activity } from "../../../types/storageTypes";
+import { Activity } from "../../../type/storageTypes";
 
 const CardRoot = styled.div`
   display: flex;
@@ -52,7 +52,12 @@ export function ActivityCard({ activity }: { activity: Activity }) {
             </div>
             <p css={{ fontSize: 12 }}>{activity.timeStamp}</p>
           </ContentContainer>
-          <img src={activity.imageUrl} width={100} height={100} />
+          <img
+            src={activity.imageUrl}
+            alt="activity-card"
+            width={100}
+            height={100}
+          />
         </FlexContainer>
         <LinkContainer>
           <Link

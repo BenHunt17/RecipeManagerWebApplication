@@ -1,11 +1,11 @@
 import ItemCard from "../../components/common/ItemCard";
 import useFetch from "../../hooks/useFetch";
 import useModal from "../../hooks/useModal";
-import { IngredientListItem } from "../../types/ingredientTypes";
+import { IngredientListItem } from "../../type/ingredientTypes";
 import DeleteIngredientForm from "../../forms/ingredients/DeleteIngredientForm";
 import { Fragment } from "react";
-import { PaginatedResponse, QueryParameters } from "../../types/commonTypes";
-import { PAGINATION_LIMIT } from "../../utils/filterParams";
+import { PaginatedResponse, QueryParameters } from "../../type/commonTypes";
+import { PAGINATION_LIMIT } from "../../util/filterParams";
 import CollectionPage from "../../components/layout/CollectionPage";
 import IngredientFilterForm from "../../forms/ingredients/IngredientFilterForm";
 import CreateIngredientForm from "../../forms/ingredients/CreateIngredientForm";

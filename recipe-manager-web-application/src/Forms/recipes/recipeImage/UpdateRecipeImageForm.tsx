@@ -1,7 +1,7 @@
 import { useState } from "react";
 import useMutate, { HttpMethod } from "../../../hooks/useMutate";
-import { ItemKeyContext } from "../../../types/storageTypes";
-import { addToRecentActivity } from "../../../utils/recentActivityController";
+import { ItemKeyContext } from "../../../type/storageTypes";
+import { addToRecentActivity } from "../../../util/recentActivityController";
 import UpdateImageForm from "../../UpdateImageForm";
 
 export default function UpdateRecipeImageForm({

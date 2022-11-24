@@ -4,7 +4,7 @@ import { FlexContainer } from "../../components/styled/layouts";
 import useMutate, { HttpMethod } from "../../hooks/useMutate";
 import { LoadingSpinner } from "../../components/styled/output";
 import Slider from "./Slider";
-import { Recipe, RecipeInput } from "../../types/recipeTypes";
+import { Recipe, RecipeInput } from "../../type/recipeTypes";
 import InstructionsForm, {
   DEFAULT_INSTRUCTION_FORM_VALUE,
 } from "./instructions/InstructionsForm";
@@ -15,10 +15,10 @@ import RecipeIngredientsForm, {
 import {
   InstructionsFormInput,
   RecipeIngredientFormInput,
-} from "../../types/formTypes";
+} from "../../type/formTypes";
 import { RecipeForm } from "./RecipeForm";
-import { addToRecentActivity } from "../../utils/recentActivityController";
-import { ItemKeyContext } from "../../types/storageTypes";
+import { addToRecentActivity } from "../../util/recentActivityController";
+import { ItemKeyContext } from "../../type/storageTypes";
 
 const defaultValues = {
   recipeName: "",

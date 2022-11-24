@@ -1,4 +1,4 @@
-import { ContainerType, ItemKeyContext } from "../types/storageTypes";
+import { ContainerType, ItemKeyContext } from "../type/storageTypes";
 import { addItemToStorage } from "./storageService";
 
 const MAX_ITEMS = 10;
