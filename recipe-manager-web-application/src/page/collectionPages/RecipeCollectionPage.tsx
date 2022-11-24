@@ -31,7 +31,7 @@ export default function RecipeCollectionPage() {
     queryParams: queryParams,
   });
 
-  const total = data?.total ? data.total - 1 : 0;
+  const total = data?.total ?? 0;
 
   const [showRecipeFilterModal, closeRecipeFilterModal] = useModal(
     "Set Filters",
