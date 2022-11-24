@@ -1,5 +1,5 @@
 import React, { createContext, Fragment, useState } from "react";
-import { ModalOverlay } from "../components/common/modal/ModalOverlayStyled";
+import { ModalOverlay } from "../component/common/modal/ModalOverlayStyled";
 
 interface ModalsContextType {
   addModal: (modal: JSX.Element) => number;

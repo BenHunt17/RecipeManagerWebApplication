@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
-import useFetch from "../hooks/useFetch";
-import useMutate, { HttpMethod } from "../hooks/useMutate";
+import useFetch from "../hook/useFetch";
+import useMutate, { HttpMethod } from "../hook/useMutate";
 import { UserCredentials } from "../type/userTypes";
 
 interface AuthContextType {
