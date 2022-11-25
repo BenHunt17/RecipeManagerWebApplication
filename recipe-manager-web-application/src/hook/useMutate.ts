@@ -74,6 +74,7 @@ export default function useMutate<T>({
       endpointPath,
       httpMethod,
       auth?.bearerToken,
+      options?.overrideBearer,
       onComplete,
       onError,
       options?.includeCredentials,
