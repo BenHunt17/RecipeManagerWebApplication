@@ -19,7 +19,7 @@ export default function useMutate<T>({
   httpMethod: HttpMethod;
   onComplete?: (result: T | undefined) => void;
   onError?: () => void;
-  options?: { includeCredentials?: boolean };
+  options?: { includeCredentials?: boolean; overrideBearer?: string };
 }) {
   const [loading, setLoading] = useState(false);
 
@@ -34,10 +34,14 @@ export default function useMutate<T>({
         headers:
           typeof payload !== "string"
             ? new Headers({
-                Authorization: `Bearer ${auth?.bearerToken}`,
+                Authorization: `Bearer ${
+                  options?.overrideBearer ?? auth?.bearerToken
+                }`,
               })
             : new Headers({
-                Authorization: `Bearer ${auth?.bearerToken}`,
+                Authorization: `Bearer ${
+                  options?.overrideBearer ?? auth?.bearerToken
+                }`,
                 "Content-Type": "application/json;charset=utf-8",
               }),
         credentials: options?.includeCredentials ? "include" : "same-origin",

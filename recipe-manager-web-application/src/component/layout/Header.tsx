@@ -50,7 +50,7 @@ export default function Header() {
             Ingredients
           </Link>
           {/* Button styling is temporary since likely to have an account menu in future */}
-          <LogoutButton onClick={() => auth.logout()}>Logout</LogoutButton>{" "}
+          <LogoutButton onClick={auth.logout}>Logout</LogoutButton>
         </NavigationBar>
       )}
     </HeaderRoot>

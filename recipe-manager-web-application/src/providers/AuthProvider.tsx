@@ -41,7 +41,7 @@ export default function AuthProvider({
     endpointPath: `${process.env.REACT_APP_RECIPE_MANAGER_API_URL}user/logout`,
     httpMethod: HttpMethod.PUT,
     onComplete: () => setBearerToken(undefined),
-    options: { includeCredentials: true },
+    options: { includeCredentials: true, overrideBearer: bearerToken },
   });
 
   const { data: refreshResult } = useFetch<string>({
@@ -65,7 +65,7 @@ export default function AuthProvider({
         authenticationPending: loginLoading,
         authenticationDenied: authenticationDenied,
         login: (credentials) => login(JSON.stringify(credentials)),
-        logout: logout,
+        logout,
       }}
     >
       {children}
